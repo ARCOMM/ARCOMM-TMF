@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Bug Report
 about: Create a report to help us improve
 title: ''
 labels: bug
@@ -10,6 +10,7 @@ assignees: ''
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
 
 Before reporting make sure your issue is with the TMF mission framework, not with other mods or scripts.
+Remember tha Bug Reports aren't feature requests, if you desire something to be added to TMF make a Feature Request not a Bug Report!
 -->
 
 **Description:**
