@@ -10,7 +10,7 @@ If it's already been reported do not make another report, but feel free to add t
 - Go to the [issue tracker](https://github.com/ARCOMM/ARCOMM-TMF/issues).
 - Press the [New issue](https://github.com/ARCOMM/ARCOMM-TMF/issues/new) button in the top right corner.
 - Click Get Started in the Bug Report section.
-- Add a descriptive title and complete the template.
+- Add a descriptive title with the format `ADDON - title`, for example `SAFESTART - XYZ breaks when...` and complete the template.
 
 # Feature Requests
 ### Before Requesting
@@ -20,7 +20,7 @@ Ensure the feature you want is something that is within the scope of the TMF mis
 - Go to the [issue tracker](https://github.com/ARCOMM/ARCOMM-TMF/issues).
 - Press the [New issue](https://github.com/ARCOMM/ARCOMM-TMF/issues/new) button in the top right corner.
 - Click Get Started in the Feature Request section.
-- Add a descriptive title and complete the template.
+- Add a descriptive title with the format `ADDON - title`, for example `SAFESTART - Add XYZ feature` and complete the template.
 
 # Contributing to the project
 ### Process for Pull Request
