@@ -14,7 +14,7 @@ Remember that Feature Requests aren't bug reports, if something is broken make a
 -->
 
 **Reason for Request:**
-What is the reason this feature is desired.
+The reason this feature is desired and how it would be beneficial to have.
 
 **Description:**
 A clear and concise description of what feature the feature would do.
