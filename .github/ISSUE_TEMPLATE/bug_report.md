@@ -6,6 +6,12 @@ labels: kind/bug
 assignees: ''
 ---
 
+<!--
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+
+Before reporting make sure your issue is with the TMF mission framework, not with other mods or scripts.
+-->
+
 **Description:**
 A clear and concise description of what the bug is.
 
