@@ -538,7 +538,7 @@ class Cfg3DEN
                 class ButtonChannelLeader: ButtonChannelGive
                 {
                     text = "Leader";
-                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['channelTreeLeader',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Make the leader of the group use the selected radio channel (Only avaiable on groups)";
                 };

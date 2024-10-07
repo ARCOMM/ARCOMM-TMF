@@ -75,7 +75,7 @@ class GVAR(editBox)
         {
             idc = IDC_DISPLAY3DENMSGBOX_BOTTOMBACKGROUND;
             x = MSGBOX_X;
-            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H);
+            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H));
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);
         };
@@ -83,7 +83,7 @@ class GVAR(editBox)
         {
             idc = 3434;
             x = QUOTE(MSGBOX_X + (MSGBOX_W * 1/3) * GRID_W);
-            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H);
+            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H));
             w = QUOTE((MSGBOX_W * 1/3 - 1) * GRID_W);
             h = QUOTE(5 * GRID_H);
             onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 1;";
@@ -92,7 +92,7 @@ class GVAR(editBox)
         {
             idc = 3432;
             x = QUOTE(MSGBOX_X + (MSGBOX_W * 2/3) * GRID_W);
-            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H);
+            y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H));
             w = QUOTE((MSGBOX_W * 1/3 - 1) * GRID_W);
             h = QUOTE(5 * GRID_H);
             onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 2;";

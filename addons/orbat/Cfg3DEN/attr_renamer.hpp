@@ -8,7 +8,7 @@ class TMF_ORBAT_Renamer : Title
     {
         class renamerTitle: ctrlStatic
         {
-            x = SIZE_M * GRID_W * 2;
+            x = QUOTE(SIZE_M * GRID_W * 2);
             w = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
             y = 0;

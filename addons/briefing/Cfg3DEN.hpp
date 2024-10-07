@@ -178,7 +178,7 @@ class Cfg3DEN
                     h = QUOTE(SIZE_M * GRID_H);
                     x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
                     w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2;
-                    y = 1 * SIZE_M * GRID_H;
+                    y == SIZE_M * GRID_H;
                     action = "['BriefTreeGive',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Make the selected element recieve selected briefing.";
                 };
@@ -216,7 +216,7 @@ class Cfg3DEN
                     h = QUOTE(SIZE_M * GRID_H);
                     x = QUOTE(SIZE_M * GRID_W);
                     w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
-                    y = 1 * SIZE_M * GRID_H;
+                    y == SIZE_M * GRID_H;
                     action = "['BriefAddClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Add a new briefing.";
                 };
@@ -253,7 +253,7 @@ class Cfg3DEN
                 {
                     idc = 313208;
                     x = QUOTE(SIZE_M * GRID_W);
-                    y = 1 * SIZE_M * GRID_H;
+                    y == SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 15 * SIZE_M * GRID_H;
                     colorBackground[] = {0.33,0.33,0.33,1};
@@ -279,7 +279,7 @@ class Cfg3DEN
                 {
                     idc = 313201;
                     text = "Add/Edit Briefing";
-                    y = 1 * SIZE_M * GRID_H;
+                    y == SIZE_M * GRID_H;
                     x = QUOTE(SIZE_M * GRID_W);
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
                     colorBackground[] = {0.1,0.1,0.1,1};

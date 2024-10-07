@@ -4,7 +4,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
     x = 7 * GUI_GRID_W + GUI_GRID_CENTER_X;
     y = 10 * GUI_GRID_H + GUI_GRID_CENTER_Y;
     w = 26 * GUI_GRID_W;
-    h = 1 * GUI_GRID_H;
+    h == GUI_GRID_H;
     class controls {
         class Title: RscText {
             idc = IDC_RSCATTRIBUTERETROACTIVE_TITLE;
@@ -12,7 +12,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
             x = 0 * GUI_GRID_W;
             y = 0 * GUI_GRID_H;
             w = 10 * GUI_GRID_W;
-            h = 1 * GUI_GRID_H;
+            h == GUI_GRID_H;
             colorBackground[] = GUI_TEXT_SHADOW;
         };
         class Background: RscText {
@@ -21,7 +21,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
             x = 10 * GUI_GRID_W;
             y = 0 * GUI_GRID_H;
             w = 16 * GUI_GRID_W;
-            h = 1 * GUI_GRID_H;
+            h == GUI_GRID_H;
             colorText[] = {1,1,1,0.5};
             colorBackground[] = {1,1,1,0.1};
         };
@@ -33,7 +33,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
             x = 10 * GUI_GRID_W;
             y = 0 * GUI_GRID_H;
             w = 16 * GUI_GRID_W;
-            h = 1 * GUI_GRID_H;
+            h == GUI_GRID_H;
         };
     };
 };

@@ -15,8 +15,8 @@ class twGroupMarker: Toolbox
         class GmTitle: ctrlStatic
         {
             x = 0;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
             y = 0;
             colorBackground[] = {0,0,0,0};
             style = ST_RIGHT;
@@ -26,8 +26,8 @@ class twGroupMarker: Toolbox
         class Icon: ctrlToolbox
         {
             idc = 100;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             h = 12.25 * SIZE_M * GRID_H;
 
@@ -51,8 +51,8 @@ class twGroupMarker: Toolbox
         class ColourValue: ctrlToolbox
         {
             idc = 101;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             y = (12.25+0.15) * SIZE_M * GRID_H;
             h = 1.75 * SIZE_M * GRID_H;
@@ -100,9 +100,9 @@ class twGroupMarker: Toolbox
         {
             y = (14+0.3) * SIZE_M * GRID_H;
             idc = 102;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
         };
         // Size
         class sizeTitle: GmTitle
@@ -114,8 +114,8 @@ class twGroupMarker: Toolbox
         class sizeValue: ctrlToolbox
         {
             idc = 103;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             y = (15+0.45) * SIZE_M * GRID_H;
             h = 1.75 * SIZE_M * GRID_H;

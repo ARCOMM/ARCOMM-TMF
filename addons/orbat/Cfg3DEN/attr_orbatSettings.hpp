@@ -16,8 +16,8 @@ class ORBATSettings : Toolbox
         {
             text = "Split ORBATs by:";
             style = ST_RIGHT;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = 1 * SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h == SIZE_M * GRID_H;
             y = 0;
             x = 0;
             colorBackground[] = {0,0,0,0};
@@ -26,11 +26,11 @@ class ORBATSettings : Toolbox
         class Value: ctrlToolbox
         {
             idc = 100;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_KEEP_ASPECT_RATIO; //ST_PICTURE +
             y = 0;
-            h = 1 * SIZE_M * GRID_H;
+            h == SIZE_M * GRID_H;
             rows = 1;
             columns = 2;
             strings[] = {"Side", "Faction"};
@@ -46,7 +46,7 @@ class ORBATSettings : Toolbox
                 align = "center";
             };
             text = "&lt; Configure X &gt;";
-            h = SIZE_M * GRID_H;
+            h = QUOTE(SIZE_M * GRID_H);
             x = SIZE_M * GRID_W;
             w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
             y = 2 * SIZE_M * GRID_H;
@@ -75,7 +75,7 @@ class ORBATSettings : Toolbox
         {
             idc = 104;
             text = "Move";
-            h = SIZE_M * GRID_H;
+            h = QUOTE(SIZE_M * GRID_H);
             x = SIZE_M * GRID_W;
             w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4;
             y = 4 * SIZE_M * GRID_H;
@@ -205,7 +205,7 @@ class ORBATSettings : Toolbox
         class MoveTree : ctrlTree
         {
             idc = 108;
-            x = 1 * SIZE_M * GRID_W;
+            x == SIZE_M * GRID_W;
             w = (ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M) * GRID_W;
             y = 4.5 * SIZE_M * GRID_H;
             h = 19 * SIZE_M * GRID_H;
@@ -240,8 +240,8 @@ class ORBATSettings : Toolbox
         {
             idc = 110;
             x = 0;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
             y = 4 * SIZE_M * GRID_H;
             colorBackground[] = {0,0,0,0};
             style = ST_RIGHT;
@@ -251,8 +251,8 @@ class ORBATSettings : Toolbox
         class Icon: ctrlToolbox
         {
             idc = 111;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             h = 12.25 * SIZE_M * GRID_H;
             y = 4 * SIZE_M * GRID_H;
@@ -277,8 +277,8 @@ class ORBATSettings : Toolbox
         class ColourValue: ctrlToolbox
         {
             idc = 113;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             y = (4+12.25+0.15) * SIZE_M * GRID_H;
             h = 1.75 * SIZE_M * GRID_H;
@@ -327,9 +327,9 @@ class ORBATSettings : Toolbox
         {
             y = (4+14+0.3) * SIZE_M * GRID_H;
             idc = 115;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
         };
         class FullTitle: MarkerTitle
         {
@@ -342,7 +342,7 @@ class ORBATSettings : Toolbox
         {
             y = (4+15+0.45) * SIZE_M * GRID_H;
             idc = 123;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
         };
         // Size
         class sizeTitle: GmTitle
@@ -355,8 +355,8 @@ class ORBATSettings : Toolbox
         class sizeValue: ctrlToolbox
         {
             idc = 117;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             y = (4+16+0.6) * SIZE_M * GRID_H;
             h = 1.75 * SIZE_M * GRID_H;
@@ -398,7 +398,7 @@ class ORBATSettings : Toolbox
             y = 23.5 * SIZE_M * GRID_H;
             w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6;
             x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W;
-            h = SIZE_M * GRID_H;
+            h = QUOTE(SIZE_M * GRID_H);
             action = "['editOrbatEntryClickOkay',_this] call (uinamespace getvariable 'ORBATSettings_script');";
         };
         class EditOrbatEntryCancel : EditOrbatEntryOk

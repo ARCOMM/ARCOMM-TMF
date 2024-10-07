@@ -279,7 +279,7 @@ class Cfg3DEN
                     y = QUOTE(0 * SIZE_M * GRID_H);
                     x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
-                    w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W);
+                    w = QUOTE((ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W));
                 };
                 class Picture : RscPicture
                 {
