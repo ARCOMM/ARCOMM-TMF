@@ -221,7 +221,7 @@ class Cfg3DEN
             onLoad = QUOTE([ARR_2(_this select 0,'onLoad')] call FUNC(gui_vehicleGear_selector));
             attributeLoad = QUOTE([ARR_2(_this,_value)] call FUNC(gui_vehicleGear_load));
             attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
-            h = (22 * ATTRIBUTE_CONTENT_H + 1) * GRID_H);
+            h = QUOTE((22 * ATTRIBUTE_CONTENT_H + 1) * GRID_H);
             class Controls: Controls
             {
                 class CategoryTitle: ctrlStatic {
