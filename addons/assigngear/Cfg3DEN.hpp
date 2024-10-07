@@ -283,7 +283,7 @@ class Cfg3DEN
                     onToolBoxSelChanged = " \
                         params [ARR_2('_ctrl','_idx')]; \
                         [ARR_3(ctrlParentControlsGroup _ctrl,'filterChanged',_idx)] call FUNC(gui_vehicleGear_selector); \
-                    :;
+                    ;
                     strings[] = {
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_0_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa",

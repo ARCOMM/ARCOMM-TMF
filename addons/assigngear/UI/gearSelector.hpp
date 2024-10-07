@@ -1,7 +1,7 @@
 class GVAR(RscGearSelector) : RscStandardDisplay {
     idd = IDD_RSCGEARSELECTOR;
-    onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),_this select 0)]; _this call FUNC(gui_gearSelector_init));;
-    onUnload = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),displayNull)]);;
+    onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),_this select 0)]; _this call FUNC(gui_gearSelector_init));
+    onUnload = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),displayNull)]);
 
     class controls {
         class Title : RscTitle {
