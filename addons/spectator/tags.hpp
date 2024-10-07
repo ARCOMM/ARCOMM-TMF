@@ -97,7 +97,7 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 idc = 3;
                 text = ""; //--- ToDo: Localize;
                 x = 0;
-                y = 0.08 * safezoneH;
+                y = QUOTE(0.08 * safezoneH);
                 w = QUOTE(0.08 * safezoneW);
                 h = QUOTE(0.02 * safezoneH);
                 sizeEx = QUOTE(0.013 * safezoneH);

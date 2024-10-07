@@ -57,8 +57,8 @@ class GVAR(editBox)
         class Title: ctrlStaticTitle
         {
             idc = IDC_DISPLAY3DENMSGBOX_TITLE;
-            x = MSGBOX_X;
-            y = MSGBOX_Y;
+            x = QUOTE(MSGBOX_X);
+            y = QUOTE(MSGBOX_Y);
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);
             text = "Patrol generator";
@@ -66,15 +66,15 @@ class GVAR(editBox)
         class Background: ctrlStaticBackground
         {
             idc = IDC_DISPLAY3DENMSGBOX_BACKGROUND;
-            x = MSGBOX_X;
+            x = QUOTE(MSGBOX_X);
             y = QUOTE(MSGBOX_Y + SIZE_M * GRID_H);
             w = QUOTE(MSGBOX_W * GRID_W);
-            h =  QUOTE(MSGBOX_H * GRID_H);
+            h = QUOTE(MSGBOX_H * GRID_H);
         };
         class BottomBackground: ctrlStaticFooter
         {
             idc = IDC_DISPLAY3DENMSGBOX_BOTTOMBACKGROUND;
-            x = MSGBOX_X;
+            x = QUOTE(MSGBOX_X);
             y = QUOTE(MSGBOX_Y + (MSGBOX_H * GRID_H));
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);
@@ -99,16 +99,16 @@ class GVAR(editBox)
         };
         class PatrolShapeLabel : ctrlStructuredText
         {
-            x = MSGBOX_X;
-            y = MSGBOX_Y+ (SIZE_M) * GRID_H);
-            w = MSGBOX_W * GRID_W);
+            x = QUOTE(MSGBOX_X);
+            y = QUOTE(MSGBOX_Y+ (SIZE_M) * GRID_H);
+            w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(10 * GRID_H);
             text = "Shape of patrol path";
         };
         class PatrolShape : ctrlToolbox
         {
             IDC  = 1337;
-            x = MSGBOX_X;
+            x = QUOTE(MSGBOX_X);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+5) * GRID_H);
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(15 * GRID_H);
@@ -127,7 +127,7 @@ class GVAR(editBox)
         };
         class PatrolRadiusLabel : ctrlStructuredText
         {
-            x = MSGBOX_X;
+            x = QUOTE(MSGBOX_X);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+23) * GRID_H);
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);
@@ -136,7 +136,7 @@ class GVAR(editBox)
         class PatrolRadiusText : ctrlEdit
         {
             IDC  = 1338;
-            x = (MSGBOX_X)+0.08;
+            x = QUOTE(MSGBOX_X+0.08);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+23) * GRID_H);
             w = QUOTE((MSGBOX_W-14) * GRID_W);
             h = QUOTE(5 * GRID_H);
@@ -144,7 +144,7 @@ class GVAR(editBox)
         };
         class PatrolPointsLabel : ctrlStructuredText
         {
-            x = MSGBOX_X;
+            x = QUOTE(MSGBOX_X);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+30) * GRID_H);
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);
@@ -153,7 +153,7 @@ class GVAR(editBox)
         class PatrolPointsText : ctrlEdit
         {
             IDC  = 1339;
-            x = (MSGBOX_X)+0.08;
+            x = QUOTE(MSGBOX_X+0.08);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+30) * GRID_H);
             w = QUOTE((MSGBOX_W-14) * GRID_W);
             h = QUOTE(5 * GRID_H);
@@ -162,7 +162,7 @@ class GVAR(editBox)
         class onRoad : ctrlCheckbox
         {
             IDC  = 1340;
-            x = (MSGBOX_X)+0.005;
+            x = QUOTE(MSGBOX_X+0.005);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+35) * GRID_H);
             w = QUOTE(7 * GRID_W);
             h = QUOTE(7 * GRID_H);
@@ -170,7 +170,7 @@ class GVAR(editBox)
         };
         class onRoadLabel : ctrlStructuredText
         {
-            x = (MSGBOX_X)+0.005+0.04;
+            x = QUOTE(MSGBOX_X+0.005+0.04);
             y = QUOTE(MSGBOX_Y+ (SIZE_M+35+0.7) * GRID_H);
             w = QUOTE(MSGBOX_W * GRID_W);
             h = QUOTE(5 * GRID_H);

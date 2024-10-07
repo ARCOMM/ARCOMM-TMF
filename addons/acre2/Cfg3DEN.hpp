@@ -460,8 +460,8 @@ class Cfg3DEN
                 class Title0: ctrlStatic
                 {
                     text = "Radio network allocation:";
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
-                    h = QUOTE(QUOTE(1 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
+                    h = QUOTE(1 * SIZE_M * GRID_H);
                     y = 0;
                     x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
@@ -489,7 +489,7 @@ class Cfg3DEN
                      x = QUOTE((SIZE_M * GRID_W);
                      h = QUOTE((SIZE_M * GRID_H)/10);
                      y = QUOTE(SIZE_M * GRID_H * 12.4);
-                     w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W);
+                     w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W));
                 };
 
                 class networkButton : RscButtonMenu
@@ -501,7 +501,7 @@ class Cfg3DEN
                     text = "&lt; Configure Network 1 &gt;";
                     h = QUOTE(SIZE_M * GRID_H);
                     x = QUOTE(SIZE_M * GRID_W);
-                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W));
                     y = QUOTE(SIZE_M * GRID_H * 13);
                     action = "['networkToggleButton',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Toggle through the radio networks.";
@@ -530,7 +530,7 @@ class Cfg3DEN
                     text = "Give";
                     h = QUOTE(SIZE_M * GRID_H);
                     x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
-                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
                     y = QUOTE(15 * SIZE_M * GRID_H);
                     action = "['channelTreeGive',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Put the selected element on the selected radio channel.";

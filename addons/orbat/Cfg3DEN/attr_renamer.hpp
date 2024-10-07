@@ -62,8 +62,8 @@ class TMF_ORBAT_Renamer : Title
             };
             text = "Replace all";
             h = QUOTE(SIZE_M * GRID_H);
-            x = QUOTE((8*SIZE_M * GRID_W);
-            w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (16*SIZE_M) ) * GRID_W);
+            x = QUOTE(8*SIZE_M * GRID_W);
+            w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (16*SIZE_M) ) * GRID_W));
             y = QUOTE(3.5 * SIZE_M * GRID_H);
             action = "[] call (missionNamespace getVariable 'tmf_orbat_fnc_renameUnitAndGroups');";
             //action = "['orbatToggleButton',_this] call (uinamespace getvariable 'ORBATSettings_script');";
