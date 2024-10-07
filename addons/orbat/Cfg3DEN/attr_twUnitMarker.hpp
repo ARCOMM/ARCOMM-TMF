@@ -8,7 +8,7 @@ class twUnitMarker: Toolbox
     attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'UnitMarker_script');";
     attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'UnitMarker_script');";
 
-    h = (9+0.2) * SIZE_M * GRID_H;
+    h = QUOTE((9+0.2) * SIZE_M * GRID_H);
     class Controls
     {
         // ICON
@@ -23,13 +23,13 @@ class twUnitMarker: Toolbox
             text = "Specialist unit marker";
             tooltip = "Choose icon to use for this unit. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolbox
+        class Icon: ctrlToolBox
         {
             idc = 100;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            h = 6 * SIZE_M * GRID_H;
+            h = QUOTE(6 * SIZE_M * GRID_H);
             rows = 3;
             columns = 7;
             strings[] = {UNIT_MARKER_PREVIEW};
@@ -43,18 +43,18 @@ class twUnitMarker: Toolbox
         // Colours
         class ColourTitle: GmTitle
         {
-            y = (6+0.15) * SIZE_M * GRID_H;
+            y = QUOTE((6+0.15) * SIZE_M * GRID_H);
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolbox
+        class ColourValue: ctrlToolBox
         {
             idc = 101;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (6+0.15) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((6+0.15) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
             rows = 1;
             columns = 7;
             strings[] = {
@@ -90,13 +90,13 @@ class twUnitMarker: Toolbox
         // MARKER TEXT
         class MarkerTitle: GmTitle
         {
-            y = 8 * SIZE_M * GRID_H;
+            y = QUOTE(8 * SIZE_M * GRID_H);
             text = "Marker text";
             tooltip = "Text to display alongside the icon";
         };
         class EditValue : ctrlEdit
         {
-            y = 8 * SIZE_M * GRID_H;
+            y = QUOTE(8 * SIZE_M * GRID_H);
             idc = 102;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);

@@ -8,7 +8,7 @@ class twGroupMarker: Toolbox
     attributeLoad = "['attributeLoad',_this,_value] call (uinamespace getvariable 'GroupMarker_script');";
     attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'GroupMarker_script');";
 
-    h = (16.75+0.45) * SIZE_M * GRID_H;
+    h = QUOTE((16.75+0.45) * SIZE_M * GRID_H);
     class Controls
     {
         // ICON
@@ -23,7 +23,7 @@ class twGroupMarker: Toolbox
             text = "Marker icon";
             tooltip = "Choose icon to use for this group. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolbox
+        class Icon: ctrlToolBox
         {
             idc = 100;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -48,7 +48,7 @@ class twGroupMarker: Toolbox
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolbox
+        class ColourValue: ctrlToolBox
         {
             idc = 101;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -92,13 +92,13 @@ class twGroupMarker: Toolbox
         // MARKER TEXT
         class MarkerTitle: GmTitle
         {
-            y = (14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((14+0.3) * SIZE_M * GRID_H);
             text = "Marker text";
             tooltip = "Text to display alongside the marker";
         };
         class EditValue : ctrlEdit
         {
-            y = (14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((14+0.3) * SIZE_M * GRID_H);
             idc = 102;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
@@ -107,11 +107,11 @@ class twGroupMarker: Toolbox
         // Size
         class sizeTitle: GmTitle
         {
-            y = (15+0.45) * SIZE_M * GRID_H;
+            y = QUOTE((15+0.45) * SIZE_M * GRID_H);
             text = "Marker size modifier";
             tooltip = "Size modifier";
         };
-        class sizeValue: ctrlToolbox
+        class sizeValue: ctrlToolBox
         {
             idc = 103;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);

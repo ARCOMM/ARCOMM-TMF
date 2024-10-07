@@ -185,7 +185,7 @@ class Cfg3DEN
                 class ButtonBriefeeRemove: ButtonBriefeeMake
                 {
                     text = "Remove";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['BriefTreeRemove',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Remove the selected element from recieveing the selected briefing.";
                 };

@@ -302,7 +302,7 @@ class Cfg3DEN
                     text = "Grant";
                     h = QUOTE(SIZE_M * GRID_H);
                     x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
-                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2;
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2);
                     y = QUOTE(1 * SIZE_M * GRID_H);
                     action = "['langTreeGive',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Make the selected element speak the selected language.";
@@ -310,15 +310,15 @@ class Cfg3DEN
                 class ButtonSpeakerRemove: ButtonSpeakerMake
                 {
                     text = "Remove";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['langTreeRemove',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Remove the selected element from speaking the selected language.";
                 };
                 class SpeakerTree : ctrlTree
                 {
                     idc = 189437;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
-                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W); //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W);
                     y = QUOTE(2 * SIZE_M * GRID_H);
                     h = QUOTE(14 * SIZE_M * GRID_H);
                     multiselectEnabled = 1;
@@ -331,7 +331,7 @@ class Cfg3DEN
                 {
                     x = QUOTE(SIZE_M * GRID_W);
                     y = QUOTE(2 * SIZE_M * GRID_H);
-                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W);
                     h = QUOTE(14 * SIZE_M * GRID_H);
                     colorBackground[] = {1,1,1,0.1};
                 };
@@ -696,7 +696,7 @@ class Cfg3DEN
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W);
                     tooltip = "";
                 };
-                class EditChannelRadioChooser: ctrlToolbox
+                class EditChannelRadioChooser: ctrlToolBox
                 {
                     idc = 313205;
                     style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
