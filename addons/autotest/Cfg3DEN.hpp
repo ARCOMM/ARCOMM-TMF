@@ -139,8 +139,8 @@ class Cfg3DEN
                     colorSelection[] = {COLOR_ACTIVE_RGBA}; // Text selection color
                     canModify = 0; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 0 * SIZE_M * GRID_H;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
 
@@ -187,8 +187,8 @@ class Cfg3DEN
                     colorSelection[] = {COLOR_ACTIVE_RGBA}; // Text selection color
                     canModify = 0; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 0 * SIZE_M * GRID_H;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
 
@@ -231,8 +231,8 @@ class Cfg3DEN
                     colorSelection[] = {COLOR_ACTIVE_RGBA}; // Text selection color
                     canModify = 0; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 0 * SIZE_M * GRID_H;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
                 };
@@ -276,8 +276,8 @@ class Cfg3DEN
                     colorSelection[] = {COLOR_ACTIVE_RGBA}; // Text selection color
                     canModify = 0; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 0 * SIZE_M * GRID_H;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
                 };
@@ -322,8 +322,8 @@ class Cfg3DEN
                     colorSelection[] = {COLOR_ACTIVE_RGBA}; // Text selection color
                     canModify = 0; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 0 * SIZE_M * GRID_H;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
                 };

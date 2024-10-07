@@ -154,18 +154,18 @@ class Cfg3DEN
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BriefingSettings_script');";
             
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = 16 * SIZE_M * GRID_H;
+            h = QUOTE(16 * SIZE_M * GRID_H);
             class Controls
             {
                 class BriefTitle : ctrlStatic
                 {
                     text = "Briefings:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
-                };                    
+                };
                 class BriefeesTitle : BriefTitle
                 {
                     text = "Those to be briefed:";
@@ -175,7 +175,7 @@ class Cfg3DEN
                 class ButtonBriefeeMake : RscButtonMenu
                 {
                     text = "Grant";
-                    h = SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
                     x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
                     w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2;
                     y = 1 * SIZE_M * GRID_H;
@@ -204,7 +204,7 @@ class Cfg3DEN
                 };
                 class ListBackground: ctrlStatic
                 {
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     y = 2 * SIZE_M * GRID_H;
                     w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 14 * SIZE_M * GRID_H;
@@ -213,8 +213,8 @@ class Cfg3DEN
                 class ButtonBriefAdd : RscButtonMenu
                 {
                     text = "Add";
-                    h = SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
                     w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
                     y = 1 * SIZE_M * GRID_H;
                     action = "['BriefAddClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
@@ -237,7 +237,7 @@ class Cfg3DEN
                 class BriefList: ctrlListNBox
                 {
                     idc = 101;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     y = 2 * SIZE_M * GRID_H;
                     w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 14 * SIZE_M * GRID_H;
@@ -252,7 +252,7 @@ class Cfg3DEN
                 class EditBriefingBackgroundS: ctrlStatic
                 {
                     idc = 313208;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     y = 1 * SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 15 * SIZE_M * GRID_H;
@@ -280,7 +280,7 @@ class Cfg3DEN
                     idc = 313201;
                     text = "Add/Edit Briefing";
                     y = 1 * SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
                     colorBackground[] = {0.1,0.1,0.1,1};
                 };
@@ -308,7 +308,7 @@ class Cfg3DEN
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
                     y = 4.15 * SIZE_M * GRID_H;
                     x = 2 * SIZE_M * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W;
                 };
                 

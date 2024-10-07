@@ -39,7 +39,7 @@ class Controls
         x = "0";
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL1;
-        h = 0.308 * safezoneH;
+        h = QUOTE(0.308 * safezoneH);
     };
 
     class respawnMenuAddButton: GVAR(RscButtonMenu)
@@ -130,7 +130,7 @@ class Controls
         x = TMF_ADMINMENU_RESP_X_COL2;
         y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = 2*TMF_ADMINMENU_STD_HEIGHT;
+        h = QUOTE(2*TMF_ADMINMENU_STD_HEIGHT);
     };
 
     class respawnMenuVOIP: GVAR(RscButtonMenu)
@@ -171,7 +171,7 @@ class Controls
         x = TMF_ADMINMENU_RESP_X_COL3;
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL3;
-        h = 0.308 * safezoneH;
+        h = QUOTE(0.308 * safezoneH);
     };
 
     class respawnGroupDetailsText: RscText

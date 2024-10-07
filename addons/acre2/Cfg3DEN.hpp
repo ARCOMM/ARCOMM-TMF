@@ -237,7 +237,7 @@ class Cfg3DEN
                     style = ST_RIGHT;
                     w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     x = 0;
-                    h = 1 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "These radios will be available for selection (via scroll wheel action) for the first 5 minutes after the player has spawned.";
@@ -246,18 +246,18 @@ class Cfg3DEN
                 {
                     idc = 313208;
                     x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
-                    y = 0 * SIZE_M * GRID_H;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
                     w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 6 * SIZE_M * GRID_H;
+                    h = QUOTE(6 * SIZE_M * GRID_H);
                     colorBackground[] = {0.33,0.33,0.33,1};
                 };
                 class ActionList: ctrlListNBox
                 {
                     idc = 101;
                     x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
-                    y = 0 * SIZE_M * GRID_H;
+                    y = QUOTE(0 * SIZE_M * GRID_H);
                     w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 6 * SIZE_M * GRID_H;
+                    h = QUOTE(6 * SIZE_M * GRID_H);
                     drawSideArrows = 0;//1;
                     idcLeft = -1;
                     idcRight = -1;
@@ -267,7 +267,7 @@ class Cfg3DEN
 
             };
         };
-        
+
         class BabelSettings : Toolbox
         {
             scriptName = "BabelSettings";
@@ -286,7 +286,7 @@ class Cfg3DEN
                 {
                     text = "Languages:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
@@ -461,7 +461,7 @@ class Cfg3DEN
                 {
                     text = "Radio network allocation:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
@@ -511,7 +511,7 @@ class Cfg3DEN
                 {
                     text = "Channels of selected network:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = SIZE_M * GRID_H * 14;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};

@@ -58,7 +58,7 @@ class GVAR(editBox)
             x = (MSGBOX_X);
             y = (MSGBOX_Y);
             w = (MSGBOX_W) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "Patrol generator";
         };
         class Background: ctrlStaticBackground
@@ -75,7 +75,7 @@ class GVAR(editBox)
             x = (MSGBOX_X);
             y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
             w = (MSGBOX_W) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
         };
         class ButtonOK: ctrlButtonOK
         {
@@ -83,7 +83,7 @@ class GVAR(editBox)
             x = MSGBOX_X + (MSGBOX_W * 1/3) * GRID_W;
             y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
             w = (MSGBOX_W * 1/3 - 1) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 1;";
         };
         class ButtonCancel: ctrlButtonCancel
@@ -92,7 +92,7 @@ class GVAR(editBox)
             x = MSGBOX_X + (MSGBOX_W * 2/3) * GRID_W;
             y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
             w = (MSGBOX_W * 1/3 - 1) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 2;";
         };
         class PatrolShapeLabel : ctrlStructuredText
@@ -128,7 +128,7 @@ class GVAR(editBox)
             x = (MSGBOX_X);
             y = (MSGBOX_Y)+ (SIZE_M+23) * GRID_H;
             w = (MSGBOX_W) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "Radius:";
         };
         class PatrolRadiusText : ctrlEdit
@@ -137,7 +137,7 @@ class GVAR(editBox)
             x = (MSGBOX_X)+0.08;
             y = (MSGBOX_Y)+ (SIZE_M+23) * GRID_H;
             w = (MSGBOX_W-14) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "100";
         };
         class PatrolPointsLabel : ctrlStructuredText
@@ -145,7 +145,7 @@ class GVAR(editBox)
             x = (MSGBOX_X);
             y = (MSGBOX_Y)+ (SIZE_M+30) * GRID_H;
             w = (MSGBOX_W) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "Points:";
         };
         class PatrolPointsText : ctrlEdit
@@ -154,7 +154,7 @@ class GVAR(editBox)
             x = (MSGBOX_X)+0.08;
             y = (MSGBOX_Y)+ (SIZE_M+30) * GRID_H;
             w = (MSGBOX_W-14) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "8";
         };
         class onRoad : ctrlCheckbox
@@ -171,7 +171,7 @@ class GVAR(editBox)
             x = (MSGBOX_X)+0.005+0.04;
             y = (MSGBOX_Y)+ (SIZE_M+35+0.7) * GRID_H;
             w = (MSGBOX_W) * GRID_W;
-            h = 5 * GRID_H;
+            h = QUOTE(5 * GRID_H);
             text = "Force waypoint to road";
         };
     };
