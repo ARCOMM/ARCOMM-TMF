@@ -105,7 +105,7 @@ class GVAR(editBox)
             h = QUOTE(10 * GRID_H);
             text = "Shape of patrol path";
         };
-        class PatrolShape : ctrlToolbox
+        class PatrolShape : ctrlToolBox
         {
             IDC  = 1337;
             x = QUOTE(MSGBOX_X);
@@ -115,8 +115,8 @@ class GVAR(editBox)
             rows = 1;
             columns = 2;
             tooltips[] = {
-                $STR_3den_attributes_shapetrigger_ellipse,
-                $STR_3den_attributes_shapetrigger_rectangle
+                "$STR_3den_attributes_shapetrigger_ellipse",
+                "$STR_3den_attributes_shapetrigger_rectangle"
             };
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
             strings[] = {

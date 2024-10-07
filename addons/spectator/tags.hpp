@@ -11,7 +11,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
     onMouseMoving = "['MouseMoving',_this] call tmf_spectator_fnc_mouseHandler";
     class controls
     {
-        class GVAR(back) : IGUIBACK {
+        class GVAR(back) : IGUIBack {
             idc = 4;
             x = QUOTE(0.3 * safezoneW);
             y = 0;
@@ -28,7 +28,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             w = QUOTE(0.08 * safezoneW);
             h = QUOTE(0.02 * safezoneH);
             style = QUOTE(48 + 2048 + 0x02); // picture + no stretch + center (not sure if works) + 0x800
-            sizeEx == safeZoneH;
+            sizeEx = QUOTE(safeZoneH);
         };
         class GVAR(Name): RscText
         {
@@ -59,7 +59,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 class GVAR(GroupTag) : GVAR(EntityTag) {
     class controls
         {
-            class GVAR(back) : IGUIBACK {
+            class GVAR(back) : IGUIBack {
                 idc = 4;
                 x = QUOTE(0.3 * safezoneW);
                 y = 0;
@@ -76,7 +76,7 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 w = QUOTE(0.08 * safezoneW);
                 h = QUOTE(0.035 * safezoneH);
                 style = QUOTE(48 + 2048 + 0x02); // picture + no stretch + center (not sure if works) + 0x800
-                sizeEx == safeZoneH;
+                sizeEx = QUOTE(safeZoneH);
             };
             class GVAR(Name): RscText
             {

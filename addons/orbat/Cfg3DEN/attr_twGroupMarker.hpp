@@ -29,7 +29,7 @@ class twGroupMarker: Toolbox
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            h = 12.25 * SIZE_M * GRID_H;
+            h = QUOTE(12.25 * SIZE_M * GRID_H);
 
             rows = 7;
             columns = 7;
@@ -44,7 +44,7 @@ class twGroupMarker: Toolbox
         // Colours
         class ColourTitle: GmTitle
         {
-            y = (12.25+0.15) * SIZE_M * GRID_H;
+            y = QUOTE((12.25+0.15) * SIZE_M * GRID_H);
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
@@ -54,8 +54,8 @@ class twGroupMarker: Toolbox
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (12.25+0.15) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((12.25+0.15) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
 
             rows = 1;
             columns = 7;
@@ -117,8 +117,8 @@ class twGroupMarker: Toolbox
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
             w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (15+0.45) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((15+0.45) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
             colorBackground[] = {1,1,1,0.3};
 
             rows = 1;

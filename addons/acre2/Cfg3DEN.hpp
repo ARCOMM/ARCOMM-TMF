@@ -486,7 +486,7 @@ class Cfg3DEN
                 {
                      style = ST_LINE;
                      colorText[] = {1,1,1,1.0}; // to whatever gives you a thrill
-                     x = QUOTE((SIZE_M * GRID_W);
+                     x = QUOTE((SIZE_M * GRID_W));
                      h = QUOTE((SIZE_M * GRID_H)/10);
                      y = QUOTE(SIZE_M * GRID_H * 12.4);
                      w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W));

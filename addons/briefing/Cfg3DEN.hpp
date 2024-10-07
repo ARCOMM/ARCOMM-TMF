@@ -263,7 +263,7 @@ class Cfg3DEN
                     idc = 313209;
                     text = "Okay";
                     y = QUOTE(12.25 * SIZE_M * GRID_H);
-                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6;
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6);
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W);
                     action = "['BriefingEditClickOkay',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                 };

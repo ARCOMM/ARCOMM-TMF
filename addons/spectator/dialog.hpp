@@ -56,7 +56,7 @@ class GVAR(dialog)
   fadeout = 0;
   duration = 2147483647;
   type = 0;
-  controlsBackground[] = {TMF_SPECTATOR_MOUSE,TMF_SPECTATOR_UNITLABEL,TMF_SPECTATOR_Compass,TMF_SPECTATOR_CompassLeft,TMF_SPECTATOR_CompassRight};
+  controlsBackground[] = {"TMF_SPECTATOR_MOUSE","TMF_SPECTATOR_UNITLABEL","TMF_SPECTATOR_Compass","TMF_SPECTATOR_CompassLeft","TMF_SPECTATOR_CompassRight"};
   onKeyDown = "[0,_this] call tmf_spectator_fnc_keyhandler";
   onKeyUp= "[1,_this] call tmf_spectator_fnc_keyhandler";
   onLoad = "_this call tmf_spectator_fnc_onLoad";
@@ -104,7 +104,7 @@ class GVAR(dialog)
   class controls {
     class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
-        x = COLUMN(1);
+        x = QUOTE(COLUMN(1));
         y = QUOTE(0.002 * safezoneH + safezoneY);
         w = QUOTE(BUTTON_WIDTH);
         h = QUOTE(BUTTON_HEIGHT);
@@ -114,7 +114,7 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_BUTTON: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_BUTTON;
-      x = COLUMN(0);
+      x = QUOTE(COLUMN(0));
       y = QUOTE(0.002 * safezoneH + safezoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
@@ -124,7 +124,7 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_TAGS: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
-      x = COLUMN(3);
+      x = QUOTE(COLUMN(3));
       y = QUOTE(0.002 * safezoneH + safezoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
@@ -134,7 +134,7 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_VISION: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VISION;
-      x = COLUMN(4);
+      x = QUOTE(COLUMN(4));
       y = QUOTE(0.002 * safezoneH + safezoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
@@ -145,7 +145,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_VIEW: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VIEW;
       onButtonDown = "['camera',_this] call tmf_spectator_fnc_menuhandler;";
-      x = COLUMN(2);
+      x = QUOTE(COLUMN(2));
       y = QUOTE(0.002 * safezoneH + safezoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
@@ -155,7 +155,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_MUTE: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MUTE;
       onButtonDown = "['mute',_this] call tmf_spectator_fnc_menuhandler;";
-      x = COLUMN(5);
+      x = QUOTE(COLUMN(5));
       y = QUOTE(0.002 * safezoneH + safezoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
@@ -165,7 +165,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_RADIO: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
         onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
-        x = COLUMN(6);
+        x = QUOTE(COLUMN(6));
         y = QUOTE(0.002 * safezoneH + safezoneY);
         w = QUOTE(BUTTON_WIDTH);
         h = QUOTE(BUTTON_HEIGHT);
@@ -305,10 +305,10 @@ class GVAR(dialog)
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseMoving = "['MouseMoving',_this] call tmf_spectator_fnc_mouseHandler";
     idc = 123;
-    x = safezoneX);
-    y = safezoneY);
-    w = safezoneW);
-    h = safezoneH);
+    x = QUOTE(safezoneX);
+    y = QUOTE(safezoneY);
+    w = QUOTE(safezoneW);
+    h = QUOTE(safezoneH);
     colorBackground[] = {0.2, 0.0, 0.0, 0.0};
   };
 };
