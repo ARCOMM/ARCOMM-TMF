@@ -14,8 +14,8 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_MSGS_LIST;
         //style = 32 + 16; // LB_MULTI + ST_MULTI
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
+        sizeEx2 = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         pictureColor[] = {1,1,1,1}; // Picture color
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,1}; // Disabled picture color

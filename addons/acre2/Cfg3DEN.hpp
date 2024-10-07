@@ -387,9 +387,9 @@ class Cfg3DEN
                 {
                     idc = 313209;
                     text = "Okay";
-                    y = 12.25 * SIZE_M * GRID_H);
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7;
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
+                    y = QUOTE(12.25 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7);
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
                     action = "['languageEditClickOkay',_this] call (uinamespace getvariable 'BabelSettings_script');";
                 };
                 class EditLanguageButtonCancel : EditLanguageButtonOk
@@ -545,7 +545,7 @@ class Cfg3DEN
                 class ButtonChannelRemove: ButtonChannelGive
                 {
                     text = "Remove";
-                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3) *2 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3) *2 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['channelTreeRemove',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Remove the selected radio channel from the selected element.";
                 };
