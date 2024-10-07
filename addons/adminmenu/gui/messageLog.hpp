@@ -37,9 +37,9 @@ class Controls
         onButtonClick = QUOTE(_this call FUNC(messageLog_print));
         tooltip = "Prints currently selected log entry to RPT.";
         colorBackground[] = {0, 0, 0, 1};
-        x = 0 * TMF_ADMINMENU_STD_WIDTH;
+        x = QUOTE(0 * TMF_ADMINMENU_STD_WIDTH);
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 9 * TMF_ADMINMENU_STD_WIDTH;
+        w = QUOTE(9 * TMF_ADMINMENU_STD_WIDTH);
     };
 
     class ButtonPrintAll: GVAR(RscButtonMenu)
@@ -49,8 +49,8 @@ class Controls
         tooltip = "Prints all logged entries to RPT.";
         onButtonClick = QUOTE(_this call FUNC(messageLog_printAll));
         colorBackground[] = {0, 0, 0, 1};
-        x = 9.1 * TMF_ADMINMENU_STD_WIDTH;
+        x = QUOTE(9.1 * TMF_ADMINMENU_STD_WIDTH);
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 7 * TMF_ADMINMENU_STD_WIDTH;
+        w = QUOTE(7 * TMF_ADMINMENU_STD_WIDTH);
     };
 };
