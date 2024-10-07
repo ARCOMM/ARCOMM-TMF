@@ -275,10 +275,10 @@ class GVAR(respawnMapDialog) {
         {
             idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
             type = 100;
-            x = 0 * safezoneW + safezoneX;
-            y = 0 * safezoneH + safezoneY;
-            w = 1 * safezoneW;
-            h = 1 * safezoneH;
+            x = QUOTE(0 * safezoneW + safezoneX);
+            y = QUOTE(0 * safezoneH + safezoneY);
+            w = QUOTE(safezoneW);
+            h = QUOTE(safezoneH);
             onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
             onSetFocus = QUOTE(_this spawn FUNC(respawn_mapLoaded)); //"['respawnMapLoaded'] spawn tmf_respawn_fnc_handleRespawnUI";
             onMouseButtonDown = QUOTE(_this spawn FUNC(respawn_mapClick)); //"['respawnMap_onMouseButtonDown',_this] spawn tmf_respawn_fnc_handleRespawnUI";
@@ -300,10 +300,10 @@ class GVAR(adminEyeDialog) {
         {
             idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
             type = 100;
-            x = 0 * safezoneW + safezoneX;
-            y = 0 * safezoneH + safezoneY;
-            w = 1 * safezoneW;
-            h = 1 * safezoneH;
+            x = QUOTE(0 * safezoneW + safezoneX);
+            y = QUOTE(0 * safezoneH + safezoneY);
+            w = QUOTE(safezoneW);
+            h = QUOTE(safezoneH);
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
             onMouseButtonDown = QUOTE(_this spawn FUNC(adminEye_onClick));
             onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));

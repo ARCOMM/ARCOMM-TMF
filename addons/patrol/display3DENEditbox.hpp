@@ -49,10 +49,10 @@ class GVAR(editBox)
     {
         class Back : ctrlStaticBackgroundDisableTiles
         {
-            x = SafeZoneX;
-            y = SafeZoneY;
-            w = SafeZoneW;
-            h = SafeZoneH;
+            x = QUOTE(safezoneX);
+            y = QUOTE(safezoneY);
+            w = QUOTE(safezoneW);
+            h = QUOTE(safezoneH);
         };
         class Title: ctrlStaticTitle
         {

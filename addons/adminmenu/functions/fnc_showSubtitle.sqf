@@ -44,7 +44,7 @@ BIS_fnc_showSubtitle_subtitle = [_from, _text] spawn {
     private _w = 0.4 * safeZoneW;
     private _x = safeZoneX + (0.5 * safeZoneW - (_w / 2));
     private _y = safeZoneY + (0.73 * safeZoneH);
-    private _h = safeZoneH;
+    private _h = QUOTE(safezoneH);
 
     _ctrl ctrlSetPosition [_x, _y, _w, _h];
 

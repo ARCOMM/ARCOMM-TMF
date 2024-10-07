@@ -8,7 +8,7 @@ class display3DEN
             class Items
             {
                 class GVARMAIN(Folder) {
-                    items[] += {ADDON};
+                    items[] += {QUOTE(ADDON)};
                 };
                 class ADDON
                 {

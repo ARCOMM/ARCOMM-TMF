@@ -38,7 +38,7 @@ class Controls
         tooltip = "Prints currently selected log entry to RPT.";
         colorBackground[] = {0, 0, 0, 1};
         x = QUOTE(0 * TMF_ADMINMENU_STD_WIDTH);
-        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
+        y = QUOTE(19.5 * TMF_ADMINMENU_STD_HEIGHT);
         w = QUOTE(9 * TMF_ADMINMENU_STD_WIDTH);
     };
 
@@ -50,7 +50,7 @@ class Controls
         onButtonClick = QUOTE(_this call FUNC(messageLog_printAll));
         colorBackground[] = {0, 0, 0, 1};
         x = QUOTE(9.1 * TMF_ADMINMENU_STD_WIDTH);
-        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
+        y = QUOTE(19.5 * TMF_ADMINMENU_STD_HEIGHT);
         w = QUOTE(7 * TMF_ADMINMENU_STD_WIDTH);
     };
 };

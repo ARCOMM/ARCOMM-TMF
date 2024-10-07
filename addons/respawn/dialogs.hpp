@@ -44,7 +44,7 @@ class respawnMenuDialog {
             w = QUOTE(0.510469 * safezoneW);
             h = QUOTE(0.484 * safezoneH);
         };
-        class deadPlayersListBox: respawnMenu_RscListbox
+        class deadPlayersListBox: respawnMenu_RscListBox
         {
             idc = 26891;
             x = QUOTE(0.25147 * safezoneW + safezoneX);
@@ -52,7 +52,7 @@ class respawnMenuDialog {
             w = QUOTE(0.139219 * safezoneW);
             h = QUOTE(0.308 * safezoneH);
         };
-        class groupListBox: respawnMenu_RscListbox
+        class groupListBox: respawnMenu_RscListBox
         {
             idc = 26892;
             x = QUOTE(0.468031 * safezoneW + safezoneX);
@@ -137,7 +137,7 @@ class respawnMenuDialog {
             w = QUOTE(0.108281 * safezoneW);
             h = QUOTE(0.033 * safezoneH);
         };
-        class respawnMenuGroupMarkerCheckbox: respawnMenu_RscCheckbox
+        class respawnMenuGroupMarkerCheckbox: respawnMenu_RscCheckBox
         {
             idc = 26903;
             text = "Give group Marker";

@@ -106,8 +106,8 @@ class GVAR(dialog)
         idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
         x = COLUMN(1);
         y = QUOTE(0.002 * safezoneH + safezoneY);
-        w = BUTTON_WIDTH;
-        h = BUTTON_HEIGHT;
+        w = QUOTE(BUTTON_WIDTH);
+        h = QUOTE(BUTTON_HEIGHT);
         onButtonDown = "['disableAI',_this] call tmf_spectator_fnc_menuhandler;";
         text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
         tooltip = "PLAYERS + AI";
@@ -116,8 +116,8 @@ class GVAR(dialog)
       idc = IDC_SPECTATOR_TMF_SPECTATOR_BUTTON;
       x = COLUMN(0);
       y = QUOTE(0.002 * safezoneH + safezoneY);
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
+      w = QUOTE(BUTTON_WIDTH);
+      h = QUOTE(BUTTON_HEIGHT);
       text = "\x\tmf\addons\spectator\images\flag_civil_empty_ca_64.paa";
       onButtonDown = "['sidefilter',_this] call tmf_spectator_fnc_menuhandler;";
       tooltip = "SHOWING ALL SIDES";
@@ -126,8 +126,8 @@ class GVAR(dialog)
       idc = IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
       x = COLUMN(3);
       y = QUOTE(0.002 * safezoneH + safezoneY);
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
+      w = QUOTE(BUTTON_WIDTH);
+      h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\map\Diary\textures_ca.paa";
       onButtonDown = "['tags',_this] call tmf_spectator_fnc_menuhandler;";
       tooltip = "DISABLE TAGS";
@@ -136,8 +136,8 @@ class GVAR(dialog)
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VISION;
       x = COLUMN(4);
       y = QUOTE(0.002 * safezoneH + safezoneY);
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
+      w = QUOTE(BUTTON_WIDTH);
+      h = QUOTE(BUTTON_HEIGHT);
       onButtonDown = "['vision',_this] call tmf_spectator_fnc_menuhandler;";
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa";
       tooltip = "CHANGE VISION MODE";
@@ -147,8 +147,8 @@ class GVAR(dialog)
       onButtonDown = "['camera',_this] call tmf_spectator_fnc_menuhandler;";
       x = COLUMN(2);
       y = QUOTE(0.002 * safezoneH + safezoneY);
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
+      w = QUOTE(BUTTON_WIDTH);
+      h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\IGUI\Cfg\IslandMap\iconcamera_ca.paa";
       tooltip = "SWITCH TO FIRST PERSON";
     };
@@ -157,8 +157,8 @@ class GVAR(dialog)
       onButtonDown = "['mute',_this] call tmf_spectator_fnc_menuhandler;";
       x = COLUMN(5);
       y = QUOTE(0.002 * safezoneH + safezoneY);
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
+      w = QUOTE(BUTTON_WIDTH);
+      h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\voice_ca.paa";
       tooltip = "MUTE SPECTATORS";
     };
@@ -167,8 +167,8 @@ class GVAR(dialog)
         onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
         x = COLUMN(6);
         y = QUOTE(0.002 * safezoneH + safezoneY);
-        w = BUTTON_WIDTH;
-        h = BUTTON_HEIGHT;
+        w = QUOTE(BUTTON_WIDTH);
+        h = QUOTE(BUTTON_HEIGHT);
         text = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
         tooltip = "SHOW RADIO MENU";
     };
