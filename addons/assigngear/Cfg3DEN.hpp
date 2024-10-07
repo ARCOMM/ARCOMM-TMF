@@ -115,9 +115,9 @@ class Cfg3DEN
                     delete Items;
                     class ItemsConfig {
                         path[] = {"CfgLoadouts"};
-                        localConfig = true;
+                        localConfig = 1;
                         propertyText = "displayName";
-                        sort = true;
+                        sort = 1;
                     };
                 };
             };

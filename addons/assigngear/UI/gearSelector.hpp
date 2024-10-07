@@ -1,7 +1,7 @@
 class GVAR(RscGearSelector) : RscStandardDisplay {
     idd = IDD_RSCGEARSELECTOR;
-    onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display), _this select 0)]; _this call FUNC(gui_gearSelector_init););
-    onUnload = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display), displayNull)];);
+    onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),_this select 0)]; _this call FUNC(gui_gearSelector_init););
+    onUnload = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(gear_display),displayNull)];);
 
     class controls {
         class Title : RscTitle {
@@ -40,11 +40,11 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             h = SIZE_S * GRID_H;
             sizeEx = SIZEEX_PURISTA(SIZEEX_S);
 
-            onLBSelChanged = QUOTE( \
+            onLBSelChanged = " \
                 params [ARR_2('_ctrl', '_selectedIndex')]; \
-                [ARR_2(ctrlParent _ctrl, _selectedIndex)] call FUNC(gui_gearSelector_loadFactions); \
+                [ARR_2(ctrlParent _ctrl,_selectedIndex)] call FUNC(gui_gearSelector_loadFactions); \
                 false \
-            );
+            ";
         };
         class FactionLabel : RscText {
             text = "Faction:";
@@ -64,11 +64,11 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             h = SIZE_S * GRID_H;
             sizeEx = SIZEEX_PURISTA(SIZEEX_S);
 
-            onLBSelChanged = QUOTE( \
-                params [ARR_2('_ctrl', '_selectedIndex')]; \
-                [ARR_2(ctrlParent _ctrl, _selectedIndex)] call FUNC(gui_gearSelector_loadRoles); \
+            onLBSelChanged = " \
+                params [ARR_2('_ctrl','_selectedIndex')]; \
+                [ARR_2(ctrlParent _ctrl,_selectedIndex)] call FUNC(gui_gearSelector_loadRoles); \
                 false \
-            );
+            ";
         };
         class RoleLabel : RscText{
             text = "Role:";
@@ -100,10 +100,10 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             text = "Random";
             idc = IDC_RSCGEARSELECTOR_RANDOM;
 
-            onButtonClick = QUOTE( \
+            onButtonClick = " \
                 params ['_ctrl']; \
                 [(ctrlParent _ctrl)] call FUNC(gui_gearSelector_random); \
-            );
+            ";
 
             x = CENTER_X - ((59 / 3) * GRID_W) / 2;
             y = CENTER_Y + GRID_H * 17;
@@ -114,10 +114,10 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
         class ButtonOK : RscButtonMenuOK {
             idc = IDC_RSCGEARSELECTOR_SUBMIT;
 
-            onButtonClick = QUOTE( \
+            onButtonClick = " \
                 params ['_ctrl']; \
                 [(ctrlParent _ctrl)] call FUNC(gui_gearSelector_submit); \
-            );
+            ";
 
             x = CENTER_X + (GRID_W * 0.5) + ((59 / 3) * GRID_W) / 2;
             y = CENTER_Y + GRID_H * 17;

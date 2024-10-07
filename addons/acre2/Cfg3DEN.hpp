@@ -42,7 +42,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_NetworkEnabled',_value];";
                             tooltip = "Enable the custom ACRE network and channel feature. Configure this in the 'Radios' section below. If disabled the below networks and channels will not be created.";
-                            defaultValue = false;
+                            defaultValue = 0;
                             condition = "1";
                         };
                         class Babel_Enabled
@@ -52,7 +52,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_BabelEnabled',_value];";
                             tooltip = "Enable ACRE's Babel feature? Configure this is in the next section";
-                            defaultValue = false;
+                            defaultValue = 0;
                             condition = "1";
                         };
                         class Action_Radios
@@ -228,16 +228,16 @@ class Cfg3DEN
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
             
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = 6 * SIZE_M * GRID_H;
+            h = QUOTE(6 * SIZE_M * GRID_H);
             class Controls
             {
                 class ActionTitle : ctrlStatic
                 {
                     text = "Radios available via action:";
                     style = ST_RIGHT;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     x = 0;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "These radios will be available for selection (via scroll wheel action) for the first 5 minutes after the player has spawned.";
@@ -245,7 +245,7 @@ class Cfg3DEN
                 class ActionListBackground : ctrlStatic
                 {
                     idc = 313208;
-                    x = (ATTRIBUTE_TITLE_W) * GRID_W;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     y = 0 * SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 6 * SIZE_M * GRID_H;
@@ -254,7 +254,7 @@ class Cfg3DEN
                 class ActionList: ctrlListNBox
                 {
                     idc = 101;
-                    x = (ATTRIBUTE_TITLE_W) * GRID_W;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     y = 0 * SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
                     h = 6 * SIZE_M * GRID_H;

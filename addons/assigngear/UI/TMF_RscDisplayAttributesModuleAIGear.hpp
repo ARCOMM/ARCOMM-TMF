@@ -1,6 +1,6 @@
 class GVARMAIN(RscDisplayAttributesModuleAIGear): RscDisplayAttributes {
     INIT_DISPLAY(GVARMAIN(RscDisplayAttributesModuleAIGear),ADDON)
-    curatorObjectAttributes = true;
+    curatorObjectAttributes = 1;
     class Controls: Controls {
         class Background: Background{};
         class Title: Title{};
