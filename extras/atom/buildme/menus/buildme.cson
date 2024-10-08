@@ -1,9 +1,0 @@
-'menu': [{
-  label: 'Packages'
-  submenu: [
-    label: 'Teamwork builder',
-    submenu: [
-        { label: 'Build', command: 'buildme:build' },
-    ]
-  ]
-}]
