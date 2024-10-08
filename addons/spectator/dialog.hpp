@@ -44,7 +44,7 @@ class RscSpectatorShortcutButton : RscPicture {
 //--- Spectator
 #define BUTTON_WIDTH 0.02 * safeZoneW
 #define BUTTON_HEIGHT 0.031 * safeZoneH
-#define COLUMN(V) (0.002 * safeZoneW + safezoneX)+((0.0215 * safeZoneW)  * V)
+#define COLUMN(V) (0.002 * safeZoneW + safeZoneX)+((0.0215 * safeZoneW)  * V)
 
 class GVAR(dialog)
 {
@@ -64,8 +64,8 @@ class GVAR(dialog)
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
     text = ""; //--- ToDo: Localize;
-    x = QUOTE((0.50-0.15/2) * safeZoneW + safezoneX);
-    y = QUOTE(0.025 * safeZoneH + safezoneY);
+    x = QUOTE((0.50-0.15/2) * safeZoneW + safeZoneX);
+    y = QUOTE(0.025 * safeZoneH + safeZoneY);
     w = QUOTE(0.15 * safeZoneW);
     h = QUOTE(0.020 * safeZoneH);
     font = "PuristaSemiBold";
@@ -73,8 +73,8 @@ class GVAR(dialog)
   class TMF_SPECTATOR_Compass: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASS;
     text = "NW"; //--- ToDo: Localize;
-    x = QUOTE((0.5-(0.07/2)) * safeZoneW + safezoneX);
-    y = QUOTE(0.005* safeZoneH + safezoneY);
+    x = QUOTE((0.5-(0.07/2)) * safeZoneW + safeZoneX);
+    y = QUOTE(0.005* safeZoneH + safeZoneY);
     w = QUOTE(0.07 * safeZoneW);
     h = QUOTE(0.015 * safeZoneH);
     font = "PuristaBold";
@@ -82,8 +82,8 @@ class GVAR(dialog)
   class TMF_SPECTATOR_CompassLeft: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT;
     text = "NW"; //--- ToDo: Localize;
-    x = QUOTE((0.5-(0.14)/2) * safeZoneW + safezoneX);
-    y = QUOTE(0.005 * safeZoneH + safezoneY);
+    x = QUOTE((0.5-(0.14)/2) * safeZoneW + safeZoneX);
+    y = QUOTE(0.005 * safeZoneH + safeZoneY);
     w = QUOTE(0.07 * safeZoneW);
     h = QUOTE(0.015 * safeZoneH);
     SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.65)";
@@ -93,8 +93,8 @@ class GVAR(dialog)
   class TMF_SPECTATOR_CompassRight: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight;
     text = "NE"; //--- ToDo: Localize;
-    x = QUOTE((0.5) * safeZoneW + safezoneX);
-    y = QUOTE(0.005 * safeZoneH + safezoneY);
+    x = QUOTE((0.5) * safeZoneW + safeZoneX);
+    y = QUOTE(0.005 * safeZoneH + safeZoneY);
     w = QUOTE(0.07 * safeZoneW);
     h = QUOTE(0.015 * safeZoneH);
     SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.65)";
@@ -105,7 +105,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
         x = QUOTE(COLUMN(1));
-        y = QUOTE(0.002 * safeZoneH + safezoneY);
+        y = QUOTE(0.002 * safeZoneH + safeZoneY);
         w = QUOTE(BUTTON_WIDTH);
         h = QUOTE(BUTTON_HEIGHT);
         onButtonDown = "['disableAI',_this] call tmf_spectator_fnc_menuhandler;";
@@ -115,7 +115,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_BUTTON: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_BUTTON;
       x = QUOTE(COLUMN(0));
-      y = QUOTE(0.002 * safeZoneH + safezoneY);
+      y = QUOTE(0.002 * safeZoneH + safeZoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
       text = "\x\tmf\addons\spectator\images\flag_civil_empty_ca_64.paa";
@@ -125,7 +125,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_TAGS: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
       x = QUOTE(COLUMN(3));
-      y = QUOTE(0.002 * safeZoneH + safezoneY);
+      y = QUOTE(0.002 * safeZoneH + safeZoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\map\Diary\textures_ca.paa";
@@ -135,7 +135,7 @@ class GVAR(dialog)
     class TMF_SPECTATOR_VISION: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VISION;
       x = QUOTE(COLUMN(4));
-      y = QUOTE(0.002 * safeZoneH + safezoneY);
+      y = QUOTE(0.002 * safeZoneH + safeZoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
       onButtonDown = "['vision',_this] call tmf_spectator_fnc_menuhandler;";
@@ -146,7 +146,7 @@ class GVAR(dialog)
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VIEW;
       onButtonDown = "['camera',_this] call tmf_spectator_fnc_menuhandler;";
       x = QUOTE(COLUMN(2));
-      y = QUOTE(0.002 * safeZoneH + safezoneY);
+      y = QUOTE(0.002 * safeZoneH + safeZoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\IGUI\Cfg\IslandMap\iconcamera_ca.paa";
@@ -156,7 +156,7 @@ class GVAR(dialog)
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MUTE;
       onButtonDown = "['mute',_this] call tmf_spectator_fnc_menuhandler;";
       x = QUOTE(COLUMN(5));
-      y = QUOTE(0.002 * safeZoneH + safezoneY);
+      y = QUOTE(0.002 * safeZoneH + safeZoneY);
       w = QUOTE(BUTTON_WIDTH);
       h = QUOTE(BUTTON_HEIGHT);
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\voice_ca.paa";
@@ -166,7 +166,7 @@ class GVAR(dialog)
         idc = IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
         onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
         x = QUOTE(COLUMN(6));
-        y = QUOTE(0.002 * safeZoneH + safezoneY);
+        y = QUOTE(0.002 * safeZoneH + safeZoneY);
         w = QUOTE(BUTTON_WIDTH);
         h = QUOTE(BUTTON_HEIGHT);
         text = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
@@ -174,8 +174,8 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_MAP : RscMapControl {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MAP;
-      x = QUOTE(0 * safeZoneW + safezoneX);
-      y = QUOTE(0 * safeZoneH + safezoneY);
+      x = QUOTE(0 * safeZoneW + safeZoneX);
+      y = QUOTE(0 * safeZoneH + safeZoneY);
       w = QUOTE(1 * safeZoneW);
       h = QUOTE(1 * safeZoneH);
       onDraw = "_this call tmf_spectator_fnc_drawMap";
@@ -183,8 +183,8 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_UNITLIST: RscTree {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST;
-      x = QUOTE(0.002 * safeZoneW + safezoneX);
-      y = QUOTE(0.038 * safeZoneH + safezoneY);
+      x = QUOTE(0.002 * safeZoneW + safeZoneX);
+      y = QUOTE(0.038 * safeZoneH + safeZoneY);
       w = QUOTE(0.13 * safeZoneW);
       h = QUOTE(0.940001 * safeZoneH);
       shadow = 2;
@@ -211,8 +211,8 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_KILLLIST : RscControlsGroupNoScrollbars {
         idc = 2300;
-        x = QUOTE(0.763544 * safeZoneW + safezoneX);
-        y = QUOTE(0.005 * safeZoneH + safezoneY);
+        x = QUOTE(0.763544 * safeZoneW + safeZoneX);
+        y = QUOTE(0.005 * safeZoneH + safeZoneY);
         w = QUOTE(0.233576 * safeZoneW);
         h = QUOTE((0.020*6.5) * safeZoneH);
         style = 16;
@@ -305,8 +305,8 @@ class GVAR(dialog)
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseMoving = "['MouseMoving',_this] call tmf_spectator_fnc_mouseHandler";
     idc = 123;
-    x = QUOTE(safezoneX);
-    y = QUOTE(safezoneY);
+    x = QUOTE(safeZoneX);
+    y = QUOTE(safeZoneY);
     w = QUOTE(safeZoneW);
     h = QUOTE(safeZoneH);
     colorBackground[] = {0.2, 0.0, 0.0, 0.0};

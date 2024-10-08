@@ -139,8 +139,8 @@ if((_logic getVariable ["WakeUp", false])) then {
         _trigger setTriggerArea [_buildingSize * 3, _buildingSize * 3, 0, false, 10];
         _trigger setTriggerActivation ["ANYPLAYER","PRESENT",false];
         _trigger setTriggerStatements [
-            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side', opfor)]); this && ({ side _x != _side} count thisList) > 0),
-            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2('units', [])]); deleteVehicle thisTrigger;),
+            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side',opfor)]); this && ({side _x != _side} count thisList) > 0),
+            QUOTE({_x enableAI 'PATH'; _x setUnitPos 'AUTO';} forEach (thisTrigger getVariable [ARR_2('units',[])]); deleteVehicle thisTrigger;),
             ""
         ];
     } forEach _garrisonedBuildings;

@@ -68,7 +68,7 @@ switch _mode do {
 					};
 					default {
 						_isLineBreak = false;
-						if (_isFT) then {_textFT pushback _x;} else {_textParsed pushback _x;};
+						if (_isFT) then {_textFT pushBack _x;} else {_textParsed pushBack _x;};
 					};
 				};
 			} forEach toarray _text;
@@ -79,8 +79,8 @@ switch _mode do {
 			_ctrlContent ctrlsetstructuredtext parsetext tostring _textParsed;
 			_ctrlContentPos = ctrlposition _ctrlContent;
 			_ctrlContentPos set [3,(ctrltextheight _ctrlContent) max (ctrlposition _ctrlGroup select 3)];
-			_ctrlContent ctrlsetposition _ctrlContentPos;
-			_ctrlContent ctrlcommit 0;
+			_ctrlContent ctrlSetPosition _ctrlContentPos;
+			_ctrlContent ctrlCommit 0;
 		};
 
 		//--- Fill the list
@@ -101,7 +101,7 @@ switch _mode do {
 			];
 			_ctrlList lbsetdata [_index,configname _x];
 		} forEach _cfgUpdates;
-		lbsort [_ctrlList,"ASC"];
+		lbSort [_ctrlList,"ASC"];
 		_index = lbsize _ctrlList - 1;
 		_ctrlList lbSetCurSel _index;
 		[_ctrlList,_index] call _lBSelChanged;
@@ -112,7 +112,7 @@ switch _mode do {
 		//--- Reset notifictaion icon
 		_display3DEN = finddisplay IDD_DISPLAY3DEN;
 		_ctrlUpdates = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_UPDATES;
-		_ctrlUpdates ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_updates_ca.paa";
+		_ctrlUpdates ctrlSetText "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_updates_ca.paa";
 		profilenamespace setVariable ['3DEN_Updates',count _cfgUpdates];
 		saveprofilenamespace;
 	};

@@ -9,14 +9,14 @@ private _toolBoxIcon = ["", "_inf.paa", "_inf_airmobile.paa", "_inf_mech.paa", "
 private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 private _sizeMod = ["x\tmf\addons\orbat\textures\empty.paa", "x\tmf\addons\orbat\textures\modif_o.paa","x\tmf\addons\orbat\textures\modif_dot.paa","x\tmf\addons\orbat\textures\modif_2dot.paa","x\tmf\addons\orbat\textures\modif_3dot.paa", "x\tmf\addons\orbat\textures\modif_company.paa"];
 
-private _icon = _toolBoxIcon select (lbcursel _ctrlIconToolbox);
+private _icon = _toolBoxIcon select (lbCurSel _ctrlIconToolbox);
 private _path = "";
 
 if (_icon != "") then {
-    _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbcursel _ctrlColourToolBox)) + _icon;
+    _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbCurSel _ctrlColourToolBox)) + _icon;
 };
 
-private _idx = (lbcursel _ctrlSize);
+private _idx = (lbCurSel _ctrlSize);
 private _mod = "";
 if (_idx > 0) then {
     _mod = _sizeMod select _idx;

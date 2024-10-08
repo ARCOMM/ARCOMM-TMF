@@ -23,4 +23,4 @@ if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf 
 private _weapon = getText (configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName");
 if (!isNull (objectParent _instigator)) then { _weapon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _instigator) >> "displayName");};
 GVAR(killList_forceUpdate) = true;
-GVAR(killedUnits) pushback [_deadMan,time,_instigator,side group _deadMan,side group _instigator,_dName,_kName,_weapon,_isPlayer];
+GVAR(killedUnits) pushBack [_deadMan,time,_instigator,side group _deadMan,side group _instigator,_dName,_kName,_weapon,_isPlayer];

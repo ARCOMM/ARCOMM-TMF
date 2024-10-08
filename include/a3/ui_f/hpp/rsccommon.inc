@@ -96,8 +96,8 @@
 	class TileGroup: RscControlsGroupNoScrollbars\
 	{\
 		idc = 115099;\
-		x = safezoneX;\
-		y = safezoneY;\
+		x = safeZoneX;\
+		y = safeZoneY;\
 		w = safeZoneW;\
 		h = safeZoneH;\
 		disableCustomColors = 1;\
@@ -158,7 +158,7 @@
 	{\
 		idc = 115099;\
 		x = safezoneXAbs;\
-		y = safezoneY;\
+		y = safeZoneY;\
 		w = safezoneWAbs;\
 		h = safeZoneH;\
 		class Controls\
@@ -221,8 +221,8 @@
 	class FullscreenBackground: RscText \
 	{ \
 		idc = -1; \
-		x = SafezoneX; \
-		y = SafezoneY; \
+		x = safeZoneX; \
+		y = safeZoneY; \
 		w = safeZoneW; \
 		h = safeZoneH; \
 		colorBackground[] = {0.7, 0.7, 0.7, 0.8}; \

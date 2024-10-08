@@ -53,9 +53,9 @@ fn_removeGroupFromBrief = {
 switch _mode do {
     case "onLoad": {
         private _playableUnits = (((all3DENEntities select 0)+(all3DENEntities select 3)) select {
-            (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+            (_x get3DENAttribute "ControlMP") isEqualTo [true]
             ||
-            (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+            (_x get3DENAttribute "ControlSP") isEqualTo [true]
         });
         cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
         {
@@ -88,8 +88,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         BriefingSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {BriefingSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {BriefingSettings_ctrlGroup = nil;};}];
         
                 
         {
@@ -239,9 +239,9 @@ switch _mode do {
             private _units = units _group;
             if (_side == sideLogic) then {
                 _units = _units select {
-                    (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+                    (_x get3DENAttribute "ControlMP") isEqualTo [true]
                     ||
-                    (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+                    (_x get3DENAttribute "ControlSP") isEqualTo [true]
                 };
             };
             {

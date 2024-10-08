@@ -1,8 +1,8 @@
 class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 {
     idc = -1;
-    x = QUOTE(0 * safeZoneW + safezoneX);
-    y = QUOTE(0 * safeZoneH + safezoneY);
+    x = QUOTE(0 * safeZoneW + safeZoneX);
+    y = QUOTE(0 * safeZoneH + safeZoneY);
     w = QUOTE(0.08 * safeZoneW);
     h = QUOTE(0.06 * safeZoneH);
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";

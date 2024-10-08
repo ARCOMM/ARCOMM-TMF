@@ -13,9 +13,9 @@ switch _mode do {
 		["placeempty"] spawn bis_fnc_3DENInterface;
 
 		_display = _params select 0;
-		_display displayaddeventhandler ["keydown",{with uiNamespace do {["keyDown",_this,""] call display3DENPlace_script;};}];
+		_display displayaddeventhandler ["KeyDown",{with uiNamespace do {["KeyDown",_this,""] call display3DENPlace_script;};}];
 	};
-	case "keyDown":
+	case "KeyDown":
 	{
 		_display = _params select 0;
 		_key = _params select 1;

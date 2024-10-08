@@ -95,6 +95,6 @@ if (_mode == "select") exitWith {
 	_ctrlStats = _display displayCtrl IDC_DISPLAY3DENMISSIONSTATS_STATS;
 
 	all3denentities params ["_objects","_groups","_triggers","_logics","_waypoints","_markers","_layers","_comments"];
-	set3denselected call compile (_ctrlStats lbdata lbcursel _ctrlStats);
+	set3denselected call compile (_ctrlStats lbdata lbCurSel _ctrlStats);
 	_display closedisplay 2;
 };

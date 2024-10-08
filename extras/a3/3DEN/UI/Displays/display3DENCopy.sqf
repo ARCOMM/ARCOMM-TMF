@@ -17,13 +17,13 @@ switch _mode do {
 		_dataTitle = _data param [0,"",[""]];
 		_dataEdit = _data param [1,"",[""]];
 
-		_ctrlTitle ctrlsettext _dataTitle;
-		_ctrlEdit ctrlsettext _dataEdit;
-		_ctrlEditFake ctrlsettext _dataEdit;
+		_ctrlTitle ctrlSetText _dataTitle;
+		_ctrlEdit ctrlSetText _dataEdit;
+		_ctrlEditFake ctrlSetText _dataEdit;
 
 		_ctrlEditPos = ctrlposition _ctrlEdit;
 		_ctrlEditPos set [3,(ctrltextheight _ctrlEditFake) max (_ctrlEditPos select 3)];
-		_ctrlEdit ctrlsetposition _ctrlEditPos;
-		_ctrlEdit ctrlcommit 0;
+		_ctrlEdit ctrlSetPosition _ctrlEditPos;
+		_ctrlEdit ctrlCommit 0;
 	};
 };

@@ -85,8 +85,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         BabelSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {BabelSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {BabelSettings_ctrlGroup = nil;};}];
         
                 
         {

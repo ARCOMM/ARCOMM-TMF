@@ -12,7 +12,7 @@ switch _mode do {
 
 		_ctrlIslandBox = _display displayCtrl IDC_DISPLAY3DENNEW_LIST;
 		_ctrlIslandBox ctrlAddEventHandler ["lbselchanged","with uiNamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
-		['lbselchanged',[_ctrlIslandBox,lbcursel _ctrlIslandBox],''] call display3DENNew_script;
+		['lbselchanged',[_ctrlIslandBox,lbCurSel _ctrlIslandBox],''] call display3DENNew_script;
 
 	};
 	case "lbselchanged": {
@@ -31,23 +31,23 @@ switch _mode do {
 		//--- Set name
 		_world = _ctrlIslandBox lbdata _cursel;
 		_worldConfig = configFile >> "cfgworlds" >> _world;
-		_ctrlName ctrlsettext toupper (_ctrlIslandBox lbtext _cursel);
+		_ctrlName ctrlSetText toupper (_ctrlIslandBox lbtext _cursel);
 
 		//--- Set author
 		_author = getText (_worldConfig >> "author");
 		if (_author == "") then {_author = localize "STR_AUTHOR_UNKNOWN"};
 		_author = if (_author == "") then {""} else {format [localize "STR_FORMAT_AUTHOR_SCRIPTED",_author]};
-		_ctrlAuthor ctrlsettext _author;
+		_ctrlAuthor ctrlSetText _author;
 
 		//--- Set picture
 		_picture = getText (_worldConfig >> "pictureMap");
 		if (_picture == "") then {_picture = getText (configFile >> "display3DENNew" >> "defaultPicture")};
-		_ctrlIslandPanorama ctrlsettext _picture;
+		_ctrlIslandPanorama ctrlSetText _picture;
 
 		//--- Set lng/lat
 		if (_world != "vr") then {
-			_lng = getnumber (_worldConfig >> "longitude");
-			_lat = getnumber (_worldConfig >> "latitude");
+			_lng = getNumber (_worldConfig >> "longitude");
+			_lat = getNumber (_worldConfig >> "latitude");
 			_ctrlWorldPos = ctrlposition _ctrlWorld;
 			_posX = linearconversion [-180,180,_lng,_ctrlWorldPos select 0,(_ctrlWorldPos select 0) + (_ctrlWorldPos select 2)];
 			_posY = linearconversion [-90,90,_lat,_ctrlWorldPos select 1,(_ctrlWorldPos select 1) + (_ctrlWorldPos select 3)];
@@ -55,17 +55,17 @@ switch _mode do {
 			_ctrlWorldLatPos = ctrlposition _ctrlWorldLat;
 			_ctrlWorldLngPos set [0,_posX];
 			_ctrlWorldLatPos set [1,_posY];
-			_ctrlWorldLng ctrlsetposition _ctrlWorldLngPos;
-			_ctrlWorldLat ctrlsetposition _ctrlWorldLatPos;
+			_ctrlWorldLng ctrlSetPosition _ctrlWorldLngPos;
+			_ctrlWorldLat ctrlSetPosition _ctrlWorldLatPos;
 			_ctrlWorldLng ctrlsetfade 0;
 			_ctrlWorldLat ctrlsetfade 0;
 		} else {
 			_ctrlWorldLng ctrlsetfade 1;
 			_ctrlWorldLat ctrlsetfade 1;
 		};
-		_commitTime = if (ctrltext _ctrlWorldLng == ".") then {0.1} else {_ctrlWorldLng ctrlsettext "."; 0};
-		_ctrlWorldLng ctrlcommit _commitTime;
-		_ctrlWorldLat ctrlcommit _commitTime;
+		_commitTime = if (ctrltext _ctrlWorldLng == ".") then {0.1} else {_ctrlWorldLng ctrlSetText "."; 0};
+		_ctrlWorldLng ctrlCommit _commitTime;
+		_ctrlWorldLat ctrlCommit _commitTime;
 	};
 	default {};
 };

@@ -16,7 +16,7 @@ class Controls
         text = "Debug Console";
         onButtonClick = "(ctrlParent param [0]) closeDisplay 1; createDialog 'RscDisplayDebugPublic';";
         x = "0";
-        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = "7 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
     };
     class ButtonClaimZeus: ButtonDebugConsole
@@ -24,14 +24,14 @@ class Controls
         idc = IDC_TMF_ADMINMENU_DASH_CLAIMZEUS;
         text = "Claim Zeus";
         onButtonClick = QUOTE(call FUNC(claimZeus));
-        y = "2.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "2.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonCamera: ButtonDebugConsole
     {
         idc = IDC_TMF_ADMINMENU_DASH_CAMERA;
         text = "Camera";
         onButtonClick = "(ctrlParent param [0]) closeDisplay 1; [] spawn BIS_fnc_camera;";
-        y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonArsenal: ButtonDebugConsole
     {
@@ -40,7 +40,7 @@ class Controls
         tooltip = "ACE Arsenal. Hold Shift to open vanilla Arsenal.";
         onButtonClick = "";
         onMouseButtonClick = "if (player isKindOf 'CAManBase' && alive player) then {(ctrlParent param [0]) closeDisplay 1; if (!param [4]) then {[player, player, true] call ACE_arsenal_fnc_openBox;} else {['Open', true] spawn BIS_fnc_arsenal;};} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
-        y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class TabAdminEye: ButtonDebugConsole
     {
@@ -48,14 +48,14 @@ class Controls
         text = "Map";
         tooltip = "View Admin Map";
         onButtonClick = QUOTE([] call FUNC(adminEye_open));
-        y = "5.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "5.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
 
     // Safestart
     class LabelSafestart: LabelShortcuts
     {
         text = "Safestart";
-        y = "6.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "6.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class CheckboxSafestartEnabled: RscCheckBox
     {
@@ -80,7 +80,7 @@ class Controls
     class LabelSpectatorTalk: LabelShortcuts
     {
         text = "Talk with Spectators";
-        y = "9.0 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "9.0 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class CheckboxSpectatorTalkEnabled: RscCheckBox
     {
@@ -111,7 +111,7 @@ class Controls
         text = "General Information";
         sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
-        y = "8.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "8.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = "7 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
     };
@@ -121,7 +121,7 @@ class Controls
         colorBackground[] = {1, 1, 1, 0.2};
         sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
-        y = "9.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "9.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = "4.5 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
     };
@@ -136,58 +136,58 @@ class Controls
     class StatsLabel_DeadUnits: StatsLabel_Vehicles
     {
         text = "Dead Units";
-        y = "10.9 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "10.9 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsValue_DeadUnits: StatsValue_Vehicles
     {
         idc = IDC_TMF_ADMINMENU_DASH_DEADMEN;
         text = "0";
-        y = "10.9 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "10.9 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsLabel_HeadlessClients: StatsLabel_Vehicles
     {
         text = "AI Load Balance";
         tooltip = "The number of groups being run on the server and each HC.";
-        y = "12 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "12 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsValue_HeadlessClients: StatsValue_Vehicles
     {
         idc = IDC_TMF_ADMINMENU_DASH_HEADLESS;
         text = "0";
-        y = "12 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "12 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsLabel_Curators: StatsLabel_Vehicles
     {
         text = "Zeuses";
-        y = "13.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "13.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsValue_Curators: StatsValue_Vehicles
     {
         idc = IDC_TMF_ADMINMENU_DASH_CURATORS;
         text = "0";
-        y = "13.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "13.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsLabel_CurrentAdmin: StatsLabel_Vehicles
     {
         text = "Current Admin";
-        y = "14.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "14.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsValue_CurrentAdmin: StatsValue_Vehicles
     {
         idc = IDC_TMF_ADMINMENU_DASH_CURRADMIN;
         text = "no data";
-        y = "14.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "14.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsLabel_MissionRuntime: StatsLabel_Vehicles
     {
         text = "Mission Runtime";
-        y = "15.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "15.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class StatsValue_MissionRuntime: StatsValue_Vehicles
     {
         idc = IDC_TMF_ADMINMENU_DASH_RUNTIME;
         text = "18m 37s";
-        y = "15.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        y = "15.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
 
     // Mission maker's notes, right

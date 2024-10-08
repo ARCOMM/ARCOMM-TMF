@@ -27,6 +27,6 @@ if ((lbSize _endingList) == 0) then {
 
     _endingList lbSetData [(_endingList lbAdd "Generic Success"), QGVAR(victory)];
     _endingList lbSetData [(_endingList lbAdd "Generic Fail"), QGVAR(defeat)];
-    _endingList lbSetData [(_endingList lbAdd "Generic Draw"), QGVAR(draw)];
+    _endingList lbSetData [(_endingList lbAdd "Generic Draw"), QGVAR(Draw)];
     _endingList lbSetData [(_endingList lbAdd "Generic Technical Issues"), QGVAR(technical_issues)];
 };

@@ -29,7 +29,7 @@ switch (GVAR(mode)) do {
         GVAR(followcam_angle) = [_dir,_angleY];
     };
     case FIRSTPERSON: {
-        GVAR(target) SwitchCamera "internal";
+        GVAR(target) switchCamera "internal";
         if (vehicle GVAR(target) != GVAR(target)) then
         {
             _vehicle = vehicle GVAR(target);

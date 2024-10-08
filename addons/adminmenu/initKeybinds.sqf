@@ -2,7 +2,7 @@
 ["TMF", QGVAR(spectatorRemoteControl), ["Control Focused Spectator Unit", "Only available in TMF Spectator, and only for admins and in singleplayer"], FUNC(keyPressed), {false}, [0, [false, false, false]], false, 0] call CBA_fnc_addKeybind; // No default bind
 
 
-[QEGVAR(spectator,keyDown), {
+[QEGVAR(spectator,KeyDown), {
     params ["", "_args"];
     _args call FUNC(keyPressed);
 }] call CBA_fnc_addEventHandler;

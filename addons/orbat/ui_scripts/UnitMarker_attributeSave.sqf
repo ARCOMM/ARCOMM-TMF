@@ -6,11 +6,11 @@ private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;
 private _toolBoxIcon = ["","_cross.paa","_chevrons.paa","_sl_flag.paa","_sl_flag_s"];
 private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 
-private _icon = _toolBoxIcon select (lbcursel _ctrlIconToolbox);
+private _icon = _toolBoxIcon select (lbCurSel _ctrlIconToolbox);
 private _path = "";
 
 if (_icon != "") then {
-    _path = "x\tmf\addons\orbat\textures\" + (_colours select (lbcursel _ctrlColourToolBox)) + _icon;
+    _path = "x\tmf\addons\orbat\textures\" + (_colours select (lbCurSel _ctrlColourToolBox)) + _icon;
 };
 
 private _entity = (get3DENSelected "object") # 0;

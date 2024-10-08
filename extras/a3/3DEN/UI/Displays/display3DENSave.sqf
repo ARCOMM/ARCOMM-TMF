@@ -16,7 +16,7 @@ switch _mode do {
 
 		if (ctrltext (_display displayCtrl 1) != localize "STR_3den_display3den_menubar_missionsave_text") then { // ToDo: Better Save variant detection, split into separate display perhaps?
 			{
-				(_display displayCtrl _x) ctrlshow false;
+				(_display displayCtrl _x) ctrlShow false;
 			} forEach [IDC_DISPLAY3DENSAVE_BINARIZETEXT,IDC_DISPLAY3DENSAVE_BINARIZE];
 		};
 	};

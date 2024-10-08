@@ -1,5 +1,5 @@
 PREP(add);
-PREP(draw);
+PREP(Draw);
 PREP(drawArrayRec);
 PREP(setup);
 PREP(setMarkerUpdateInterval);

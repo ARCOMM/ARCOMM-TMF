@@ -15,7 +15,7 @@ switch _mode do {
 		//if( getNumber(configFile >> "isDemo") != 1 ) then //test
 		//{
 			//--- E3 - Back to Hub button
-			if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then
+			if (getNumber (missionConfigFile >> "replaceAbortButton") > 0) then
 			{				
 				//Maxwell button ON - move all buttons except Abort up ---------------------------------------
 				//Title background
@@ -73,14 +73,14 @@ switch _mode do {
 				_buttonBack = _display displayCtrl 2408;
 				_buttonBack ctrlenable true;
 				_buttonBack ctrlsetfade 0;
-				_buttonBack ctrlcommit 0;	
+				_buttonBack ctrlCommit 0;	
 			}
 			else
 			{
 				_buttonBack = _display displayCtrl 2408;
 				_buttonBack ctrlenable false;
 				_buttonBack ctrlsetfade 1;
-				_buttonBack ctrlcommit 0;
+				_buttonBack ctrlCommit 0;
 			};
 		//};
 		
@@ -156,7 +156,7 @@ switch _mode do {
 			// if ( (isclass _current) && ( configName(_current) != "PlayersName") ) then { //do not toUpper Player's name
 			
 				///search inside main controls class
-				// _idc = getnumber (_current >> "idc");
+				// _idc = getNumber (_current >> "idc");
 				// _control = _display displayCtrl _idc;
 				// _control ctrlSetText (toUpper (ctrlText _control));
 				
@@ -179,7 +179,7 @@ switch _mode do {
 		
 		//--- Options button
 		_button = _display displayCtrl 101;
-		_button ctrlAddEventHandler ["buttonclick","with uiNamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
+		_button ctrlAddEventHandler ["ButtonClick","with uiNamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
 		
 		//TODO - implementovat promennou, ktera si bude pamatovat stav akordeonu (je potreba pri navratu z jineho dialogu do main menu)			
 		(_display displayCtrl 301) ctrlSetFade 1;	//Video
@@ -223,7 +223,7 @@ switch _mode do {
 		_display = ctrlparent _ctrl;
 		
 		_offset = 0;
-		if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then  //MUF-test-removed: (getNumber(configFile >> "isDemo") != 1) &&
+		if (getNumber (missionConfigFile >> "replaceAbortButton") > 0) then  //MUF-test-removed: (getNumber(configFile >> "isDemo") != 1) &&
 		{
 			_offset = 1.1;
 		};
@@ -356,7 +356,7 @@ switch _mode do {
 			_control ctrlSetPosition [(1 * GUI_GRID_W + GUI_GRID_X), ((14.2 - _offset) * GUI_GRID_H + GUI_GRID_Y)];																												
 			_control ctrlCommit _upperPartTime;
 			
-			if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then
+			if (getNumber (missionConfigFile >> "replaceAbortButton") > 0) then
 			{
 				//Video button
 				_control = _display displayCtrl 301;
@@ -411,7 +411,7 @@ switch _mode do {
 		_dummy = [_params,'unload'] call compile preprocessFile '\A3\ui_f\scripts\pauseCutScene.sqf';
 	};
 
-	case "keyDown": {
+	case "KeyDown": {
 		_display = _params select 0;
 		_key = _params select 1;
 		
@@ -431,7 +431,7 @@ switch _mode do {
 					{
 						if (_x < 100000) then {
 							(_display displayCtrl _x) ctrlsetfade _fade;
-							(_display displayCtrl _x) ctrlcommit 0.2;
+							(_display displayCtrl _x) ctrlCommit 0.2;
 						};
 					} forEach ([configFile >> "RscDisplayInterrupt",0] call bis_fnc_displayControls);	
 				};

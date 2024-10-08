@@ -128,7 +128,7 @@ class DefaultFont
 #define INIT_DISPLAY_START(NAME,PATH) \
 	scriptName = ##NAME##;\
 	scriptPath = ##PATH##;\
-	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getVariable 'BIS_fnc_initDisplay')";\
+	onLoad = "[2] call compile preprocessFileLineNumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getVariable 'BIS_fnc_initDisplay')";\
 	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;
 
 //--- Code executed on each control where the macro is used

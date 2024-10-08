@@ -90,7 +90,7 @@
 
 
 
-#define KEYDOWN 0
+#define KeyDown 0
 
 
 #include "\x\tmf\addons\spectator\script_component.hpp"
@@ -105,7 +105,7 @@ _args params ["_control","_key","_shift","_ctrl","_alt"];
 
 _done = true;
 switch true do {
-  case (_key == DIK_ESCAPE && _type == KEYDOWN) :
+  case (_key == DIK_ESCAPE && _type == KeyDown) :
   {
     [QGVAR(blackout),false] call BIS_fnc_blackOut;
     with uiNamespace do {
@@ -121,7 +121,7 @@ switch true do {
     _done = true;
   };
   case (_key == DIK_A) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [1,true];
       }
@@ -131,7 +131,7 @@ switch true do {
       };
   };
   case (_key == DIK_D) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [3,true];
 
@@ -143,7 +143,7 @@ switch true do {
       };
   };
   case (_key == DIK_W) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [0,true];
       }
@@ -154,7 +154,7 @@ switch true do {
       };
   };
   case (_key == DIK_S) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [2,true];
       } else {
@@ -163,18 +163,18 @@ switch true do {
       };
   };
   case (_key == DIK_Q) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [4,true];
       } else {
           GVAR(movement_keys) set [4,false];
       };
   };
-  case (_key in (actionKeys "NightVision") && _type == KEYDOWN && !GVAR(showmap)) : {
+  case (_key in (actionKeys "NightVision") && _type == KeyDown && !GVAR(showmap)) : {
         ['vision',[uiNamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
   };
   case (_key == DIK_Z) : {
-      if(_type == KEYDOWN) then
+      if(_type == KeyDown) then
       {
           GVAR(movement_keys) set [5,true];
       } else {
@@ -182,35 +182,35 @@ switch true do {
       };
   };
   case (_key in (actionKeys "ReloadMagazine")) : {
-      if(_type == KEYDOWN) then {
+      if(_type == KeyDown) then {
           GVAR(showlines) = true;
       } else {
           GVAR(showlines) = false;
       };
   };
   case (_key in [DIK_RSHIFT,DIK_LSHIFT]) : {
-      if(_type == KEYDOWN) then {
+      if(_type == KeyDown) then {
           GVAR(modifiers_keys) set [1,true];
       } else {
           GVAR(modifiers_keys) set [1,false];
       };
   };
   case (_key in [DIK_LMENU]) : { // Alt
-      if(_type == KEYDOWN) then {
+      if(_type == KeyDown) then {
           GVAR(modifiers_keys) set [2,true];
       } else {
           GVAR(modifiers_keys) set [2,false];
       };
   };
   case (_key in [DIK_LCONTROL]) : { // Ctrl
-      if(_type == KEYDOWN) then {
+      if(_type == KeyDown) then {
           GVAR(modifiers_keys) set [0,true];
       } else {
           GVAR(modifiers_keys) set [0,false];
       };
   };
   case (_key in actionKeys "ShowMap") : {
-      if(_type == KEYDOWN) then {
+      if(_type == KeyDown) then {
           GVAR(showMap) = !GVAR(showMap);
           with uiNamespace do {
               _mapshow = (missionNamespace getVariable [QGVAR(showMap),false]);
@@ -221,37 +221,37 @@ switch true do {
       };
   };
     case (_key == GVAR(mute_key)) : {
-        if(_type == KEYDOWN && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
+        if(_type == KeyDown && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
             [] call acre_sys_core_fnc_toggleHeadset;
         };
     };
-    case (_key == DIK_T && _type == KEYDOWN): {
+    case (_key == DIK_T && _type == KeyDown): {
         GVAR(tracers) = !GVAR(tracers);
         _message = "Tracers have been toggled off";
         if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
         systemChat _message;
     };
-    case (_key == DIK_K && _type == KEYDOWN): {
+    case (_key == DIK_K && _type == KeyDown): {
         GVAR(bulletTrails) = !GVAR(bulletTrails);
         _message = "Bullet trails have been toggled off";
         if(GVAR(bulletTrails)) then {_message = "Bullet trails have been toggled on"};
         systemChat _message;
     };
-    case (_key == DIK_SPACE && _type == KEYDOWN) : {
+    case (_key == DIK_SPACE && _type == KeyDown) : {
         [] call FUNC(onModeSwitch);
         [] call FUNC(setTarget);
     };
-    case (_key == DIK_U && _type == KEYDOWN) : {
+    case (_key == DIK_U && _type == KeyDown) : {
         [] call FUNC(toggleUI);
     };
     case (_key in actionKeys "Chat") : {
         _done = false;
     };
-    case (_key == DIK_P && _type == KEYDOWN) : {
+    case (_key == DIK_P && _type == KeyDown) : {
       _time = ([time,true] call CFUNC(secondsToTime));
       systemChat format["Mission time: %1:%2:%3",_time select 0,_time select 1,_time select 2];
   };
-  case (_key in (actionKeys "curatorInterface") && _type == KEYDOWN): {
+  case (_key in (actionKeys "curatorInterface") && _type == KeyDown): {
         if(!isNull getAssignedCuratorLogic player) then {
             private _pos = getPos GVAR(camera);
             private _vectorUp = vectorUp GVAR(camera);
@@ -273,8 +273,8 @@ switch true do {
   };
   case default {
       _done =false;
-      if(_type == KEYDOWN) then {
-        [QGVAR(keyDown),_this] call CBA_fnc_localEvent;
+      if(_type == KeyDown) then {
+        [QGVAR(KeyDown),_this] call CBA_fnc_localEvent;
       } else {
         [QGVAR(keyUp),_this] call CBA_fnc_localEvent;
       };

@@ -10,7 +10,7 @@
  * nil
  *
  * Description:
- * Called on the draw event in EDEN.
+ * Called on the Draw event in EDEN.
  *
  */
 if (GVAR(Garrison)) then {

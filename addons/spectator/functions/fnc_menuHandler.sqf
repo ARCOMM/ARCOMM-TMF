@@ -81,14 +81,14 @@ switch (_button) do {
     case "vision" : {
         GVAR(visionMode) = GVAR(visionMode) +1;
         if(GVAR(visionMode) > 2) then {GVAR(visionMode) = 0};
-        false setCamUseTi 0;
+        false setCamUseTI 0;
         camUseNVG false;
         switch (GVAR(visionMode)) do {
             case 1: {
                 camUseNVG true;
             };
             case 2: {
-                true setCamUseTi 0;
+                true setCamUseTI 0;
             };
         };
         _i = (GVAR(visionMode))+1;

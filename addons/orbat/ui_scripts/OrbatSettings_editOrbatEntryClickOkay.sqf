@@ -16,7 +16,7 @@ with uiNamespace do {
     private _path = "";
 
     if (_icon != "") then {
-        _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbcursel _ctrlColourToolBox)) + _icon;
+        _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbCurSel _ctrlColourToolBox)) + _icon;
     };
 
     private _idx = (lbCurSel _ctrlSize);

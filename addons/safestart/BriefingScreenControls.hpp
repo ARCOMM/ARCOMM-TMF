@@ -2,8 +2,8 @@ class GVAR(safeStartText) : RscText
 {
     idc = -1;
     text = ""; //--- ToDo: Localize;
-    x = QUOTE((0.50-0.5/2) * safeZoneW + safezoneX);
-    y = QUOTE(safezoneY);
+    x = QUOTE((0.50-0.5/2) * safeZoneW + safeZoneX);
+    y = QUOTE(safeZoneY);
     w = QUOTE(0.5 * safeZoneW);
     h = QUOTE(0.05 * safeZoneH);
     style = 0x02;

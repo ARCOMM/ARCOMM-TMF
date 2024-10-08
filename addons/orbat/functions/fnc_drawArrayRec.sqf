@@ -7,7 +7,7 @@ _in params ["_rootData"];
 _rootData params ["_text", "_texture1", "_color", "_size", "_pos", "_minSiblingPos", "_maxChildPos", "_texture2"];
 
 private _hasChildren = count _in > 1;
-private _drawMe = !_hasChildren; // no children = draw me.
+private _drawMe = !_hasChildren; // no children = Draw me.
 
 //Calculate the distances using the cached postions.
 private _myPos = _mapControl posWorldToScreen _pos;

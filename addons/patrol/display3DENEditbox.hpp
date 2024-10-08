@@ -49,8 +49,8 @@ class GVAR(editBox)
     {
         class Back : ctrlStaticBackgroundDisableTiles
         {
-            x = QUOTE(safezoneX);
-            y = QUOTE(safezoneY);
+            x = QUOTE(safeZoneX);
+            y = QUOTE(safeZoneY);
             w = QUOTE(safeZoneW);
             h = QUOTE(safeZoneH);
         };

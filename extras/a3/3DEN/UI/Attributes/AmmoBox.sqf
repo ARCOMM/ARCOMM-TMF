@@ -45,8 +45,8 @@ switch _mode do
 				{
 					_index = (_xCargo select 0) find _x;
 					if (_index < 0) then {
-						(_xCargo select 0) pushback _x;
-						(_xCargo select 1) pushback 1;
+						(_xCargo select 0) pushBack _x;
+						(_xCargo select 1) pushBack 1;
 					};
 				} forEach _x;
 			} forEach _virtualCargo;
@@ -64,9 +64,9 @@ switch _mode do
 		//--- Get limits
 /*
 		_cfgEntity = configFile >> "cfgvehicles" >> typeOf _entity;
-		_cfgTransportMaxBackpacks = getnumber (_cfgEntity >> "transportMaxBackpacks");
-		_cfgTransportMaxMagazines = getnumber (_cfgEntity >> "transportMaxMagazines");
-		_cfgTransportMaxWeapons = getnumber (_cfgEntity >> "transportMaxWeapons");
+		_cfgTransportMaxBackpacks = getNumber (_cfgEntity >> "transportMaxBackpacks");
+		_cfgTransportMaxMagazines = getNumber (_cfgEntity >> "transportMaxMagazines");
+		_cfgTransportMaxWeapons = getNumber (_cfgEntity >> "transportMaxWeapons");
 		RscAttributeInventory_loadBackpack = if (_cfgTransportMaxBackpacks > 0) then {1 / _cfgTransportMaxBackpacks} else {1e10};
 		RscAttributeInventory_loadMagazine = if (_cfgTransportMaxMagazines > 0) then {1 / _cfgTransportMaxMagazines} else {1e10};
 		RscAttributeInventory_loadWeapon = if (_cfgTransportMaxWeapons > 0) then {1 / _cfgTransportMaxWeapons} else {1e10};
@@ -74,10 +74,10 @@ switch _mode do
 
 		//--- Init UI
 		_ctrlGroup = _params select 0;
-		(ctrlparent _ctrlGroup) displayaddeventhandler ["keydown",{with uiNamespace do {['keydown',[AmmoBox_ctrlGroup,_this select 1,_this select 2,_this select 3],objNull] call AmmoBox_script;};}];
-		//_ctrlGroup ctrlAddEventHandler ["keydown",{with uiNamespace do {['keydown',_this,objNull] call AmmoBox_script;};}];
-		_ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
-		_ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {AmmoBox_ctrlGroup = nil;};}];
+		(ctrlparent _ctrlGroup) displayaddeventhandler ["KeyDown",{with uiNamespace do {['KeyDown',[AmmoBox_ctrlGroup,_this select 1,_this select 2,_this select 3],objNull] call AmmoBox_script;};}];
+		//_ctrlGroup ctrlAddEventHandler ["KeyDown",{with uiNamespace do {['KeyDown',_this,objNull] call AmmoBox_script;};}];
+		_ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
+		_ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {AmmoBox_ctrlGroup = nil;};}];
 
 		_ctrlType = _ctrlGroup controlsGroupCtrl 103;
 		_ctrlType ctrlAddEventHandler ["toolboxselchanged",{with uiNamespace do {['typeChanged',_this,objNull] call AmmoBox_script;};}];
@@ -89,21 +89,21 @@ switch _mode do
 		["filterChanged",[_ctrlFilter,0],objNull] call AmmoBox_script;
 
 		_ctrlList = _ctrlGroup controlsGroupCtrl 101;
-		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uiNamespace do {["listSelect",[ctrlparentcontrolsgroup (_this select 0)],objNull] call AmmoBox_script;};}];
-		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uiNamespace do {["listSelect",[ctrlParentControlsGroup (_this select 0)],objNull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
 
 		_ctrlArrowLeft = _ctrlGroup controlsGroupCtrl 313102;
-		_ctrlArrowLeft ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),-1],objNull] call AmmoBox_script;};}];
+		_ctrlArrowLeft ctrlAddEventHandler ["ButtonClick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),-1],objNull] call AmmoBox_script;};}];
 		_ctrlArrowRight = _ctrlGroup controlsGroupCtrl 313103;
-		_ctrlArrowRight ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
+		_ctrlArrowRight ctrlAddEventHandler ["ButtonClick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
 
 		_ctrlButtonCustom = _ctrlGroup controlsGroupCtrl 104;
-		_ctrlButtonCustom ctrlsettext localize "str_disp_arcmap_clear";
-		_ctrlButtonCustom ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objNull] call AmmoBox_script;};}];
+		_ctrlButtonCustom ctrlSetText localize "str_disp_arcmap_clear";
+		_ctrlButtonCustom ctrlAddEventHandler ["ButtonClick",{with uiNamespace do {["clear",[ctrlParentControlsGroup (_this select 0)],objNull] call AmmoBox_script;};}];
 		
 		if (isNil "AmmoBox_list") then
 		{
-			[ctrlparentcontrolsgroup (_params select 0)] spawn 
+			[ctrlParentControlsGroup (_params select 0)] spawn 
 			{				
 				disableserialization;
 				startLoadingScreen ["","RscDisplayLoadMission"]; 
@@ -160,12 +160,12 @@ switch _mode do
 								
 								if (_weaponPublic) then 
 								{
-									_listType pushback 
+									_listType pushBack 
 									[
 										([getText (_weaponCfg >> "displayName")] + (((_weaponCfg >> "linkeditems") call bis_fnc_returnchildren) apply { getText (_CfgWeapons >> getText (_x >> "item") >> "displayName") })) joinString " + ",
 										_weapon, 
 										getText (_weaponCfg >> "picture"), 
-										parseNumber (getnumber (_weaponCfg >> "type") in [4096,131072]), 
+										parseNumber (getNumber (_weaponCfg >> "type") in [4096,131072]), 
 										false
 									];
 								};
@@ -189,7 +189,7 @@ switch _mode do
 												
 												if (getNumber (_magCfg >> "scope") isEqualTo 2) then 
 												{
-													_listType pushback 
+													_listType pushBack 
 													[
 														getText (_magCfg >> "displayName"),
 														_mag,
@@ -198,7 +198,7 @@ switch _mode do
 														_mag in _magazines
 													];
 													
-													_magazines pushback _mag;
+													_magazines pushBack _mag;
 												};
 											};
 										} 
@@ -225,9 +225,9 @@ switch _mode do
 					{
 						if (_weaponTypeSpecific in _x) exitWith 
 						{
-							if (getnumber (_weaponCfg >> "scope") == 2) then 
+							if (getNumber (_weaponCfg >> "scope") == 2) then 
 							{
-								_list select _forEachIndex pushback 
+								_list select _forEachIndex pushBack 
 								[
 									getText (_weaponCfg >> "displayName"),
 									_weapon,
@@ -249,9 +249,9 @@ switch _mode do
 					private _weaponCfg = _x;
 					private _weapon = toLower configName _weaponCfg;
 					
-					if (getnumber (_weaponCfg >> "scope") == 2) then 
+					if (getNumber (_weaponCfg >> "scope") == 2) then 
 					{
-						_list select 10 pushback 
+						_list select 10 pushBack 
 						[
 							getText (_weaponCfg >> "displayName"),
 							_weapon,
@@ -277,16 +277,16 @@ switch _mode do
 	case "typeChanged": 
 	{
 		_ctrlType = _params select 0;
-		_ctrlGroup = ctrlparentcontrolsgroup _ctrlType;
+		_ctrlGroup = ctrlParentControlsGroup _ctrlType;
 		_type = _params select 1;
 		AmmoBox_type = _type;
 
 		_ctrlArrowLeft = _ctrlGroup controlsGroupCtrl 313102;
-		_ctrlArrowLeft ctrlsettext (if (_type > 0) then {SYMBOL_VIRTUAL_0} else {"-"});
+		_ctrlArrowLeft ctrlSetText (if (_type > 0) then {SYMBOL_VIRTUAL_0} else {"-"});
 		//_ctrlArrowLeft ctrlenable (_value > -1);
 
 		_ctrlArrowRight = _ctrlGroup controlsGroupCtrl 313103;
-		_ctrlArrowRight ctrlsettext (if (_type > 0) then {SYMBOL_VIRTUAL_1} else {"+"});
+		_ctrlArrowRight ctrlSetText (if (_type > 0) then {SYMBOL_VIRTUAL_1} else {"+"});
 		//_ctrlArrowRight ctrlenable (_value > -1);
 
 		["filterChanged",[_ctrlGroup,AmmoBox_filter],objNull] call AmmoBox_script;
@@ -297,7 +297,7 @@ switch _mode do
 		private _cursel = if (count _params > 1) then { _params select 1 } else { AmmoBox_filter };
 		AmmoBox_filter = _cursel;
 
-		private _ctrlGroup = ctrlparentcontrolsgroup (_params select 0);
+		private _ctrlGroup = ctrlParentControlsGroup (_params select 0);
 		private _ctrlList = _ctrlGroup controlsGroupCtrl 101;
 		//_ctrlLoad = _ctrlGroup controlsGroupCtrl 102;
 		//_ctrlFilterBackground = _ctrlGroup controlsGroupCtrl IDC_RSCATTRIBUTEINVENTORY_FILTERBACKGROUND;
@@ -454,7 +454,7 @@ switch _mode do
 		["filterChanged",_params,objNull] call AmmoBox_script;
 	};
 	
-	case "keydown": 
+	case "KeyDown": 
 	{
 		_ctrlGroup = _params select 0;
 		if !(isNil "_ctrlGroup") then {
@@ -463,12 +463,12 @@ switch _mode do
 			switch _key do {
 				case DIK_LEFT;
 				case DIK_NUMPADMINUS: {
-					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {-5} else {-1}],objNull] call AmmoBox_script;
+					["listModify",[ctrlParentControlsGroup (_params select 0),if (_ctrl) then {-5} else {-1}],objNull] call AmmoBox_script;
 					true
 				};
 				case DIK_RIGHT;
 				case DIK_NUMPADPLUS: {
-					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {+5} else {+1}],objNull] call AmmoBox_script;
+					["listModify",[ctrlParentControlsGroup (_params select 0),if (_ctrl) then {+5} else {+1}],objNull] call AmmoBox_script;
 					true
 				};
 				default {false};
@@ -497,7 +497,7 @@ switch _mode do
 			if (_x != 0) then {
 				_class = _cargoClasses select _foreachindex;
 				_index = switch true do {
-					case (getnumber (configFile >> "cfgweapons" >> _class >> "type") in [4096,131072]): {
+					case (getNumber (configFile >> "cfgweapons" >> _class >> "type") in [4096,131072]): {
 						_class = configname (configFile >> "cfgweapons" >> _class);
 						[2,6] select (_x < 0);
 					};
@@ -520,12 +520,12 @@ switch _mode do
 					default {-1};
 				};
 				if (_index >= 0) then {
-					(_outputClasses select _index) pushback _class;
-					(_outputValues select _index) pushback _x;
+					(_outputClasses select _index) pushBack _class;
+					(_outputValues select _index) pushBack _x;
 
 					_arrayType = _output select _index;
-					(_arrayType select 0) pushback _class;
-					if !(_isVirtual) then {(_arrayType select 1) pushback _x;};
+					(_arrayType select 0) pushBack _class;
+					if !(_isVirtual) then {(_arrayType select 1) pushBack _x;};
 				};
 			};
 		} forEach _cargoValues;

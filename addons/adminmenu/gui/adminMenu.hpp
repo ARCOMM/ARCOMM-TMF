@@ -89,8 +89,8 @@ class ADDON
             text = "TMF Admin Menu";
             style = 0;
             colorBackground[] = {0, 0, 0, 0};
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "15 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
@@ -100,7 +100,7 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_FPS;
             text = "";
             style = 1;
-            x = "16 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            x = "16 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             w = "23 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         };
 
@@ -113,8 +113,8 @@ class ADDON
             tooltip = "";
             onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_DASH)] call FUNC(selectTab));
             colorBackground[] = {0, 0, 0, 0};
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "5.8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
@@ -124,7 +124,7 @@ class ADDON
             text = "Player Management";
             tooltip = "Perform actions on players";
             onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_PMAN)] call FUNC(selectTab));
-            x = "6.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            x = "6.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             w = "9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         };
         class TabRespawnPlayers: TabDashboard
@@ -133,7 +133,7 @@ class ADDON
             text = "Respawn";
             tooltip = "Respawn dead players back in the game";
             onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_RESP)] call FUNC(selectTab));
-            x = "16 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            x = "16 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             w = "4.8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         };
         class TabEndMission: TabDashboard
@@ -142,7 +142,7 @@ class ADDON
             text = "End Mission";
             tooltip = "Select and execute a mission ending";
             onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_ENDM)] call FUNC(selectTab));
-            x = "20.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            x = "20.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             w = "5.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         };
         class TabMessageLog: TabDashboard
@@ -151,15 +151,15 @@ class ADDON
             text = "Logs";
             tooltip = "Status and debug messages from TMF components";
             onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_MSGS)] call FUNC(selectTab));
-            x = "26.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            x = "26.9 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             w = "3 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         };
 
         // Groups for Tabs
         class GroupBase: RscControlsGroup
         {
-            x = "1.1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1.1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "0";
             h = "0";
             class Controls {};
@@ -210,8 +210,8 @@ class ADDON
         {
             idc = IDC_TMF_ADMINMENU_UTIL_TBACK;
             colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
@@ -221,15 +221,15 @@ class ADDON
             text = "Utility Title";
             style = 0;
             colorBackground[] = {0, 0, 0, 0};
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
         class UtilityGroup: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_UTIL;
-            y = "4.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            y = "4.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "37.8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "19.6 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
@@ -240,20 +240,20 @@ class ADDON
         class TitleBackground: RscText
         {
             colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
         class TabsBackgroundLeft: TitleBackground
         {
             colorBackground[] = {0, 0, 0, 1};
-            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         };
         class MainBackground: TitleBackground
         {
             colorBackground[] = {0, 0, 0, 0.7};
-            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             h = "20.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         };
     };
@@ -275,8 +275,8 @@ class GVAR(respawnMapDialog) {
         {
             idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
             type = 100;
-            x = QUOTE(0 * safeZoneW + safezoneX);
-            y = QUOTE(0 * safeZoneH + safezoneY);
+            x = QUOTE(0 * safeZoneW + safeZoneX);
+            y = QUOTE(0 * safeZoneH + safeZoneY);
             w = QUOTE(safeZoneW);
             h = QUOTE(safeZoneH);
             onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
@@ -300,8 +300,8 @@ class GVAR(adminEyeDialog) {
         {
             idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
             type = 100;
-            x = QUOTE(0 * safeZoneW + safezoneX);
-            y = QUOTE(0 * safeZoneH + safezoneY);
+            x = QUOTE(0 * safeZoneW + safeZoneX);
+            y = QUOTE(0 * safeZoneH + safeZoneY);
             w = QUOTE(safeZoneW);
             h = QUOTE(safeZoneH);
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
@@ -321,8 +321,8 @@ class GVAR(spectatorControlUnitDialog) {
         class Title: RscTitle {
             idc = -1;
             text = "Select Unit in Vehicle";
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "19 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
             colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
@@ -331,8 +331,8 @@ class GVAR(spectatorControlUnitDialog) {
         };
         class Background: RscText {
             onLoad = QUOTE(_this call FUNC(remoteControl_dialog));
-            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+            x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "2.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "19 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "16 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
             colorBackground[] = {0,0,0,0.7};

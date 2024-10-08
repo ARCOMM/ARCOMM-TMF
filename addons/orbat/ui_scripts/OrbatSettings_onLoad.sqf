@@ -7,8 +7,8 @@ private _playableUnits = playableUnits;
 _playableUnits pushBackUnique player;
 cacheAllPlayerGroups = allGroups select {{_x in _playableUnits} count (units _x) > 0};
 
-_ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {OrbatSettings_ctrlGroup = _this select 0;};}];
-_ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {OrbatSettings_ctrlGroup = nil;};}];
+_ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {OrbatSettings_ctrlGroup = _this select 0;};}];
+_ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {OrbatSettings_ctrlGroup = nil;};}];
 {(_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MAIN_IDCS);
 {(_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
 {(_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
@@ -31,7 +31,7 @@ if (count OrbatSettings_array > 0) then {
 // Use enter key on controls seems to not work.
 /*
 {
-    (_ctrlGroup controlsGroupCtrl _x) ctrlAddEventHandler ["keyDown",{
+    (_ctrlGroup controlsGroupCtrl _x) ctrlAddEventHandler ["KeyDown",{
         params ["_control","_key"];
         if (_key == 0x1C) exitWith {
             with uiNamespace do {["editOrbatEntryClickOkay"] call OrbatSettings_script;};

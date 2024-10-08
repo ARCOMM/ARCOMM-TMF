@@ -31,8 +31,8 @@ class EGVAR(spectator,dialog) {
             idc = SPECTATOR_IDC_RADIO_INFO;
             h = "((7.1) * ((((safeZoneW / safeZoneH) min 1.2)/ 1.2)/ 25))";
             w = "16 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
-            x = "12.1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
-            y = "((21) * ((((safeZoneW / safeZoneH) min 1.2)/ 1.2)/ 25)+ (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2)/ 1.2))/2))";
+            x = "12.1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safeZoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
+            y = "((21) * ((((safeZoneW / safeZoneH) min 1.2)/ 1.2)/ 25)+ (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2)/ 1.2))/2))";
             class controls {
                 class acre_sys_spectator_radios: acre_sys_spectator_RscRadios {};
             };

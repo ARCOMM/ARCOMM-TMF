@@ -11,8 +11,8 @@ class RscTitles {
             {
                 idc = 101;
                 text = "SAFESTART ACTIVE"; //--- ToDo: Localize;
-                x = QUOTE((0.50-0.5/2) * safeZoneW + safezoneX);
-                y = QUOTE(safezoneY);
+                x = QUOTE((0.50-0.5/2) * safeZoneW + safeZoneX);
+                y = QUOTE(safeZoneY);
                 w = QUOTE(0.5 * safeZoneW);
                 h = QUOTE(0.05 * safeZoneH);
                 style = 0x02;
@@ -33,8 +33,8 @@ class RscTitles {
             class Text : RscText
             {
                 text = "X"; //--- ToDo: Localize;
-                x = QUOTE(safezoneX);
-                y = QUOTE(safezoneY + 0.825);
+                x = QUOTE(safeZoneX);
+                y = QUOTE(safeZoneY + 0.825);
                 w = QUOTE(safeZoneW);
                 h = QUOTE(0.1 * safeZoneH);
                 style = 0x02;

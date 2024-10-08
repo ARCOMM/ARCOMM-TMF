@@ -21,14 +21,14 @@ switch _mode do {
 			};
 			_display = ctrlparent _ctrlTree;
 			_ctrlButtonOK = _display displayCtrl IDC_OK;
-			_ctrlButtonOK ctrlshow (isclass (_cfg >> "Steps"));
+			_ctrlButtonOK ctrlShow (isclass (_cfg >> "Steps"));
 
 			//--- Mark as completed after clicking
 			if (count _path == 2) then {
 				_pathData = [_classCategory,_classSection];
 				_completed = profilenamespace getVariable ["display3DENTutorial_completed",[]];
 				if !(_pathData in _completed) then {
-					_completed pushback _pathData;
+					_completed pushBack _pathData;
 					profilenamespace setVariable ["display3DENTutorial_completed",_completed];
 					saveprofilenamespace;
 				};
@@ -43,7 +43,7 @@ switch _mode do {
 				if (count _completed >= _count) then {
 					_display3DEN = finddisplay IDD_DISPLAY3DEN;
 					_ctrlTutorials = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
-					_ctrlTutorials ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
+					_ctrlTutorials ctrlSetText "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
 					setstatvalue ["3DENModelStudent",1];
 				};
 			};
@@ -94,13 +94,13 @@ switch _mode do {
 		[_ctrlTree,_selectPath] call _fnc_treeselchanged;
 
 		_ctrlButtonOK = _display displayCtrl IDC_OK;
-		_ctrlButtonOK ctrlAddEventHandler ["buttonclick",_fnc_buttonclick];
+		_ctrlButtonOK ctrlAddEventHandler ["ButtonClick",_fnc_buttonclick];
 
 		//--- Reset notification icon
 		if (count _completed >= _count) then {
 			_display3DEN = finddisplay IDD_DISPLAY3DEN;
 			_ctrlTutorials = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
-			_ctrlTutorials ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
+			_ctrlTutorials ctrlSetText "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
 			setstatvalue ["3DENModelStudent",1];
 		};
 

@@ -14,11 +14,11 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         AcreAddRadioActions_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = nil;};}];
         
         _ctrlList = _ctrlGroup controlsGroupCtrl 101;
-        _ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AcreAddRadioActions_script;};}];
+        _ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AcreAddRadioActions_script;};}];
         
         TMF_AcreAddRadioActions_Array = ("TMF_MissionAcre2Attributes" get3DENMissionAttribute "TMF_AcreAddRadioActions");
         if (TMF_AcreAddRadioActions_Array isEqualType "") then {

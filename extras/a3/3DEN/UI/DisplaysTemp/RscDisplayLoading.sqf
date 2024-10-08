@@ -21,7 +21,7 @@ switch _mode do {
 		//--- Hide start loading screen
 		_ctrlLoadingStart = _display displayCtrl IDC_LOADINGSTART_LOADINGSTART;
 		_ctrlLoadingStart ctrlsetfade 1;
-		_ctrlLoadingStart ctrlcommit 0;
+		_ctrlLoadingStart ctrlCommit 0;
 		_pictureShot = "";
 
 		//--- Map
@@ -52,14 +52,14 @@ switch _mode do {
 				uiNamespace setVariable ["RscDisplayLoading_worldType",worldname];
 			};
 			_ctrlMapPos = ctrlposition _ctrlMap;
-			_ctrlMapPos set [1,linearconversion [0,1,_ran,(safezoneY + safeZoneH - (_ctrlMapPos select 3)),safezoneY,true]];
-			_ctrlMap ctrlsetposition _ctrlMapPos;
-			_ctrlMap ctrlcommit 0;
+			_ctrlMapPos set [1,linearconversion [0,1,_ran,(safeZoneY + safeZoneH - (_ctrlMapPos select 3)),safeZoneY,true]];
+			_ctrlMap ctrlSetPosition _ctrlMapPos;
+			_ctrlMap ctrlCommit 0;
 
 			//--- Set texts
-			_ctrlMap ctrlsettext _pictureMap;
-			_ctrlMapName ctrlsettext toupper _worldName;
-			_ctrlMapAuthor ctrlsettext _author;
+			_ctrlMap ctrlSetText _pictureMap;
+			_ctrlMapName ctrlSetText toupper _worldName;
+			_ctrlMapAuthor ctrlSetText _author;
 			_ctrlMapDescription ctrlsetstructuredtext parsetext _loadingText;
 
 			[_cfgWorld,_ctrlMapAuthor] call bis_fnc_overviewauthor;
@@ -103,7 +103,7 @@ switch _mode do {
 			if (_gameTypeName == "") then {_gameTypeName = getText (configFile >> "CfgMPGameTypes" >> "Unknown" >> "name");};
 
 			//_showMission = if (false) then {missionConfigFile >> "onLoadIntroTime"} else {missionConfigFile >> "onLoadMissionTime"};
-			//_showMission = if (isnumber _showMission) then {getnumber _showMission > 0} else {true};
+			//_showMission = if (isnumber _showMission) then {getNumber _showMission > 0} else {true};
 			//if (_showMission && (_loadingText != "" || _loadingPicture != "")) then {
 
 			//--- When loading a different terrain, current mission is sometimes still available. Check if it belongs to the terrain.
@@ -128,25 +128,25 @@ switch _mode do {
 				if (_loadingPicture == "") then {_loadingPicture = _pictureShot;};
 
 				if (_gameTypeName != "" && _isMultiplayer) then {
-					_ctrlMissionType ctrlsettext toupper _gameTypeName;
+					_ctrlMissionType ctrlSetText toupper _gameTypeName;
 				} else {
-					_ctrlMissionType ctrlshow false;
+					_ctrlMissionType ctrlShow false;
 				};
-				_ctrlMissionName ctrlsettext toupper _loadingName;
-				_ctrlMissionPicture ctrlsettext _loadingPicture;
+				_ctrlMissionName ctrlSetText toupper _loadingName;
+				_ctrlMissionPicture ctrlSetText _loadingPicture;
 				_ctrlMissionDescription ctrlsetstructuredtext parsetext _loadingText;
 
 				//--- Set height based on text
 				_ctrlMissionDescriptionPos = ctrlposition _ctrlMissionDescription;
 				_ctrlMissionDescriptionPos set [3,ctrltextheight _ctrlMissionDescription + 0.01];
 				if (_loadingText == "") then {_ctrlMissionDescriptionPos set [3,0];};
-				_ctrlMissionDescription ctrlsetposition _ctrlMissionDescriptionPos;
-				_ctrlMissionDescription ctrlcommit 0;
+				_ctrlMissionDescription ctrlSetPosition _ctrlMissionDescriptionPos;
+				_ctrlMissionDescription ctrlCommit 0;
 
 				_ctrlMissionPos = ctrlposition _ctrlMission;
 				_ctrlMissionPos set [3,(_ctrlMissionDescriptionPos select 1) + ((_ctrlMissionDescriptionPos select 3) min ((ctrlposition _ctrlMissionPicture select 3)))];
-				_ctrlMission ctrlsetposition _ctrlMissionPos;
-				_ctrlMission ctrlcommit 0;
+				_ctrlMission ctrlSetPosition _ctrlMissionPos;
+				_ctrlMission ctrlCommit 0;
 
 				[missionConfigFile,_ctrlMissionAuthor] call bis_fnc_overviewauthor;
 
@@ -232,12 +232,12 @@ switch _mode do {
 				_ctrlDLCDescription = _display displayCtrl IDC_LOADING_DLCDESCRIPTION;
 				_ctrlDLCDescriptionPos = ctrlposition _ctrlDLCDescription;
 				_ctrlDLCDescriptionPos set [3, (ctrltextheight _ctrlDLCDescription) + 0.01]; //TODO-add proper grid
-				_ctrlDLCDescription ctrlsetposition _ctrlDLCDescriptionPos;
-				_ctrlDLCDescription ctrlcommit 0;
+				_ctrlDLCDescription ctrlSetPosition _ctrlDLCDescriptionPos;
+				_ctrlDLCDescription ctrlCommit 0;
 
 				//Show/hide DLC part of loading screen
 				{
-					(_display displayCtrl _x) ctrlshow _showDLCLoading;
+					(_display displayCtrl _x) ctrlShow _showDLCLoading;
 				}
 				forEach
 				[
@@ -259,27 +259,27 @@ switch _mode do {
 				if (missionnamespace getVariable ["RscDisplayLoading_progressMission",false]) then {
 
 					//--- Mission loading - make the terrain bar full and animate only the mission bar
-					_progressMap ctrlsetposition _progressMissionPos;
-					_progressMap ctrlcommit 0;
-					_progressMission ctrlsetposition _progressMapPos;
-					_progressMission ctrlcommit 0;
+					_progressMap ctrlSetPosition _progressMissionPos;
+					_progressMap ctrlCommit 0;
+					_progressMission ctrlSetPosition _progressMapPos;
+					_progressMission ctrlCommit 0;
 					_progressMission progresssetposition 1;
 				} else {
 
 					//--- When loading a different map, a rogue loading screen without progress bar appears. Move the progress bar by script.
 					_limit = [1,2] select _isMultiplayer;
 					if (count (uiNamespace getVariable "loading_displays") > _limit) then {
-						_progressMap ctrlshow false;
-						_progressMission ctrlsetposition _progressMapPos;
-						_progressMission ctrlcommit 0;
+						_progressMap ctrlShow false;
+						_progressMission ctrlSetPosition _progressMapPos;
+						_progressMission ctrlCommit 0;
 						_progressMission progresssetposition 0.33;
 					} else {
-						_progressMission ctrlshow false;
+						_progressMission ctrlShow false;
 					};
 				};
 			} else {
 				_ctrlMission ctrlsetfade 1;
-				_ctrlMission ctrlcommit 0;
+				_ctrlMission ctrlCommit 0;
 			};
 		};
 
@@ -290,7 +290,7 @@ switch _mode do {
 		};
 
 		//--- Disclaimer - Moved here to prevent showing Lite Disclaimer when starting/shutting down the game
-		if (getnumber (configFile >> "CfgMods" >> "gamma") == 1) then
+		if (getNumber (configFile >> "CfgMods" >> "gamma") == 1) then
 		{
 			_ctrlDisclaimer = _display displayCtrl IDC_LOADING_DISCLAIMER;
 			_ctrlDisclaimerName = _display displayCtrl IDC_LOADING_DISCLAIMERNAME;
@@ -312,7 +312,7 @@ switch _mode do {
 				_ctrlDisclaimerDescription ctrlsetstructuredtext parsetext localize "STR_A3_RSCDISPLAY_LOADING_DEVINFO";
 				_ctrlDisclaimerDescription ctrlsettextcolor [1,1,1,1];
 				[_ctrlDisclaimerDescription,0.01] call bis_fnc_ctrlFitToTextHeight;
-				_ctrlDisclaimer ctrlshow true;
+				_ctrlDisclaimer ctrlShow true;
 			}
 			else
 			{
@@ -326,11 +326,11 @@ switch _mode do {
 					_ctrlDisclaimerDescription ctrlsetstructuredtext parsetext localize "STR_A3_RSCDISPLAY_LOADING_MODDEDINFO";
 					_ctrlDisclaimerDescription ctrlsettextcolor [1,1,1,1];
 					[_ctrlDisclaimerDescription,0.01] call bis_fnc_ctrlFitToTextHeight;
-					_ctrlDisclaimer ctrlshow true;
+					_ctrlDisclaimer ctrlShow true;
 				}
 				else
 				{
-					_ctrlDisclaimer ctrlshow false;
+					_ctrlDisclaimer ctrlShow false;
 				};
 			};
 		};

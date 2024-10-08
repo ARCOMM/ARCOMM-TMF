@@ -141,16 +141,16 @@ switch _mode do {
         ] call BIS_fnc_initListNBoxSorting;
 
         // Add -/+ evenhandlers
-        _addButton ctrlAddEventHandler ["buttonClick", {
+        _addButton ctrlAddEventHandler ["ButtonClick", {
             params ["_ctrlButton"];
             [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [1] ] call FUNC(gui_vehicleGear_selector);
         }];
-        _subButton ctrlAddEventHandler ["buttonClick", {
+        _subButton ctrlAddEventHandler ["ButtonClick", {
             params ["_ctrlButton"];
             [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [-1] ] call FUNC(gui_vehicleGear_selector);
         }];
 
-        // We can only use the buttonClick event on the buttons, so this is a workaround for not getting the state of the modifier keys
+        // We can only use the ButtonClick event on the buttons, so this is a workaround for not getting the state of the modifier keys
         _ctrlGroup ctrlAddEventHandler ["KeyDown", {
             params ["_control", "_key", "_shift", "_ctrl", "_alt"];
             switch _key do {

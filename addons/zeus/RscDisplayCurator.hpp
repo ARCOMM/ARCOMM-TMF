@@ -9,9 +9,9 @@ class RscDisplayCurator {
         class GVAR(zeusControls) : RscControlsGroupNoScrollbars
         {
             idc=99575;
-            x="safezoneX + 12.5 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
+            x="safeZoneX + 12.5 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             w="safeZoneW - 25 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
-            y="(safezoneY + safeZoneH) - (1.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25))";
+            y="(safeZoneY + safeZoneH) - (1.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25))";
             h="1.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
             class controls
             {
