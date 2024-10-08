@@ -22,7 +22,7 @@ IS_CMND_AVAILABLE(GVAR(loadoutUsage),"#loadout");
 
 params ["_input"];
 
-LOG_1("Executed command #loadout with input: %1", str _input);
+LOG_1("Executed command #loadout with input: %1",str _input);
 
 private _inputArr = _input splitString " ";
 
@@ -43,15 +43,15 @@ switch (count _inputArr) do {
                 // No loadout or player found, or more than one player
                 if (_faction isEqualTo "") then {
                     systemChat "TMF Error: Cannot select loadout as you do not have an assigned faction. Use #loadout <faction> <role>";
-                    systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.", str _in1);
+                    systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.",str _in1);
                 } else {
-                    systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2", str _in1, _faction);
-                    systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.", str _in1);
+                    systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2",str _in1, _faction);
+                    systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.",str _in1);
                 };
             } else {
                 // Copy other players loadout
                 CURUNIT setUnitLoadout getUnitLoadout _match;
-                systemChat FORMAT_1("TMF: Copied loadout from %1", name _match);
+                systemChat FORMAT_1("TMF: Copied loadout from %1",name _match);
             };
         };
     };
@@ -62,15 +62,12 @@ switch (count _inputArr) do {
         if (isClass (_cfg >> "CfgLoadouts" >> _in1 >> _in2)) then {
             // Input corresponds with a loadout
             [CURUNIT, _in1, _in2] call EFUNC(assigngear,assignGear);
-            systemChat FORMAT_2("TMF: Assigned loadout %1 from %2", \
-                str getText (_cfg >> "CfgLoadouts" >> _in1 >> _in2 >> "displayName"), \
-                str getText (_cfg >> "CfgLoadouts" >> _in1 >> "displayName")
-            );
+            systemChat FORMAT_2("TMF: Assigned loadout %1 from %2",str getText (_cfg >> "CfgLoadouts" >> _in1 >> _in2 >> "displayName"),str getText (_cfg >> "CfgLoadouts" >> _in1 >> "displayName"));
         } else {
             if !(isClass (_cfg >> "CfgLoadouts" >> _in1)) then {
-                systemChat FORMAT_1("TMF Error: No faction with name %1", str _in1);
+                systemChat FORMAT_1("TMF Error: No faction with name %1",str _in1);
             } else {
-                systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2", str _in2, str _in1);
+                systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2",str _in2,str _in1);
             };
         };
     };

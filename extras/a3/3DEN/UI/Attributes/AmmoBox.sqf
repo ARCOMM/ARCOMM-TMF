@@ -90,7 +90,7 @@ switch _mode do
 
 		_ctrlList = _ctrlGroup controlsGroupCtrl 101;
 		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uiNamespace do {["listSelect",[ctrlParentControlsGroup (_this select 0)],objNull] call AmmoBox_script;};}];
-		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["onLBDblClick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
 
 		_ctrlArrowLeft = _ctrlGroup controlsGroupCtrl 313102;
 		_ctrlArrowLeft ctrlAddEventHandler ["ButtonClick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),-1],objNull] call AmmoBox_script;};}];

@@ -19,14 +19,14 @@ LOG("Client PostInit started");
             1 isEqualTo getMissionConfigValue ["Respawn",-1]
         );
 
-        TRACE_5("Check JIP conditions",_templateActive, _isJIPAllowed, _isAIunit, CBA_missionTime, didJIP);
+        TRACE_5("Check JIP conditions",_templateActive,_isJIPAllowed,_isAIunit,CBA_missionTime,didJIP);
         TRACE_1("Check JIP conditions 2",(_templateActive && !(_isJIPAllowed || _isAIunit) && CBA_missionTime > 5 && didJIP));
 
         if (_templateActive && !(_isJIPAllowed || _isAIunit) && CBA_missionTime > 5 && didJIP) then {
             LOG("JIP: True");
 
             [{!isNull player && {!([] call BIS_fnc_isLoading)}},{
-                LOG_1("JIP: killing %1", player);
+                LOG_1("JIP: killing %1",player);
                 [player, objNull, true] spawn {
                     private _oldObject = _this # 0;
                     _this call FUNC(init);
