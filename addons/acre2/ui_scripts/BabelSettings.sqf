@@ -1,5 +1,5 @@
-//with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
-//with uiNameSpace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; }; with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
+//with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
+//with uiNamespace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; }; with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
 params ["_mode",["_params",[]]];
 
 #include "\a3\3den\UI\dikCodes.inc"
@@ -85,8 +85,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         BabelSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {BabelSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {BabelSettings_ctrlGroup = nil;};}];
         
                 
         {

@@ -2,11 +2,11 @@ class twGroupMarker: Toolbox
 {
     scriptName = "GroupMarker";
     scriptPath = "TMF_orbat";
-    onLoad = "['onLoad',_this,'GroupMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-    onUnload = "['onUnload',_this,'GroupMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+    onLoad = "['onLoad',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+    onUnload = "['onUnload',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-    attributeLoad = "['attributeLoad',_this,_value] call (uinamespace getvariable 'GroupMarker_script');";
-    attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'GroupMarker_script');";
+    attributeLoad = "['attributeLoad',_this,_value] call (uiNamespace getvariable 'GroupMarker_script');";
+    attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'GroupMarker_script');";
 
     h = QUOTE((16.75+0.45) * SIZE_M * GRID_H);
     class Controls

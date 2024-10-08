@@ -51,8 +51,8 @@ class GVAR(editBox)
         {
             x = QUOTE(safezoneX);
             y = QUOTE(safezoneY);
-            w = QUOTE(safezoneW);
-            h = QUOTE(safezoneH);
+            w = QUOTE(safeZoneW);
+            h = QUOTE(safeZoneH);
         };
         class Title: ctrlStaticTitle
         {

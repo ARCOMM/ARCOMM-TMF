@@ -9,8 +9,8 @@ switch _mode do {
 	case "onLoad": {
 		//--- Restore the last sort order
 		_display = _params select 0;
-		uinamespace setvariable ["display3DENSave_display",_display];
-		_selected = uinamespace getvariable ["display3DENSave_selected",[0,0]];
+		uiNamespace setvariable ["display3DENSave_display",_display];
+		_selected = uiNamespace getvariable ["display3DENSave_selected",[0,0]];
 		_ctrlFilter = _display displayctrl IDC_DISPLAY3DENSAVE_FILTER;
 		_ctrlFilter lnbsetvalue [[0,_selected select 0],_selected select 1];
 
@@ -35,7 +35,7 @@ switch _mode do {
 			_value = _ctrlFilter lnbvalue [0,_i];
 			if (_value > -1) exitwith {_selected = [_i,_value];};
 		};
-		uinamespace setvariable ["display3DENSave_selected",_selected];
-		uinamespace setvariable ["display3DENSave_display",nil];
+		uiNamespace setvariable ["display3DENSave_selected",_selected];
+		uiNamespace setvariable ["display3DENSave_display",nil];
 	};
 };

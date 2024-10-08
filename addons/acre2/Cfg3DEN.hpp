@@ -221,11 +221,11 @@ class Cfg3DEN
         class TMF_AcreAddRadioActions : Toolbox {
             scriptName = "AcreAddRadioActions";
             scriptPath = "TMF_acre2";
-            onLoad = "['onLoad',_this,'AcreAddRadioActions','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-            onUnload = "['onUnload',_this,'AcreAddRadioActions','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+            onLoad = "['onLoad',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+            onUnload = "['onUnload',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-            attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
-            attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
+            attributeLoad = "['attributeLoad',_this] call (uiNamespace getvariable 'AcreAddRadioActions_script');";
+            attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'AcreAddRadioActions_script');";
 
             w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
             h = QUOTE(6 * SIZE_M * GRID_H);
@@ -272,11 +272,11 @@ class Cfg3DEN
         {
             scriptName = "BabelSettings";
             scriptPath = "TMF_acre2";
-            onLoad = "['onLoad',_this,'BabelSettings','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-            onUnload = "['onUnload',_this,'BabelSettings','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+            onLoad = "['onLoad',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+            onUnload = "['onUnload',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-            attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BabelSettings_script');";
-            attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BabelSettings_script');";
+            attributeLoad = "['attributeLoad',_this] call (uiNamespace getvariable 'BabelSettings_script');";
+            attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'BabelSettings_script');";
 
             w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
             h = QUOTE(16 * SIZE_M * GRID_H);
@@ -304,14 +304,14 @@ class Cfg3DEN
                     x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2);
                     y = QUOTE(1 * SIZE_M * GRID_H);
-                    action = "['langTreeGive',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['langTreeGive',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                     tooltip = "Make the selected element speak the selected language.";
                 };
                 class ButtonSpeakerRemove: ButtonSpeakerMake
                 {
                     text = "Remove";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
-                    action = "['langTreeRemove',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['langTreeRemove',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                     tooltip = "Remove the selected element from speaking the selected language.";
                 };
                 class SpeakerTree : ctrlTree
@@ -324,8 +324,8 @@ class Cfg3DEN
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
-                    action = "['treeClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
-                    onTreeDblClick = "['treeDoubleClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['treeClick',_this] call (uiNamespace getvariable 'BabelSettings_script');";
+                    onTreeDblClick = "['treeDoubleClick',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                 };
                 class ListBackground: ctrlStatic
                 {
@@ -342,21 +342,21 @@ class Cfg3DEN
                     x = QUOTE(SIZE_M * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
                     y = QUOTE(1 * SIZE_M * GRID_H);
-                    action = "['langAddClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['langAddClick',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                     tooltip = "Add a new language.";
                 };
                 class ButtonLangEdit: ButtonLangAdd
                 {
                     text = "Edit";
                     x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
-                    action = "['langEditClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['langEditClick',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                     tooltip = "Edit the selected language.";
                 };
                 class ButtonLangDel : ButtonLangAdd
                 {
                     text = "Delete";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
-                    action = "['langDelClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['langDelClick',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                     tooltip = "Delete the selected language.";
                 };
                 class LangList: ctrlListNBox
@@ -371,7 +371,7 @@ class Cfg3DEN
                     idcRight = -1;
                     columns[] = {0,0,0}; //0.05,0.15,0.85};
                     disableOverflow = 1;
-                    onLBSelChanged = "with uiNamespace do {  ['refreshLangTree',_this] call (uinamespace getvariable 'BabelSettings_script'); };";
+                    onLBSelChanged = "with uiNamespace do {  ['refreshLangTree',_this] call (uiNamespace getvariable 'BabelSettings_script'); };";
                 };
                 // Edit language Box
                 class EditLanguageBackgroundS: ctrlStatic
@@ -390,14 +390,14 @@ class Cfg3DEN
                     y = QUOTE(12.25 * SIZE_M * GRID_H);
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7);
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
-                    action = "['languageEditClickOkay',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['languageEditClickOkay',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                 };
                 class EditLanguageButtonCancel : EditLanguageButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W);
-                    action = "['languageDelClickCancel',_this] call (uinamespace getvariable 'BabelSettings_script');";
+                    action = "['languageDelClickCancel',_this] call (uiNamespace getvariable 'BabelSettings_script');";
                 };
 
                 class EditLanguageTitle : LangTitle
@@ -443,11 +443,11 @@ class Cfg3DEN
         {
             scriptName = "RadioChannels";
             scriptPath = "TMF_acre2";
-            onLoad = "['onLoad',_this,'RadioChannels','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-            onUnload = "['onUnload',_this,'RadioChannels','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+            onLoad = "['onLoad',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+            onUnload = "['onUnload',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-            attributeLoad = "['attributeLoad', _this, _value] call (uinamespace getvariable 'RadioChannels_script');";
-            attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'RadioChannels_script');";
+            attributeLoad = "['attributeLoad', _this, _value] call (uiNamespace getvariable 'RadioChannels_script');";
+            attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'RadioChannels_script');";
 
             w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
             h = QUOTE((32 * SIZE_M + 1) * GRID_H);
@@ -478,8 +478,8 @@ class Cfg3DEN
                     multiselectEnabled = 0;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
-                    action = "['presetTreeClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
-                    onTreeDblClick = "['presetTreeDoubleClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['presetTreeClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
+                    onTreeDblClick = "['presetTreeDoubleClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                 };
 
                 class MyLine:RscText
@@ -503,7 +503,7 @@ class Cfg3DEN
                     x = QUOTE(SIZE_M * GRID_W);
                     w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W));
                     y = QUOTE(SIZE_M * GRID_H * 13);
-                    action = "['networkToggleButton',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['networkToggleButton',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Toggle through the radio networks.";
                 };
 
@@ -532,21 +532,21 @@ class Cfg3DEN
                     x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
                     y = QUOTE(15 * SIZE_M * GRID_H);
-                    action = "['channelTreeGive',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelTreeGive',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Put the selected element on the selected radio channel.";
                 };
                 class ButtonChannelLeader: ButtonChannelGive
                 {
                     text = "Leader";
                     x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
-                    action = "['channelTreeLeader',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelTreeLeader',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Make the leader of the group use the selected radio channel (Only avaiable on groups)";
                 };
                 class ButtonChannelRemove: ButtonChannelGive
                 {
                     text = "Remove";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3) *2 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
-                    action = "['channelTreeRemove',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelTreeRemove',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Remove the selected radio channel from the selected element.";
                 };
                 class Value: ctrlTree
@@ -559,8 +559,8 @@ class Cfg3DEN
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
-                    action = "['treeClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
-                    onTreeDblClick = "['treeDoubleClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['treeClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
+                    onTreeDblClick = "['treeDoubleClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                 };
                 class ListBackground: ctrlStatic
                 {
@@ -577,21 +577,21 @@ class Cfg3DEN
                     x = QUOTE(SIZE_M * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
                     y = QUOTE(15 * SIZE_M * GRID_H);
-                    action = "['channelAddClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelAddClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Add a radio channel to the present network";
                 };
                 class ButtonEdit: ButtonAdd2
                 {
                     text = "Edit";
                     x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
-                    action = "['channelEditClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelEditClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Edit the selected radio channel";
                 };
                 class ButtonDel: ButtonAdd2
                 {
                     text = "Delete";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
-                    action = "['channelDelClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelDelClick',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                     tooltip = "Delete the selected radio channel";
                 };
                 class List: ctrlListNBox
@@ -606,7 +606,7 @@ class Cfg3DEN
                     idcRight = -1;
                     columns[] = {0,0,0}; //0.05,0.15,0.85};
                     disableOverflow = 1;
-                    onLBSelChanged = "with uiNamespace do {  ['refreshChannelTree',_this] call (uinamespace getvariable 'RadioChannels_script'); };";
+                    onLBSelChanged = "with uiNamespace do {  ['refreshChannelTree',_this] call (uiNamespace getvariable 'RadioChannels_script'); };";
                 };
                 class EditChannelBackgroundS: ctrlStatic
                 {
@@ -624,14 +624,14 @@ class Cfg3DEN
                     y = QUOTE(27.3 * SIZE_M * GRID_H);
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7);
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
-                    action = "['channelEditClickOkay',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelEditClickOkay',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                 };
                 class EditChannelButtonCancel : EditChannelButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W);
-                    action = "['channelDelClickCancel',_this] call (uinamespace getvariable 'RadioChannels_script');";
+                    action = "['channelDelClickCancel',_this] call (uiNamespace getvariable 'RadioChannels_script');";
                 };
 
                 class EditChannelTitle : Title1

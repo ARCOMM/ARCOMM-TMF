@@ -74,32 +74,32 @@ switch _mode do
 
 		//--- Init UI
 		_ctrlGroup = _params select 0;
-		(ctrlparent _ctrlGroup) displayaddeventhandler ["keydown",{with uinamespace do {['keydown',[AmmoBox_ctrlGroup,_this select 1,_this select 2,_this select 3],objnull] call AmmoBox_script;};}];
-		//_ctrlGroup ctrlAddEventHandler ["keydown",{with uinamespace do {['keydown',_this,objnull] call AmmoBox_script;};}];
-		_ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
-		_ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {AmmoBox_ctrlGroup = nil;};}];
+		(ctrlparent _ctrlGroup) displayaddeventhandler ["keydown",{with uiNamespace do {['keydown',[AmmoBox_ctrlGroup,_this select 1,_this select 2,_this select 3],objNull] call AmmoBox_script;};}];
+		//_ctrlGroup ctrlAddEventHandler ["keydown",{with uiNamespace do {['keydown',_this,objNull] call AmmoBox_script;};}];
+		_ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
+		_ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {AmmoBox_ctrlGroup = nil;};}];
 
 		_ctrlType = _ctrlGroup controlsGroupCtrl 103;
-		_ctrlType ctrlAddEventHandler ["toolboxselchanged",{with uinamespace do {['typeChanged',_this,objnull] call AmmoBox_script;};}];
+		_ctrlType ctrlAddEventHandler ["toolboxselchanged",{with uiNamespace do {['typeChanged',_this,objNull] call AmmoBox_script;};}];
 		_ctrlType lbsetcursel AmmoBox_type;
-		["typeChanged",[_ctrlType,AmmoBox_type],objnull] call AmmoBox_script;
+		["typeChanged",[_ctrlType,AmmoBox_type],objNull] call AmmoBox_script;
 
 		_ctrlFilter = _ctrlGroup controlsGroupCtrl 100;
-		_ctrlFilter ctrlAddEventHandler ["toolboxselchanged",{with uinamespace do {['filterChanged',_this,objnull] call AmmoBox_script;};}];
-		["filterChanged",[_ctrlFilter,0],objnull] call AmmoBox_script;
+		_ctrlFilter ctrlAddEventHandler ["toolboxselchanged",{with uiNamespace do {['filterChanged',_this,objNull] call AmmoBox_script;};}];
+		["filterChanged",[_ctrlFilter,0],objNull] call AmmoBox_script;
 
 		_ctrlList = _ctrlGroup controlsGroupCtrl 101;
-		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uinamespace do {["listSelect",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
-		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uiNamespace do {["listSelect",[ctrlparentcontrolsgroup (_this select 0)],objNull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
 
 		_ctrlArrowLeft = _ctrlGroup controlsGroupCtrl 313102;
-		_ctrlArrowLeft ctrlAddEventHandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),-1],objnull] call AmmoBox_script;};}];
+		_ctrlArrowLeft ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),-1],objNull] call AmmoBox_script;};}];
 		_ctrlArrowRight = _ctrlGroup controlsGroupCtrl 313103;
-		_ctrlArrowRight ctrlAddEventHandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
+		_ctrlArrowRight ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AmmoBox_script;};}];
 
 		_ctrlButtonCustom = _ctrlGroup controlsGroupCtrl 104;
 		_ctrlButtonCustom ctrlsettext localize "str_disp_arcmap_clear";
-		_ctrlButtonCustom ctrlAddEventHandler ["buttonclick",{with uinamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
+		_ctrlButtonCustom ctrlAddEventHandler ["buttonclick",{with uiNamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objNull] call AmmoBox_script;};}];
 		
 		if (isNil "AmmoBox_list") then
 		{
@@ -267,7 +267,7 @@ switch _mode do
 
 				AmmoBox_list = _list;
 			
-				["filterChanged", [_this select 0, AmmoBox_filter], objnull] call AmmoBox_script;
+				["filterChanged", [_this select 0, AmmoBox_filter], objNull] call AmmoBox_script;
 				
 				endLoadingScreen;
 			};
@@ -289,7 +289,7 @@ switch _mode do
 		_ctrlArrowRight ctrlsettext (if (_type > 0) then {SYMBOL_VIRTUAL_1} else {"+"});
 		//_ctrlArrowRight ctrlenable (_value > -1);
 
-		["filterChanged",[_ctrlGroup,AmmoBox_filter],objnull] call AmmoBox_script;
+		["filterChanged",[_ctrlGroup,AmmoBox_filter],objNull] call AmmoBox_script;
 	};
 	
 	case "filterChanged": 
@@ -301,7 +301,7 @@ switch _mode do
 		private _ctrlList = _ctrlGroup controlsGroupCtrl 101;
 		//_ctrlLoad = _ctrlGroup controlsGroupCtrl 102;
 		//_ctrlFilterBackground = _ctrlGroup controlsGroupCtrl IDC_RSCATTRIBUTEINVENTORY_FILTERBACKGROUND;
-		private _list = uinamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
+		private _list = uiNamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
 		private _items = [];
 
 		if (_cursel > 0) then 
@@ -345,8 +345,8 @@ switch _mode do
 						_ctrlList lnbsetvalue [[_lnbAdd,1],_type];
 						_ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
 						private _alpha = if (_value != 0) then {1} else {0.5};
-						_ctrlList lnbsetcolor [[_lnbAdd,1],[1,1,1,_alpha]];
-						_ctrlList lnbsetcolor [[_lnbAdd,2],[1,1,1,_alpha]];
+						_ctrlList lnbSetColor [[_lnbAdd,1],[1,1,1,_alpha]];
+						_ctrlList lnbSetColor [[_lnbAdd,2],[1,1,1,_alpha]];
 						_ctrlList lbsettooltip [_lnbAdd,_displayName];
 
 						//if (_cursel == 0 && _value != 0) then 
@@ -371,7 +371,7 @@ switch _mode do
 		_ctrlList lnbSort [1, false];
 		_ctrlList lnbsetcurselrow 0;
 		
-		["listSelect",[_ctrlGroup],objnull] call AmmoBox_script;
+		["listSelect",[_ctrlGroup],objNull] call AmmoBox_script;
 	};
 	
 	case "listModify": 
@@ -414,9 +414,9 @@ switch _mode do
 			_values set [_index,_value];
 			_ctrlList lnbsetvalue [[_cursel,0],_value];
 			_alpha = if (_value != 0) then {1} else {0.5};
-			_ctrlList lnbsetcolor [[_cursel,1],[1,1,1,_alpha]];
-			_ctrlList lnbsetcolor [[_cursel,2],[1,1,1,_alpha]];
-			["listSelect",[_ctrlGroup],objnull] call AmmoBox_script;
+			_ctrlList lnbSetColor [[_cursel,1],[1,1,1,_alpha]];
+			_ctrlList lnbSetColor [[_cursel,2],[1,1,1,_alpha]];
+			["listSelect",[_ctrlGroup],objNull] call AmmoBox_script;
 		};
 	};
 	
@@ -436,7 +436,7 @@ switch _mode do
 
 		if (AmmoBox_filter > 0) then {
 			//--- Clear items in selected category
-			_list = uinamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
+			_list = uiNamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
 			_items = _list select (AmmoBox_filter - 1);
 			{
 				_class = _x select 1;
@@ -451,24 +451,24 @@ switch _mode do
 				_values set [_foreachindex,0];
 			} foreach _values;
 		};
-		["filterChanged",_params,objnull] call AmmoBox_script;
+		["filterChanged",_params,objNull] call AmmoBox_script;
 	};
 	
 	case "keydown": 
 	{
 		_ctrlGroup = _params select 0;
-		if !(isnil "_ctrlGroup") then {
+		if !(isNil "_ctrlGroup") then {
 			_key = _params select 1;
 			_ctrl = _params select 3;
 			switch _key do {
 				case DIK_LEFT;
 				case DIK_NUMPADMINUS: {
-					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {-5} else {-1}],objnull] call AmmoBox_script;
+					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {-5} else {-1}],objNull] call AmmoBox_script;
 					true
 				};
 				case DIK_RIGHT;
 				case DIK_NUMPADPLUS: {
-					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {+5} else {+1}],objnull] call AmmoBox_script;
+					["listModify",[ctrlparentcontrolsgroup (_params select 0),if (_ctrl) then {+5} else {+1}],objNull] call AmmoBox_script;
 					true
 				};
 				default {false};
@@ -486,13 +486,13 @@ switch _mode do
 	{
 
 		//--- Sort items into categories and save. Will be loaded by BIS_fnc_initAmmoBox
-		_cargo = uinamespace getvariable ["RscAttributeInventory_cargo",[[],[]]];
+		_cargo = uiNamespace getvariable ["RscAttributeInventory_cargo",[[],[]]];
 		_cargoClasses = _cargo select 0;
 		_cargoValues = _cargo select 1;
 		_outputClasses = [[],[],[],[]]; // weapons, magazines, items, backpacks
 		_outputValues = [[],[],[],[]];
 		_output = [[[],[]],[[],[]],[[],[]],[[],[]]];
-		_isVirtual = (uinamespace getvariable ["AmmoBox_type",0]) > 0;
+		_isVirtual = (uiNamespace getvariable ["AmmoBox_type",0]) > 0;
 		{
 			if (_x != 0) then {
 				_class = _cargoClasses select _foreachindex;

@@ -86,10 +86,10 @@
 	class Tile_##posX##_##posY##: RscText \
 	{ \
 		idc = 1150##posX####posY##; \
-		x = (##posX## * 1/6) * safezoneW; \
-		y = (##posY## * 1/6) * safezoneH; \
-		w = 1/6 * safezoneW; \
-		h = 1/6 * safezoneH; \
+		x = (##posX## * 1/6) * safeZoneW; \
+		y = (##posY## * 1/6) * safeZoneH; \
+		w = 1/6 * safeZoneW; \
+		h = 1/6 * safeZoneH; \
 		colorBackground[] = {0,0,0,0.1}; \
 	};
 #define COMMON_BACKGROUND_TILES_OLD(CLASS_NAME)\
@@ -98,8 +98,8 @@
 		idc = 115099;\
 		x = safezoneX;\
 		y = safezoneY;\
-		w = safezoneW;\
-		h = safezoneH;\
+		w = safeZoneW;\
+		h = safeZoneH;\
 		disableCustomColors = 1;\
 		onLoad = [ctrlParent (_this select 0), #CLASS_NAME] call (uiNamespace getVariable 'BIS_fnc_guiEffectTiles');\
 		class Controls\
@@ -109,8 +109,8 @@
 				idc = 114999;\
 				x = 0;\
 				y = 0;\
-				w = safezoneW;\
-				h = safezoneH;\
+				w = safeZoneW;\
+				h = safeZoneH;\
 				colortext[] = {0,0,0,1};\
 			};\
 			BCGTILE(0,0)\
@@ -160,7 +160,7 @@
 		x = safezoneXAbs;\
 		y = safezoneY;\
 		w = safezoneWAbs;\
-		h = safezoneH;\
+		h = safeZoneH;\
 		class Controls\
 		{\
 			class Background: RscText\
@@ -169,7 +169,7 @@
 				x = 0;\
 				y = 0;\
 				w = safezoneWAbs;\
-				h = safezoneH;\
+				h = safeZoneH;\
 				colorBackground[] = {0,0,0,0.5};\
 			};\
 		};\
@@ -210,10 +210,10 @@
 //--- Resizable background
 #define COMMON_BACKGROUND_SCRIPTED \
 	COMMON_BACKGROUND( \
-		(uinamespace getvariable 'RscBackground_X'), \
-		(uinamespace getvariable 'RscBackground_Y'), \
-		(uinamespace getvariable 'RscBackground_W'), \
-		(uinamespace getvariable 'RscBackground_H') \
+		(uiNamespace getvariable 'RscBackground_X'), \
+		(uiNamespace getvariable 'RscBackground_Y'), \
+		(uiNamespace getvariable 'RscBackground_W'), \
+		(uiNamespace getvariable 'RscBackground_H') \
 	)
 
 //--- Fullscreen Background of insert dialogues in mission editor
@@ -223,7 +223,7 @@
 		idc = -1; \
 		x = SafezoneX; \
 		y = SafezoneY; \
-		w = SafezoneW; \
-		h = SafezoneH; \
+		w = safeZoneW; \
+		h = safeZoneH; \
 		colorBackground[] = {0.7, 0.7, 0.7, 0.8}; \
 	};

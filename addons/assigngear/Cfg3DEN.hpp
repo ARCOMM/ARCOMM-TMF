@@ -109,8 +109,8 @@ class Cfg3DEN
              //I can't get this ^ macro to work with HEMTT so it's been replaced with the next 4 lines
             scriptName = "TMF_AttributesFaction";
             scriptPath = "TMF_assignGear";
-            onLoad = "['onLoad',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
-            onUnload = "['onUnload',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+            onLoad = "['onLoad',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";
+            onUnload = "['onUnload',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";
         };
 
         class GVARMAIN(loadout) : Combo {

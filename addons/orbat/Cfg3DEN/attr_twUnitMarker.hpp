@@ -2,11 +2,11 @@ class twUnitMarker: Toolbox
 {
     scriptName = "UnitMarker";
     scriptPath = "TMF_orbat";
-    onLoad = "['onLoad',_this,'UnitMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-    onUnload = "['onUnload',_this,'UnitMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+    onLoad = "['onLoad',_this,'UnitMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+    onUnload = "['onUnload',_this,'UnitMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-    attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'UnitMarker_script');";
-    attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'UnitMarker_script');";
+    attributeLoad = "['attributeLoad',_this] call (uiNamespace getvariable 'UnitMarker_script');";
+    attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'UnitMarker_script');";
 
     h = QUOTE((9+0.2) * SIZE_M * GRID_H);
     class Controls

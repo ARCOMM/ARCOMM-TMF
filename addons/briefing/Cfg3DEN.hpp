@@ -147,11 +147,11 @@ class Cfg3DEN
         {
             scriptName = "BriefingSettings";
             scriptPath = "TMF_briefing";
-            onLoad = "['onLoad',_this,'BriefingSettings','TMF_briefing',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-            onUnload = "['onUnload',_this,'BriefingSettings','TMF_briefing',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
+            onLoad = "['onLoad',_this,'BriefingSettings','TMF_briefing',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+            onUnload = "['onUnload',_this,'BriefingSettings','TMF_briefing',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
 
-            attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BriefingSettings_script');";
-            attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+            attributeLoad = "['attributeLoad',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
+            attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
             
             w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
             h = QUOTE(16 * SIZE_M * GRID_H);
@@ -179,14 +179,14 @@ class Cfg3DEN
                     x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2);
                     y = QUOTE(SIZE_M * GRID_H);
-                    action = "['BriefTreeGive',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefTreeGive',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Make the selected element recieve selected briefing.";
                 };
                 class ButtonBriefeeRemove: ButtonBriefeeMake
                 {
                     text = "Remove";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
-                    action = "['BriefTreeRemove',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefTreeRemove',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Remove the selected element from recieveing the selected briefing.";
                 };
                 class BriefeeTree : ctrlTree
@@ -199,8 +199,8 @@ class Cfg3DEN
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
-                    action = "['treeClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
-                    onTreeDblClick = "['treeDoubleClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['treeClick',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
+                    onTreeDblClick = "['treeDoubleClick',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                 };
                 class ListBackground: ctrlStatic
                 {
@@ -217,21 +217,21 @@ class Cfg3DEN
                     x = QUOTE(SIZE_M * GRID_W);
                     w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
                     y = QUOTE(SIZE_M * GRID_H);
-                    action = "['BriefAddClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefAddClick',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Add a new briefing.";
                 };
                 class ButtonBriefEdit: ButtonBriefAdd
                 {
                     text = "Edit";
                     x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
-                    action = "['BriefEditClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefEditClick',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Edit the selected briefing.";
                 };
                 class ButtonBriefDel : ButtonBriefAdd
                 {
                     text = "Delete";
                     x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
-                    action = "['BriefDelClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefDelClick',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Delete the selected briefing.";
                 };
                 class BriefList: ctrlListNBox
@@ -246,7 +246,7 @@ class Cfg3DEN
                     idcRight = -1;
                     columns[] = {0,0,0}; //0.05,0.15,0.85};
                     disableOverflow = 1;
-                    onLBSelChanged = "with uiNamespace do {  ['refreshBriefTree',_this] call (uinamespace getvariable 'BriefingSettings_script'); };";
+                    onLBSelChanged = "with uiNamespace do {  ['refreshBriefTree',_this] call (uiNamespace getvariable 'BriefingSettings_script'); };";
                 };
                 // Edit Briefing Box
                 class EditBriefingBackgroundS: ctrlStatic
@@ -265,14 +265,14 @@ class Cfg3DEN
                     y = QUOTE(12.25 * SIZE_M * GRID_H);
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6);
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W);
-                    action = "['BriefingEditClickOkay',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefingEditClickOkay',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                 };
                 class EditBriefingButtonCancel : EditBriefingButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
                     x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W);
-                    action = "['BriefingDelClickCancel',_this] call (uinamespace getvariable 'BriefingSettings_script');";
+                    action = "['BriefingDelClickCancel',_this] call (uiNamespace getvariable 'BriefingSettings_script');";
                 };
                 
                 class EditBriefingTitle : BriefTitle

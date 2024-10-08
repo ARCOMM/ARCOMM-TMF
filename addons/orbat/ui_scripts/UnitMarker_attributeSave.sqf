@@ -1,4 +1,4 @@
-private _ctrlGroup = uiNameSpace getVariable "UnitMarker_ctrlGroup";
+private _ctrlGroup = uiNamespace getVariable "UnitMarker_ctrlGroup";
 private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
 private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;
 private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;

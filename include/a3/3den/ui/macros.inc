@@ -11,11 +11,11 @@
 // 720px
 #define WINDOW_W	120
 #define WINDOW_H	180
-#define WINDOW_HAbs (safezoneH min (WINDOW_H * GRID_H))
+#define WINDOW_HAbs (safeZoneH min (WINDOW_H * GRID_H))
 
 #define WINDOW_PREVIEW_W	WINDOW_W
 #define WINDOW_PREVIEW_H	65
-#define WINDOW_PREVIEW_HAbs	(safezoneH min (WINDOW_PREVIEW_H * GRID_H))
+#define WINDOW_PREVIEW_HAbs	(safeZoneH min (WINDOW_PREVIEW_H * GRID_H))
 
 #define ATTRIBUTE_TITLE_W	48
 #define ATTRIBUTE_CONTENT_W	82
@@ -215,7 +215,7 @@
 /// Scripts
 ///////////////////////////////////////////////////////////////
 
-#define INIT_DISPLAY_FUNCTION	(uinamespace getvariable 'BIS_fnc_initDisplay')
+#define INIT_DISPLAY_FUNCTION	(uiNamespace getvariable 'BIS_fnc_initDisplay')
 #define INIT_DISPLAY_INTERNAL	scriptIsInternal = 1;
 
 //--- Code executed on each display where the macro is used. Scripts are pre-compiled at the game start by BIS_fnc_initDisplays
@@ -229,7 +229,7 @@
 #define INIT_DISPLAY_START(NAME,PATH) \
 	scriptName = ##NAME##;\
 	scriptPath = ##PATH##;\
-	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";\
+	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";\
 	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;
 
 #define INIT_CONTROL(NAME,PATH) \

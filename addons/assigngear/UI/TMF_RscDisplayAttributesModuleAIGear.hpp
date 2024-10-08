@@ -3,8 +3,8 @@ class GVARMAIN(RscDisplayAttributesModuleAIGear): RscDisplayAttributes {
     //I can't get this ^ macro to work with HEMTT so it's been replaced with the next 4 lines
     scriptName = "TMF_RscDisplayAttributesModuleAIGear";
     scriptPath = "TMF_assignGear";
-    onLoad = "['onLoad',_this,'TMF_RscDisplayAttributesModuleAIGear','TMF_assignGear'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
-    onUnload = "['onUnload',_this,'TMF_RscDisplayAttributesModuleAIGear','TMF_assignGear'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+    onLoad = "['onLoad',_this,'TMF_RscDisplayAttributesModuleAIGear','TMF_assignGear'] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";
+    onUnload = "['onUnload',_this,'TMF_RscDisplayAttributesModuleAIGear','TMF_assignGear'] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";
 
     curatorObjectAttributes = 1;
     class Controls: Controls {

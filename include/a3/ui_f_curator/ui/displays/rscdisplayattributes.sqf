@@ -73,9 +73,9 @@ switch _mode do {
 		};
 		_posH = ((_posY + _ctrlContentOffsetY) min 0.9) * 0.5;
 
-		_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objnull];
+		_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 		_name = switch (typename _target) do {
-			case (typename objnull): {getText (configFile >> "cfgvehicles" >> typeof _target >> "displayname")};
+			case (typename objNull): {getText (configFile >> "cfgvehicles" >> typeof _target >> "displayname")};
 			case (typename grpnull): {groupId _target};
 			case (typename []): {format ["%1: %3 #%2",groupId (_target select 0),_target select 1,localize "str_a3_cfgmarkers_waypoint_0"]};
 			case (typename ""): {markertext _target};
@@ -113,9 +113,9 @@ switch _mode do {
 		[_display] spawn {
 			disableserialization;
 			_display = _this select 0;
-			_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objnull];
+			_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 			switch (typename _target) do {
-				case (typename objnull): {
+				case (typename objNull): {
 					_isAlive = alive _target;
 					waituntil {isnull _display || (_isAlive && !alive _target)};
 				};

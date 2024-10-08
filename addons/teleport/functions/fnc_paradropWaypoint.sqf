@@ -18,7 +18,7 @@ _flyingVehicles = _flyingVehicles arrayIntersect _flyingVehicles;
     } foreach _cargo;
 
     {
-      private _pos = getpos _vehicle;
+      private _pos = getPos _vehicle;
       _pos = _pos vectorAdd (vectorDirVisual _vehicle vectorMultiply -30);
       [_x,_pos] remoteExecCall [QFUNC(paradropEffect), _x];
       sleep 1.5;

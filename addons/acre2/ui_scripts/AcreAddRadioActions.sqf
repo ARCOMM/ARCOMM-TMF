@@ -1,9 +1,9 @@
 params ["_mode",["_params",[]]];
 
-// with uiNameSpace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };  with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };  with uiNameSpace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
+// with uiNamespace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };  with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };  with uiNamespace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
 
-//with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };  with uiNameSpace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
-// with uiNameSpace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
+//with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };  with uiNamespace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
+// with uiNamespace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; };
 
 #define ACRE_RADIO_CLASSNAME_ARRAY ["ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC117F","ACRE_PRC77","ACRE_SEM52SL"]
 
@@ -14,11 +14,11 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         AcreAddRadioActions_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {AcreAddRadioActions_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {AcreAddRadioActions_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = nil;};}];
         
         _ctrlList = _ctrlGroup controlsGroupCtrl 101;
-        _ctrlList ctrlAddEventHandler ["lbdblclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AcreAddRadioActions_script;};}];
+        _ctrlList ctrlAddEventHandler ["lbdblclick",{with uiNamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objNull] call AcreAddRadioActions_script;};}];
         
         TMF_AcreAddRadioActions_Array = ("TMF_MissionAcre2Attributes" get3DENMissionAttribute "TMF_AcreAddRadioActions");
         if (TMF_AcreAddRadioActions_Array isEqualType "") then {
@@ -36,7 +36,7 @@ switch _mode do {
             _ctrlList lnbSetData [[_lnbAdd,0],_x];
             _ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
             _alpha = if (_x in TMF_AcreAddRadioActions_Array) then {1} else {0.5};
-            _ctrlList lnbsetcolor [[_lnbAdd,1],[1,1,1,_alpha]];
+            _ctrlList lnbSetColor [[_lnbAdd,1],[1,1,1,_alpha]];
         } forEach ACRE_RADIO_CLASSNAME_ARRAY;
     };
     case "attributeSave": {
@@ -63,7 +63,7 @@ switch _mode do {
             _ctrlList lnbSetData [[_lnbAdd,0],_x];
             _ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
             _alpha = if (_x in TMF_AcreAddRadioActions_Array) then {1} else {0.5};
-            _ctrlList lnbsetcolor [[_lnbAdd,1],[1,1,1,_alpha]];
+            _ctrlList lnbSetColor [[_lnbAdd,1],[1,1,1,_alpha]];
         } forEach ACRE_RADIO_CLASSNAME_ARRAY;    
     };
     case "attributeLoad": {

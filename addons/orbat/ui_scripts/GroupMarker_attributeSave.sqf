@@ -1,5 +1,5 @@
 
-private _ctrlGroup = uiNameSpace getVariable "GroupMarker_ctrlGroup";
+private _ctrlGroup = uiNamespace getVariable "GroupMarker_ctrlGroup";
 private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
 private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;
 private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;
@@ -23,7 +23,7 @@ if (_idx > 0) then {
 };
 
 private _entity = (get3DENSelected "group") select 0;
-private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNameSpace getVariable ["GroupMarker_numID",0]];
+private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNamespace getVariable ["GroupMarker_numID",0]];
 
 _entity set3DENAttribute ["TMF_groupMarker",str _groupMarkerArray];
 

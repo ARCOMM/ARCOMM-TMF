@@ -778,7 +778,7 @@ Author:
 #define ISNILS(VARIABLE,DEFAULT_VALUE) if (isNil #VARIABLE) then { VARIABLE = DEFAULT_VALUE }
 #define ISNILS2(var1,var2,var3,var4) ISNILS(TRIPLES(var1,var2,var3),var4)
 #define ISNILS3(var1,var2,var3) ISNILS(DOUBLES(var1,var2),var3)
-#define ISNIL(var1,var2) ISNILS2(PREFIX,COMPONENT,var1,var2)
+#define isNil(var1,var2) ISNILS2(PREFIX,COMPONENT,var1,var2)
 #define ISNILMAIN(var1,var2) ISNILS3(PREFIX,var1,var2)
 
 #define CREATELOGICS(var1,var2) var1##_##var2 = ([sideLogic] call CBA_fnc_getSharedGroup) createUnit ["LOGIC", [0, 0, 0], [], 0, "NONE"]

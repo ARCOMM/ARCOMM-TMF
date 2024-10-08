@@ -51,7 +51,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     private _data = _x getVariable [QGVAR(objectiveData),[]];
     if(count _data > 0) then {
         _data params ["_icon","_text","_color"];
-        private _pos = getpos _x;
+        private _pos = getPos _x;
         _map drawIcon  [_icon, _color,_pos, 32, 32, 0,"", 2,0.04, MAP_FONT];
         if(_text != "") then {
             _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,1,1,_color select 3],_pos, 32, 32, 0,_text, 2,0.04, MAP_FONT];
@@ -65,7 +65,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     _name = "";
     if(_isPlayer) then {_name = _dName};
     if(_time <= 10) then {
-        _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getpos _unit,16,16,0,_name,0,0.04, MAP_FONT];
+        _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getPos _unit,16,16,0,_name,0,0.04, MAP_FONT];
     };
 } foreach GVAR(killedUnits);
 
@@ -88,7 +88,7 @@ if(GVAR(tracers)) then {
             _map drawLine [_posArray # 0, _pos, [1,0,0,1]];
         };
         if(_type == 0 && !isNull _object) then {
-            _pos = getpos _object;
+            _pos = getPos _object;
             _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
             _map drawLine [_pos, _futurePos, [1,0,0,1]];
         };

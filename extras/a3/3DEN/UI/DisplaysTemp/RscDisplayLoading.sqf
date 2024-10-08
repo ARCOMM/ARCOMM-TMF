@@ -14,7 +14,7 @@ switch _mode do {
 		RscDisplayLoading_display = _display;
 
 		//--- Initial loading - maintain visual style of RscDisplayStart
-		if !(uinamespace getvariable ["BIS_initGame",false]) exitwith {};
+		if !(uiNamespace getvariable ["BIS_initGame",false]) exitwith {};
 
 		///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,15 +44,15 @@ switch _mode do {
 			};
 
 			//--- Randomized map Y coordinate
-			_worldType = uinamespace getvariable ["RscDisplayLoading_worldType",""];
-			_ran = uinamespace getvariable ["RscDisplayLoading_ran",random 1];
+			_worldType = uiNamespace getvariable ["RscDisplayLoading_worldType",""];
+			_ran = uiNamespace getvariable ["RscDisplayLoading_ran",random 1];
 			if (worldname != _worldType) then {
 				_ran = random 1;
-				uinamespace setvariable ["RscDisplayLoading_ran",_ran];
-				uinamespace setvariable ["RscDisplayLoading_worldType",worldname];
+				uiNamespace setvariable ["RscDisplayLoading_ran",_ran];
+				uiNamespace setvariable ["RscDisplayLoading_worldType",worldname];
 			};
 			_ctrlMapPos = ctrlposition _ctrlMap;
-			_ctrlMapPos set [1,linearconversion [0,1,_ran,(safezoneY + safezoneH - (_ctrlMapPos select 3)),safezoneY,true]];
+			_ctrlMapPos set [1,linearconversion [0,1,_ran,(safezoneY + safeZoneH - (_ctrlMapPos select 3)),safezoneY,true]];
 			_ctrlMap ctrlsetposition _ctrlMapPos;
 			_ctrlMap ctrlcommit 0;
 
@@ -81,21 +81,21 @@ switch _mode do {
 			_ctrlMissionDescriptionEngine = _display displayctrl IDC_LOAD_MISSION_NAME;
 
 			//--- Picture
-			_loadingPicture = getmissionconfigvalue ["loadScreen",""];//getText (missionConfigFile >> "loadScreen");
-			if (_loadingPicture == "") then {_loadingPicture = getmissionconfigvalue ["overviewPicture",""]};//getText (missionConfigFile >> "overviewPicture");}; //--- Use overview data
+			_loadingPicture = getMissionConfigValue ["loadScreen",""];//getText (missionConfigFile >> "loadScreen");
+			if (_loadingPicture == "") then {_loadingPicture = getMissionConfigValue ["overviewPicture",""]};//getText (missionConfigFile >> "overviewPicture");}; //--- Use overview data
 
 			//--- Mission name
-			_loadingName = getmissionconfigvalue ["onLoadName",""];//getText (missionConfigFile >> "onLoadName");
+			_loadingName = getMissionConfigValue ["onLoadName",""];//getText (missionConfigFile >> "onLoadName");
 			if (_loadingName == "") then {
 				_loadingName = if (briefingname != missionname) then {briefingname} else {""};
 			};
 
 			//--- Description
 			//_loadingTextConfig = if (false) then {getText (missionConfigFile >> "onLoadIntro")} else {getText (missionConfigFile >> "onLoadMission")};
-			_loadingTextConfig = getmissionconfigvalue ["onLoadMission",""];
+			_loadingTextConfig = getMissionConfigValue ["onLoadMission",""];
 			_loadingText = ctrltext _ctrlMissionDescriptionEngine;
 			if (_loadingText == "") then {_loadingText = _loadingTextConfig;}; //--- Use overview data
-			if (_loadingText in ["",localize "str_load_world"]) then {_loadingText = getmissionconfigvalue ["overviewText",""];};//getText (missionConfigFile >> "overviewText");};
+			if (_loadingText in ["",localize "str_load_world"]) then {_loadingText = getMissionConfigValue ["overviewText",""];};//getText (missionConfigFile >> "overviewText");};
 
 			//--- MP type
 			_gameType = getText (getMissionConfig "Header" >> "gameType");//getText (missionConfigFile >> "Header" >> "gameType");
@@ -107,11 +107,11 @@ switch _mode do {
 			//if (_showMission && (_loadingText != "" || _loadingPicture != "")) then {
 
 			//--- When loading a different terrain, current mission is sometimes still available. Check if it belongs to the terrain.
-			_last = uinamespace getvariable ["RscDisplayLoading_last",[worldname,missionname]];
+			_last = uiNamespace getvariable ["RscDisplayLoading_last",[worldname,missionname]];
 			_lastWorld = _last select 0;
 			_lastMission = _last select 1;
 			_showMission = if (missionname == _lastMission) then {worldname == _lastWorld} else {true};
-			uinamespace setvariable ["RscDisplayLoading_last",[worldname,missionname]];
+			uiNamespace setvariable ["RscDisplayLoading_last",[worldname,missionname]];
 
 			//--- Get loading bars
 			_progressMap = _display displayctrl IDC_PROGRESS_PROGRESS;
@@ -121,8 +121,8 @@ switch _mode do {
 
 			//if (str missionConfigFile != "" && _showMission) then {
 			if (_loadingText != "" || {_loadingPicture != ""}) then {
-				_loadingName = _loadingName call (uinamespace getvariable "bis_fnc_localize");
-				_loadingText = _loadingText call (uinamespace getvariable "bis_fnc_localize");
+				_loadingName = _loadingName call (uiNamespace getvariable "bis_fnc_localize");
+				_loadingText = _loadingText call (uiNamespace getvariable "bis_fnc_localize");
 
 				if (_loadingName == "") then {_loadingName = localize "STR_a3_rscdisplay_loading_noname";};
 				if (_loadingPicture == "") then {_loadingPicture = _pictureShot;};
@@ -174,7 +174,7 @@ switch _mode do {
 
 				if(_showDLCLoading) then
 				{
-					_selectedDLCAppId = uinamespace getvariable ['BIS_RscDisplayLoading_SelectedDLCAppId', 0];
+					_selectedDLCAppId = uiNamespace getvariable ['BIS_RscDisplayLoading_SelectedDLCAppId', 0];
 
 					if(_selectedDLCAppId == 0) then
 					{
@@ -184,7 +184,7 @@ switch _mode do {
 						//Randomly select one of the non-owned DLCs and read info from it
 						_selectedDLC = floor(random (count _notOwnedDLCs));
 						_selectedDLCAppId = _notOwnedDLCs select _selectedDLC;
-						uinamespace setvariable ["BIS_RscDisplayLoading_SelectedDLCAppId", _selectedDLCAppId];
+						uiNamespace setvariable ["BIS_RscDisplayLoading_SelectedDLCAppId", _selectedDLCAppId];
 					};
 
 					{ //For each class from cfgMods
@@ -268,7 +268,7 @@ switch _mode do {
 
 					//--- When loading a different map, a rogue loading screen without progress bar appears. Move the progress bar by script.
 					_limit = [1,2] select _isMultiplayer;
-					if (count (uinamespace getvariable "loading_displays") > _limit) then {
+					if (count (uiNamespace getvariable "loading_displays") > _limit) then {
 						_progressMap ctrlshow false;
 						_progressMission ctrlsetposition _progressMapPos;
 						_progressMission ctrlcommit 0;

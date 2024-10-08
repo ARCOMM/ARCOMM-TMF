@@ -66,7 +66,7 @@ class TMF_ORBAT_Renamer : Title
             w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (16*SIZE_M) ) * GRID_W));
             y = QUOTE(3.5 * SIZE_M * GRID_H);
             action = "[] call (missionNamespace getVariable 'tmf_orbat_fnc_renameUnitAndGroups');";
-            //action = "['orbatToggleButton',_this] call (uinamespace getvariable 'ORBATSettings_script');";
+            //action = "['orbatToggleButton',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
         };
 
     };

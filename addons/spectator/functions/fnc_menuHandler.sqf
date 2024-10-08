@@ -93,7 +93,7 @@ switch (_button) do {
         };
         _i = (GVAR(visionMode))+1;
         if(_i > 2) then {_i = 0};
-    if(isNil "_control" || {isNull _control}) then {_control = uinamespace getVariable [QGVAR(vision),controlNull];};
+    if(isNil "_control" || {isNull _control}) then {_control = uiNamespace getVariable [QGVAR(vision),controlNull];};
         _control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];
     };
     case "camera" : {

@@ -13,7 +13,7 @@ switch _mode do {
 		["placeempty"] spawn bis_fnc_3DENInterface;
 
 		_display = _params select 0;
-		_display displayaddeventhandler ["keydown",{with uinamespace do {["keyDown",_this,""] call display3DENPlace_script;};}];
+		_display displayaddeventhandler ["keydown",{with uiNamespace do {["keyDown",_this,""] call display3DENPlace_script;};}];
 	};
 	case "keyDown":
 	{

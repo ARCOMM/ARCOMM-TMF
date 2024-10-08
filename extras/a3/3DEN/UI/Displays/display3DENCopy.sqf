@@ -13,7 +13,7 @@ switch _mode do {
 		_ctrlEdit = _display displayctrl IDC_DISPLAY3DENCOPY_EDIT;
 		_ctrlEditFake = _display displayctrl IDC_DISPLAY3DENCOPY_EDITFAKE;
 
-		_data = uinamespace getvariable ["Display3DENCopy_data",[]];
+		_data = uiNamespace getvariable ["Display3DENCopy_data",[]];
 		_dataTitle = _data param [0,"",[""]];
 		_dataEdit = _data param [1,"",[""]];
 

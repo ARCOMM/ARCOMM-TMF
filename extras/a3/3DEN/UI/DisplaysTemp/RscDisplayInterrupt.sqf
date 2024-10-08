@@ -117,7 +117,7 @@ switch _mode do {
 
 		//--- set player's name
 		(_display displayctrl 109) ctrlSetText profileName;
-		[_display, 109] call (uinamespace getvariable 'BIS_fnc_setIDCStreamFriendly');
+		[_display, 109] call (uiNamespace getvariable 'BIS_fnc_setIDCStreamFriendly');
 		
 		//Title
 		_control = _display displayctrl 523;
@@ -179,7 +179,7 @@ switch _mode do {
 		
 		//--- Options button
 		_button = _display displayctrl 101;
-		_button ctrlAddEventHandler ["buttonclick","with uinamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
+		_button ctrlAddEventHandler ["buttonclick","with uiNamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
 		
 		//TODO - implementovat promennou, ktera si bude pamatovat stav akordeonu (je potreba pri navratu z jineho dialogu do main menu)			
 		(_display displayctrl 301) ctrlSetFade 1;	//Video
@@ -203,7 +203,7 @@ switch _mode do {
 		[_versionCtrl, _trafficLightCtrl] call bis_fnc_versionInfo;
 
 		//--- Splendid camera
-		if (!isnil {missionnamespace getvariable  "bis_fnc_camera_cam"}) then {
+		if (!isNil {missionnamespace getvariable  "bis_fnc_camera_cam"}) then {
 			{(_display displayctrl _x) ctrlenable false;} foreach [103,119];
 		};
 

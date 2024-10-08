@@ -11,7 +11,7 @@ switch _mode do {
 		_display = _params select 0;
 
 		_ctrlIslandBox = _display displayctrl IDC_DISPLAY3DENNEW_LIST;
-		_ctrlIslandBox ctrlAddEventHandler ["lbselchanged","with uinamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
+		_ctrlIslandBox ctrlAddEventHandler ["lbselchanged","with uiNamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
 		['lbselchanged',[_ctrlIslandBox,lbcursel _ctrlIslandBox],''] call display3DENNew_script;
 
 	};

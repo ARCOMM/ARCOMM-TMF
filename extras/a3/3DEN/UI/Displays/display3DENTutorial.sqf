@@ -64,7 +64,7 @@ switch _mode do {
 		_ctrlTree = _display displayctrl IDC_DISPLAY3DENTUTORIAL_LIST;
 		_ctrlTree ctrlAddEventHandler ["treeselchanged",_fnc_treeselchanged];
 		_ctrlTree ctrlAddEventHandler ["treedblclick",_fnc_buttonclick];
-		_select = uinamespace getvariable ["display3DENTutorial_select",["",""]];
+		_select = uiNamespace getvariable ["display3DENTutorial_select",["",""]];
 		_selectCategory = _select param [0,"",[""]];
 		_selectClass = _select param [1,"",[""]];
 		_selectPath = [0];
@@ -116,6 +116,6 @@ switch _mode do {
 		} else {
 			[_ctrlTree tvdata _path]
 		};
-		uinamespace setvariable ["display3DENTutorial_select",_pathClass];
+		uiNamespace setvariable ["display3DENTutorial_select",_pathClass];
 	};
 };

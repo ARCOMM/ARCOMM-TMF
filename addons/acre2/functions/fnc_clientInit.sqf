@@ -243,7 +243,7 @@ if (!alive player) exitWith {};
     // Uses CBA PFH to have a delay yet ensure code is still run in the unscheduled enviornment.
 
     private _delay = 0;
-    if (didJip) then { _delay = 3; }; // If jip give more time.
+    if (didJIP) then { _delay = 3; }; // If jip give more time.
 
     [{
         // On finish wait.

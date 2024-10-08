@@ -1,4 +1,4 @@
-//with uiNameSpace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };
+//with uiNamespace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };
 
 params ["_mode",["_params",[]]];
 
@@ -208,8 +208,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         RadioChannels_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {RadioChannels_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {RadioChannels_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {RadioChannels_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {RadioChannels_ctrlGroup = nil;};}];
         
 
         
@@ -218,7 +218,7 @@ switch _mode do {
         
         //Tree EH for keyboard number presses
         _ctrlTree = _ctrlGroup controlsGroupCtrl 189438;
-        _ctrlTree ctrlAddEventHandler ["keyDown",{with uinamespace do {['keydown',[RadioChannels_ctrlGroup,_this select 1,_this select 2,_this select 3],objnull] call RadioChannels_script;};}];
+        _ctrlTree ctrlAddEventHandler ["keyDown",{with uiNamespace do {['keydown',[RadioChannels_ctrlGroup,_this select 1,_this select 2,_this select 3],objNull] call RadioChannels_script;};}];
 
         
         {
@@ -233,7 +233,7 @@ switch _mode do {
 
     case "keydown": { // Handle key press on tree.
         _params params ["_ctrlGroup", "_key", "_shift", "_ctrl"];
-        if !(isnil "_ctrlGroup") then {
+        if !(isNil "_ctrlGroup") then {
 
             _ctrlTree = _ctrlGroup controlsGroupCtrl 189438;
             

@@ -3,7 +3,7 @@ params ["_logic","_areas","_vehicles"];
 
 {
     private _area = selectRandom _areas;
-    private _bounds = [getpos _area] + (_area getvariable ["objectArea",0]);
+    private _bounds = [getPos _area] + (_area getvariable ["objectArea",0]);
     private _pos = [_bounds] call CFUNC(randPosArea);
     private _magazine = _logic getVariable ["Round", ""];
     _x setVehicleAmmo 1;

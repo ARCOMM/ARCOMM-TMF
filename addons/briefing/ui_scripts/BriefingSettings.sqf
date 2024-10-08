@@ -88,8 +88,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         BriefingSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {BriefingSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["setfocus",{with uiNamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["killfocus",{with uiNamespace do {BriefingSettings_ctrlGroup = nil;};}];
         
                 
         {
