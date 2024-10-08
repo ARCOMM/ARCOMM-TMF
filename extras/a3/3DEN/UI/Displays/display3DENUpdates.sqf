@@ -12,8 +12,8 @@ switch _mode do {
 		_lBSelChanged = {
 			_display = ctrlparent (_this select 0);
 			_data = (_this select 0) lbdata (_this select 1);
-			_cfg = configfile >> 'Cfg3DEN' >> 'Updates' >> _data;
-			_path = gettext (configfile >> 'Cfg3DEN' >> 'Updates' >> "path");
+			_cfg = configFile >> 'Cfg3DEN' >> 'Updates' >> _data;
+			_path = getText (configFile >> 'Cfg3DEN' >> 'Updates' >> "path");
 			_text = loadfile (_path + _data + ".hpp");
 
 			//--- Parse text
@@ -85,7 +85,7 @@ switch _mode do {
 
 		//--- Fill the list
 		_ctrlList = _display displayctrl IDC_DISPLAY3DENUPDATES_LIST;
-		_cfgUpdates = configproperties [configfile >> "Cfg3DEN" >> "Updates","isclass _x"];
+		_cfgUpdates = configproperties [configFile >> "Cfg3DEN" >> "Updates","isclass _x"];
 		_months = ["str_january","str_february","str_march","str_april","str_may","str_june","str_july","str_august","str_september","str_october","str_november","str_december"];
 		{
 			_date = getarray (_x >> 'date');
@@ -107,7 +107,7 @@ switch _mode do {
 		[_ctrlList,_index] call _lBSelChanged;
 
 		//--- Change the content based on selected item
-		_ctrlList ctrladdeventhandler ["LBSelChanged",_lBSelChanged];
+		_ctrlList ctrlAddEventHandler ["LBSelChanged",_lBSelChanged];
 
 		//--- Reset notifictaion icon
 		_display3DEN = finddisplay IDD_DISPLAY3DEN;

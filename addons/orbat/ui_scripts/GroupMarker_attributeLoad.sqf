@@ -39,6 +39,6 @@ if (count _groupMarkerArray > 0) then {
 } else {
     if (count (get3DENSelected "group") > 0) then {
         private _entity = (get3DENSelected "group") select 0;
-        _ctrlNameEdit ctrlSetText (GroupID _entity);
+        _ctrlNameEdit ctrlSetText (groupId _entity);
     };
 };

@@ -229,7 +229,7 @@
 #define INIT_DISPLAY_START(NAME,PATH) \
 	scriptName = ##NAME##;\
 	scriptPath = ##PATH##;\
-	onLoad = "[2] call compile preprocessfilelinenumbers gettext (configfile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";\
+	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";\
 	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;
 
 #define INIT_CONTROL(NAME,PATH) \

@@ -10,9 +10,9 @@ private _replaceWith = ctrlText (_ctrlGroup controlsGroupCtrl 101);
 
 collect3DENHistory {
     {
-        (_x get3DENAttribute "groupid") params ["_groupid"];
-        private _str = [_groupid, _toReplace, _replaceWith] call CBA_fnc_replace;
-        _x set3DENAttribute ["groupid",_str];
+        (_x get3DENAttribute "groupId") params ["_groupId"];
+        private _str = [_groupId, _toReplace, _replaceWith] call CBA_fnc_replace;
+        _x set3DENAttribute ["groupId",_str];
         
         {
             (_x get3DENAttribute "description") params ["_description"];

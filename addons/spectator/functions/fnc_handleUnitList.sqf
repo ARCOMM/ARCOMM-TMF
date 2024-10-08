@@ -32,8 +32,8 @@ for "_index" from 0 to (_treeView tvCount []) do {
                     _deleteRows pushBack _childIndex;
                 } else {
                     private _icon = getText (configFile >> "CfgVehicles" >> typeof (vehicle _unit) >> "icon");
-                    if (isText (configfile >> "CfgVehicleIcons" >> _icon )) then {
-                        _icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
+                    if (isText (configFile >> "CfgVehicleIcons" >> _icon )) then {
+                        _icon = getText (configFile >> "CfgVehicleIcons" >> _icon );
                     };
                     _treeView tvSetPicture [[_index, _childIndex], _icon];
                 }

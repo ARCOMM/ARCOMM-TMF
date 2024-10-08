@@ -12,10 +12,10 @@ switch _mode do {
 	case "onLoad": {
 		_display = _params select 0;
 		
-		//if( getNumber(configfile >> "isDemo") != 1 ) then //test
+		//if( getNumber(configFile >> "isDemo") != 1 ) then //test
 		//{
 			//--- E3 - Back to Hub button
-			if (getnumber (missionconfigfile >> "replaceAbortButton") > 0) then
+			if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then
 			{				
 				//Maxwell button ON - move all buttons except Abort up ---------------------------------------
 				//Title background
@@ -89,7 +89,7 @@ switch _mode do {
 			_control ctrlSetText toupper localize "STR_3DEN_RscDisplayInterrupt_ButtonAbort_3DEN_text";
 			_control ctrlSetTooltip localize "STR_3DEN_RscDisplayInterrupt_ButtonAbort_3DEN_tooltip";
 		} else {
-			if (str campaignConfigFile == "") then
+			if (str campaignconfigFile == "") then
 			{
 				//non campaign mission
 				if (savingEnabled) then
@@ -149,7 +149,7 @@ switch _mode do {
 		
 		//Sets all texts toUpper - TEST - switched off
 		
-		// _classInsideControls = configfile >> "RscDisplayInterrupt" >> "controls";
+		// _classInsideControls = configFile >> "RscDisplayInterrupt" >> "controls";
 			
 		// for "_i" from 0 to (count _classInsideControls - 1) do {   //go to all subclasses
 			// _current = _classInsideControls select _i;
@@ -163,7 +163,7 @@ switch _mode do {
 			// };
 		// };
 		
-		// if( getNumber(configfile >> "isDemo") == 1 ) then
+		// if( getNumber(configFile >> "isDemo") == 1 ) then
 		// {
 			// uiNamespace setVariable ["BIS_isCheatOptions", false];
 			
@@ -179,7 +179,7 @@ switch _mode do {
 		
 		//--- Options button
 		_button = _display displayctrl 101;
-		_button ctrladdeventhandler ["buttonclick","with uinamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
+		_button ctrlAddEventHandler ["buttonclick","with uinamespace do {['optionsButton',_this,''] spawn RscDisplayInterrupt_script};"];
 		
 		//TODO - implementovat promennou, ktera si bude pamatovat stav akordeonu (je potreba pri navratu z jineho dialogu do main menu)			
 		(_display displayctrl 301) ctrlSetFade 1;	//Video
@@ -223,7 +223,7 @@ switch _mode do {
 		_display = ctrlparent _ctrl;
 		
 		_offset = 0;
-		if (getnumber (missionconfigfile >> "replaceAbortButton") > 0) then  //MUF-test-removed: (getNumber(configfile >> "isDemo") != 1) &&
+		if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then  //MUF-test-removed: (getNumber(configFile >> "isDemo") != 1) &&
 		{
 			_offset = 1.1;
 		};
@@ -356,7 +356,7 @@ switch _mode do {
 			_control ctrlSetPosition [(1 * GUI_GRID_W + GUI_GRID_X), ((14.2 - _offset) * GUI_GRID_H + GUI_GRID_Y)];																												
 			_control ctrlCommit _upperPartTime;
 			
-			if (getnumber (missionconfigfile >> "replaceAbortButton") > 0) then
+			if (getnumber (missionConfigFile >> "replaceAbortButton") > 0) then
 			{
 				//Video button
 				_control = _display displayctrl 301;
@@ -433,13 +433,13 @@ switch _mode do {
 							(_display displayctrl _x) ctrlsetfade _fade;
 							(_display displayctrl _x) ctrlcommit 0.2;
 						};
-					} foreach ([configfile >> "RscDisplayInterrupt",0] call bis_fnc_displayControls);	
+					} foreach ([configFile >> "RscDisplayInterrupt",0] call bis_fnc_displayControls);	
 				};
 			};
 		};
 		
 		//Normal Interrupt uses accordion, so cheat has no sense there.
-		// if( getNumber(configfile >> "isDemo") == 1 ) then
+		// if( getNumber(configFile >> "isDemo") == 1 ) then
 		// {
 			// _shift = _params select 2;
 			// _ctrl = _params select 3;

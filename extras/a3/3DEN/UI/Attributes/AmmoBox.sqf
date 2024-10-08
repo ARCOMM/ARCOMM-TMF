@@ -63,7 +63,7 @@ switch _mode do
 
 		//--- Get limits
 /*
-		_cfgEntity = configfile >> "cfgvehicles" >> typeof _entity;
+		_cfgEntity = configFile >> "cfgvehicles" >> typeof _entity;
 		_cfgTransportMaxBackpacks = getnumber (_cfgEntity >> "transportMaxBackpacks");
 		_cfgTransportMaxMagazines = getnumber (_cfgEntity >> "transportMaxMagazines");
 		_cfgTransportMaxWeapons = getnumber (_cfgEntity >> "transportMaxWeapons");
@@ -75,31 +75,31 @@ switch _mode do
 		//--- Init UI
 		_ctrlGroup = _params select 0;
 		(ctrlparent _ctrlGroup) displayaddeventhandler ["keydown",{with uinamespace do {['keydown',[AmmoBox_ctrlGroup,_this select 1,_this select 2,_this select 3],objnull] call AmmoBox_script;};}];
-		//_ctrlGroup ctrladdeventhandler ["keydown",{with uinamespace do {['keydown',_this,objnull] call AmmoBox_script;};}];
-		_ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
-		_ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {AmmoBox_ctrlGroup = nil;};}];
+		//_ctrlGroup ctrlAddEventHandler ["keydown",{with uinamespace do {['keydown',_this,objnull] call AmmoBox_script;};}];
+		_ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {AmmoBox_ctrlGroup = _this select 0;};}];
+		_ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {AmmoBox_ctrlGroup = nil;};}];
 
 		_ctrlType = _ctrlGroup controlsGroupCtrl 103;
-		_ctrlType ctrladdeventhandler ["toolboxselchanged",{with uinamespace do {['typeChanged',_this,objnull] call AmmoBox_script;};}];
+		_ctrlType ctrlAddEventHandler ["toolboxselchanged",{with uinamespace do {['typeChanged',_this,objnull] call AmmoBox_script;};}];
 		_ctrlType lbsetcursel AmmoBox_type;
 		["typeChanged",[_ctrlType,AmmoBox_type],objnull] call AmmoBox_script;
 
 		_ctrlFilter = _ctrlGroup controlsGroupCtrl 100;
-		_ctrlFilter ctrladdeventhandler ["toolboxselchanged",{with uinamespace do {['filterChanged',_this,objnull] call AmmoBox_script;};}];
+		_ctrlFilter ctrlAddEventHandler ["toolboxselchanged",{with uinamespace do {['filterChanged',_this,objnull] call AmmoBox_script;};}];
 		["filterChanged",[_ctrlFilter,0],objnull] call AmmoBox_script;
 
 		_ctrlList = _ctrlGroup controlsGroupCtrl 101;
-		_ctrlList ctrladdeventhandler ["lbselchanged",{with uinamespace do {["listSelect",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
-		_ctrlList ctrladdeventhandler ["lbdblclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbselchanged",{with uinamespace do {["listSelect",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
+		_ctrlList ctrlAddEventHandler ["lbdblclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
 
 		_ctrlArrowLeft = _ctrlGroup controlsGroupCtrl 313102;
-		_ctrlArrowLeft ctrladdeventhandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),-1],objnull] call AmmoBox_script;};}];
+		_ctrlArrowLeft ctrlAddEventHandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),-1],objnull] call AmmoBox_script;};}];
 		_ctrlArrowRight = _ctrlGroup controlsGroupCtrl 313103;
-		_ctrlArrowRight ctrladdeventhandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
+		_ctrlArrowRight ctrlAddEventHandler ["buttonclick",{with uinamespace do {["listModify",[ctrlparentcontrolsgroup (_this select 0),+1],objnull] call AmmoBox_script;};}];
 
 		_ctrlButtonCustom = _ctrlGroup controlsGroupCtrl 104;
 		_ctrlButtonCustom ctrlsettext localize "str_disp_arcmap_clear";
-		_ctrlButtonCustom ctrladdeventhandler ["buttonclick",{with uinamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
+		_ctrlButtonCustom ctrlAddEventHandler ["buttonclick",{with uinamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
 		
 		if (isNil "AmmoBox_list") then
 		{
@@ -125,7 +125,7 @@ switch _mode do
 					["Binocular","Compass","FirstAidKit","GPS","LaserDesignator","Map","Medikit","MineDetector","NVGoggles","Radio","Toolkit","Watch","UAVTerminal"]
 				];
 				
-				private _CfgWeapons = configfile >> "CfgWeapons";
+				private _CfgWeapons = configFile >> "CfgWeapons";
 				private _list = [[],[],[],[],[],[],[],[],[],[],[],[]];
 
 				//--- Weapons, magazines and items
@@ -162,7 +162,7 @@ switch _mode do
 								{
 									_listType pushback 
 									[
-										([gettext (_weaponCfg >> "displayName")] + (((_weaponCfg >> "linkeditems") call bis_fnc_returnchildren) apply { getText (_CfgWeapons >> getText (_x >> "item") >> "displayName") })) joinString " + ",
+										([getText (_weaponCfg >> "displayName")] + (((_weaponCfg >> "linkeditems") call bis_fnc_returnchildren) apply { getText (_CfgWeapons >> getText (_x >> "item") >> "displayName") })) joinString " + ",
 										_weapon, 
 										getText (_weaponCfg >> "picture"), 
 										parseNumber (getnumber (_weaponCfg >> "type") in [4096,131072]), 
@@ -229,9 +229,9 @@ switch _mode do
 							{
 								_list select _forEachIndex pushback 
 								[
-									gettext (_weaponCfg >> "displayName"),
+									getText (_weaponCfg >> "displayName"),
 									_weapon,
-									gettext (_weaponCfg >> "picture"),
+									getText (_weaponCfg >> "picture"),
 									3,
 									false
 								];
@@ -253,9 +253,9 @@ switch _mode do
 					{
 						_list select 10 pushback 
 						[
-							gettext (_weaponCfg >> "displayName"),
+							getText (_weaponCfg >> "displayName"),
 							_weapon,
-							gettext (_weaponCfg >> "picture"),
+							getText (_weaponCfg >> "picture"),
 							3,
 							false
 						];
@@ -313,7 +313,7 @@ switch _mode do
 			{ _items append _x } foreach _list; //--- Process all items, and later pick the ones which are in the box
 		};
 
-		lnbclear _ctrlList;
+		lnbClear _ctrlList;
 		
 		{
 			private _types = _x;
@@ -339,11 +339,11 @@ switch _mode do
 					if ((_cursel == 0 && _value != 0) || (_cursel > 0)) then 
 					{
 						private _valueText = if (AmmoBox_type > 0) then { [SYMBOL_VIRTUAL_0, SYMBOL_VIRTUAL_1] select (_value > 0) } else { str _value };
-						private _lnbAdd = _ctrlList lnbaddrow ["",_displayName,_valueText,""];
-						_ctrlList lnbsetdata [[_lnbAdd,0],_class];
+						private _lnbAdd = _ctrlList lnbAddRow ["",_displayName,_valueText,""];
+						_ctrlList lnbSetData [[_lnbAdd,0],_class];
 						_ctrlList lnbsetvalue [[_lnbAdd,0],_value];
 						_ctrlList lnbsetvalue [[_lnbAdd,1],_type];
-						_ctrlList lnbsetpicture [[_lnbAdd,0],_picture];
+						_ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
 						private _alpha = if (_value != 0) then {1} else {0.5};
 						_ctrlList lnbsetcolor [[_lnbAdd,1],[1,1,1,_alpha]];
 						_ctrlList lnbsetcolor [[_lnbAdd,2],[1,1,1,_alpha]];
@@ -497,24 +497,24 @@ switch _mode do
 			if (_x != 0) then {
 				_class = _cargoClasses select _foreachindex;
 				_index = switch true do {
-					case (getnumber (configfile >> "cfgweapons" >> _class >> "type") in [4096,131072]): {
-						_class = configname (configfile >> "cfgweapons" >> _class);
+					case (getnumber (configFile >> "cfgweapons" >> _class >> "type") in [4096,131072]): {
+						_class = configname (configFile >> "cfgweapons" >> _class);
 						[2,6] select (_x < 0);
 					};
-					case (isclass (configfile >> "cfgweapons" >> _class)): {
-						_class = configname (configfile >> "cfgweapons" >> _class);
+					case (isclass (configFile >> "cfgweapons" >> _class)): {
+						_class = configname (configFile >> "cfgweapons" >> _class);
 						[0,4] select (_x < 0);
 					};
-					case (isclass (configfile >> "cfgmagazines" >> _class)): {
-						_class = configname (configfile >> "cfgmagazines" >> _class);
+					case (isclass (configFile >> "cfgmagazines" >> _class)): {
+						_class = configname (configFile >> "cfgmagazines" >> _class);
 						[1,5] select (_x < 0);
 					};
-					case (isclass (configfile >> "cfgvehicles" >> _class)): {
-						_class = configname (configfile >> "cfgvehicles" >> _class);
+					case (isclass (configFile >> "cfgvehicles" >> _class)): {
+						_class = configname (configFile >> "cfgvehicles" >> _class);
 						[3,7] select (_x < 0);
 					};
-					case (isclass (configfile >> "cfgglasses" >> _class)): {
-						_class = configname (configfile >> "cfgglasses" >> _class);
+					case (isclass (configFile >> "cfgglasses" >> _class)): {
+						_class = configname (configFile >> "cfgglasses" >> _class);
 						[2,6] select (_x < 0);
 					};
 					default {-1};

@@ -6,7 +6,7 @@
  * Arguments:
  * 0: String. CfgLoadouts faction
  * 1: String. CfgLoadouts role
- * 2: Configfile (optional). configfile to check, can be either missionConfigFile or configFile
+ * 2: configFile (optional). configFile to check, can be either missionConfigFile or configFile
  *
  * Return:
  * Array. Loadout array

@@ -11,7 +11,7 @@ switch _mode do {
 		_display = _params select 0;
 
 		_ctrlIslandBox = _display displayctrl IDC_DISPLAY3DENNEW_LIST;
-		_ctrlIslandBox ctrladdeventhandler ["lbselchanged","with uinamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
+		_ctrlIslandBox ctrlAddEventHandler ["lbselchanged","with uinamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
 		['lbselchanged',[_ctrlIslandBox,lbcursel _ctrlIslandBox],''] call display3DENNew_script;
 
 	};
@@ -30,18 +30,18 @@ switch _mode do {
 
 		//--- Set name
 		_world = _ctrlIslandBox lbdata _cursel;
-		_worldConfig = configfile >> "cfgworlds" >> _world;
+		_worldConfig = configFile >> "cfgworlds" >> _world;
 		_ctrlName ctrlsettext toupper (_ctrlIslandBox lbtext _cursel);
 
 		//--- Set author
-		_author = gettext (_worldConfig >> "author");
+		_author = getText (_worldConfig >> "author");
 		if (_author == "") then {_author = localize "STR_AUTHOR_UNKNOWN"};
 		_author = if (_author == "") then {""} else {format [localize "STR_FORMAT_AUTHOR_SCRIPTED",_author]};
 		_ctrlAuthor ctrlsettext _author;
 
 		//--- Set picture
-		_picture = gettext (_worldConfig >> "pictureMap");
-		if (_picture == "") then {_picture = gettext (configfile >> "display3DENNew" >> "defaultPicture")};
+		_picture = getText (_worldConfig >> "pictureMap");
+		if (_picture == "") then {_picture = getText (configFile >> "display3DENNew" >> "defaultPicture")};
 		_ctrlIslandPanorama ctrlsettext _picture;
 
 		//--- Set lng/lat

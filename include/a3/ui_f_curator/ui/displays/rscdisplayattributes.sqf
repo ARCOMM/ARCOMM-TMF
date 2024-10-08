@@ -8,7 +8,7 @@ switch _mode do {
 	case "onLoad": {
 
 		_display = _params select 0;
-		_displayConfig = configfile >> _class;
+		_displayConfig = configFile >> _class;
 
 		_ctrlBackground = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_BACKGROUND;
 		_ctrlTitle = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_TITLE;
@@ -45,7 +45,7 @@ switch _mode do {
 		//--- Initialize attributes
 		_posY = _ctrlContentOffsetY;
 		_contentControls = _displayConfig >> "Controls" >> "Content" >> "Controls";
-		_enableDebugConsole = ["DebugConsole",getnumber (missionconfigfile >> "enableDebugConsole")] call bis_fnc_getParamValue;
+		_enableDebugConsole = ["DebugConsole",getnumber (missionConfigFile >> "enableDebugConsole")] call bis_fnc_getParamValue;
 		_enableAdmin = (_enableDebugConsole == 1 && (isserver || serverCommandAvailable "#shutdown")) || _enableDebugConsole == 2;
 		for "_i" from 0 to (count _contentControls - 1) do {
 			_cfgControl = _contentControls select _i;
@@ -75,9 +75,9 @@ switch _mode do {
 
 		_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objnull];
 		_name = switch (typename _target) do {
-			case (typename objnull): {gettext (configfile >> "cfgvehicles" >> typeof _target >> "displayname")};
-			case (typename grpnull): {groupid _target};
-			case (typename []): {format ["%1: %3 #%2",groupid (_target select 0),_target select 1,localize "str_a3_cfgmarkers_waypoint_0"]};
+			case (typename objnull): {getText (configFile >> "cfgvehicles" >> typeof _target >> "displayname")};
+			case (typename grpnull): {groupId _target};
+			case (typename []): {format ["%1: %3 #%2",groupId (_target select 0),_target select 1,localize "str_a3_cfgmarkers_waypoint_0"]};
 			case (typename ""): {markertext _target};
 		};
 		_ctrlTitle ctrlsettext format [ctrltext _ctrlTitle,toupper _name];

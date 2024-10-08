@@ -5,8 +5,8 @@ UnitMarker_ctrlGroup = _ctrlGroup;
 
 private _entity = (get3DENSelected "object") select 0;
 
-_ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {UnitMarker_ctrlGroup = _this select 0;};}];
-_ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {UnitMarker_ctrlGroup = nil;};}];
+_ctrlGroup ctrlAddEventHandler ["setfocus",{with uinamespace do {UnitMarker_ctrlGroup = _this select 0;};}];
+_ctrlGroup ctrlAddEventHandler ["killfocus",{with uinamespace do {UnitMarker_ctrlGroup = nil;};}];
 
 private _unitMarkerArray = (_entity get3DENAttribute "TMF_SpecialistMarker") # 0;
 if (_unitMarkerArray isEqualType "") then {

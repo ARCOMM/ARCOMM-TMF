@@ -31,11 +31,11 @@ switch _mode do {
 			_ctrlMapAuthor = _display displayctrl IDC_LOADING_MAPAUTHOR;
 			_ctrlMapDescription = _display displayctrl IDC_LOADING_MAPDESCRIPTION;
 
-			_cfgWorld = configfile >> "cfgworlds" >> worldname;
-			_worldName = gettext (_cfgWorld >> "description");
-			_pictureMap = gettext (_cfgWorld >> "pictureMap");
+			_cfgWorld = configFile >> "cfgworlds" >> worldname;
+			_worldName = getText (_cfgWorld >> "description");
+			_pictureMap = getText (_cfgWorld >> "pictureMap");
 			if (_pictureMap == "") then {_pictureMap = "#(argb,8,8,3)color(1,1,1,0.2)";};
-			_pictureShot = gettext (_cfgWorld >> "pictureShot");
+			_pictureShot = getText (_cfgWorld >> "pictureShot");
 			_loadingTexts = getarray (_cfgWorld >> "loadingTexts");
 			_loadingText = if (count _loadingTexts > 0) then {
 				_loadingTexts select floor (((diag_ticktime / 10) % (count _loadingTexts)));
@@ -81,28 +81,28 @@ switch _mode do {
 			_ctrlMissionDescriptionEngine = _display displayctrl IDC_LOAD_MISSION_NAME;
 
 			//--- Picture
-			_loadingPicture = getmissionconfigvalue ["loadScreen",""];//gettext (missionconfigfile >> "loadScreen");
-			if (_loadingPicture == "") then {_loadingPicture = getmissionconfigvalue ["overviewPicture",""]};//gettext (missionconfigfile >> "overviewPicture");}; //--- Use overview data
+			_loadingPicture = getmissionconfigvalue ["loadScreen",""];//getText (missionConfigFile >> "loadScreen");
+			if (_loadingPicture == "") then {_loadingPicture = getmissionconfigvalue ["overviewPicture",""]};//getText (missionConfigFile >> "overviewPicture");}; //--- Use overview data
 
 			//--- Mission name
-			_loadingName = getmissionconfigvalue ["onLoadName",""];//gettext (missionconfigfile >> "onLoadName");
+			_loadingName = getmissionconfigvalue ["onLoadName",""];//getText (missionConfigFile >> "onLoadName");
 			if (_loadingName == "") then {
 				_loadingName = if (briefingname != missionname) then {briefingname} else {""};
 			};
 
 			//--- Description
-			//_loadingTextConfig = if (false) then {gettext (missionconfigfile >> "onLoadIntro")} else {gettext (missionconfigfile >> "onLoadMission")};
+			//_loadingTextConfig = if (false) then {getText (missionConfigFile >> "onLoadIntro")} else {getText (missionConfigFile >> "onLoadMission")};
 			_loadingTextConfig = getmissionconfigvalue ["onLoadMission",""];
 			_loadingText = ctrltext _ctrlMissionDescriptionEngine;
 			if (_loadingText == "") then {_loadingText = _loadingTextConfig;}; //--- Use overview data
-			if (_loadingText in ["",localize "str_load_world"]) then {_loadingText = getmissionconfigvalue ["overviewText",""];};//gettext (missionconfigfile >> "overviewText");};
+			if (_loadingText in ["",localize "str_load_world"]) then {_loadingText = getmissionconfigvalue ["overviewText",""];};//getText (missionConfigFile >> "overviewText");};
 
 			//--- MP type
-			_gameType = gettext (getMissionConfig "Header" >> "gameType");//gettext (missionconfigfile >> "Header" >> "gameType");
-			_gameTypeName = gettext (configfile >> "CfgMPGameTypes" >> _gameType >> "name");
-			if (_gameTypeName == "") then {_gameTypeName = gettext (configfile >> "CfgMPGameTypes" >> "Unknown" >> "name");};
+			_gameType = getText (getMissionConfig "Header" >> "gameType");//getText (missionConfigFile >> "Header" >> "gameType");
+			_gameTypeName = getText (configFile >> "CfgMPGameTypes" >> _gameType >> "name");
+			if (_gameTypeName == "") then {_gameTypeName = getText (configFile >> "CfgMPGameTypes" >> "Unknown" >> "name");};
 
-			//_showMission = if (false) then {missionconfigfile >> "onLoadIntroTime"} else {missionconfigfile >> "onLoadMissionTime"};
+			//_showMission = if (false) then {missionConfigFile >> "onLoadIntroTime"} else {missionConfigFile >> "onLoadMissionTime"};
 			//_showMission = if (isnumber _showMission) then {getnumber _showMission > 0} else {true};
 			//if (_showMission && (_loadingText != "" || _loadingPicture != "")) then {
 
@@ -119,7 +119,7 @@ switch _mode do {
 			_progressMission = _display displayctrl IDC_LOADING_PROGRESSMISSION;
 			RscDisplayLoading_progress = _progressMap;
 
-			//if (str missionconfigfile != "" && _showMission) then {
+			//if (str missionConfigFile != "" && _showMission) then {
 			if (_loadingText != "" || {_loadingPicture != ""}) then {
 				_loadingName = _loadingName call (uinamespace getvariable "bis_fnc_localize");
 				_loadingText = _loadingText call (uinamespace getvariable "bis_fnc_localize");
@@ -148,7 +148,7 @@ switch _mode do {
 				_ctrlMission ctrlsetposition _ctrlMissionPos;
 				_ctrlMission ctrlcommit 0;
 
-				[missionconfigfile,_ctrlMissionAuthor] call bis_fnc_overviewauthor;
+				[missionConfigFile,_ctrlMissionAuthor] call bis_fnc_overviewauthor;
 
 
 				//DLC notification--------------------------------------------------------------------
@@ -157,7 +157,7 @@ switch _mode do {
 				//Info is selected randomly among the non-owned DLCs + DLC Bundle
 				_missionDLCs = [];
 				{
-					_appId = getNumber(configfile >> "CfgMods" >> _x >> "appId");
+					_appId = getNumber(configFile >> "CfgMods" >> _x >> "appId");
 					_missionDLCs = _missionDLCs + [_appId];
 				} foreach (getMissionDlcs); //Take all not owned DLCs and check whether they were released already. If yes, count them as not owned
 
@@ -180,7 +180,7 @@ switch _mode do {
 					{
 						//_notOwnedDLCs is non-empty => add DLC Bundle
 						//Bundles were meanwhile retired as products
-						//_notOwnedDLCs = _notOwnedDLCs + [getNumber(configfile >> "CfgMods" >> "DLCBundle" >> "appId")];
+						//_notOwnedDLCs = _notOwnedDLCs + [getNumber(configFile >> "CfgMods" >> "DLCBundle" >> "appId")];
 						//Randomly select one of the non-owned DLCs and read info from it
 						_selectedDLC = floor(random (count _notOwnedDLCs));
 						_selectedDLCAppId = _notOwnedDLCs select _selectedDLC;
@@ -225,7 +225,7 @@ switch _mode do {
 							_ctrl = _display displayctrl IDC_LOADING_DLCDESCRIPTION;
 							_ctrl ctrlSetStructuredText (parseText getText(_x >> "overviewText"));
 						};
-					} foreach ((configfile >> "CfgMods") call bis_fnc_returnChildren);
+					} foreach ((configFile >> "CfgMods") call bis_fnc_returnChildren);
 				};
 
 				//--- Set height of description based on text
@@ -290,7 +290,7 @@ switch _mode do {
 		};
 
 		//--- Disclaimer - Moved here to prevent showing Lite Disclaimer when starting/shutting down the game
-		if (getnumber (configfile >> "CfgMods" >> "gamma") == 1) then
+		if (getnumber (configFile >> "CfgMods" >> "gamma") == 1) then
 		{
 			_ctrlDisclaimer = _display displayctrl IDC_LOADING_DISCLAIMER;
 			_ctrlDisclaimerName = _display displayctrl IDC_LOADING_DISCLAIMERNAME;

@@ -8,7 +8,7 @@ private _faction = _control lbData (lbCurSel _control);
 GVAR(lastFactionSelection) set [1,lbCurSel _control];
 private _classes = [];
 
-//MissionConfigFile overrides.
+//missionConfigFile overrides.
 call {
     if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
     if(isClass (configFile >> "CfgLoadouts" >> _faction) && count _classes <= 0) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};

@@ -87,7 +87,7 @@ with uiNamespace do {
             _ctrlFullNameEdit ctrlSetText _fName;
             _ctrlNameEdit ctrlSetText _mName;
         } else {
-            _ctrlNameEdit ctrlSetText (GroupID _entity);
+            _ctrlNameEdit ctrlSetText (groupId _entity);
             _ctrlFullNameEdit ctrlSetText "";
         };
     };

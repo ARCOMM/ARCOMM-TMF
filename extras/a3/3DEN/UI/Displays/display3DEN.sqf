@@ -18,9 +18,9 @@ switch _mode do {
 			//--- Register init event handlers
 			_inits = [];
 			{
-				_init = gettext (_x >> "init");
+				_init = getText (_x >> "init");
 				if (_init != "") then {_inits pushback [[_display],compile _init];};
-			} foreach configproperties [configfile >> "Cfg3DEN" >> "EventHandlers","isclass _x"];
+			} foreach configproperties [configFile >> "Cfg3DEN" >> "EventHandlers","isclass _x"];
 
 			//--- Call init event handlers
 			{
