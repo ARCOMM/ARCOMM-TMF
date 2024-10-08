@@ -3,11 +3,11 @@ class GVARMAIN(RscDisplayAttributesModuleAIGear): RscDisplayAttributes {
     curatorObjectAttributes = 1;
     class Controls: Controls {
         class Background: Background{};
-        class Title: Title{};
+        class Title: Title {};
         class Content: Content {
-            class Controls: controls {
+            class Controls: Controls {
                 class Text: RscAttributeText {
-                    class Controls: controls {
+                    class Controls: Controls {
                         class Title: Title {
                             text = "Bulk applies loadouts to AI units. Cannot be undone/disabled!";
                         };

@@ -4,7 +4,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
     x = QUOTE(7 * GUI_GRID_W + GUI_GRID_CENTER_X);
     y = QUOTE(10 * GUI_GRID_H + GUI_GRID_CENTER_Y);
     w = QUOTE(26 * GUI_GRID_W);
-    h = GUI_GRID_H;
+    h = QUOTE(GUI_GRID_H);
     class controls {
         class Title: RscText {
             idc = IDC_RSCATTRIBUTERETROACTIVE_TITLE;
@@ -12,7 +12,7 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
             x = QUOTE(0 * GUI_GRID_W);
             y = QUOTE(0 * GUI_GRID_H);
             w = QUOTE(10 * GUI_GRID_W);
-            h = GUI_GRID_H;
+            h = QUOTE(GUI_GRID_H);
             colorBackground[] = GUI_TEXT_SHADOW;
         };
         class Background: RscText {
@@ -21,19 +21,19 @@ class GVARMAIN(RscAttributeRetroactive): RscControlsGroupNoScrollbars {
             x = QUOTE(10 * GUI_GRID_W);
             y = QUOTE(0 * GUI_GRID_H);
             w = QUOTE(16 * GUI_GRID_W);
-            h = GUI_GRID_H;
+            h = QUOTE(GUI_GRID_H);
             colorText[] = {1,1,1,0.5};
             colorBackground[] = {1,1,1,0.1};
         };
         class Value: RscToolboxButton {
             rows = 1;
             columns = 2;
-            strings[] = {$STR_enabled,$STR_disabled};
+            strings[] = {"$STR_enabled","$STR_disabled"};
             idc = IDC_RSCATTRIBUTERETROACTIVE_TOOLBOX;
             x = QUOTE(10 * GUI_GRID_W);
             y = QUOTE(0 * GUI_GRID_H);
             w = QUOTE(16 * GUI_GRID_W);
-            h = GUI_GRID_H;
+            h = QUOTE(GUI_GRID_H);
         };
     };
 };
