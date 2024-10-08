@@ -114,7 +114,7 @@ class DefaultFont
 /// Scripts
 ///////////////////////////////////////////////////////////////////////////
 
-#define INIT_DISPLAY_FUNCTION	(uiNamespace getvariable 'BIS_fnc_initDisplay')
+#define INIT_DISPLAY_FUNCTION	(uiNamespace getVariable 'BIS_fnc_initDisplay')
 #define INIT_DISPLAY_INTERNAL	scriptIsInternal = 1;
 
 //--- Code executed on each display where the macro is used. Scripts are pre-compiled at the game start by BIS_fnc_initDisplays
@@ -128,7 +128,7 @@ class DefaultFont
 #define INIT_DISPLAY_START(NAME,PATH) \
 	scriptName = ##NAME##;\
 	scriptPath = ##PATH##;\
-	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";\
+	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getVariable 'BIS_fnc_initDisplay')";\
 	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;
 
 //--- Code executed on each control where the macro is used

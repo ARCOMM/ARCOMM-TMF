@@ -10,7 +10,7 @@ __EXEC(\
 			_xSize = _x * _coef;\
 			_cond = _xSize < _size;\
 			if _cond then {_sizeEx = _xSize;};\
-		} foreach _sizes;\
+		} forEach _sizes;\
 		_sizeEx = _sizeEx / _pixelScale;\
 		_bracketL = tostring [40];\
 		_bracketR = tostring [41];\

@@ -9,11 +9,11 @@ switch _mode do {
 	case "onLoad": {
 		_display = _params select 0;
 
-		_ctrlTitle = _display displayctrl IDC_DISPLAY3DENCOPY_TITLE;
-		_ctrlEdit = _display displayctrl IDC_DISPLAY3DENCOPY_EDIT;
-		_ctrlEditFake = _display displayctrl IDC_DISPLAY3DENCOPY_EDITFAKE;
+		_ctrlTitle = _display displayCtrl IDC_DISPLAY3DENCOPY_TITLE;
+		_ctrlEdit = _display displayCtrl IDC_DISPLAY3DENCOPY_EDIT;
+		_ctrlEditFake = _display displayCtrl IDC_DISPLAY3DENCOPY_EDITFAKE;
 
-		_data = uiNamespace getvariable ["Display3DENCopy_data",[]];
+		_data = uiNamespace getVariable ["Display3DENCopy_data",[]];
 		_dataTitle = _data param [0,"",[""]];
 		_dataEdit = _data param [1,"",[""]];
 

@@ -7,6 +7,6 @@
         {
             _uPos = _pos vectorAdd [random 100 - random 100,random 100 - random 100,random 15 - random 15];
             [_x,_uPos] remoteExecCall [QFUNC(paraDrop),_x];
-        } foreach _units;
+        } forEach _units;
     };
 },_this] call CBA_fnc_waitUntilAndExecute;

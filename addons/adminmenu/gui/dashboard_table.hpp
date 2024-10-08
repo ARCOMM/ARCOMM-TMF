@@ -54,7 +54,7 @@ class UnitStats_SideIcon_Blufor: RscPicture
 {
     style = 48 + 2048; // picture + keep aspect ratio
     text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
-    colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
+    colorText[] = {"(profilenamespace getVariable ['Map_BLUFOR_R',0])", "(profilenamespace getVariable ['Map_BLUFOR_G',0])", "(profilenamespace getVariable ['Map_BLUFOR_B',1])", 0.8};
     sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
     x = "8 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
     y = "2.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
@@ -98,7 +98,7 @@ class UnitStats_SideBackground_Opfor: UnitStats_SideBackground
 };
 class UnitStats_SideIcon_Opfor: UnitStats_SideIcon_Blufor
 {
-    colorText[] = {"(profilenamespace getvariable ['Map_OPFOR_R',1])", "(profilenamespace getvariable ['Map_OPFOR_G',0])", "(profilenamespace getvariable ['Map_OPFOR_B',0])", 0.8};
+    colorText[] = {"(profilenamespace getVariable ['Map_OPFOR_R',1])", "(profilenamespace getVariable ['Map_OPFOR_G',0])", "(profilenamespace getVariable ['Map_OPFOR_B',0])", 0.8};
     y = "3.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
 };
 class UnitStats_AI_Opfor: UnitStats_AI
@@ -137,7 +137,7 @@ class UnitStats_SideBackground_Indep: UnitStats_SideBackground_Blufor
 };
 class UnitStats_SideIcon_Indep: UnitStats_SideIcon_Blufor
 {
-    colorText[] = {"(profilenamespace getvariable ['Map_Independent_R',0])", "(profilenamespace getvariable ['Map_Independent_G',1])", "(profilenamespace getvariable ['Map_Independent_B',0])", 0.8};
+    colorText[] = {"(profilenamespace getVariable ['Map_Independent_R',0])", "(profilenamespace getVariable ['Map_Independent_G',1])", "(profilenamespace getVariable ['Map_Independent_B',0])", 0.8};
     y = "4.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
 };
 class UnitStats_AI_Indep: UnitStats_AI_Blufor
@@ -168,7 +168,7 @@ class UnitStats_SideBackground_Civilian: UnitStats_SideBackground_Opfor
 };
 class UnitStats_SideIcon_Civilian: UnitStats_SideIcon_Blufor
 {
-    colorText[] = {"(profilenamespace getvariable ['Map_Civilian_R',0.5])", "(profilenamespace getvariable ['Map_Civilian_G',0])", "(profilenamespace getvariable ['Map_Civilian_B',0.5])", 0.8};
+    colorText[] = {"(profilenamespace getVariable ['Map_Civilian_R',0.5])", "(profilenamespace getVariable ['Map_Civilian_G',0])", "(profilenamespace getVariable ['Map_Civilian_B',0.5])", 0.8};
     y = "5.6 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
 };
 class UnitStats_AI_Civilian: UnitStats_AI_Opfor

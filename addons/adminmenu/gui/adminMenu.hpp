@@ -209,7 +209,7 @@ class ADDON
         class UtilityTitleBackground: RscText
         {
             idc = IDC_TMF_ADMINMENU_UTIL_TBACK;
-            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
             x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             y = "3.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
@@ -239,7 +239,7 @@ class ADDON
     {
         class TitleBackground: RscText
         {
-            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
             x = "1 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
@@ -325,7 +325,7 @@ class GVAR(spectatorControlUnitDialog) {
             y = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "19 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
             h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
             shadow = 1;
             style = 0;
         };

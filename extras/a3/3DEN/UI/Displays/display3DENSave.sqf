@@ -9,15 +9,15 @@ switch _mode do {
 	case "onLoad": {
 		//--- Restore the last sort order
 		_display = _params select 0;
-		uiNamespace setvariable ["display3DENSave_display",_display];
-		_selected = uiNamespace getvariable ["display3DENSave_selected",[0,0]];
-		_ctrlFilter = _display displayctrl IDC_DISPLAY3DENSAVE_FILTER;
+		uiNamespace setVariable ["display3DENSave_display",_display];
+		_selected = uiNamespace getVariable ["display3DENSave_selected",[0,0]];
+		_ctrlFilter = _display displayCtrl IDC_DISPLAY3DENSAVE_FILTER;
 		_ctrlFilter lnbsetvalue [[0,_selected select 0],_selected select 1];
 
-		if (ctrltext (_display displayctrl 1) != localize "STR_3den_display3den_menubar_missionsave_text") then { // ToDo: Better Save variant detection, split into separate display perhaps?
+		if (ctrltext (_display displayCtrl 1) != localize "STR_3den_display3den_menubar_missionsave_text") then { // ToDo: Better Save variant detection, split into separate display perhaps?
 			{
-				(_display displayctrl _x) ctrlshow false;
-			} foreach [IDC_DISPLAY3DENSAVE_BINARIZETEXT,IDC_DISPLAY3DENSAVE_BINARIZE];
+				(_display displayCtrl _x) ctrlshow false;
+			} forEach [IDC_DISPLAY3DENSAVE_BINARIZETEXT,IDC_DISPLAY3DENSAVE_BINARIZE];
 		};
 	};
 	case "onUnload": {
@@ -25,17 +25,17 @@ switch _mode do {
 
 		// Save value of 'Binarize' attribute
 		if ((_params select 1) == IDC_OK) then {
-			"Scenario" set3DENMissionAttribute ["SaveBinarized",cbChecked (_display displayctrl IDC_DISPLAY3DENSAVE_BINARIZE)];
+			"Scenario" set3DENMissionAttribute ["SaveBinarized",cbChecked (_display displayCtrl IDC_DISPLAY3DENSAVE_BINARIZE)];
 		};
 
 		//--- Save mission list sorting
-		_ctrlFilter = _display displayctrl IDC_DISPLAY3DENSAVE_FILTER;
+		_ctrlFilter = _display displayCtrl IDC_DISPLAY3DENSAVE_FILTER;
 		_selected = [0,0];
 		for '_i' from 0 to (lnbsize _ctrlFilter select 1) - 1 do {
 			_value = _ctrlFilter lnbvalue [0,_i];
-			if (_value > -1) exitwith {_selected = [_i,_value];};
+			if (_value > -1) exitWith {_selected = [_i,_value];};
 		};
-		uiNamespace setvariable ["display3DENSave_selected",_selected];
-		uiNamespace setvariable ["display3DENSave_display",nil];
+		uiNamespace setVariable ["display3DENSave_selected",_selected];
+		uiNamespace setVariable ["display3DENSave_display",nil];
 	};
 };

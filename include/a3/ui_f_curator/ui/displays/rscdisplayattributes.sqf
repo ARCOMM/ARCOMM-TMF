@@ -10,12 +10,12 @@ switch _mode do {
 		_display = _params select 0;
 		_displayConfig = configFile >> _class;
 
-		_ctrlBackground = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_BACKGROUND;
-		_ctrlTitle = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_TITLE;
-		_ctrlContent = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_CONTENT;
-		_ctrlButtonOK = _display displayctrl IDC_OK;
-		_ctrlButtonCancel = _display displayctrl IDC_CANCEL;
-		_ctrlButtonCustom = _display displayctrl IDC_RSCDISPLAYATTRIBUTES_BUTTONCUSTOM;
+		_ctrlBackground = _display displayCtrl IDC_RSCDISPLAYATTRIBUTES_BACKGROUND;
+		_ctrlTitle = _display displayCtrl IDC_RSCDISPLAYATTRIBUTES_TITLE;
+		_ctrlContent = _display displayCtrl IDC_RSCDISPLAYATTRIBUTES_CONTENT;
+		_ctrlButtonOK = _display displayCtrl IDC_OK;
+		_ctrlButtonCancel = _display displayCtrl IDC_CANCEL;
+		_ctrlButtonCustom = _display displayCtrl IDC_RSCDISPLAYATTRIBUTES_BUTTONCUSTOM;
 
 		_ctrlBackgroundPos = ctrlposition _ctrlBackground;
 		_ctrlTitlePos = ctrlposition _ctrlTitle;
@@ -28,10 +28,10 @@ switch _mode do {
 		_ctrlContentOffsetY = (_ctrlContentPos select 1) - (_ctrlBackgroundPos select 1);
 
 		//--- Show fake map in the background
-		_ctrlMap = _display displayctrl IDC_RSCDISPLAYCURATOR_MAINMAP;
+		_ctrlMap = _display displayCtrl IDC_RSCDISPLAYCURATOR_MAINMAP;
 		_ctrlMap ctrlenable false;
 		if (visiblemap) then {
-			_ctrlCuratorMap = (finddisplay IDD_RSCDISPLAYCURATOR) displayctrl IDC_RSCDISPLAYCURATOR_MAINMAP;
+			_ctrlCuratorMap = (finddisplay IDD_RSCDISPLAYCURATOR) displayCtrl IDC_RSCDISPLAYCURATOR_MAINMAP;
 			_ctrlMap ctrlmapanimadd [0,ctrlmapscale _ctrlCuratorMap,_ctrlCuratorMap ctrlmapscreentoworld [0.5,0.5]];
 			ctrlmapanimcommit _ctrlMap;
 		} else {
@@ -39,7 +39,7 @@ switch _mode do {
 		};
 
 		//--- Load default attributes
-		_attributes = if (getnumber (_displayConfig >> "filterAttributes") > 0) then {missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_attributes",[]]} else {["%ALL"]};
+		_attributes = if (getnumber (_displayConfig >> "filterAttributes") > 0) then {missionnamespace getVariable ["BIS_fnc_initCuratorAttributes_attributes",[]]} else {["%ALL"]};
 		_allAttributes = "%ALL" in _attributes;
 
 		//--- Initialize attributes
@@ -51,7 +51,7 @@ switch _mode do {
 			_cfgControl = _contentControls select _i;
 			if (isclass _cfgControl) then {
 				_idc = getnumber (_cfgControl >> "idc");
-				_control = _display displayctrl _idc;
+				_control = _display displayCtrl _idc;
 
 				//--- Admin specific attribute
 				_show = if (getnumber (_cfgControl >> "adminOnly") > 0) then {_enableAdmin} else {true};
@@ -73,9 +73,9 @@ switch _mode do {
 		};
 		_posH = ((_posY + _ctrlContentOffsetY) min 0.9) * 0.5;
 
-		_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objNull];
+		_target = missionnamespace getVariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 		_name = switch (typename _target) do {
-			case (typename objNull): {getText (configFile >> "cfgvehicles" >> typeof _target >> "displayname")};
+			case (typename objNull): {getText (configFile >> "cfgvehicles" >> typeOf _target >> "displayname")};
 			case (typename grpnull): {groupId _target};
 			case (typename []): {format ["%1: %3 #%2",groupId (_target select 0),_target select 1,localize "str_a3_cfgmarkers_waypoint_0"]};
 			case (typename ""): {markertext _target};
@@ -113,7 +113,7 @@ switch _mode do {
 		[_display] spawn {
 			disableserialization;
 			_display = _this select 0;
-			_target = missionnamespace getvariable ["BIS_fnc_initCuratorAttributes_target",objNull];
+			_target = missionnamespace getVariable ["BIS_fnc_initCuratorAttributes_target",objNull];
 			switch (typename _target) do {
 				case (typename objNull): {
 					_isAlive = alive _target;

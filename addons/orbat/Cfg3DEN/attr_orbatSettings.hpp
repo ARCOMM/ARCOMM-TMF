@@ -2,11 +2,11 @@ class ORBATSettings : Toolbox
 {
     scriptName = "ORBATSettings";
     scriptPath = "TMF_orbat";
-    onLoad = "['onLoad',_this,'ORBATSettings','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-    onUnload = "['onUnload',_this,'ORBATSettings','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
+    onLoad = "['onLoad',_this,'ORBATSettings','TMF_orbat',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+    onUnload = "['onUnload',_this,'ORBATSettings','TMF_orbat',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
 
-    attributeLoad = "['attributeLoad',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
-    attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+    attributeLoad = "['attributeLoad',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
+    attributeSave = "['attributeSave',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
 
     w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
     h = QUOTE(25 * SIZE_M * GRID_H);
@@ -37,7 +37,7 @@ class ORBATSettings : Toolbox
             tooltips[] = {"Side", "Faction"};
             values[] = {0, 1};
 
-            onToolboxSelChanged = "['orbatBinChanged',_this] call (uiNamespace getvariable 'ORBATSettings_script');"; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = "['orbatBinChanged',_this] call (uiNamespace getVariable 'ORBATSettings_script');"; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
         class orbatToggleButton : RscButtonMenu
         {
@@ -50,7 +50,7 @@ class ORBATSettings : Toolbox
             x = QUOTE(SIZE_M * GRID_W);
             w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W));
             y = QUOTE(2 * SIZE_M * GRID_H);
-            action = "['orbatToggleButton',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['orbatToggleButton',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Toggle through the various sides/factions (Only toggles through sides/factions with playable units)";
         };
         class OrbatTitle : LangTitle
@@ -79,7 +79,7 @@ class ORBATSettings : Toolbox
             x = QUOTE(SIZE_M * GRID_W);
             w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W)/4);
             y = QUOTE(4 * SIZE_M * GRID_H);
-            action = "['treeMoveClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['treeMoveClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Move the selected element";
         };
         class TreeAdd : TreeMove
@@ -87,7 +87,7 @@ class ORBATSettings : Toolbox
             idc = 105;
             text = "Add";
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W)/4 + SIZE_M * GRID_W);
-            action = "['treeAddClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['treeAddClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Add a new virtual element as a child of the selected element. You can not create a virtual element on a real group.";
         };
         class TreeEdit : TreeMove
@@ -95,7 +95,7 @@ class ORBATSettings : Toolbox
             idc = 106;
             text = "Edit";
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W)/4 *2 + SIZE_M * GRID_W);
-            action = "['treeEditClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['treeEditClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Edit the orbat settings for the selected element";
         };
         class TreeDel : TreeMove
@@ -103,7 +103,7 @@ class ORBATSettings : Toolbox
             idc = 107;
             text = "Delete";
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W)/4 *3 + SIZE_M * GRID_W);
-            action = "['treeDelClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['treeDelClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Delete the virtual element. This will not delete real groups";
         };
         class OrbatTree : ctrlTree
@@ -116,8 +116,8 @@ class ORBATSettings : Toolbox
             multiselectEnabled = 1;
             disableKeyboardSearch = 1;
             colorDisabled[] = {1,1,1,0.25};
-            action = "['treeClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
-            onTreeDblClick = "['treeDoubleClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['treeClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
+            onTreeDblClick = "['treeDoubleClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             colorBackground[] = {0,0,0,0.3};
         };
 
@@ -144,7 +144,7 @@ class ORBATSettings : Toolbox
             x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (2.5*SIZE_M)) * GRID_W);
             w = QUOTE(2.5*SIZE_M * GRID_W);
             y = QUOTE(8.3 * SIZE_M * GRID_H);
-            action = "['moveTop',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['moveTop',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Move the current entry to the top.";
         };
         class TreeUp : TreeTop
@@ -159,7 +159,7 @@ class ORBATSettings : Toolbox
             animTexturePressed = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
             animTextureDefault = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
 
-            action = "['moveUp',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['moveUp',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Move the current entry up.";
         };
         class TreeDown : TreeTop
@@ -172,7 +172,7 @@ class ORBATSettings : Toolbox
             animTexturePressed = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_down_ca.paa";
             animTextureDefault = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_down_ca.paa";
             y = QUOTE(12.6 * SIZE_M * GRID_H);
-            action = "['moveDown',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['moveDown',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Move the current entry down.";
         };
         class TreeBottom : TreeDown
@@ -186,7 +186,7 @@ class ORBATSettings : Toolbox
 
             idc = 127;
             y = QUOTE(14.75 * SIZE_M * GRID_H);
-            action = "['moveBottom',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['moveBottom',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Move the current entry to the bottom.";
         };
 
@@ -212,8 +212,8 @@ class ORBATSettings : Toolbox
             multiselectEnabled = 1;
             disableKeyboardSearch = 1;
             colorDisabled[] = {1,1,1,0.25};
-            //action = "['treeClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
-            onTreeDblClick = "['moveTreeDoubleClick',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            //action = "['treeClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
+            onTreeDblClick = "['moveTreeDoubleClick',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             colorBackground[] = {0,0,0,0.3};
         };
         class moveOrbatCancel : TreeMove
@@ -222,7 +222,7 @@ class ORBATSettings : Toolbox
             text = "Cancel";
             y = QUOTE(24 * SIZE_M * GRID_H);
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W / 8)*4.5 + SIZE_M * GRID_W);
-            action = "['editOrbatEntryClickCancel',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['editOrbatEntryClickCancel',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
             tooltip = "Cancel moving the element.";
         };
 
@@ -262,7 +262,7 @@ class ORBATSettings : Toolbox
             tooltips[] = {GROUP_MARKER_DESCRIPTIONS};
             values[] = {GROUP_MARKER_POSTFIX};
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
 
 
@@ -313,7 +313,7 @@ class ORBATSettings : Toolbox
                 "purple"
             };
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
         // MARKER TEXT
         class MarkerTitle: GmTitle
@@ -388,7 +388,7 @@ class ORBATSettings : Toolbox
                 "x\tmf\addons\orbat\textures\modif_company.paa"
             };
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
 
         class EditOrbatEntryOk : RscButtonMenu
@@ -399,14 +399,14 @@ class ORBATSettings : Toolbox
             w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W / 6);
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W / 6)*1.5 + SIZE_M * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
-            action = "['editOrbatEntryClickOkay',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['editOrbatEntryClickOkay',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
         };
         class EditOrbatEntryCancel : EditOrbatEntryOk
         {
             idc = 119;
             text = "Cancel";
             x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M) * GRID_W / 6)*3.5 + SIZE_M * GRID_W);
-            action = "['editOrbatEntryClickCancel',_this] call (uiNamespace getvariable 'ORBATSettings_script');";
+            action = "['editOrbatEntryClickCancel',_this] call (uiNamespace getVariable 'ORBATSettings_script');";
         };
 
     };

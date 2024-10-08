@@ -2,9 +2,9 @@
 
 params ["_mode","_params"];
 
-if (_mode == "onLoad") exitwith {
+if (_mode == "onLoad") exitWith {
 	_params params ["_display"];
-	_ctrlStats = _display displayctrl IDC_DISPLAY3DENMISSIONSTATS_STATS;
+	_ctrlStats = _display displayCtrl IDC_DISPLAY3DENMISSIONSTATS_STATS;
 
 	all3denentities params ["_objects","_groups","_triggers","_logics","_waypoints","_markers","_layers","_comments"];
 
@@ -19,7 +19,7 @@ if (_mode == "onLoad") exitwith {
 			_ctrlStats lbsetcolor [_id,[1,1,1,0.25]];
 			_ctrlStats lbsetcolorright [_id,[1,1,1,0.25]];
 		};
-	} foreach [
+	} forEach [
 		[
 			localize "str_3den_object_textPlural",
 			"_objects",
@@ -86,13 +86,13 @@ if (_mode == "onLoad") exitwith {
 			0
 		]
 	];
-	_ctrlStats lbsetcursel 0;
+	_ctrlStats lbSetCurSel 0;
 };
 
-if (_mode == "select") exitwith {
+if (_mode == "select") exitWith {
 	_params params ["_ctrlButton"];
 	_display = ctrlparent _ctrlButton;
-	_ctrlStats = _display displayctrl IDC_DISPLAY3DENMISSIONSTATS_STATS;
+	_ctrlStats = _display displayCtrl IDC_DISPLAY3DENMISSIONSTATS_STATS;
 
 	all3denentities params ["_objects","_groups","_triggers","_logics","_waypoints","_markers","_layers","_comments"];
 	set3denselected call compile (_ctrlStats lbdata lbcursel _ctrlStats);

@@ -57,7 +57,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
             _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,1,1,_color select 3],_pos, 32, 32, 0,_text, 2,0.04, MAP_FONT];
         };
     };
-} foreach GVAR(objectives);
+} forEach GVAR(objectives);
 
 {
     _X params ["_unit","_time","_killer","_deadSide","_killerSide",["_dName", ""],"_kName","_weapon","_isPlayer"];
@@ -67,7 +67,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     if(_time <= 10) then {
         _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getPos _unit,16,16,0,_name,0,0.04, MAP_FONT];
     };
-} foreach GVAR(killedUnits);
+} forEach GVAR(killedUnits);
 
 
 if(GVAR(tracers)) then {

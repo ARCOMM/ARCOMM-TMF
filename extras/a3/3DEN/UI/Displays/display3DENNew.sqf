@@ -10,7 +10,7 @@ switch _mode do {
 
 		_display = _params select 0;
 
-		_ctrlIslandBox = _display displayctrl IDC_DISPLAY3DENNEW_LIST;
+		_ctrlIslandBox = _display displayCtrl IDC_DISPLAY3DENNEW_LIST;
 		_ctrlIslandBox ctrlAddEventHandler ["lbselchanged","with uiNamespace do {['lbselchanged',_this,''] call display3DENNew_script};"];
 		['lbselchanged',[_ctrlIslandBox,lbcursel _ctrlIslandBox],''] call display3DENNew_script;
 
@@ -21,12 +21,12 @@ switch _mode do {
 
 		//--- Init GUI
 		_display = ctrlparent _ctrlIslandBox;
-		_ctrlName = _display displayctrl IDC_DISPLAY3DENNEW_NAME;
-		_ctrlAuthor = _display displayctrl IDC_DISPLAY3DENNEW_AUTHOR;
-		_ctrlIslandPanorama = _display displayctrl IDC_DISPLAY3DENNEW_ISLANDPANORAMA;
-		_ctrlWorld = _display displayctrl IDC_DISPLAY3DENNEW_WORLD;
-		_ctrlWorldLng = _display displayctrl IDC_DISPLAY3DENNEW_WORLDLNG;
-		_ctrlWorldLat = _display displayctrl IDC_DISPLAY3DENNEW_WORLDLAT;
+		_ctrlName = _display displayCtrl IDC_DISPLAY3DENNEW_NAME;
+		_ctrlAuthor = _display displayCtrl IDC_DISPLAY3DENNEW_AUTHOR;
+		_ctrlIslandPanorama = _display displayCtrl IDC_DISPLAY3DENNEW_ISLANDPANORAMA;
+		_ctrlWorld = _display displayCtrl IDC_DISPLAY3DENNEW_WORLD;
+		_ctrlWorldLng = _display displayCtrl IDC_DISPLAY3DENNEW_WORLDLNG;
+		_ctrlWorldLat = _display displayCtrl IDC_DISPLAY3DENNEW_WORLDLAT;
 
 		//--- Set name
 		_world = _ctrlIslandBox lbdata _cursel;

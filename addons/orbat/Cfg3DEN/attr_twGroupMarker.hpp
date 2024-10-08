@@ -2,11 +2,11 @@ class twGroupMarker: Toolbox
 {
     scriptName = "GroupMarker";
     scriptPath = "TMF_orbat";
-    onLoad = "['onLoad',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
-    onUnload = "['onUnload',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getvariable 'BIS_fnc_initDisplay');";
+    onLoad = "['onLoad',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
+    onUnload = "['onUnload',_this,'GroupMarker','TMF_orbat',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
 
-    attributeLoad = "['attributeLoad',_this,_value] call (uiNamespace getvariable 'GroupMarker_script');";
-    attributeSave = "['attributeSave',_this] call (uiNamespace getvariable 'GroupMarker_script');";
+    attributeLoad = "['attributeLoad',_this,_value] call (uiNamespace getVariable 'GroupMarker_script');";
+    attributeSave = "['attributeSave',_this] call (uiNamespace getVariable 'GroupMarker_script');";
 
     h = QUOTE((16.75+0.45) * SIZE_M * GRID_H);
     class Controls
@@ -37,7 +37,7 @@ class twGroupMarker: Toolbox
             tooltips[] = {GROUP_MARKER_DESCRIPTIONS};
             values[] = {GROUP_MARKER_POSTFIX};
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
 
 
@@ -87,7 +87,7 @@ class twGroupMarker: Toolbox
                 "purple"
             };
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
         // MARKER TEXT
         class MarkerTitle: GmTitle
@@ -147,7 +147,7 @@ class twGroupMarker: Toolbox
                 "x\tmf\addons\orbat\textures\modif_company.paa"
             };
 
-            onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
+            onToolboxSelChanged = ""; // missionnamespace setVariable ['Rank_value',_this select 1];
         };
     };
 };

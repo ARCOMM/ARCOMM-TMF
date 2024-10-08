@@ -100,7 +100,7 @@ class Controls
     {
         style = 48 + 2048; // picture + keep aspect ratio
         text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
-        colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
+        colorText[] = {"(profilenamespace getVariable ['Map_BLUFOR_R',0])", "(profilenamespace getVariable ['Map_BLUFOR_G',0])", "(profilenamespace getVariable ['Map_BLUFOR_B',1])", 0.8};
         sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "24.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         y = "1.0 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
@@ -145,7 +145,7 @@ class Controls
 
     class IconSide_Opfor: IconSide_Blufor
     {
-        colorText[] = {"(profilenamespace getvariable ['Map_OPFOR_R',1])", "(profilenamespace getvariable ['Map_OPFOR_G',0])", "(profilenamespace getvariable ['Map_OPFOR_B',0])", 0.8};
+        colorText[] = {"(profilenamespace getVariable ['Map_OPFOR_R',1])", "(profilenamespace getVariable ['Map_OPFOR_G',0])", "(profilenamespace getVariable ['Map_OPFOR_B',0])", 0.8};
         y = "3.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
     };
     class LabelSide_Opfor: LabelSide_Blufor
@@ -162,7 +162,7 @@ class Controls
 
     class IconSide_Indep: IconSide_Blufor
     {
-        colorText[] = {"(profilenamespace getvariable ['Map_Independent_R',0])", "(profilenamespace getvariable ['Map_Independent_G',1])", "(profilenamespace getvariable ['Map_Independent_B',0])", 0.8};
+        colorText[] = {"(profilenamespace getVariable ['Map_Independent_R',0])", "(profilenamespace getVariable ['Map_Independent_G',1])", "(profilenamespace getVariable ['Map_Independent_B',0])", 0.8};
         y = "5.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
     };
     class LabelSide_Indep: LabelSide_Blufor
@@ -179,7 +179,7 @@ class Controls
 
     class IconSide_Civilian: IconSide_Blufor
     {
-        colorText[] = {"(profilenamespace getvariable ['Map_Civilian_R',0.5])", "(profilenamespace getvariable ['Map_Civilian_G',0])", "(profilenamespace getvariable ['Map_Civilian_B',0.5])", 0.8};
+        colorText[] = {"(profilenamespace getVariable ['Map_Civilian_R',0.5])", "(profilenamespace getVariable ['Map_Civilian_G',0])", "(profilenamespace getVariable ['Map_Civilian_B',0.5])", 0.8};
         y = "8.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
     };
     class LabelSide_Civilian: LabelSide_Blufor

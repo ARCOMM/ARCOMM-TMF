@@ -33,8 +33,8 @@ if (count _unitMarkerArray > 0) then {
         private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 
 
-        _ctrlColourToolBox lbsetcursel (_colours find _colour);
-        _ctrlIconToolbox lbsetcursel (_toolBoxIcon find _parts);
+        _ctrlColourToolBox lbSetCurSel (_colours find _colour);
+        _ctrlIconToolbox lbSetCurSel (_toolBoxIcon find _parts);
     };
     _ctrlNameEdit ctrlSetText _mName;
 } else {

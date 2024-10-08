@@ -37,7 +37,7 @@ switch _mode do
 			];
 
 			//--- Virtual cargo is empty as well, keep default cargo selected
-			if ({count (_x select 0) > 0} count _virtualCargo == 0) exitwith {};
+			if ({count (_x select 0) > 0} count _virtualCargo == 0) exitWith {};
 
 			AmmoBox_type = 1;
 			{
@@ -48,22 +48,22 @@ switch _mode do
 						(_xCargo select 0) pushback _x;
 						(_xCargo select 1) pushback 1;
 					};
-				} foreach _x;
-			} foreach _virtualCargo;
+				} forEach _x;
+			} forEach _virtualCargo;
 		};
 
 		RscAttributeInventory_cargo = [[],[]];
 		{
 			RscAttributeInventory_cargo set [0,(RscAttributeInventory_cargo select 0) + (_x select 0)];
 			RscAttributeInventory_cargo set [1,(RscAttributeInventory_cargo select 1) + (_x select 1)];
-		} foreach _cargo;
+		} forEach _cargo;
 
 		_classes = RscAttributeInventory_cargo select 0;
-		{_classes set [_foreachindex,tolower _x];} foreach _classes;
+		{_classes set [_foreachindex,tolower _x];} forEach _classes;
 
 		//--- Get limits
 /*
-		_cfgEntity = configFile >> "cfgvehicles" >> typeof _entity;
+		_cfgEntity = configFile >> "cfgvehicles" >> typeOf _entity;
 		_cfgTransportMaxBackpacks = getnumber (_cfgEntity >> "transportMaxBackpacks");
 		_cfgTransportMaxMagazines = getnumber (_cfgEntity >> "transportMaxMagazines");
 		_cfgTransportMaxWeapons = getnumber (_cfgEntity >> "transportMaxWeapons");
@@ -81,7 +81,7 @@ switch _mode do
 
 		_ctrlType = _ctrlGroup controlsGroupCtrl 103;
 		_ctrlType ctrlAddEventHandler ["toolboxselchanged",{with uiNamespace do {['typeChanged',_this,objNull] call AmmoBox_script;};}];
-		_ctrlType lbsetcursel AmmoBox_type;
+		_ctrlType lbSetCurSel AmmoBox_type;
 		["typeChanged",[_ctrlType,AmmoBox_type],objNull] call AmmoBox_script;
 
 		_ctrlFilter = _ctrlGroup controlsGroupCtrl 100;
@@ -301,7 +301,7 @@ switch _mode do
 		private _ctrlList = _ctrlGroup controlsGroupCtrl 101;
 		//_ctrlLoad = _ctrlGroup controlsGroupCtrl 102;
 		//_ctrlFilterBackground = _ctrlGroup controlsGroupCtrl IDC_RSCATTRIBUTEINVENTORY_FILTERBACKGROUND;
-		private _list = uiNamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
+		private _list = uiNamespace getVariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
 		private _items = [];
 
 		if (_cursel > 0) then 
@@ -310,7 +310,7 @@ switch _mode do
 		} 
 		else 
 		{
-			{ _items append _x } foreach _list; //--- Process all items, and later pick the ones which are in the box
+			{ _items append _x } forEach _list; //--- Process all items, and later pick the ones which are in the box
 		};
 
 		lnbClear _ctrlList;
@@ -364,9 +364,9 @@ switch _mode do
 					};
 				};
 			} 
-			foreach _items;
+			forEach _items;
 		} 
-		foreach [[0],[1,3],[2]]; // 0 - Weapons, 1 - Items, 2 - Magazines, 3 - Backpacks
+		forEach [[0],[1,3],[2]]; // 0 - Weapons, 1 - Items, 2 - Magazines, 3 - Backpacks
 		
 		_ctrlList lnbSort [1, false];
 		_ctrlList lnbsetcurselrow 0;
@@ -436,7 +436,7 @@ switch _mode do
 
 		if (AmmoBox_filter > 0) then {
 			//--- Clear items in selected category
-			_list = uiNamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
+			_list = uiNamespace getVariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
 			_items = _list select (AmmoBox_filter - 1);
 			{
 				_class = _x select 1;
@@ -444,12 +444,12 @@ switch _mode do
 				if (_classID >= 0) then {
 					_values set [_classID,0];
 				};
-			} foreach _items;
+			} forEach _items;
 		} else {
 			//--- Clear all
 			{
 				_values set [_foreachindex,0];
-			} foreach _values;
+			} forEach _values;
 		};
 		["filterChanged",_params,objNull] call AmmoBox_script;
 	};
@@ -486,13 +486,13 @@ switch _mode do
 	{
 
 		//--- Sort items into categories and save. Will be loaded by BIS_fnc_initAmmoBox
-		_cargo = uiNamespace getvariable ["RscAttributeInventory_cargo",[[],[]]];
+		_cargo = uiNamespace getVariable ["RscAttributeInventory_cargo",[[],[]]];
 		_cargoClasses = _cargo select 0;
 		_cargoValues = _cargo select 1;
 		_outputClasses = [[],[],[],[]]; // weapons, magazines, items, backpacks
 		_outputValues = [[],[],[],[]];
 		_output = [[[],[]],[[],[]],[[],[]],[[],[]]];
-		_isVirtual = (uiNamespace getvariable ["AmmoBox_type",0]) > 0;
+		_isVirtual = (uiNamespace getVariable ["AmmoBox_type",0]) > 0;
 		{
 			if (_x != 0) then {
 				_class = _cargoClasses select _foreachindex;
@@ -528,7 +528,7 @@ switch _mode do
 					if !(_isVirtual) then {(_arrayType select 1) pushback _x;};
 				};
 			};
-		} foreach _cargoValues;
+		} forEach _cargoValues;
 		str [_output,_isVirtual] //--- Save as a string. Serialized array takes too much space.
 	};
 };

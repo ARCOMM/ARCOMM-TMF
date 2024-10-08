@@ -74,9 +74,9 @@
 //#define COLOR_ACTIVE_RGB	1,	0.5,	0
 //#define COLOR_ACTIVE_RGBA	COLOR_ACTIVE_RGB, 1
 
-#define COLOR_ACTIVE_RGB_R	"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])"
-#define COLOR_ACTIVE_RGB_G	"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])"
-#define COLOR_ACTIVE_RGB_B	"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])"
+#define COLOR_ACTIVE_RGB_R	"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.77])"
+#define COLOR_ACTIVE_RGB_G	"(profilenamespace getVariable ['GUI_BCG_RGB_G',0.51])"
+#define COLOR_ACTIVE_RGB_B	"(profilenamespace getVariable ['GUI_BCG_RGB_B',0.08])"
 #define COLOR_ACTIVE_RGB_A	1
 #define COLOR_ACTIVE_RGB	COLOR_ACTIVE_RGB_R,	COLOR_ACTIVE_RGB_G,	COLOR_ACTIVE_RGB_B
 #define COLOR_ACTIVE_RGBA	COLOR_ACTIVE_RGB,COLOR_ACTIVE_RGB_A
@@ -103,42 +103,42 @@
 #define COLOR_NOTE_ERROR_RGBA	COLOR_NOTE_ERROR_RGB,	0.9
 
 //--- BLUFOR
-#define COLOR_WEST_R		"(profilenamespace getvariable ['Map_BLUFOR_R',0])"
-#define COLOR_WEST_G		"(profilenamespace getvariable ['Map_BLUFOR_G',1])"
-#define COLOR_WEST_B		"(profilenamespace getvariable ['Map_BLUFOR_B',1])"
-#define COLOR_WEST_A		"(profilenamespace getvariable ['Map_BLUFOR_A',0.8])"
+#define COLOR_WEST_R		"(profilenamespace getVariable ['Map_BLUFOR_R',0])"
+#define COLOR_WEST_G		"(profilenamespace getVariable ['Map_BLUFOR_G',1])"
+#define COLOR_WEST_B		"(profilenamespace getVariable ['Map_BLUFOR_B',1])"
+#define COLOR_WEST_A		"(profilenamespace getVariable ['Map_BLUFOR_A',0.8])"
 #define COLOR_WEST_RGB		COLOR_WEST_R,	COLOR_WEST_G,	COLOR_WEST_B
 #define COLOR_WEST_RGBA		COLOR_WEST_RGB,COLOR_WEST_A
 
 //--- OPFOR
-#define COLOR_EAST_R		"(profilenamespace getvariable ['Map_OPFOR_R',0])"
-#define COLOR_EAST_G		"(profilenamespace getvariable ['Map_OPFOR_G',1])"
-#define COLOR_EAST_B		"(profilenamespace getvariable ['Map_OPFOR_B',1])"
-#define COLOR_EAST_A		"(profilenamespace getvariable ['Map_OPFOR_A',0.8])"
+#define COLOR_EAST_R		"(profilenamespace getVariable ['Map_OPFOR_R',0])"
+#define COLOR_EAST_G		"(profilenamespace getVariable ['Map_OPFOR_G',1])"
+#define COLOR_EAST_B		"(profilenamespace getVariable ['Map_OPFOR_B',1])"
+#define COLOR_EAST_A		"(profilenamespace getVariable ['Map_OPFOR_A',0.8])"
 #define COLOR_EAST_RGB		COLOR_EAST_R,	COLOR_EAST_G,	COLOR_EAST_B
 #define COLOR_EAST_RGBA		COLOR_EAST_RGB,COLOR_EAST_A
 
 //--- Independent
-#define COLOR_GUER_R		"(profilenamespace getvariable ['Map_Independent_R',0])"
-#define COLOR_GUER_G		"(profilenamespace getvariable ['Map_Independent_G',1])"
-#define COLOR_GUER_B		"(profilenamespace getvariable ['Map_Independent_B',1])"
-#define COLOR_GUER_A		"(profilenamespace getvariable ['Map_Independent_A',0.8])"
+#define COLOR_GUER_R		"(profilenamespace getVariable ['Map_Independent_R',0])"
+#define COLOR_GUER_G		"(profilenamespace getVariable ['Map_Independent_G',1])"
+#define COLOR_GUER_B		"(profilenamespace getVariable ['Map_Independent_B',1])"
+#define COLOR_GUER_A		"(profilenamespace getVariable ['Map_Independent_A',0.8])"
 #define COLOR_GUER_RGB		COLOR_GUER_R,	COLOR_GUER_G,	COLOR_GUER_B
 #define COLOR_GUER_RGBA		COLOR_GUER_RGB,COLOR_GUER_A
 
 //--- Civilian
-#define COLOR_CIV_R		"(profilenamespace getvariable ['Map_Civilian_R',0])"
-#define COLOR_CIV_G		"(profilenamespace getvariable ['Map_Civilian_G',1])"
-#define COLOR_CIV_B		"(profilenamespace getvariable ['Map_Civilian_B',1])"
-#define COLOR_CIV_A		"(profilenamespace getvariable ['Map_Civilian_A',0.8])"
+#define COLOR_CIV_R		"(profilenamespace getVariable ['Map_Civilian_R',0])"
+#define COLOR_CIV_G		"(profilenamespace getVariable ['Map_Civilian_G',1])"
+#define COLOR_CIV_B		"(profilenamespace getVariable ['Map_Civilian_B',1])"
+#define COLOR_CIV_A		"(profilenamespace getVariable ['Map_Civilian_A',0.8])"
 #define COLOR_CIV_RGB		COLOR_CIV_R,	COLOR_CIV_G,	COLOR_CIV_B
 #define COLOR_CIV_RGBA		COLOR_CIV_RGB,COLOR_CIV_A
 
 //--- Unknown
-#define COLOR_EMPTY_R		"(profilenamespace getvariable ['Map_Unknown_R',0])"
-#define COLOR_EMPTY_G		"(profilenamespace getvariable ['Map_Unknown_G',1])"
-#define COLOR_EMPTY_B		"(profilenamespace getvariable ['Map_Unknown_B',1])"
-#define COLOR_EMPTY_A		"(profilenamespace getvariable ['Map_Unknown_A',0.8])"
+#define COLOR_EMPTY_R		"(profilenamespace getVariable ['Map_Unknown_R',0])"
+#define COLOR_EMPTY_G		"(profilenamespace getVariable ['Map_Unknown_G',1])"
+#define COLOR_EMPTY_B		"(profilenamespace getVariable ['Map_Unknown_B',1])"
+#define COLOR_EMPTY_A		"(profilenamespace getVariable ['Map_Unknown_A',0.8])"
 #define COLOR_EMPTY_RGB		COLOR_EMPTY_R,	COLOR_EMPTY_G,	COLOR_EMPTY_B
 #define COLOR_EMPTY_RGBA	COLOR_EMPTY_RGB,COLOR_EMPTY_A
 
@@ -215,7 +215,7 @@
 /// Scripts
 ///////////////////////////////////////////////////////////////
 
-#define INIT_DISPLAY_FUNCTION	(uiNamespace getvariable 'BIS_fnc_initDisplay')
+#define INIT_DISPLAY_FUNCTION	(uiNamespace getVariable 'BIS_fnc_initDisplay')
 #define INIT_DISPLAY_INTERNAL	scriptIsInternal = 1;
 
 //--- Code executed on each display where the macro is used. Scripts are pre-compiled at the game start by BIS_fnc_initDisplays
@@ -229,7 +229,7 @@
 #define INIT_DISPLAY_START(NAME,PATH) \
 	scriptName = ##NAME##;\
 	scriptPath = ##PATH##;\
-	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getvariable 'BIS_fnc_initDisplay')";\
+	onLoad = "[2] call compile preprocessfilelinenumbers getText (configFile >> 'CfgFunctions' >> 'init'); ['onLoad',_this,'RscDisplayLoading','Loading'] call (uiNamespace getVariable 'BIS_fnc_initDisplay')";\
 	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;
 
 #define INIT_CONTROL(NAME,PATH) \

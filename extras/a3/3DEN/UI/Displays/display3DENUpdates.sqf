@@ -71,11 +71,11 @@ switch _mode do {
 						if (_isFT) then {_textFT pushback _x;} else {_textParsed pushback _x;};
 					};
 				};
-			} foreach toarray _text;
+			} forEach toarray _text;
 
-			_ctrlGroup = _display displayctrl IDC_DISPLAY3DENUPDATES_GROUP;
+			_ctrlGroup = _display displayCtrl IDC_DISPLAY3DENUPDATES_GROUP;
 
-			_ctrlContent = _display displayctrl IDC_DISPLAY3DENUPDATES_CONTENT;
+			_ctrlContent = _display displayCtrl IDC_DISPLAY3DENUPDATES_CONTENT;
 			_ctrlContent ctrlsetstructuredtext parsetext tostring _textParsed;
 			_ctrlContentPos = ctrlposition _ctrlContent;
 			_ctrlContentPos set [3,(ctrltextheight _ctrlContent) max (ctrlposition _ctrlGroup select 3)];
@@ -84,7 +84,7 @@ switch _mode do {
 		};
 
 		//--- Fill the list
-		_ctrlList = _display displayctrl IDC_DISPLAY3DENUPDATES_LIST;
+		_ctrlList = _display displayCtrl IDC_DISPLAY3DENUPDATES_LIST;
 		_cfgUpdates = configproperties [configFile >> "Cfg3DEN" >> "Updates","isclass _x"];
 		_months = ["str_january","str_february","str_march","str_april","str_may","str_june","str_july","str_august","str_september","str_october","str_november","str_december"];
 		{
@@ -100,10 +100,10 @@ switch _mode do {
 				if (_foreachindex < 10) then {"0" + str (_foreachindex + 1)} else {_foreachindex + 1}
 			];
 			_ctrlList lbsetdata [_index,configname _x];
-		} foreach _cfgUpdates;
+		} forEach _cfgUpdates;
 		lbsort [_ctrlList,"ASC"];
 		_index = lbsize _ctrlList - 1;
-		_ctrlList lbsetcursel _index;
+		_ctrlList lbSetCurSel _index;
 		[_ctrlList,_index] call _lBSelChanged;
 
 		//--- Change the content based on selected item
@@ -111,9 +111,9 @@ switch _mode do {
 
 		//--- Reset notifictaion icon
 		_display3DEN = finddisplay IDD_DISPLAY3DEN;
-		_ctrlUpdates = _display3DEN displayctrl IDC_DISPLAY3DEN_TOOLBAR_HELP_UPDATES;
+		_ctrlUpdates = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_UPDATES;
 		_ctrlUpdates ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_updates_ca.paa";
-		profilenamespace setvariable ['3DEN_Updates',count _cfgUpdates];
+		profilenamespace setVariable ['3DEN_Updates',count _cfgUpdates];
 		saveprofilenamespace;
 	};
 };

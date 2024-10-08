@@ -806,7 +806,7 @@ switch _mode do {
             RadioChannelsEditMode = 0;
             (RadioChannels_ctrlGroup controlsGroupCtrl 313206) ctrlSetText "";
             (RadioChannels_ctrlGroup controlsGroupCtrl 313207) ctrlSetText "";
-            (RadioChannels_ctrlGroup controlsGroupCtrl 313205) lbsetcursel 0;
+            (RadioChannels_ctrlGroup controlsGroupCtrl 313205) lbSetCurSel 0;
             ctrlSetFocus (RadioChannels_ctrlGroup controlsGroupCtrl 313206);
         };
     };

@@ -3,20 +3,20 @@
 ///////////////////////////////////////////////////////////////////////////
 
 //--- Background color with defaults (not multipliable)
-#define GUI_BCG_RGB_R			"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])"
-#define GUI_BCG_RGB_G			"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])"
-#define GUI_BCG_RGB_B			"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])"
-#define GUI_BCG_ALPHA			"(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"
+#define GUI_BCG_RGB_R			"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])"
+#define GUI_BCG_RGB_G			"(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])"
+#define GUI_BCG_RGB_B			"(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])"
+#define GUI_BCG_ALPHA			"(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"
 
 #define GUI_BCG_RGB			GUI_BCG_RGB_R,	GUI_BCG_RGB_G,	GUI_BCG_RGB_B
 #define GUI_BCG_COLOR			{GUI_BCG_RGB,GUI_BCG_ALPHA}
 #define GUI_BCG_COLOR_SELECTED		{GUI_BCG_RGB,0.5}
 
 //--- TitleBar text color
-#define GUI_TITLETEXT_RGB_R		"(profilenamespace getvariable ['GUI_TITLETEXT_RGB_R',1.0])"
-#define GUI_TITLETEXT_RGB_G		"(profilenamespace getvariable ['GUI_TITLETEXT_RGB_G',1.0])"
-#define GUI_TITLETEXT_RGB_B		"(profilenamespace getvariable ['GUI_TITLETEXT_RGB_B',1.0])"
-#define GUI_TITLETEXT_ALPHA		"(profilenamespace getvariable ['GUI_TITLETEXT_RGB_A',0.6])"
+#define GUI_TITLETEXT_RGB_R		"(profilenamespace getVariable ['GUI_TITLETEXT_RGB_R',1.0])"
+#define GUI_TITLETEXT_RGB_G		"(profilenamespace getVariable ['GUI_TITLETEXT_RGB_G',1.0])"
+#define GUI_TITLETEXT_RGB_B		"(profilenamespace getVariable ['GUI_TITLETEXT_RGB_B',1.0])"
+#define GUI_TITLETEXT_ALPHA		"(profilenamespace getVariable ['GUI_TITLETEXT_RGB_A',0.6])"
 #define GUI_TITLETEXT_COLOR		{GUI_TITLETEXT_RGB_R, GUI_TITLETEXT_RGB_G, GUI_TITLETEXT_RGB_B, GUI_TITLETEXT_ALPHA}
 
 //--- Background for wGUI displays
@@ -67,42 +67,42 @@
 /// iGUI
 ///////////////////////////////////////////////////////////////////////////
 //--- IGUI Background color
-#define IGUI_BCG_RGB_R			"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])"
-#define IGUI_BCG_RGB_G			"(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])"
-#define IGUI_BCG_RGB_B			"(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])"
-#define IGUI_BCG_RGB_A			"(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"
+#define IGUI_BCG_RGB_R			"(profilenamespace getVariable ['IGUI_BCG_RGB_R',0])"
+#define IGUI_BCG_RGB_G			"(profilenamespace getVariable ['IGUI_BCG_RGB_G',1])"
+#define IGUI_BCG_RGB_B			"(profilenamespace getVariable ['IGUI_BCG_RGB_B',1])"
+#define IGUI_BCG_RGB_A			"(profilenamespace getVariable ['IGUI_BCG_RGB_A',0.8])"
 #define IGUI_BCG_RGB			IGUI_BCG_RGB_R,	IGUI_BCG_RGB_G,	IGUI_BCG_RGB_B
 #define IGUI_BCG_COLOR			{IGUI_BCG_RGB,IGUI_BCG_RGB_A}
 
 //--- IGUI Text color
-#define IGUI_TEXT_RGB_R			"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])"
-#define IGUI_TEXT_RGB_G			"(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])"
-#define IGUI_TEXT_RGB_B			"(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])"
-#define IGUI_TEXT_RGB_A			"(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"
+#define IGUI_TEXT_RGB_R			"(profilenamespace getVariable ['IGUI_TEXT_RGB_R',0])"
+#define IGUI_TEXT_RGB_G			"(profilenamespace getVariable ['IGUI_TEXT_RGB_G',1])"
+#define IGUI_TEXT_RGB_B			"(profilenamespace getVariable ['IGUI_TEXT_RGB_B',1])"
+#define IGUI_TEXT_RGB_A			"(profilenamespace getVariable ['IGUI_TEXT_RGB_A',0.8])"
 #define IGUI_TEXT_RGB			IGUI_TEXT_RGB_R,	IGUI_TEXT_RGB_G,	IGUI_TEXT_RGB_B
 #define IGUI_TEXT_COLOR			{IGUI_TEXT_RGB,IGUI_TEXT_RGB_A}
 
 //--- IGUI Warning color
-#define IGUI_WARNING_RGB_R		"(profilenamespace getvariable ['IGUI_WARNING_RGB_R',0.8])"
-#define IGUI_WARNING_RGB_G		"(profilenamespace getvariable ['IGUI_WARNING_RGB_G',0.5])"
-#define IGUI_WARNING_RGB_B		"(profilenamespace getvariable ['IGUI_WARNING_RGB_B',0.0])"
-#define IGUI_WARNING_RGB_A		"(profilenamespace getvariable ['IGUI_WARNING_RGB_A',0.8])"
+#define IGUI_WARNING_RGB_R		"(profilenamespace getVariable ['IGUI_WARNING_RGB_R',0.8])"
+#define IGUI_WARNING_RGB_G		"(profilenamespace getVariable ['IGUI_WARNING_RGB_G',0.5])"
+#define IGUI_WARNING_RGB_B		"(profilenamespace getVariable ['IGUI_WARNING_RGB_B',0.0])"
+#define IGUI_WARNING_RGB_A		"(profilenamespace getVariable ['IGUI_WARNING_RGB_A',0.8])"
 #define IGUI_WARNING_RGB		IGUI_WARNING_RGB_R,	IGUI_WARNING_RGB_G,	IGUI_WARNING_RGB_B
 #define IGUI_WARNING_COLOR		{IGUI_WARNING_RGB,IGUI_WARNING_RGB_A}
 
 //--- IGUI Error color
-#define IGUI_ERROR_RGB_R		"(profilenamespace getvariable ['IGUI_ERROR_RGB_R',0.8])"
-#define IGUI_ERROR_RGB_G		"(profilenamespace getvariable ['IGUI_ERROR_RGB_G',0.0])"
-#define IGUI_ERROR_RGB_B		"(profilenamespace getvariable ['IGUI_ERROR_RGB_B',0.0])"
-#define IGUI_ERROR_RGB_A		"(profilenamespace getvariable ['IGUI_ERROR_RGB_A',1.0])"
+#define IGUI_ERROR_RGB_R		"(profilenamespace getVariable ['IGUI_ERROR_RGB_R',0.8])"
+#define IGUI_ERROR_RGB_G		"(profilenamespace getVariable ['IGUI_ERROR_RGB_G',0.0])"
+#define IGUI_ERROR_RGB_B		"(profilenamespace getVariable ['IGUI_ERROR_RGB_B',0.0])"
+#define IGUI_ERROR_RGB_A		"(profilenamespace getVariable ['IGUI_ERROR_RGB_A',1.0])"
 #define IGUI_ERROR_RGB			IGUI_ERROR_RGB_R,	IGUI_ERROR_RGB_G,	IGUI_ERROR_RGB_B
 #define IGUI_ERROR_COLOR		{IGUI_ERROR_RGB,IGUI_ERROR_RGB_A}
 
 //--- IGUI Tactical ping color
-#define IGUI_TACTPING_RGB_R		"(profilenamespace getvariable ['IGUI_TACTPING_RGB_R',1.0])"
-#define IGUI_TACTPING_RGB_G		"(profilenamespace getvariable ['IGUI_TACTPING_RGB_G',0.8])"
-#define IGUI_TACTPING_RGB_B		"(profilenamespace getvariable ['IGUI_TACTPING_RGB_B',0.2])"
-#define IGUI_TACTPING_RGB_A		"(profilenamespace getvariable ['IGUI_TACTPING_RGB_A',1.0])"
+#define IGUI_TACTPING_RGB_R		"(profilenamespace getVariable ['IGUI_TACTPING_RGB_R',1.0])"
+#define IGUI_TACTPING_RGB_G		"(profilenamespace getVariable ['IGUI_TACTPING_RGB_G',0.8])"
+#define IGUI_TACTPING_RGB_B		"(profilenamespace getVariable ['IGUI_TACTPING_RGB_B',0.2])"
+#define IGUI_TACTPING_RGB_A		"(profilenamespace getVariable ['IGUI_TACTPING_RGB_A',1.0])"
 #define IGUI_TACTPING_RGB		IGUI_TACTPING_RGB_R,	IGUI_TACTPING_RGB_G,	IGUI_TACTPING_RGB_B
 #define IGUI_TACTPING_COLOR		{IGUI_TACTPING_RGB,IGUI_TACTPING_RGB_A}
 
@@ -116,42 +116,42 @@
 ///////////////////////////////////////////////////////////////////////////
 
 //--- BLUFOR
-#define Map_BLUFOR_R			"(profilenamespace getvariable ['Map_BLUFOR_R',0])"
-#define Map_BLUFOR_G			"(profilenamespace getvariable ['Map_BLUFOR_G',1])"
-#define Map_BLUFOR_B			"(profilenamespace getvariable ['Map_BLUFOR_B',1])"
-#define Map_BLUFOR_A			"(profilenamespace getvariable ['Map_BLUFOR_A',0.8])"
+#define Map_BLUFOR_R			"(profilenamespace getVariable ['Map_BLUFOR_R',0])"
+#define Map_BLUFOR_G			"(profilenamespace getVariable ['Map_BLUFOR_G',1])"
+#define Map_BLUFOR_B			"(profilenamespace getVariable ['Map_BLUFOR_B',1])"
+#define Map_BLUFOR_A			"(profilenamespace getVariable ['Map_BLUFOR_A',0.8])"
 #define Map_BLUFOR_RGB			Map_BLUFOR_R,	Map_BLUFOR_G,	Map_BLUFOR_B
 #define Map_BLUFOR_RGBA			{Map_BLUFOR_RGB,Map_BLUFOR_A}
 
 //--- OPFOR
-#define Map_OPFOR_R			"(profilenamespace getvariable ['Map_OPFOR_R',0])"
-#define Map_OPFOR_G			"(profilenamespace getvariable ['Map_OPFOR_G',1])"
-#define Map_OPFOR_B			"(profilenamespace getvariable ['Map_OPFOR_B',1])"
-#define Map_OPFOR_A			"(profilenamespace getvariable ['Map_OPFOR_A',0.8])"
+#define Map_OPFOR_R			"(profilenamespace getVariable ['Map_OPFOR_R',0])"
+#define Map_OPFOR_G			"(profilenamespace getVariable ['Map_OPFOR_G',1])"
+#define Map_OPFOR_B			"(profilenamespace getVariable ['Map_OPFOR_B',1])"
+#define Map_OPFOR_A			"(profilenamespace getVariable ['Map_OPFOR_A',0.8])"
 #define Map_OPFOR_RGB			Map_OPFOR_R,	Map_OPFOR_G,	Map_OPFOR_B
 #define Map_OPFOR_RGBA			{Map_OPFOR_RGB,Map_OPFOR_A}
 
 //--- Independent
-#define Map_Independent_R		"(profilenamespace getvariable ['Map_Independent_R',0])"
-#define Map_Independent_G		"(profilenamespace getvariable ['Map_Independent_G',1])"
-#define Map_Independent_B		"(profilenamespace getvariable ['Map_Independent_B',1])"
-#define Map_Independent_A		"(profilenamespace getvariable ['Map_Independent_A',0.8])"
+#define Map_Independent_R		"(profilenamespace getVariable ['Map_Independent_R',0])"
+#define Map_Independent_G		"(profilenamespace getVariable ['Map_Independent_G',1])"
+#define Map_Independent_B		"(profilenamespace getVariable ['Map_Independent_B',1])"
+#define Map_Independent_A		"(profilenamespace getVariable ['Map_Independent_A',0.8])"
 #define Map_Independent_RGB		Map_Independent_R,	Map_Independent_G,	Map_Independent_B
 #define Map_Independent_RGBA		{Map_Independent_RGB,Map_Independent_A}
 
 //--- Civilian
-#define Map_Civilian_R			"(profilenamespace getvariable ['Map_Civilian_R',0])"
-#define Map_Civilian_G			"(profilenamespace getvariable ['Map_Civilian_G',1])"
-#define Map_Civilian_B			"(profilenamespace getvariable ['Map_Civilian_B',1])"
-#define Map_Civilian_A			"(profilenamespace getvariable ['Map_Civilian_A',0.8])"
+#define Map_Civilian_R			"(profilenamespace getVariable ['Map_Civilian_R',0])"
+#define Map_Civilian_G			"(profilenamespace getVariable ['Map_Civilian_G',1])"
+#define Map_Civilian_B			"(profilenamespace getVariable ['Map_Civilian_B',1])"
+#define Map_Civilian_A			"(profilenamespace getVariable ['Map_Civilian_A',0.8])"
 #define Map_Civilian_RGB		Map_Civilian_R,	Map_Civilian_G,	Map_Civilian_B
 #define Map_Civilian_RGBA		{Map_Civilian_RGB,Map_Civilian_A}
 
 //--- Unknown
-#define Map_Unknown_R			"(profilenamespace getvariable ['Map_Unknown_R',0])"
-#define Map_Unknown_G			"(profilenamespace getvariable ['Map_Unknown_G',1])"
-#define Map_Unknown_B			"(profilenamespace getvariable ['Map_Unknown_B',1])"
-#define Map_Unknown_A			"(profilenamespace getvariable ['Map_Unknown_A',0.8])"
+#define Map_Unknown_R			"(profilenamespace getVariable ['Map_Unknown_R',0])"
+#define Map_Unknown_G			"(profilenamespace getVariable ['Map_Unknown_G',1])"
+#define Map_Unknown_B			"(profilenamespace getVariable ['Map_Unknown_B',1])"
+#define Map_Unknown_A			"(profilenamespace getVariable ['Map_Unknown_A',0.8])"
 #define Map_Unknown_RGB			Map_Unknown_R,	Map_Unknown_G,	Map_Unknown_B
 #define Map_Unknown_RGBA		{Map_Unknown_RGB,Map_Unknown_A}
 

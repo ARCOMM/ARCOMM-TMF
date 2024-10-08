@@ -9,8 +9,8 @@ if (!isNil QGVAR(EndMissionText)) then {
         disableSerialization;
         params ["_display"];
         GVAR(EndMissionText) params [["_titleText",""],["_subtitleText",""]];
-        private _titleCtrl = _display displayctrl 20600;
-        private _subtitleCtrl = _display displayctrl 20601;
+        private _titleCtrl = _display displayCtrl 20600;
+        private _subtitleCtrl = _display displayCtrl 20601;
         _titleCtrl ctrlsettext toUpper _titleText;
 
         if (_subtitleText != "") then {

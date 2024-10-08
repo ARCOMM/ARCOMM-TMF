@@ -20,29 +20,29 @@ switch _mode do {
 				configFile >> "Cfg3DEN" >> "Tutorials" >> _classCategory;
 			};
 			_display = ctrlparent _ctrlTree;
-			_ctrlButtonOK = _display displayctrl IDC_OK;
+			_ctrlButtonOK = _display displayCtrl IDC_OK;
 			_ctrlButtonOK ctrlshow (isclass (_cfg >> "Steps"));
 
 			//--- Mark as completed after clicking
 			if (count _path == 2) then {
 				_pathData = [_classCategory,_classSection];
-				_completed = profilenamespace getvariable ["display3DENTutorial_completed",[]];
+				_completed = profilenamespace getVariable ["display3DENTutorial_completed",[]];
 				if !(_pathData in _completed) then {
 					_completed pushback _pathData;
-					profilenamespace setvariable ["display3DENTutorial_completed",_completed];
+					profilenamespace setVariable ["display3DENTutorial_completed",_completed];
 					saveprofilenamespace;
 				};
-				_ctrlTree = _display displayctrl IDC_DISPLAY3DENTUTORIAL_LIST;
+				_ctrlTree = _display displayCtrl IDC_DISPLAY3DENTUTORIAL_LIST;
 				_ctrlTree tvsetpicture [_path,getText (configFile >> "display3DENTutorial" >> "pictureCompleted")];
 
 				//--- Reset notification icon
 				_count = 0;
 				{
 					_count = _count + count configproperties [_x >> "Sections","isclass _x"];
-				} foreach configproperties [configFile >> "Cfg3DEN" >> "Tutorials","isclass _x"];
+				} forEach configproperties [configFile >> "Cfg3DEN" >> "Tutorials","isclass _x"];
 				if (count _completed >= _count) then {
 					_display3DEN = finddisplay IDD_DISPLAY3DEN;
-					_ctrlTutorials = _display3DEN displayctrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
+					_ctrlTutorials = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
 					_ctrlTutorials ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
 					setstatvalue ["3DENModelStudent",1];
 				};
@@ -50,7 +50,7 @@ switch _mode do {
 		};
 		_fnc_buttonclick = {
 			_display = ctrlparent (_this select 0);
-			_ctrlTree = _display displayctrl IDC_DISPLAY3DENTUTORIAL_LIST;
+			_ctrlTree = _display displayCtrl IDC_DISPLAY3DENTUTORIAL_LIST;
 			_path = tvcursel _ctrlTree;
 			if (count _path > 1) then {
 				_classCategory = _ctrlTree tvdata [_path select 0];
@@ -61,16 +61,16 @@ switch _mode do {
 		};
 
 		_display = _params select 0;
-		_ctrlTree = _display displayctrl IDC_DISPLAY3DENTUTORIAL_LIST;
+		_ctrlTree = _display displayCtrl IDC_DISPLAY3DENTUTORIAL_LIST;
 		_ctrlTree ctrlAddEventHandler ["treeselchanged",_fnc_treeselchanged];
 		_ctrlTree ctrlAddEventHandler ["treedblclick",_fnc_buttonclick];
-		_select = uiNamespace getvariable ["display3DENTutorial_select",["",""]];
+		_select = uiNamespace getVariable ["display3DENTutorial_select",["",""]];
 		_selectCategory = _select param [0,"",[""]];
 		_selectClass = _select param [1,"",[""]];
 		_selectPath = [0];
 		_picture = getText (configFile >> "display3DENTutorial" >> "picture");
 		_pictureCompleted = getText (configFile >> "display3DENTutorial" >> "pictureCompleted");
-		_completed = profilenamespace getvariable ["display3DENTutorial_completed",[]];
+		_completed = profilenamespace getVariable ["display3DENTutorial_completed",[]];
 		_count = 0;
 		{
 			_category = configname _x;
@@ -86,20 +86,20 @@ switch _mode do {
 				_ctrlTree tvsetdata [[_indexCategory,_indexSection],_section];
 				if (_isSelected && {_section == _selectClass}) then {_selectPath set [1,_indexSection];};
 				_count = _count + 1;
-			} foreach configproperties [_x >> "Sections","isclass _x"];
+			} forEach configproperties [_x >> "Sections","isclass _x"];
 			_ctrlTree tvexpand [_indexCategory];
-		} foreach configproperties [configFile >> "Cfg3DEN" >> "Tutorials","isclass _x"];
+		} forEach configproperties [configFile >> "Cfg3DEN" >> "Tutorials","isclass _x"];
 		//_ctrlTree tvexpand [_selectPath select 0];
 		_ctrlTree tvsetcursel _selectPath;
 		[_ctrlTree,_selectPath] call _fnc_treeselchanged;
 
-		_ctrlButtonOK = _display displayctrl IDC_OK;
+		_ctrlButtonOK = _display displayCtrl IDC_OK;
 		_ctrlButtonOK ctrlAddEventHandler ["buttonclick",_fnc_buttonclick];
 
 		//--- Reset notification icon
 		if (count _completed >= _count) then {
 			_display3DEN = finddisplay IDD_DISPLAY3DEN;
-			_ctrlTutorials = _display3DEN displayctrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
+			_ctrlTutorials = _display3DEN displayCtrl IDC_DISPLAY3DEN_TOOLBAR_HELP_TUTORIAL;
 			_ctrlTutorials ctrlsettext "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\help_tutorial_ca.paa";
 			setstatvalue ["3DENModelStudent",1];
 		};
@@ -109,13 +109,13 @@ switch _mode do {
 	};
 	case "onUnload": {
 		_display = _params select 0;
-		_ctrlTree = _display displayctrl IDC_DISPLAY3DENTUTORIAL_LIST;
+		_ctrlTree = _display displayCtrl IDC_DISPLAY3DENTUTORIAL_LIST;
 		_path = tvcursel _ctrlTree;
 		_pathClass = if (count _path > 1) then {
 			[_ctrlTree tvdata [_path select 0],_ctrlTree tvdata _path]
 		} else {
 			[_ctrlTree tvdata _path]
 		};
-		uiNamespace setvariable ["display3DENTutorial_select",_pathClass];
+		uiNamespace setVariable ["display3DENTutorial_select",_pathClass];
 	};
 };

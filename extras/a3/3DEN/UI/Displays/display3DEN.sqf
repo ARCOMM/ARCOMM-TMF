@@ -20,13 +20,13 @@ switch _mode do {
 			{
 				_init = getText (_x >> "init");
 				if (_init != "") then {_inits pushback [[_display],compile _init];};
-			} foreach configproperties [configFile >> "Cfg3DEN" >> "EventHandlers","isclass _x"];
+			} forEach configproperties [configFile >> "Cfg3DEN" >> "EventHandlers","isclass _x"];
 
 			//--- Call init event handlers
 			{
 				private ["_display","_inits"];
 				(_x select 0) call (_x select 1);
-			} foreach _inits;
+			} forEach _inits;
 		};
 	};
 };

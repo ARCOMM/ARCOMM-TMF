@@ -19,8 +19,8 @@ switch _mode do {
 	{
 		_display = _params select 0;
 		_key = _params select 1;
-		_ctrlModes = _display displayctrl IDC_DISPLAY3DEN_MODES;
-		_ctrlModeLabels = _display displayctrl IDC_DISPLAY3DEN_MODELABELS;
+		_ctrlModes = _display displayCtrl IDC_DISPLAY3DEN_MODES;
+		_ctrlModeLabels = _display displayCtrl IDC_DISPLAY3DEN_MODELABELS;
 		_cursel = switch _key do {
 			case DIK_F1: {0};
 			case DIK_F2: {1};
@@ -31,8 +31,8 @@ switch _mode do {
 			default {-1};
 		};
 		if (_cursel >= 0) then {
-			_ctrlModes lbsetcursel _cursel;
-			_ctrlModeLabels lbsetcursel _cursel;
+			_ctrlModes lbSetCurSel _cursel;
+			_ctrlModeLabels lbSetCurSel _cursel;
 		};
 		
 	};

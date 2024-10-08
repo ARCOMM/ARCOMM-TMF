@@ -21,7 +21,7 @@ class GVAR(modal)
         class TitleBackground: RscText
         {
             idc = IDC_TMF_ADMINMENU_MODAL_TBACK;
-            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
             x = "1.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) + (safezoneX + (safeZoneW - ((safeZoneW / safeZoneH) min 1.2))/2)";
             y = "2.6 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
             w = "37 * (((safeZoneW / safeZoneH) min 1.2) / 40)";

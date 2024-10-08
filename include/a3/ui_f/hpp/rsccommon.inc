@@ -210,10 +210,10 @@
 //--- Resizable background
 #define COMMON_BACKGROUND_SCRIPTED \
 	COMMON_BACKGROUND( \
-		(uiNamespace getvariable 'RscBackground_X'), \
-		(uiNamespace getvariable 'RscBackground_Y'), \
-		(uiNamespace getvariable 'RscBackground_W'), \
-		(uiNamespace getvariable 'RscBackground_H') \
+		(uiNamespace getVariable 'RscBackground_X'), \
+		(uiNamespace getVariable 'RscBackground_Y'), \
+		(uiNamespace getVariable 'RscBackground_W'), \
+		(uiNamespace getVariable 'RscBackground_H') \
 	)
 
 //--- Fullscreen Background of insert dialogues in mission editor
