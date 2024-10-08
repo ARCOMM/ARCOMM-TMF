@@ -27,6 +27,6 @@ private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNameSpace 
 
 _entity set3DENAttribute ["TMF_groupMarker",str _groupMarkerArray];
 
-TRACE_3("Group Marker attrSave",_entity,_groupMarkerArray);
+TRACE_2("Group Marker attrSave",_entity,_groupMarkerArray);
 
 str _groupMarkerArray;

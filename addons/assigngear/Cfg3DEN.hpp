@@ -105,7 +105,12 @@ class Cfg3DEN
 
         // AI Gear module controls
         class GVARMAIN(DOUBLES(aigear,faction)) : Combo {
-            INIT_CONTROL(GVARMAIN(AttributesFaction),ADDON)
+            //INIT_CONTROL(GVARMAIN(AttributesFaction),ADDON)
+             //I can't get this ^ macro to work with HEMTT so it's been replaced with the next 4 lines
+            scriptName = "TMF_AttributesFaction";
+            scriptPath = "TMF_assignGear";
+            onLoad = "['onLoad',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+            onUnload = "['onUnload',_this,'TMF_AttributesFaction','TMF_assignGear',0] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
         };
 
         class GVARMAIN(loadout) : Combo {

@@ -62,11 +62,11 @@ switch _mode do {
         ];
 
         if (_area isEqualTo [] || {_area isEqualTo ([] call BIS_fnc_getArea)}) exitWith {
-            ERROR_MSG("No area module synchronized to Ambient Vehicles module: %1",_logic);
+            ERROR_MSG_1("No area module synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         if (_vehicleTypes isEqualTo []) exitWith {
-            ERROR_MSG("No vehicles synchronized to Ambient Vehicles module: %1",_logic);
+            ERROR_MSG_1("No vehicles synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
