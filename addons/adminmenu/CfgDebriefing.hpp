@@ -20,7 +20,7 @@ class CfgDebriefing
         pictureColor[] = {1.0,1.0,1.0,1};
     };
 
-    class GVAR(draw)
+    class GVAR(Draw)
     {
         title = "Draw";
         description = "";

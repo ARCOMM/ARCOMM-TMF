@@ -23,7 +23,7 @@ if (_oldUnitdata isEqualType []) then {
         [_newUnit, _faction, _role] call EFUNC(assignGear,assignGear);
     };
 
-    setPlayable _newUnit;
+    //setPlayable _newUnit; // This command does nothing in Arma3
     selectPlayer _newUnit;
     deleteVehicle _oldUnit;
 

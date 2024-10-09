@@ -27,12 +27,12 @@ _this params [
 
 // Sometimes in editor this function is run before preInit, this should make sure that the namespace exists
 private _namespace = missionNamespace getVariable QGVAR(namespace);
-ISNILS(_namespace, [FUNC(initNamespace)] call CBA_fnc_directCall);
+ISNILS(_namespace,[FUNC(initNamespace)] call CBA_fnc_directCall);
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 // Check if loadout if cached, if not then cache it
 private _loadoutArray = _namespace getVariable _loadout;
-ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
+ISNILS(_loadoutArray,[ARR_2(_faction,_role)] call FUNC(cacheAssignGear));
 
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 

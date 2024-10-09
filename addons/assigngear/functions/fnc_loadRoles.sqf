@@ -29,7 +29,7 @@ private _role = (_unit get3DENAttribute "TMF_assignGear_role") select 0;
 
 private _classes = [];
 
-//MissionConfigFile overrides.
+//missionConfigFile overrides.
 call {
     if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
     if(isClass (configFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};

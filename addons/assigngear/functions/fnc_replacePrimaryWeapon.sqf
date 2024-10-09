@@ -46,7 +46,7 @@ if(count _this > 3) then {
         if (!isNil "_x" && _x != "" ) then {
             _unit addPrimaryWeaponItem _x;
         };
-    } forEach [_scope,_bipod,_attachment,_silencer];;
+    } forEach [_scope,_bipod,_attachment,_silencer];
 }
 else
 {

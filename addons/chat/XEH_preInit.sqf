@@ -1,5 +1,5 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.sqf"
-#include "initSettings.sqf"
-#include "initCommands.sqf"
+#include "XEH_PREP.inc.sqf"
+#include "initSettings.inc.sqf"
+#include "initCommands.inc.sqf"

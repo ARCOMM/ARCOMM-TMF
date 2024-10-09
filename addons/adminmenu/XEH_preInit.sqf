@@ -1,8 +1,8 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-#include "XEH_PREP.sqf"
+#include "XEH_PREP.inc.sqf"
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 GVAR(logEntries) = [];
 

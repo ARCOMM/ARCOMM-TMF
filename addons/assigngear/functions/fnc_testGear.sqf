@@ -2,7 +2,6 @@
 //
 #include "\x\tmf\addons\assigngear\script_component.hpp"
 
-
 private _cfgWeapons = configFile >> "CfgWeapons";
 private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
@@ -13,14 +12,12 @@ private _maxWeightKG = ACE_MASSTOKG(_maxWeight);
 
 private _output = [];
 
-#define GETGEAR(var) [_config >> var] call CFUNC(getCfgEntryFromPath)
-
 private _fnc_checkExists = {
-    params ["_subarray","_config"];
+    params ["_subarray","_cfg"];
 
     {
         if ((_x != "") and (_x != "default")) then {
-            if (!isClass (_config >> _x)) then {
+            if (!isClass (_cfg >> _x)) then {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
         };
@@ -42,12 +39,12 @@ private _fnc_checkExists_insignia = {
 private _fncTestUnit = {
     params ["_faction",["_role","r"]];
 
-    private _config = missionConfigFile >> "cfgLoadouts" >> _faction >> _role;
-    if (!isClass (_config)) then {
-        _config = configFile >> "cfgLoadouts" >> _faction >> _role;
+    private _cfg = missionConfigFile >> "cfgLoadouts" >> _faction >> _role;
+    if (!isClass (_cfg)) then {
+        _cfg = configFile >> "cfgLoadouts" >> _faction >> _role;
     };
     private _return = [0,0,0];
-    if (isClass _config) then {
+    if (isClass _cfg) then {
         private _uniform = GETGEAR("uniform"); //CfgWeapons
         [_uniform, _cfgWeapons] call _fnc_checkExists;
         private _vest = GETGEAR("vest"); //CfgWeapons
@@ -211,7 +208,7 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
-                _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
+                _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.", _faction, _role]];
             };
         };
 
@@ -220,7 +217,7 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0) then {
-                _output pushBack [1,format["Role: %2 - %3 has no compatible mag for sidearm.", _x,_faction,_role]];
+                _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.", _faction, _role]];
             };
         };
 

@@ -134,6 +134,6 @@ _warnings pushBack [
 ];
 
 
-LOG_1("Finished DLC Tests: %1", _warnings);
+LOG_1("Finished DLC Tests: %1",_warnings);
 
 _warnings

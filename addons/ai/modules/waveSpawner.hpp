@@ -6,9 +6,9 @@ class GVAR(wavespawn) : Module_F {
     icon = QPATHTOEF(common,UI\logo_tmf_small_ca.paa);
     function = QFUNC(waveInit);
     functionPriority = 10;
-    isGlobal = false;
-    isTriggerActivated = true;
-    isDisposable = false;
+    isGlobal = 0;
+    isTriggerActivated = 1;
+    isDisposable = 0;
 
     class EventHandlers: EventHandlers {
         init = "if(isServer && !is3DEN) then {[{_this call tmf_AI_fnc_waveInit;}, [_this select 0,[],false]] call CBA_fnc_execNextFrame;};_this call bis_fnc_moduleInit;";
@@ -54,11 +54,11 @@ class GVAR(wavespawn) : Module_F {
             property = QGVAR(wavespawn_WaveInit);
             displayName = "Wave init code";
             tooltip = "Code executed every time a new wave is spawned";
-            expression = QUOTE(                                                                                                                                                                \
+            expression = "                                                                                                                                                                     \
                 if (_value != 'params [ARR_7(""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic"",""_wavehandlerID"")];' && _value != '') then { \
                     [ARR_3(_this,compile _value,True)] call FUNC(addWaveHandler);                                                                                                              \
                 };                                                                                                                                                                             \
-            );
+            ";
             defaultValue = "'params [""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic"",""_wavehandlerID""];'";
             control = "EditCodeMulti5";
         };

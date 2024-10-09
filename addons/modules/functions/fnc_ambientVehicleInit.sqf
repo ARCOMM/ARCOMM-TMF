@@ -62,11 +62,11 @@ switch _mode do {
         ];
 
         if (_area isEqualTo [] || {_area isEqualTo ([] call BIS_fnc_getArea)}) exitWith {
-            ERROR_MSG("No area module synchronized to Ambient Vehicles module: %1",_logic);
+            ERROR_MSG_1("No area module synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         if (_vehicleTypes isEqualTo []) exitWith {
-            ERROR_MSG("No vehicles synchronized to Ambient Vehicles module: %1",_logic);
+            ERROR_MSG_1("No vehicles synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
@@ -102,7 +102,7 @@ switch _mode do {
         };
 
         if is3DEN then {
-            private _connections = (get3DENConnections _logic);;
+            private _connections = (get3DENConnections _logic);
             FILTER(_connections,(_x select 0) isEqualTo "Sync");
             _syncedObjects = _connections apply {_x # 1};
             _area = (_syncedObjects select {_x isKindOf QEGVAR(ai,area)}) param [0, objNull];

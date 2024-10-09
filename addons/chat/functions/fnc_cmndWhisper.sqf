@@ -39,7 +39,7 @@ if (!isNull _unit) then {
         false,
         true
     ] remoteExecCall ["CBA_fnc_notify", _unit];
-    systemChat format ["TMF: Whisper sent to %1", name _unit];
+    systemChat format ["TMF: Whisper sent to %1",name _unit];
 } else {
     systemChat format ["TMF Error: No unit found containing %1, or more than one found.", str _name];
 };

@@ -24,9 +24,9 @@ if (isClass(configFile >> "CfgPatches" >> "tao_foldmap_a3")) then {
         while {true} do {
             private _display = displayNull;
             waitUntil {sleep 1;_display = (uiNamespace getVariable ["tao_foldmap",displayNull]); !isNull _display};
-            private _control1 = _display displayctrl 40;
-            (_display displayctrl 40) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-            (_display displayctrl 41) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+            private _control1 = _display displayCtrl 40;
+            (_display displayCtrl 40) ctrlAddEventHandler ["Draw",{_this call FUNC(Draw)}];
+            (_display displayCtrl 41) ctrlAddEventHandler ["Draw",{_this call FUNC(Draw)}];
             waitUntil{sleep 1;isNull _control1};
         };
     };
@@ -42,16 +42,16 @@ if (isClass(configFile >> "CfgPatches" >> "tao_foldmap_a3")) then {
 
         if (isNull _gm_ace_md_display) then {
             if (!isNull (uiNamespace getVariable "ace_microdagr_rsctitledisplay")) then {
-                _gm_ace_md_display = ((uiNamespace getVariable "ace_microdagr_rsctitledisplay") displayctrl 77702);
-                _gm_ace_md_display ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+                _gm_ace_md_display = ((uiNamespace getVariable "ace_microdagr_rsctitledisplay") displayCtrl 77702);
+                _gm_ace_md_display ctrlAddEventHandler ["Draw",{_this call FUNC(Draw)}];
                 _args set [0,_gm_ace_md_display];
             };
         };
 
         if (isNull _gm_ace_md_dialog) then {
             if (!isNull (uiNamespace getVariable "ace_microdagr_dialogdisplay")) then {
-                _gm_ace_md_dialog = ((uiNamespace getVariable "ace_microdagr_dialogdisplay") displayctrl 77702);
-                _gm_ace_md_dialog ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+                _gm_ace_md_dialog = ((uiNamespace getVariable "ace_microdagr_dialogdisplay") displayCtrl 77702);
+                _gm_ace_md_dialog ctrlAddEventHandler ["Draw",{_this call FUNC(Draw)}];
                 _args set [1,_gm_ace_md_dialog];
             };
         };

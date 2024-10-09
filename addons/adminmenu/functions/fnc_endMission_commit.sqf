@@ -7,7 +7,7 @@ params ["_display"];
 if (cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC)) exitWith {
     private _isDraw = cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDEDRAW);
     if (_isDraw) then {
-        [QGVAR(draw)] remoteExec [QEFUNC(common,endMission)];
+        [QGVAR(Draw)] remoteExec [QEFUNC(common,endMission)];
     } else {
         private _winners = [];
         if ((missionNamespace getVariable [QGVAR(DOUBLES(ending,blufor)), 0]) isEqualTo 1) then {

@@ -20,6 +20,6 @@ if (isNil "_unit" || isNil "_items") exitWith {};
     if (!(isNil "_x") && {_unit canAddItemToBackpack _x}) then {
         _unit addItemToBackpack _x;
     } else {
-        WARNING_3("Adding item to backpack failed. Unit: %1, Item: %2.",_unit,_x);
+        WARNING_2("Adding item to backpack failed. Unit: %1, Item: %2.",_unit,_x);
     };
 } forEach _items;

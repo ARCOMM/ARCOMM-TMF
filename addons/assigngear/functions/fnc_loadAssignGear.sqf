@@ -6,7 +6,7 @@
  * Arguments:
  * 0: String. CfgLoadouts faction
  * 1: String. CfgLoadouts role
- * 2: Configfile (optional). configfile to check, can be either missionConfigFile or configFile
+ * 2: configFile (optional). configFile to check, can be either missionConfigFile or configFile
  *
  * Return:
  * Array. Loadout array
@@ -32,7 +32,7 @@ if (isNil "_cfg") then {
     ];
 };
 
-ASSERT_TRUE(isClass CFGROLE, format [ARR_3("Loadout not present: %1 %2", _faction, _role)]);
+ASSERT_TRUE(isClass CFGROLE,format [ARR_3("Loadout not present: %1 %2",_faction,_role)]);
 
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 private _loadoutArray = [];

@@ -1,22 +1,22 @@
 class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 {
     idc = -1;
-    x = 0 * safezoneW + safezoneX;
-    y = 0 * safezoneH + safezoneY;
-    w = 0.08 * safezoneW;
-    h = 0.06 * safezoneH;
+    x = QUOTE(0 * safeZoneW + safeZoneX);
+    y = QUOTE(0 * safeZoneH + safeZoneY);
+    w = QUOTE(0.08 * safeZoneW);
+    h = QUOTE(0.06 * safeZoneH);
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonDown = "[""MouseButtonDown"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonUp = "[""MouseButtonUp"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseMoving = "['MouseMoving',_this] call tmf_spectator_fnc_mouseHandler";
     class controls
     {
-        class GVAR(back) : IGUIBACK {
+        class GVAR(back) : IGUIBack {
             idc = 4;
-            x = 0.3 * safezoneW;
+            x = QUOTE(0.3 * safeZoneW);
             y = 0;
-            w = 0.05 * safezoneW;
-            h = 0.06 * safezoneH;
+            w = QUOTE(0.05 * safeZoneW);
+            h = QUOTE(0.06 * safeZoneH);
             colorBackground[] = {0,0,0,0.0};
         };
         class GVAR(Icon): RscPicture
@@ -25,10 +25,10 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             text = "\A3\ui_f\data\map\markers\military\triangle_CA.paa";
             x = 0;
             y = 0;
-            w = 0.08 * safezoneW;
-            h = 0.02 * safezoneH;
-            style = 48 + 2048 + 0x02; // picture + no stretch + center (not sure if works) + 0x800
-            sizeEx = 1 * safeZoneH;
+            w = QUOTE(0.08 * safeZoneW);
+            h = QUOTE(0.02 * safeZoneH);
+            style = QUOTE(48 + 2048 + 0x02); // picture + no stretch + center (not sure if works) + 0x800
+            sizeEx = QUOTE(safeZoneH);
         };
         class GVAR(Name): RscText
         {
@@ -38,10 +38,10 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             colorBackground[] = { 1, 1, 1, 0 };
             colorText[] = { 1, 1, 1, 1 };
             x = 0;
-            y = 0.02 * safezoneH;
-            w = 0.08 * safezoneW;
-            h = 0.02 * safezoneH;
-            sizeEx = 0.018 * safeZoneH;
+            y = QUOTE(0.02 * safeZoneH);
+            w = QUOTE(0.08 * safeZoneW);
+            h = QUOTE(0.02 * safeZoneH);
+            sizeEx = QUOTE(0.018 * safeZoneH);
             shadow = 2;
         };
         class GVAR(Detail): GVAR(Name)
@@ -49,22 +49,22 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             idc = 3;
             text = ""; //--- ToDo: Localize;
             x = 0;
-            y = 0.04 * safezoneH;
-            w = 0.08 * safezoneW;
-            h = 0.02 * safezoneH;
-            sizeEx = 0.013 * safeZoneH;
+            y = QUOTE(0.04 * safeZoneH);
+            w = QUOTE(0.08 * safeZoneW);
+            h = QUOTE(0.02 * safeZoneH);
+            sizeEx = QUOTE(0.013 * safeZoneH);
         };
     };
 };
 class GVAR(GroupTag) : GVAR(EntityTag) {
     class controls
         {
-            class GVAR(back) : IGUIBACK {
+            class GVAR(back) : IGUIBack {
                 idc = 4;
-                x = 0.3 * safezoneW;
+                x = QUOTE(0.3 * safeZoneW);
                 y = 0;
-                w = 0.05 * safezoneW;
-                h = 0.06 * safezoneH;
+                w = QUOTE(0.05 * safeZoneW);
+                h = QUOTE(0.06 * safeZoneH);
                 colorBackground[] = {0,0,0,0.0};
             };
             class GVAR(Icon): RscPicture
@@ -73,10 +73,10 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 text = "\A3\ui_f\data\map\markers\military\triangle_CA.paa";
                 x = 0;
                 y = 0;
-                w = 0.08 * safezoneW;
-                h = 0.035 * safezoneH;
-                style = 48 + 2048 + 0x02; // picture + no stretch + center (not sure if works) + 0x800
-                sizeEx = 1 * safeZoneH;
+                w = QUOTE(0.08 * safeZoneW);
+                h = QUOTE(0.035 * safeZoneH);
+                style = QUOTE(48 + 2048 + 0x02); // picture + no stretch + center (not sure if works) + 0x800
+                sizeEx = QUOTE(safeZoneH);
             };
             class GVAR(Name): RscText
             {
@@ -86,10 +86,10 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 colorBackground[] = { 1, 1, 1, 0 };
                 colorText[] = { 1, 1, 1, 1 };
                 x = 0;
-                y = 0.04 * safezoneH;
-                w = 0.08 * safezoneW;
-                h = 0.02 * safezoneH;
-                sizeEx = 0.018 * safeZoneH;
+                y = QUOTE(0.04 * safeZoneH);
+                w = QUOTE(0.08 * safeZoneW);
+                h = QUOTE(0.02 * safeZoneH);
+                sizeEx = QUOTE(0.018 * safeZoneH);
                 shadow = 2;
             };
             class GVAR(Detail): GVAR(Name)
@@ -97,10 +97,10 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 idc = 3;
                 text = ""; //--- ToDo: Localize;
                 x = 0;
-                y = 0.08 * safezoneH;
-                w = 0.08 * safezoneW;
-                h = 0.02 * safezoneH;
-                sizeEx = 0.013 * safeZoneH;
+                y = QUOTE(0.08 * safeZoneH);
+                w = QUOTE(0.08 * safeZoneW);
+                h = QUOTE(0.02 * safeZoneH);
+                sizeEx = QUOTE(0.013 * safeZoneH);
             };
         };
 };

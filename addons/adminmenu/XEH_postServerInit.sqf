@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-#include "initKeybinds.sqf"
+#include "initKeybinds.inc.sqf"
 
 if (isTMF) then {
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
