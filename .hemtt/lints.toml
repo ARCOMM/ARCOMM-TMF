@@ -2,4 +2,5 @@
 options.ignore = [
     "addPublicVariableEventHandler", # Alt syntax is broken, main syntax ia ok
     "createSoundSource", # Greatly attenuated when in first person and in a vehicle
+    "getPersonUsedDLCs", # Broken on dedicted, but only used in TMF Autotest for checking loadout DLC requirements
 ]

@@ -59,7 +59,7 @@ if (_radioChannelIndexSpectator != -1) then {
 };
 
 //addSwitchableUnit localRespawnedUnit; This will create awkard mission ends.
-setPlayable tmf_localRespawnedUnit; // Allow unit to referenced later with player functions (name/getPlayerUID) (Verify this works)
+//setPlayable tmf_localRespawnedUnit; // Allow unit to referenced later with player functions (name/getPlayerUID) (Verify this works)  // This command does nothing in Arma3
 selectPlayer tmf_localRespawnedUnit;
 //localRespawnedUnit setName _name;
 
