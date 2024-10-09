@@ -10,7 +10,7 @@ class CfgPatches
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"tmf_common"};
+        requiredAddons[] = {"tmf_common","tmf_briefing"};
         VERSION_CONFIG;
     };
 };
