@@ -35,16 +35,16 @@ GVAR(posIdxs) = [];
 
 // Do stuff with mouseOver EH
 // KeyDown
-GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonDown",{
+GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonDown",{
     GVAR(mouseKeysPressed) pushBackUnique (_this select 1);
 }]); // EDEN IDC 313
 // KeyUp
-GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp",{
+GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonUp",{
     [_this select 1] call FUNC(edenMouseKeyUp);
     GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
 }]);
-// MouseZchanged
-GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["mouseZchanged",{
+// MouseZChanged
+GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["MouseZChanged",{
     if (GVAR(Garrison)) then {
         private _A =+ GVAR(posIdxs);
         private _B = [];
@@ -71,8 +71,8 @@ GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["mouseZc
 
 add3DENEventHandler ["OnMissionPreviewEnd",{
     // Cheat to get OnMissionPreviewEnd working
-    0 = [] spawn {
-        uisleep 0.5;
+    [] spawn {
+        uiSleep 0.5;
         {
             { _x hideObjectGlobal false } forEach (_x getVariable [QGVAR(intersections),[]]);
 

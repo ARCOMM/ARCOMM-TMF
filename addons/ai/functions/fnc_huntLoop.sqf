@@ -27,7 +27,7 @@ while {_continue} do {
             if (isNull _closestTarget) then {
                 if (_unit distance _position < _range) then {
                     private _dir = [_unit,_position] call BIS_fnc_dirTo;
-                    _dir = _dir + (((round (random 1)) - 0.5) * 2) * (random= random= 180);
+                    _dir = _dir + (((round (random 1)) - 0.5) * 2) * (random 180);
                     //private _dir = random 360;
                     _unit doMove (getPos (_unit) vectorAdd [(sin(_dir)*40), (cos(_dir)*40), 0]);
                 } else { // Outside move in.

@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.sqf"
-#include "initSettings.sqf"
+#include "XEH_PREP.inc.sqf"
+#include "initSettings.inc.sqf"
 
 // Handle default safestart setting
 if (isServer && isTMF && !is3DEN && GVAR(enableDefaultSS) && entities QGVAR(module) isEqualTo []) then {

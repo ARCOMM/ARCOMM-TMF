@@ -45,7 +45,7 @@ switch (count _inputArr) do {
                     systemChat "TMF Error: Cannot select loadout as you do not have an assigned faction. Use #loadout <faction> <role>";
                     systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.",str _in1);
                 } else {
-                    systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2",str _in1, _faction);
+                    systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2",str _in1,_faction);
                     systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.",str _in1);
                 };
             } else {

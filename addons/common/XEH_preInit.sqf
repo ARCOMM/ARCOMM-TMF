@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 
-#include "XEH_PREP.sqf"
-#include "initSettings.sqf"
+#include "XEH_PREP.inc.sqf"
+#include "initSettings.inc.sqf"
 
 if is3DEN call {
     call FUNC(edenInit);
