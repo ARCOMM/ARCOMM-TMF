@@ -284,19 +284,14 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {
-                                if ((getNumber (configFile >> "CfgWeapons" >> (primaryWeapon _x) >> "rhsdisposable") == 1) or
-                                    (getNumber (configFile >> "CfgWeapons" >> (primaryWeapon _x) >> "tf47_disposable") == 1) or
-                                    (isText (configFile >> "CfgWeapons" >> (primaryWeapon _x) >> "UK3CB_used_launcher")) or
-                                    (isText (configFile >> "CfgWeapons" >> (primaryWeapon _x) >> "ACE_UsedTube"))) then {"\x\tmf\addons\orbat\weapon_textures\lat"} else {"\x\tmf\addons\orbat\weapon_textures\mat"}
-                                };
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};
                             case "SubmachineGun":{"\x\tmf\addons\orbat\weapon_textures\smg"};
                             case "Shotgun":{"\x\tmf\addons\orbat\weapon_textures\shotgun"};
                             case "AssaultRifle"; //{"\x\tmf\addons\orbat\weapon_textures\carbine"}; carbine too hard to know
-                            default {if (_bipod != "") then {"\x\tmf\addons\orbat\weapon_textures\dmr"} else { "\x\tmf\addons\orbat\weapon_textures\rifleman"}};
+                            default {["\x\tmf\addons\orbat\weapon_textures\rifleman", "\x\tmf\addons\orbat\weapon_textures\dmr"] select (_bipod != "")};
                             //"AssaultRifle"
                         };
                         // Handle grenadiers
@@ -329,12 +324,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {
-                                if ((getNumber (configFile >> "CfgWeapons" >> (secondaryWeapon _x) >> "rhs_disposable") == 1) or
-                                    (getNumber (configFile >> "CfgWeapons" >> (secondaryWeapon _x) >> "tf47_disposable") == 1) or
-                                    (isText (configFile >> "CfgWeapons" >> (secondaryWeapon _x) >> "UK3CB_used_launcher")) or
-                                    (isText (configFile >> "CfgWeapons" >> (secondaryWeapon _x) >> "ACE_UsedTube"))) then {"\x\tmf\addons\orbat\weapon_textures\lat"} else {"\x\tmf\addons\orbat\weapon_textures\mat"}
-                                };
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};
