@@ -13,4 +13,3 @@ if (!(_curator getVariable [QGVAR(addAllStatics),false])) then {
     _curator removeCuratorEditableObjects [_objects,true];
     _curator setVariable [QGVAR(addAllStatics),false,true];
 };
-

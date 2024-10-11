@@ -53,5 +53,3 @@ if (hasInterface) then {
     // Create markers for any respawned markers that have occured before the client has joined.
     //[] call FUNC(respawnGroupMarkerUpdate);
 };
-
-

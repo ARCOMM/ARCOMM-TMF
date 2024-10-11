@@ -19,4 +19,3 @@ if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
 };
 _mapCtrl ctrlMapAnimAdd [0, 0.1, _pos];
 ctrlMapAnimCommit _mapCtrl;
-

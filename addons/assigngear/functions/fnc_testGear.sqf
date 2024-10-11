@@ -297,4 +297,4 @@ private _loadoutFreespace = [];
 
 _output pushBack [-1,"AssignGear checks complete."];
 
-_output;
+_output

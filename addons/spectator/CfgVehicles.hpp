@@ -1,5 +1,3 @@
-
-
 class CfgVehicles
 {
     class Logic;

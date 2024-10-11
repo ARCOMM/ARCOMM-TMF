@@ -41,4 +41,3 @@ if (!(_curator getVariable [QGVAR(addAllUnits),false])) then {
     };
     _curator setVariable [QGVAR(addAllUnits),false,true];
 };
-

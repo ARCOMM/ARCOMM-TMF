@@ -41,4 +41,3 @@ call {
     _control lbSetTooltip [_index,getText(_x >> "tooltip")];
     if(configName _x == _role) then {_control lbSetCurSel _index};
 } forEach _classes;
-

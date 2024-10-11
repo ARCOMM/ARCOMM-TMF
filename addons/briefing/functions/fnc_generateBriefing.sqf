@@ -66,5 +66,3 @@ if ([] call tmf_common_fnc_isAdmin) then {
         };
     };
 };
-
-

@@ -225,4 +225,3 @@ if (_mousePos isEqualType []) then {
         _fullmapWindow drawIcon ["\A3\ui_f\data\map\markers\military\start_CA.paa",[1,0,0,1],_mousePos,20,20,0,_text,1];
     };
 };
-

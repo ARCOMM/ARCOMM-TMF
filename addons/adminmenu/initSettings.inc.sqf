@@ -19,5 +19,3 @@ private _fnc_settings = {
 if is3DEN then _fnc_settings else {
     [{[] call FUNC(isAuthorized) || isServer},_fnc_settings] call CBA_fnc_waitUntilAndExecute;
 };
-
-

@@ -39,4 +39,3 @@ if (count _place == 0) then {
     };
     _subArray pushBack [_line];
 };
-

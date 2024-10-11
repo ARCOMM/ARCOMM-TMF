@@ -31,4 +31,3 @@ if (count _classes > 0) then {
 GVAR(selectedRespawnGroup) = [];
 [_display] call FUNC(respawn_refreshSpectatorList);
 [_display] call FUNC(respawn_refreshGroupBox);
-

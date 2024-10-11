@@ -60,4 +60,4 @@ if (count _units > 0) then {
     _output pushBack [1,format ["units (%1): %2",count _units,str _units]]; 
 };
 
-_output;
+_output

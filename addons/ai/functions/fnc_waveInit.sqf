@@ -133,4 +133,3 @@ if(_activated) then {
     private _delay = _logic getVariable ["Delay",0];
     [FUNC(spawnWave),[_logic],_delay] call CBA_fnc_waitAndExecute;
 };
-

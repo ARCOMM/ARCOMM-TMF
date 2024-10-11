@@ -10,4 +10,3 @@ GVAR(currentFactionCategory) = _control lbData _newIdx;
 GVAR(lastFactionSelection) set [0,_newIdx];
 
 [_display] call FUNC(respawn_refreshFactionCategory);
-

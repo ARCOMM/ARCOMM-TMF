@@ -57,7 +57,7 @@ class GVAR(artillery) : Module_F
             tooltip = "If empty will use the loaded ammo.";
             control = "Edit";
             property = "Round";
-            defaultValue = "default";
+            defaultValue = "'default'";
             expression = "_this setVariable ['%s',_value];";
             typeName = "STRING";
             validate = "none";
