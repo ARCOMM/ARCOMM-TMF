@@ -28,4 +28,4 @@ if (_i1 > _r1) exitWith {true};
 if (_i1 < _r1) exitWith {false};
 if (_i2 < _r2) exitWith {false};
 
-true;
+true

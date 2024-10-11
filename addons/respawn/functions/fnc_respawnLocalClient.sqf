@@ -130,5 +130,3 @@ if (_leader) then {
 
 // Add all the respawned groups to the map markers as well.
 [] call FUNC(respawnGroupMarkerUpdate);
-
-

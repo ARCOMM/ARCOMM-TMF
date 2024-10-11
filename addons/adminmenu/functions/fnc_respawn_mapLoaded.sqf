@@ -22,4 +22,3 @@ ctrlMapAnimCommit _mapCtrl;
 GVAR(respawnMousePos) = -1;
 GVAR(respawnHalo) = false;
 hint "Click on the map or click on respawn location to draft a position. Hit enter to confirm. Spacebar toggles HALO option (only for user defined point).";
-

@@ -47,4 +47,3 @@ if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,acre2)))) then {
         "all"
     ] call CBA_fnc_registerChatCommand;
 };
-

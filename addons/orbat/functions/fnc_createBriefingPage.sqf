@@ -409,4 +409,3 @@ private _briefingText = [_ourData, ""] call _fnc_processOrbatTrackerBriefingRawD
 _briefingText = "Note: This is only valid at time of creation.<br/><font size='18'>ORBAT:</font><br/>" + _briefingText;
 _unit createDiaryRecord ["diary", ["ORBAT", _briefingText]];
 _fnc_processOrbatTrackerBriefingRawData = nil;
-

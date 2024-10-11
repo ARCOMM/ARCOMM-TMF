@@ -14,4 +14,3 @@ if (!isClass(configFile >> "CfgPatches" >> "acre_main")) then { // Hide mute but
 [QGVAR(toggleUI), [GVAR(showUI),_display]] call CBA_fnc_localEvent;
 
 showChat GVAR(showUI);
-

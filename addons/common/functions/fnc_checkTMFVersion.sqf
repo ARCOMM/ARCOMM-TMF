@@ -20,4 +20,3 @@ params [
 private _tmfVersion = getMissionConfigValue ["tmf_version",[0,0,0]];
 
 ([_tmfVersion,_input] call EFUNC(common,checkVersionArray));
-

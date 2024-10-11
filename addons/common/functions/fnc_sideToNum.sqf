@@ -18,4 +18,4 @@ if (_return isEqualTo -1) then {
     _return = 4; // sideUnknown
 };
 
-_return;
+_return

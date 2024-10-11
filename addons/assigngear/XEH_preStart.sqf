@@ -33,4 +33,3 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
         uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
     };
 } forEach ("true" configClasses (configFile >> "tmf_assignGear_facesets"));
-

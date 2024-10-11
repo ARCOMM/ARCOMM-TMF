@@ -54,4 +54,3 @@ if (_data isEqualType []) then {
         };
     } forEach _data;
 }, [_object, _data]] call CBA_fnc_execNextFrame;
-
