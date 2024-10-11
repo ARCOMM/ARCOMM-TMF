@@ -114,7 +114,7 @@ class Cfg3DEN
         };
         class GVAR(missionName) : Title
         {
-            attributeLoad = "                                                                             \
+            attributeLoad = QUOTE(                                                                        \
                 _value = 'Scenario' get3DENMissionAttribute 'IntelBriefingName';                          \
                 (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
                 if (_value == '') then {                                                                  \
@@ -122,7 +122,7 @@ class Cfg3DEN
                 } else {                                                                                  \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
                 };                                                                                        \
-            ";
+            );
             attributeSave = "true";
             class Controls : Controls
             {
@@ -158,7 +158,7 @@ class Cfg3DEN
         };
         class GVAR(missionSummary) : Title
         {
-            attributeLoad = "                                                                            \
+            attributeLoad = QUOTE(                                                                            \
                 _value = 'Multiplayer' get3DENMissionAttribute 'IntelOverviewText';                           \
                 (_this controlsGroupCtrl 100) ctrlSetText _value;                                             \
                 if (_value == '' || _value == '*** Insert mission description here. ***') then {              \
@@ -170,7 +170,7 @@ class Cfg3DEN
                         (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
                     };                                                                                        \
                 };                                                                                            \
-            ";
+            );
             attributeSave = "true";
             class Controls : Controls
             {
@@ -206,7 +206,7 @@ class Cfg3DEN
         };
         class GVAR(Author) : Title
         {
-            attributeLoad = "                                                                             \
+            attributeLoad = QUOTE(                                                                        \
                 _value = 'Scenario' get3DENMissionAttribute 'Author';                                     \
                 (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
                 if ((_value find profileName)  == -1) then {                                              \
@@ -214,7 +214,7 @@ class Cfg3DEN
                 } else {                                                                                  \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
                 };                                                                                        \
-            ";
+            );
             attributeSave = "true";
             class Controls : Controls
             {
@@ -249,17 +249,17 @@ class Cfg3DEN
         };
         class GVAR(minPlayer) : Title
         {
-            attributeLoad = "                                                                             \
+            attributeLoad = QUOTE(                                                                        \
                 _value = 'Multiplayer' get3DENMissionAttribute 'minplayers';                              \
                 _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                  \
                 _playerCount = count (_playerCount arrayIntersect _playerCount);                          \
                 (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                   \
-                if (_value > 0 && _value <= _playerCount) then {                                          \
+                if (_value > 0 && _value <= _playerCount) then {                                         \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
                 } else {                                                                                  \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
                 };                                                                                        \
-            ";
+            );
             attributeSave = "true";
             class Controls : Controls
             {
@@ -294,7 +294,7 @@ class Cfg3DEN
         };
         class GVAR(maxPlayer) : Title
         {
-            attributeLoad = "                                                                                       \
+            attributeLoad = QUOTE(                                                                                  \
                 _value = 'Multiplayer' get3DENMissionAttribute 'maxplayers';                                        \
                 _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                            \
                 _playerCount = count (_playerCount arrayIntersect _playerCount);                                    \
@@ -305,7 +305,7 @@ class Cfg3DEN
                 } else {                                                                                            \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)';           \
                 };                                                                                                  \
-            ";
+            );
             attributeSave = "true";
             class Controls : Controls
             {
