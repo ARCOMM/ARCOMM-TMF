@@ -125,13 +125,13 @@ if(GVAR(mode) == FREECAM) then {
 if(GVAR(mode) == FIRSTPERSON) then
 {
     GVAR(target) switchCamera "internal";
-    if(vehicle GVAR(target) != GVAR(target)) then
+    if(!isNull objectParent GVAR(target)) then
     {
         private _vehicle = vehicle GVAR(target);
         private _mode = "internal";
         if((assignedVehicleRole GVAR(target) select 0) != "Cargo") then {_mode = "gunner"};
         _vehicle switchCamera _mode;
     };
-    if(vehicle GVAR(target) == GVAR(target) && (GVAR(mButtons) select 1)) then { GVAR(target) switchCamera "gunner"; };
+    if(isNull objectParent GVAR(target) && {(GVAR(mButtons) select 1)}) then { GVAR(target) switchCamera "gunner"; };
 };
 GVAR(freecam_timestamp) = time;

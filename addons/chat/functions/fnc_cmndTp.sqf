@@ -36,7 +36,7 @@ if (isNull _unit) then {
 };
 
 if (!isNull _unit) then {
-    if (vehicle _unit != _unit) then {
+    if (!isNull objectParent _unit) then {
         CURUNIT moveInAny vehicle _unit;
 
         if !(CURUNIT in vehicle _unit) then {

@@ -128,8 +128,7 @@ params["_fullmapWindow"];
 // Units
 {
     if(alive _x) then {
-
-        if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
+        if (isNull objectParent _x || {!isNull objectParent _x && {crew (vehicle _x) select 0 == _x}}) then
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
             if(_icon == "") then {
