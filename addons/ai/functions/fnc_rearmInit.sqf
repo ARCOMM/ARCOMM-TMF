@@ -4,11 +4,11 @@ sleep 1;
 if(_activated) then {
     [{
         _this params ["_logic"];
-        if((getPos player) inArea ([getPos _logic] + (_logic getVariable ["objectArea",[]])) && (player getVariable [QGVAR(rearmHandle),-1]) == -1) then {
-            _handle = player addAction ["<t color='#FF0000'>Rearm</t>",{_this call tmf_ai_fnc_rearm},[],6,true,true,"","vehicle player != player && local (vehicle player) && !isEngineOn (vehicle player) && !(player getVariable ['tmf_ai_rearming', false])"];
+        if ((player getVariable [QGVAR(rearmHandle),-1]) == -1 && {(getPos player) inArea ([getPos _logic] + (_logic getVariable ["objectArea",[]]))}) then {
+            _handle = player addAction ["<t color='#FF0000'>Rearm</t>",{_this call tmf_ai_fnc_rearm},[],6,true,true,"","!(player getVariable ['tmf_ai_rearming', false]) && {!isNull objectParent player} && {local (vehicle player)} && {!isEngineOn (vehicle player)}"];
             player setVariable [QGVAR(rearmHandle), _handle];
         };
-        if((player getVariable [QGVAR(rearmHandle),-1]) != -1 && !( (getPos player) inArea ([getPos _logic] + (_logic getVariable ["objectArea",[]])) ) ) then
+        if ((player getVariable [QGVAR(rearmHandle),-1]) != -1 && {!( (getPos player) inArea ([getPos _logic] + (_logic getVariable ["objectArea",[]])))}) then
         {
             player removeAction (player getVariable [QGVAR(rearmHandle),-1]);
             player setVariable [QGVAR(rearmHandle), -1];

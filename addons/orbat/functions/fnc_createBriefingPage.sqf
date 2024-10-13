@@ -210,10 +210,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     _thisBriefing = format ["%1<img image='%2' height='18'></img>",_indent,_groupTexture];
                 };
                 private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier") 
-                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                        !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
-                            && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
-                    })
+                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {!((getNumber (_x >> "rhs_hatch_control") isEqualTo 1) && {(getNumber (_x >> "isPersonTurret") isEqualTo 1)})})
                     + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                 private _occupiedSlots = count crew _veh;
                 
@@ -236,10 +233,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
                     private _vehIcon = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "picture");
                     private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier")
-                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                            !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
-                                && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
-                        })
+                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {!((getNumber (_x >> "rhs_hatch_control") isEqualTo 1) && {(getNumber (_x >> "isPersonTurret") isEqualTo 1)})})
                         + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                     private _occupiedSlots = count crew _veh;
                     //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);

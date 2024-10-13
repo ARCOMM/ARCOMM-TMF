@@ -209,7 +209,7 @@ with uiNamespace do {
             };
             //Groups
             private _isVeh = _entry in vehicles;
-            if (_entry isEqualType grpNull || _isVeh) then {
+            if (_isVeh || {_entry isEqualType grpNull}) then {
                 private _groupMarkerData =  (_entry get3DENAttribute "TMF_groupMarker") select 0;
                 if (_groupMarkerData isEqualType "") then { _groupMarkerData = call compile _groupMarkerData; };
 

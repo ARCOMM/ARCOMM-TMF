@@ -52,18 +52,14 @@ fn_removeGroupFromBrief = {
 
 switch _mode do {
     case "onLoad": {
-        private _playableUnits = (((all3DENEntities select 0)+(all3DENEntities select 3)) select {
-            (_x get3DENAttribute "ControlMP") isEqualTo [true]
-            ||
-            (_x get3DENAttribute "ControlSP") isEqualTo [true]
-        });
+        private _playableUnits = (((all3DENEntities select 0) + (all3DENEntities select 3)) select {(_x get3DENAttribute "ControlMP") isEqualTo [true] || {(_x get3DENAttribute "ControlSP") isEqualTo [true]}});
         cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
         {
             cacheAllPlayerGroups pushBackUnique (group _x);
         } forEach _playableUnits;
         BriefingArray = ("TMF_MissionBriefingAttributes" get3DENMissionAttribute "TMF_Briefing");
         if (BriefingArray isEqualType "") then { BriefingArray = call compile BriefingArray;};
-        if (isNil "BriefingArray") then {            
+        if (isNil "BriefingArray") then {
             BriefingArray = [
                 ["West",[west],"briefing\briefing_west.sqf"],
                 ["East",[east],"briefing\briefing_east.sqf"],
@@ -238,11 +234,7 @@ switch _mode do {
             private _hasSpeaker = false;
             private _units = units _group;
             if (_side == sideLogic) then {
-                _units = _units select {
-                    (_x get3DENAttribute "ControlMP") isEqualTo [true]
-                    ||
-                    (_x get3DENAttribute "ControlSP") isEqualTo [true]
-                };
+                _units = _units select {(_x get3DENAttribute "ControlMP") isEqualTo [true] || {(_x get3DENAttribute "ControlSP") isEqualTo [true]}};
             };
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessUnit != 3) then { 

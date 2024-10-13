@@ -5,7 +5,7 @@ private _checkedMen = [];
 private _distanceMaX = 100;
 
 {
-    if(!(_x in _checkedMen) && alive _x) then
+    if(alive _x && {!(_x in _checkedMen)}) then
     {
         private _cluster = [_x];
         private _unit = _x;

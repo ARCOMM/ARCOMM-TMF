@@ -17,8 +17,8 @@ if(is3DEN) exitWith {};
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-_headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+_headless = (synchronizedObjects _logic) select {!local _x && {_x isKindOf "HeadlessClient_F"s}};
+if(isServer && {count _headless > 0}) exitWith {
     _this remoteExec [QFUNC(waveInit), _headless select 0];
 };
 
@@ -89,7 +89,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     } forEach _synchronizedGroups;
 
     _objects = (_objects - _vehicles) - _allUnits;
-    _objects = _objects select {side _x in [blufor,opfor,independent,civilian,sideUnknown] && !(_x isKindOf "EmptyDetector")};
+    _objects = _objects select {side _x in [blufor,opfor,independent,civilian,sideUnknown] && {!(_x isKindOf "EmptyDetector")}};
     private _cachedObjects = _objects apply {[
         typeOf _x,
         if (isSimpleObject _x) then [{getPosWorld _x},{getPosATL _x}],

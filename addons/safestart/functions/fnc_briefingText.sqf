@@ -27,7 +27,7 @@ params [["_ctrl", controlNull]];
 
 [
     {
-        [] call FUNC(isActive) && time <= 0 && !([] call BIS_fnc_isLoading)
+        time <= 0 && {[] call FUNC(isActive)} && {!([] call BIS_fnc_isLoading)}
     },
     {
         private _time = [] call FUNC(timeRemaining);

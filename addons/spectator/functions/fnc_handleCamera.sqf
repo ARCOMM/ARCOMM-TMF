@@ -111,8 +111,8 @@ if(GVAR(mode) == FREECAM) then {
 
         GVAR(movement_keys) set [6,_zScroll*_delta];
         private _value = _zScroll-_zdelta;
-        if(_value < 0.5 && _value > 0) then {GVAR(movement_keys) set [6,0];};
-        if(_value > -0.5 && _value < 0) then {GVAR(movement_keys) set [6,0];};
+        if(_value < 0.5 && {_value > 0}) then {GVAR(movement_keys) set [6,0];};
+        if(_value > -0.5 && {_value < 0}) then {GVAR(movement_keys) set [6,0];};
     };
 
     GVAR(camera) setPos _tmpPos;

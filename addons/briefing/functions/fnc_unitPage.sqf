@@ -163,7 +163,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
 
     // Misc. Items
     private _assignedItems = assignedItems _unit - [binocular _unit, hmd _unit];
-    if (count _items > 0 || count _assignedItems > 0) then {
+    if (count _items > 0 || {count _assignedItems > 0}) then {
         _itemText = _itemText + "<br/><font size='18'>ITEMS</font><br/>";
 
         private _filter = ["ItemWatch", "ItemMap", "ItemCompass"];

@@ -58,6 +58,6 @@ while {lbSize _ctrlComboFaction > _numFactions} do {
     _ctrlComboFaction lbDelete _numFactions;
 };
 
-if (_numFactions > 0 && ((lbCurSel _ctrlComboFaction) < 0 || (lbCurSel _ctrlComboFaction) >= _numFactions)) then {
+if (_numFactions > 0 && {(lbCurSel _ctrlComboFaction) < 0 || {(lbCurSel _ctrlComboFaction) >= _numFactions}}) then {
     _ctrlComboFaction lbSetCurSel 0;
 };

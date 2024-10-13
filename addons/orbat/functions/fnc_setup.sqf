@@ -193,7 +193,7 @@ _fnc_processOrbatTrackerRawData = {
         _x params ["_id", "_entity"];
         if (_id == _uniqueID) then {
             private _isVeh = _entity in vehicles;
-            if (_entity isEqualType grpNull || _isVeh) then {
+            if (_isVeh || {_entity isEqualType grpNull}) then {
                 private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                 if (count _markerEntry > 0) then {

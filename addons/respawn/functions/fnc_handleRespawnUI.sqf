@@ -376,7 +376,7 @@ switch _input do {
         //missionConfigFile overrides.
         call {
             if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
-            if(isClass (configFile >> "CfgLoadouts" >> _faction) && count _classes <= 0) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
+            if(isClass (configFile >> "CfgLoadouts" >> _faction) && {count _classes <= 0}) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
         };
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26896); /* Role control */ 

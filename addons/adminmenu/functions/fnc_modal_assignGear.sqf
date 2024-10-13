@@ -99,7 +99,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
         private _playerRole = _player getVariable [QEGVAR(assignGear,role), ""];
-        if (cbChecked _x || _playerRole isEqualTo "") then {
+        if (cbChecked _x || {_playerRole isEqualTo ""}) then {
             _playerRole = _ctrlComboRole lbData (lbCurSel _ctrlComboRole);
             if (_playerRole isEqualTo "") then {
                 _playerRole = "r";
@@ -107,7 +107,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         };
 
         private _playerFaction = _player getVariable [QEGVAR(assignGear,faction), ""];
-        if (_setFaction || _playerFaction isEqualTo "") then {
+        if (_setFaction || {_playerFaction isEqualTo ""}) then {
             _playerFaction = _selectedFaction;
         };
 

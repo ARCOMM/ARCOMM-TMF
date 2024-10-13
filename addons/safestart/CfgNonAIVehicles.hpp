@@ -6,7 +6,7 @@ class CfgNonAIVehicles {
         {
             size2[] = {0,0};
             size3[] = {0,0,-1};
-            condition = QUOTE(time > 0 && not call FUNC(isActive));
+            condition = QUOTE(time > 0 && {!(call FUNC(isActive))});
             isServerOnly = 1;
         };
     };

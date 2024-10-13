@@ -2,7 +2,7 @@
 
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
-if(!_isOpen) exitWith {{ctrlDelete _x} forEach GVAR(controls); GVAR(controls) = [];};
+if (!_isOpen) exitWith {{ctrlDelete _x} forEach GVAR(controls); GVAR(controls) = [];};
 ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 // Cleanup - unused controls.
@@ -11,11 +11,11 @@ for "_idx" from GVAR(lastControlIndex) to _newIdx do {
     private _control = GVAR(controls) select _idx;
     private _thing = _control getVariable [QGVAR(attached),objNull];
     if (_thing isEqualType objNull) then {
-        if(!alive _thing) then { /* alive also does a isNull check */
+        if (!alive _thing) then { /* alive also does a isNull check */
             ctrlDelete _control;
         };
     } else {
-        if(isNull _thing) then {
+        if (isNull _thing) then {
             ctrlDelete _control;
         };
     };
@@ -42,15 +42,15 @@ if (!(_dirArray isEqualTo GVAR(lastCompassValue))) then {
 
 // update something horrible (alive also checks for isNull)
 
-if(GVAR(mode) != FREECAM && !isNil QGVAR(target) && {alive GVAR(target)} ) then {
+if (GVAR(mode) != FREECAM && {!isNil QGVAR(target)} && {alive GVAR(target)} ) then {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText (name GVAR(target));
 } else {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText "";
 };
 
 
-if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
-    if(count GVAR(killedUnits) > 0) then {
+if (GVAR(killList_forceUpdate) || {GVAR(killList_update) >= time}) then {
+    if (count GVAR(killedUnits) > 0) then {
         GVAR(killList_update) = time - ((GVAR(killedUnits) select 0) select 1); // next update
     };
     [] call FUNC(updateKillList);
@@ -60,13 +60,13 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
 {
     _x params ["_object","_posArray","_last","_time","_type"];
 
-    if(!isNull _object && {diag_frameNo > (_last+1)} && {(speed _object) > 0} && { GVAR(bulletTrails) || _type != 0   }) then {
+    if ({GVAR(bulletTrails) || {_type != 0}} && !isNull _object && {diag_frameNo > (_last+1)} && {(speed _object) > 0}) then {
         private _pos = (getPosATLVisual _object);
-        if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+        if (surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
         _posArray pushBack (_pos);
         GVAR(rounds) set [_forEachIndex,[_object,_posArray,diag_frameNo,_time,_type]];
     };
-    if( _type > 0  && { isNull _object } || _type == 0 && {(time - _time) > 5} ) then { GVAR(rounds) set [_forEachIndex,0]; };
+    if ( _type > 0 && { isNull _object} || {_type == 0} && {(time - _time) > 5}) then { GVAR(rounds) set [_forEachIndex,0]; };
 } forEach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];

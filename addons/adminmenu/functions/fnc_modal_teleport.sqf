@@ -65,7 +65,7 @@ _ctrlMap ctrlAddEventHandler ["MouseButtonClick", {
                     "[TMF Admin Menu] You were teleported" remoteExec ["systemChat", _unit];
                 };
             } else { // vehicles
-                if (_unit isKindOf "AirVehicle" && !isTouchingGround _unit) then { // flying aircraft
+                if (_unit isKindOf "AirVehicle" && {!isTouchingGround _unit}) then { // flying aircraft
                     private _velocity = velocity _unit;
 
                     private _height = ((getPosATL _unit) select 2) max 100;

@@ -25,7 +25,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 
 
     // Draw the group marker if we arent an AI group.
-    if(GVAR(showGroupMarkers) == 1 || {!_isAI}) then {   
+    if(!_isAI || {GVAR(showGroupMarkers) == 1}) then {
         [_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
     };
     private _units = [];
@@ -87,7 +87,7 @@ if(GVAR(tracers)) then {
             _map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
             _map drawLine [_posArray # 0, _pos, [1,0,0,1]];
         };
-        if(_type == 0 && !isNull _object) then {
+        if(_type == 0 && {!isNull _object}) then {
             _pos = getPos _object;
             _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
             _map drawLine [_pos, _futurePos, [1,0,0,1]];

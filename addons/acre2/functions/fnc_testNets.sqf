@@ -37,7 +37,7 @@ if (getMissionConfigValue ["TMF_AcreNetworkEnabled",false]) then {
             private _groupCond = _grp getVariable ["TMF_Network", -1];
             if IS_STRING(_groupCond) then { _groupCond = call compile _groupCond; };
 
-            if (_groupCond isEqualTo -1 || _groupCond > (count (_networksArray # 0)) - 1) then {
+            if (_groupCond isEqualTo -1 || {_groupCond > (count (_networksArray # 0)) - 1}) then {
                 // Check the unit conditions
                 {
                     private _unit = _x;
@@ -45,7 +45,7 @@ if (getMissionConfigValue ["TMF_AcreNetworkEnabled",false]) then {
                     private _unitCond = _unit getVariable ["TMF_Network", -1];
                     if IS_STRING(_unitCond) then { _unitCond = call compile _unitCond; };
 
-                    if (_unitCond isEqualTo -1 || _unitCond > (count (_networksArray # 0)) - 1) then {
+                    if (_unitCond isEqualTo -1 || {_unitCond > (count (_networksArray # 0)) - 1}) then {
                         // No nets assigned on each level, post warning.
                         WARNING_1("No Radio Nets assigned for %1",_unit);
                         _warnings pushBack [0,format ["%1 has no Radio Networks assigned", _unit]];

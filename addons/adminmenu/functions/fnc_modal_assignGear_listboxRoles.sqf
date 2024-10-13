@@ -21,7 +21,7 @@ private _tickCheckbox = false;
     (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
     private _playerRole = toLower (_player getVariable [QEGVAR(assigngear,role), ""]);
-    if (_playerRole isEqualTo "" || !(_playerRole in _rolesSimple)) then {
+    if (_playerRole isEqualTo "" || {!(_playerRole in _rolesSimple)}) then {
         _playerRole = "r";
         _tickCheckbox = true;
     };

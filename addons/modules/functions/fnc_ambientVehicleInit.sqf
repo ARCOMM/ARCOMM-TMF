@@ -37,7 +37,7 @@ switch _mode do {
             {
                 private _obj = _x;
                 // Assumes that triggers are set at least 500m away
-                if (alive _obj && (allPlayers findIf {_x distance2D _obj < 500}) == -1) then {
+                if (alive _obj && {(allPlayers findIf {_x distance2D _obj < 500}) == -1}) then {
                     deleteVehicle _obj;
                     TRACE_2("Ambient vehicles despawning vehicle",_logic,_obj);
                     INC(_count);
@@ -97,7 +97,7 @@ switch _mode do {
         private ["_syncedObjects", "_area"];
 
         private _moduleData = _logic getVariable QGVAR(data);
-        if (!is3DEN && !isNil "_moduleData") exitWith {
+        if (!is3DEN && {!isNil "_moduleData"}) exitWith {
             TRACE_2("Tried to run preInit on Ambient Vehicles module, but preInit has already been run",_logic,_moduleData);
         };
 
@@ -130,11 +130,11 @@ switch _mode do {
         _syncedObjects = _syncedObjects select {
             (_x call BIS_fnc_objectType) params ["_category", "_type"];
             _category in ["Vehicle", "VehicleAutonomous", "Object"] &&
-            !(_type in [
+            {!(_type in [
                 "Ship", "Submarine",
                 "Animal", "Camera", "Effect", "Fire", "Marker", "Parachute",
                 "Seagull", "Sound", "Target", "Trigger", "UnknownObject", "VASI"
-            ])
+            ]})
         };
         private _vehicleTypes = _syncedObjects apply {typeOf _x};
 

@@ -63,7 +63,7 @@ if (isTMF) then {
     } forEach (_oldGroups - [grpNull]);
 
     //params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]]
-    private _targets = allUnits select {side _x == _playerSide && isPlayer _x};
+    private _targets = allUnits select {side _x == _playerSide && {isPlayer _x}};
     [_hunters,_playerSide,[0,0,0],6000,_targets] spawn EFUNC(ai,huntLoop);
 }] call CBA_fnc_addEventHandler;
 

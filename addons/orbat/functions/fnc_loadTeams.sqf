@@ -42,7 +42,7 @@ if (_usingFactions) then {
     _factions = _factions apply {
         private _faction = _x;
         [
-            {toLower (faction _x) == _faction && _x in (playableUnits + [player])} count allUnits,
+            {toLower (faction _x) == _faction && {_x in (playableUnits + [player])}} count allUnits,
             {toLower (faction _x) == _faction} count allUnits,
             _x
         ]
@@ -62,7 +62,7 @@ if (_usingFactions) then {
     private _sides = [east,west,civilian,independent] apply {
         private _side = _x;
         [
-            {side _x == _side && _x in (playableUnits + [player])} count allUnits,
+            {side _x == _side && {_x in (playableUnits + [player])}} count allUnits,
             {side _x == _side} count allUnits,
             _side
         ]

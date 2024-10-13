@@ -15,7 +15,7 @@ switch _mode do {
                 private _dlcLogo = if (configSourceMod _x != '') then {
                     (modParams [configSourceMod _x,['logo']]) param [0];
                 };
-                if (!isNil "_dlcLogo" && {_dlcLogo != ''}) then {
+                if (!isNil "_dlcLogo" && {{_dlcLogo != ''}}) then {
                     _loadoutCombo lbSetPictureRight [_lbAdd,_dlcLogo];
                 };
             } forEach ("true" configClasses _x);

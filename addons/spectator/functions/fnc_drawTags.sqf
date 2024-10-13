@@ -24,11 +24,11 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
     // check if the average pos is on the screen
     private _screenPos = worldToScreen _grpPos;
     private _distToCam = _grpPos distance _camPos;
-    private _render = (GVAR(showGroupMarkers) == 1 || !_isAI) && {count _screenPos > 0 && _distToCam <= _viewDistance};
+    private _render = (!_isAI || {GVAR(showGroupMarkers) == 1}) && {count _screenPos > 0 && {_distToCam <= _viewDistance}};
 
     // circumevent the restriction on storing controls in namespace
     private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-    if (isNull _control && (GVAR(showGroupMarkers) == 1 || !_isAI)) then {
+    if (isNull _control && {!_isAI || {GVAR(showGroupMarkers) == 1}}) then {
         [_x] call FUNC(createGroupControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
@@ -37,8 +37,8 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
 
     if (_render) then {
         _control ctrlShow true;
-        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600); // Nametag
-        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 300); // Detail
+        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_distToCam <= 600}); // Nametag
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_distToCam <= 300}); // Detail
 
         _control ctrlSetPosition [_screenPos # 0 - _screenSize # 0, _screenPos # 1 - _screenSize # 1];
         _control ctrlCommit 0;
@@ -62,7 +62,7 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
 
                 // circumevent the restriction on storing controls in namespace
 
-                if (count _screenPos > 0 && _distToCam <= 500) then {
+                if (_distToCam <= 500 && {count _screenPos > 0}) then {
                     if (isNull _control) then {
                         [_x] call FUNC(createUnitControl);
                         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
@@ -80,8 +80,8 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
 
                     private _isPlayer = isPlayer _x;
 
-                    (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && _distToCam <= 300); // NameTag
-                    (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150); // Detail
+                    (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && {_distToCam <= 300}); // NameTag
+                    (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && {_distToCam <= 150}); // Detail
 
                     // Screenpos already has 2 elements
                     
@@ -196,7 +196,7 @@ if(!GVAR(tracers)) exitWith {};
         private _pos = [_object] call CFUNC(getPosVisual);
     };
     private _render = (_camPos distance2D _pos <= 400);
-    if (_type > 0 && _render) then {
+    if (_render && {_type > 0}) then {
         private _icon = switch (_type) do {
             case 1 : { GRENADE_ICON };
             case 2 : { SMOKE_ICON };
@@ -205,7 +205,7 @@ if(!GVAR(tracers)) exitWith {};
         drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
-    if(GVAR(bulletTrails) && _type == 0 && _render) then {
+    if(GVAR(bulletTrails) && _render && {_type == 0}) then {
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
 } forEach GVAR(rounds);

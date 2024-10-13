@@ -8,7 +8,7 @@ if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {
     ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);
 };
 
-if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitWith {};
+if(!(side _deadMan in [blufor,opfor,independent,civilian]) || {!(_deadMan isKindOf "CAManBase"} || {_deadMan isKindOf "AllVehicles")}) exitWith {};
 if(isNull _instigator || _instigator == _deadMan) then {
     _instigator = _deadMan getVariable [QGVAR(lastDamage),objNull];
 };

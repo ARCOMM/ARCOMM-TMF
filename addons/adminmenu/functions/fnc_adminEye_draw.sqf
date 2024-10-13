@@ -144,7 +144,7 @@ params["_fullmapWindow"];
 
             private _name = "";
 
-            if (leader _x == _x && {isPlayer _x} count units _x > 0) then {_name = format["%1 - %2",toString(toArray(groupId (group _x)) - [45]),_name]};
+            if (leader _x == _x && {{isPlayer _x} count units _x > 0}) then {_name = format["%1 - %2",toString(toArray(groupId (group _x)) - [45]),_name]};
 
 
             if (isPlayer _x) then {

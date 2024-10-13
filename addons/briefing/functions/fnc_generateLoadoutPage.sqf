@@ -12,7 +12,7 @@
  *        Description:
  *            Add the Loadout entry to the diary
  */
-if(!hasInterface || (GVAR(addLoadoutNotes) isEqualTo 0)) exitWith {};
+if((GVAR(addLoadoutNotes) isEqualTo 0) || {!hasInterface}) exitWith {};
 params [["_unit",player]];
 
 // Create the subject.

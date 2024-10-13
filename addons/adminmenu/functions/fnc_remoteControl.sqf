@@ -4,7 +4,7 @@ params [["_unit", objNull, [objNull]], ["_toggle", true, [true]], ["_skipModal",
 
 if (!_toggle) exitWith { // Bad, can still command group via map click when back in spectator
     private _rcUnit = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull];
-    if (!isNull _rcUnit && ((_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
+    if (!isNull _rcUnit && {(_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player}) then {
         _rcUnit setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
         objNull remoteControl _rcUnit;
         bis_fnc_moduleRemoteControl_unit = nil;
@@ -13,11 +13,11 @@ if (!_toggle) exitWith { // Bad, can still command group via map click when back
 };
 
 private _crew = [];
-if (!isNull objectParent _unit && !_skipModal) then {
-    _crew = (fullCrew vehicle _unit) select {alive (_x # 0) && !isPlayer (_x # 0)};
+if (!_skipModal && {!isNull objectParent _unit}) then {
+    _crew = (fullCrew vehicle _unit) select {alive (_x # 0) && {!isPlayer (_x # 0)}};
 };
 
-if ((count _crew > 1) && !_skipModal) exitWith {
+if (!_skipModal && {count _crew > 1}) exitWith {
     GVAR(remoteControlUnits) = [_crew, objectParent _unit];
     createDialog QGVAR(spectatorControlUnitDialog);
 };
@@ -55,11 +55,11 @@ if (_error isEqualTo "") then {
 
         [{
             !alive _this ||
-            (_this getVariable ["ACE_isUnconscious", false]) ||
-            (cameraOn isEqualTo player) ||
-            !(player isKindOf QEGVAR(spectator,unit)) ||
-            !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this) ||
-            !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
+            {(_this getVariable ["ACE_isUnconscious", false])} ||
+            {(cameraOn isEqualTo player)} ||
+            {!(player isKindOf QEGVAR(spectator,unit))} ||
+            {!((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this)} ||
+            {!((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)}
         }, {
             private _reasons = [];
             if (!alive _this) then {

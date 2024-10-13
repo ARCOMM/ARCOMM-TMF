@@ -6,7 +6,7 @@ if (TIMER > 0) then {
     _textCtrl ctrlSetText _text;
 
     // Play ticks for the final countdown
-    if (GVAR(soundEnabled) && TIMER - CBA_missionTime <= 4) then {
+    if (GVAR(soundEnabled) && {TIMER - CBA_missionTime <= 4}) then {
         playSound "FD_Timer_F";
     };
 } else {

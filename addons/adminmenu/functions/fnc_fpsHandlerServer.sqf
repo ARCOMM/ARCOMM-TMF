@@ -36,13 +36,13 @@ if (isMultiplayer) then {
     } else {
         GVAR(activeClients) = GVAR(activeClients) - [remoteExecutedOwner];
 
-        if (((count GVAR(activeClients)) isEqualTo 0) && {!isNil QGVAR(fps_pfh)}) then {
+        if (!isNil QGVAR(fps_pfh) && {(count GVAR(activeClients)) isEqualTo 0}) then {
             [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
             GVAR(fps_pfh) = nil;
         };
     };
 } else { // Singleplayer
-    if (_add && isNil QGVAR(fps_pfh)) then {
+    if (_add && {isNil QGVAR(fps_pfh)}) then {
         GVAR(fps_pfh) = [{
             disableSerialization;
 

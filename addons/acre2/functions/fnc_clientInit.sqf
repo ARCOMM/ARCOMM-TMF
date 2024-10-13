@@ -211,7 +211,7 @@ if (!alive player) exitWith {};
                         };
                     } forEach _radiosToGive;
                     // Give missing radio?
-                    if ((_radioFndIdx isEqualTo -1) && GVAR(giveMissingRadios)) then {
+                    if (GVAR(giveMissingRadios && {_radioFndIdx isEqualTo -1}) then {
                         _radiosToGive pushBack _defaultRadio;
                         _assignedRadioChannels pushBack [_defaultRadio,_chanNum];
                         _radioFndIdx = (count _radiosToGive)-1;
@@ -319,7 +319,7 @@ if (!alive player) exitWith {};
                         _x params ["_xBaseRadio", "_chanNum"];
                         if (!(_forEachIndex in _usedRadioIndexs)) then {
                             if (_baseRadio == _xBaseRadio) then {
-                                if (_chanNum != -1 && _baseRadio != "ACRE_PRC77") then {
+                                if (_chanNum != -1 && {_baseRadio != "ACRE_PRC77"}) then {
                                     [_radioName, _chanNum] call acre_api_fnc_setRadioChannel;
                                 };
                                 _usedRadioIndexs pushBack _forEachIndex;

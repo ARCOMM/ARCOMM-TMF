@@ -105,7 +105,7 @@ _args params ["_control","_key","_shift","_ctrl","_alt"];
 
 _done = true;
 switch true do {
-  case (_key == DIK_ESCAPE && _type == KeyDown) :
+  case (_key == DIK_ESCAPE && {_type == KeyDown}) :
   {
     [QGVAR(blackout),false] call BIS_fnc_blackOut;
     with uiNamespace do {
@@ -170,7 +170,7 @@ switch true do {
           GVAR(movement_keys) set [4,false];
       };
   };
-  case (_key in (actionKeys "NightVision") && _type == KeyDown && !GVAR(showmap)) : {
+  case (!GVAR(showmap) && {_key in (actionKeys "NightVision")} && {_type == KeyDown}) : {
         ['vision',[uiNamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
   };
   case (_key == DIK_Z) : {
@@ -221,37 +221,37 @@ switch true do {
       };
   };
     case (_key == GVAR(mute_key)) : {
-        if(_type == KeyDown && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
+        if(_type == KeyDown && {GVAR(modifiers_keys) isEqualTo GVAR(mute_modifers)}) then {
             [] call acre_sys_core_fnc_toggleHeadset;
         };
     };
-    case (_key == DIK_T && _type == KeyDown): {
+    case (_key == DIK_T && {_type == KeyDown}): {
         GVAR(tracers) = !GVAR(tracers);
         _message = "Tracers have been toggled off";
         if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
         systemChat _message;
     };
-    case (_key == DIK_K && _type == KeyDown): {
+    case (_key == DIK_K && {_type == KeyDown}): {
         GVAR(bulletTrails) = !GVAR(bulletTrails);
         _message = "Bullet trails have been toggled off";
         if(GVAR(bulletTrails)) then {_message = "Bullet trails have been toggled on"};
         systemChat _message;
     };
-    case (_key == DIK_SPACE && _type == KeyDown) : {
+    case (_key == DIK_SPACE && {_type == KeyDown}) : {
         [] call FUNC(onModeSwitch);
         [] call FUNC(setTarget);
     };
-    case (_key == DIK_U && _type == KeyDown) : {
+    case (_key == DIK_U && {_type == KeyDown}) : {
         [] call FUNC(toggleUI);
     };
     case (_key in actionKeys "Chat") : {
         _done = false;
     };
-    case (_key == DIK_P && _type == KeyDown) : {
+    case (_key == DIK_P && {_type == KeyDown}) : {
       _time = ([time,true] call CFUNC(secondsToTime));
       systemChat format["Mission time: %1:%2:%3",_time select 0,_time select 1,_time select 2];
   };
-  case (_key in (actionKeys "curatorInterface") && _type == KeyDown): {
+  case (_type == KeyDown && {_key in (actionKeys "curatorInterface")}): {
         if(!isNull getAssignedCuratorLogic player) then {
             private _pos = getPos GVAR(camera);
             private _vectorUp = vectorUp GVAR(camera);

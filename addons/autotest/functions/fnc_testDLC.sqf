@@ -25,7 +25,7 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
 
 // World DLC flags all objects, so add it as a separate warning.
 private _worldDLC = getNumber (configFile >> "CfgWorlds" >> worldName >> "appID");
-if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
+if (_worldDLC != 0 && {!(_worldDLC in _ignoredDLC)}) then {
     _ignoredDLC pushBack _worldDLC;
     /*_warnings pushBack [
         1,
@@ -46,7 +46,7 @@ private _problemUnits = [];
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
         !([_x, _roleDescription] call BIS_fnc_inString) && // DLC usage mentioned in role description
-        !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
+        {!([_x, _missionSummary] call BIS_fnc_inString)}   // DLC usage mentioned in mission summary
     };
 
     if !(_dlcArr isEqualTo []) then {
@@ -84,9 +84,9 @@ if !(_problemUnits isEqualTo []) then {
 // Filter only enterable and unlocked vehicles
 private _vehicles = vehicles select {
     [typeOf _x, true] call BIS_fnc_crewCount > 0 &&
-    ((_x get3DENAttribute "enableSimulation") # 0) &&
-    ((_x get3DENAttribute "lock") # 0) <= 1 &&
-    !((_x get3DENAttribute "objectIsSimple") # 0)
+    {((_x get3DENAttribute "enableSimulation") # 0)} &&
+    {((_x get3DENAttribute "lock") # 0) <= 1} &&
+    {!((_x get3DENAttribute "objectIsSimple") # 0)}
 };
 private _vehicleDLCInfo = _vehicles apply {[_x,getObjectDLC _x]};
 private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};

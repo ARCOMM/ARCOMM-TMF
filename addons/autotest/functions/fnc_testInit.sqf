@@ -26,7 +26,7 @@ private _output = [];
         case (_count < 50): {/* Nothing*/};
         case (_count < 150): {
             // check _isServer
-            if ((!_isServer) && (!_isLocal)) then {
+            if (!_isServer && !_isLocal) then {
                 _output pushBack [1,format["Unit %1 has large init field contents (%2) but no isServer or local check!",_x,_count]];
             };
         };
@@ -41,7 +41,7 @@ private _output = [];
                 };
             } else {
                 // Check _isServer
-                if ((!_isServer) && (!_isLocal)) then {
+                if (!_isServer && !_isLocal) then {
                     _output pushBack [1,format["Unit %1 has very large init field contents (%2) but no isServer or local check!",_x,_count]];
                 };
             };

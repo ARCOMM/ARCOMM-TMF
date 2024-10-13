@@ -11,7 +11,7 @@ private _classes = [];
 //missionConfigFile overrides.
 call {
     if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
-    if(isClass (configFile >> "CfgLoadouts" >> _faction) && count _classes <= 0) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
+    if(isClass (configFile >> "CfgLoadouts" >> _faction) && {count _classes <= 0}) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
 };
 
 private _control = (_display displayCtrl IDC_TMF_ADMINMENU_RESP_ROLECOMBO); /* Role control */ 

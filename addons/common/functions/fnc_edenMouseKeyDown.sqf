@@ -80,7 +80,7 @@ if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count (_validIdxs)})
 };
 
 // Draw positions.
-if (0 in GVAR(mouseKeysPressed) && (current3DENOperation == "MoveItems")) then { // if dragging group
+if (0 in GVAR(mouseKeysPressed) && {(current3DENOperation == "MoveItems")}) then { // if dragging group
     {
         private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
         if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1}) then {_color = [1,0.15,0.15,1]};
