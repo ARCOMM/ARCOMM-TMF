@@ -134,7 +134,7 @@ switch _mode do {
                 "Ship", "Submarine",
                 "Animal", "Camera", "Effect", "Fire", "Marker", "Parachute",
                 "Seagull", "Sound", "Target", "Trigger", "UnknownObject", "VASI"
-            ]})
+            ])}
         };
         private _vehicleTypes = _syncedObjects apply {typeOf _x};
 

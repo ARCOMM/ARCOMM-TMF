@@ -211,7 +211,7 @@ if (!alive player) exitWith {};
                         };
                     } forEach _radiosToGive;
                     // Give missing radio?
-                    if (GVAR(giveMissingRadios && {_radioFndIdx isEqualTo -1}) then {
+                    if (GVAR(giveMissingRadios) && {_radioFndIdx isEqualTo -1}) then {
                         _radiosToGive pushBack _defaultRadio;
                         _assignedRadioChannels pushBack [_defaultRadio,_chanNum];
                         _radioFndIdx = (count _radiosToGive)-1;
