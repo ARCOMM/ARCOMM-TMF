@@ -1,0 +1,2 @@
+winget upgrade hemtt
+pause
