@@ -44,9 +44,8 @@ if (_activeFactionCategory == "mission") then {
     // use missionConfigFile
     {
         private _factionName = (toLower(configName _x));
-        _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
+        _factions pushBack [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
     } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
-
 } else {
     // Then configFile
     {
@@ -54,10 +53,11 @@ if (_activeFactionCategory == "mission") then {
         if (_category == "") then {_category = "Other";};
         if (_activeFactionCategory == _category) then {
             private _factionName = (toLower(configName _x));
-            _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
+            _factions pushBack [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
         };
     } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
 };
+_factions arrayIntersect _factions;
 
 //Alphabetical sort.
 _factions sort true;

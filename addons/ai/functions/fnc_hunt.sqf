@@ -3,7 +3,6 @@ params ["_logic","_units","_activated"];
 
 if (!_activated) exitWith {};
 
-
 private _hunters = []; // allUnits select {side _x == east}
 private _hunterVal = _logic getVariable ["Hunters", -1];
 if (_hunterVal == -1) then {
@@ -11,7 +10,7 @@ if (_hunterVal == -1) then {
     {
         private _vehicle = vehicle _x;
         {
-            _hunters pushBackUnique _x;
+            _hunters pushBack _x;
         } forEach (crew _vehicle);
     } forEach _hunters;
 } else {
@@ -23,6 +22,8 @@ if (_hunterVal == -1) then {
     };
     _hunters = allUnits select {side _x == _side};
 };
+_hunters arrayIntersect _hunters;
+
 // filter out player units and playable
 _hunters = ((_hunters - playableUnits) - switchableUnits) - [player];
 
@@ -41,7 +42,7 @@ _range = ((_range) max 50) min 5000; // Ensure minimum of 50 min anx max of 5000
 private _oldGroups = [];
 {
     private _unit = _x;
-    _oldGroups pushBackUnique (group _unit);
+    _oldGroups pushBack (group _unit);
 
     [_unit] joinSilent grpNull;
     _unit setUnitPos "UP";
@@ -56,9 +57,8 @@ private _oldGroups = [];
 
     _unit allowFleeing 0;
     doStop _unit;
-
-
 } forEach _hunters;
+_oldGroups arrayIntersect _oldGroups;
 
 // Cleanup groups no longer used.
 {

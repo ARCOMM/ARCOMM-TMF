@@ -50,15 +50,16 @@ private _vehicles = [];
 if (_ourIdx == -1) exitWith {}; 
 
 private _allVehs = [];
-{_allVehs pushBackUnique _x;} forEach _vehicles; // copy array.
+{_allVehs pushBack _x;} forEach _vehicles; // copy array.
 {
     {
         private _veh = (objectParent _x);
         if (_veh != _x) then {
-            _allVehs pushBackUnique _veh;
+            _allVehs pushBack _veh;
         };
     } forEach (units _x);
 } forEach _groups;
+_allVehs arrayIntersect _allVehs;
 
 //Associate groups to hierarchy (use toPlace)
 private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of children
@@ -73,7 +74,7 @@ private _fnc_findValidParents = {
     
     _this params ["_data", ["_children",[]]];
     _data params ["_uniqueID"];
-    _validParents pushBackUnique _uniqueID;
+    _validParents pushBack _uniqueID;
   
     {
         _x call _fnc_findValidParents;
@@ -81,6 +82,7 @@ private _fnc_findValidParents = {
     
     _data pushBack _added;
 };
+_validParents arrayIntersect _validParents;
 
 _ourData call _fnc_findValidParents;
 _validParents = _validParents - [-1];

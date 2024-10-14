@@ -38,7 +38,10 @@ _control lbSetData [_index,""];
 private _found = false; // Used to track whether or not an entry has been selected, if not at end select index.
 
 if (_usingFactions) then {
-    private _factions = []; {_factions pushBackUnique (toLower (faction _x));} forEach allUnits;
+    private _factions = [];
+    {_factions pushBack (toLower (faction _x));} forEach allUnits;
+    _factions arrayIntersect _factions;
+
     _factions = _factions apply {
         private _faction = _x;
         [

@@ -101,11 +101,11 @@ private _reserveId = (_ourData select 0) select 0;
 private _validParents = [];
 private _fnc_findValidParents = {
     if (count _this == 0) exitWith {false};
-    
+
     _this params ["_data", ["_children",[]]];
     _data params ["_uniqueID"];
-    _validParents pushBackUnique _uniqueID;
-  
+    _validParents pushBack _uniqueID;
+
     {
         _x call _fnc_findValidParents;
     } forEach _children;
@@ -113,6 +113,7 @@ private _fnc_findValidParents = {
 };
 
 _ourData call _fnc_findValidParents;
+_validParents arrayIntersect _validParents;
 _validParents = _validParents - [-1];
 
 

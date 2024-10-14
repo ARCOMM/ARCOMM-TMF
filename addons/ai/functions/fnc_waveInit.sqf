@@ -48,21 +48,22 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     } forEach parseSimpleArray ("[" + (_logic getVariable ["Layers",""]) + "]");
     {
         if(_x isEqualType grpNull && {side _x in [blufor,opfor,independent,civilian]}) then {
-            _synchronizedGroups pushBackUnique _x;
+            _synchronizedGroups pushBack _x;
         };
         if(_x isEqualType objNull && {side _x in [blufor,opfor,independent,civilian]}) then {
            if(_x isKindOf 'Man') then {
-               _synchronizedGroups pushBackUnique (group _x);
+               _synchronizedGroups pushBack (group _x);
            } else {
                {
-                _synchronizedGroups pushBackUnique (group _x);
+                _synchronizedGroups pushBack (group _x);
                } forEach crew _x;
            };
         };
     } forEach _objects;
+    _synchronizedGroups arrayIntersect _synchronizedGroups;
 
     private _allUnits = [];
-    { _allUnits append (units _x) } forEach _synchronizedGroups;
+    {_allUnits append (units _x)} forEach _synchronizedGroups;
     private _vehicles = (_allUnits) apply {objectParent _x} select {!isNull _x};
     _vehicles = _vehicles arrayIntersect _vehicles;
     private _groups = [];
@@ -107,7 +108,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
 
     // Clean up the template units.
     {
-        _units = units _x;
+        _units = units _x; //TODO come back to this, _unit var in not private here, but it's also in params at the start of the function, is it getting reused below in the admin map?
         {
             if(!isNull objectParent _x) then {_units pushBackUnique vehicle _x};
             deleteVehicle _x;

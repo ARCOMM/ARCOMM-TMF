@@ -525,11 +525,10 @@ switch _mode do {
         private _sides = [];
         {
             private _condition = _x;
-            if (_x isEqualType east) then {    
+            if (_x isEqualType east) then {
                 private _side = _x;
                 
-                
-                if (_sides pushBackUnique _side != -1) then {
+                if (_side in _sides) then {
                     private _giveRadio = false;
                     private _location = [(_ctrlTree tvAdd [[], _side call TMF_common_fnc_sideToString])];
                     

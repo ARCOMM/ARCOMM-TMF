@@ -23,9 +23,10 @@ if (!isMultiplayer) then {
     } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
     {
         if (!alive _x) then { //not all of them will be players.
-            GVAR(spectatorList) pushBackUnique _x;  
+            GVAR(spectatorList) pushBack _x;  
         };
     } forEach allPlayers;
+    GVAR(spectatorList) arrayIntersect GVAR(spectatorList);
 };
 
 
@@ -288,9 +289,10 @@ if (!isNil QGVAR(respawnGroupMarkerCheckBoxVal)) then {
         } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
         {
             if (!alive _x) then { //not all of them will be players.
-                _deadList pushBackUnique _x;
+                _deadList pushBack _x;
             };
         } forEach allPlayers;
+        _deadList arrayIntersect _deadList;
     };
 
     if (({_x in GVAR(spectatorList) } count _deadList) == count _deadList) exitWith {};

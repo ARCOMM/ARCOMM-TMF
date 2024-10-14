@@ -10,7 +10,9 @@ if(isServer && {count _headless > 0}) exitWith {
 if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
-    {_grps pushBackUnique group _x} forEach (synchronizedObjects _logic);
+    {_grps pushBack group _x} forEach (synchronizedObjects _logic);
+    _grps arrayIntersect _grps;
+
     private _unitData = [];
     {
         private _grp = _x;
@@ -115,7 +117,7 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         (_building getVariable [QGVAR(garrisonedUnits),[]]) + [_unit]
     ];
 
-    _garrisonedBuildings pushBackUnique _building;
+    _garrisonedBuildings pushBack _building;
 
     if(_debug) then {
         private _mkr = createMarker [str (random 999),_posToUse];
@@ -126,6 +128,8 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerText (_unitClassname);
     };
 };
+_garrisonedBuildings arrayIntersect _garrisonedBuildings;
+
 if((_logic getVariable ["WakeUp", false])) then {
     {
         private _building = _x;

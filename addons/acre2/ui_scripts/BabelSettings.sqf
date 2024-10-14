@@ -297,7 +297,10 @@ switch _mode do {
         };
         
         
-        private _sides = []; {_sides pushBackUnique (side _x);} forEach cacheAllPlayerGroups;
+        private _sides = [];
+        {_sides pushBack (side _x);} forEach cacheAllPlayerGroups;
+        _sides arrayIntersect _sides;
+
         {
             private _side = _x;
             private _doSpeak = false;
@@ -312,8 +315,10 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBackUnique (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction (leader _x)));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
+            _factions arrayIntersect _factions;
+
             private _hasSpeaker = false;
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_langTreeProcessFaction != 3) then { _hasSpeaker = true; };

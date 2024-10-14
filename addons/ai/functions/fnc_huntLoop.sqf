@@ -45,7 +45,7 @@ while {_continue} do {
                 };
             } forEach _nTargets;*/
         } else {
-            if ((_targets pushBackUnique _closestTarget) != -1) then {
+            if (_closestTarget in _targets) then {
                 // Share this new contact with the rest of the group.
                 {
                     _x reveal _closestTarget;

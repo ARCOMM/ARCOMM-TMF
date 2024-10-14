@@ -55,8 +55,10 @@ switch _mode do {
         private _playableUnits = (((all3DENEntities select 0) + (all3DENEntities select 3)) select {(_x get3DENAttribute "ControlMP") isEqualTo [true] || {(_x get3DENAttribute "ControlSP") isEqualTo [true]}});
         cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
         {
-            cacheAllPlayerGroups pushBackUnique (group _x);
+            cacheAllPlayerGroups pushBack (group _x);
         } forEach _playableUnits;
+        cacheAllPlayerGroups arrayIntersect cacheAllPlayerGroups;
+
         BriefingArray = ("TMF_MissionBriefingAttributes" get3DENMissionAttribute "TMF_Briefing");
         if (BriefingArray isEqualType "") then { BriefingArray = call compile BriefingArray;};
         if (isNil "BriefingArray") then {
@@ -318,9 +320,11 @@ switch _mode do {
             };
             _returnCode
         };
-        
-        
-        private _sides = []; {_sides pushBackUnique (side _x);} forEach cacheAllPlayerGroups;
+
+        private _sides = [];
+        {_sides pushBack (side _x);} forEach cacheAllPlayerGroups;
+        _sides arrayIntersect _sides;
+
         {
             private _side = _x;
             private _doSpeak = false;
@@ -335,8 +339,10 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBackUnique (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction (leader _x)));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
+            _factions arrayIntersect _factions;
+
             private _hasSpeaker = false;
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessFaction != 3) then { _hasSpeaker = true; };
@@ -462,7 +468,7 @@ switch _mode do {
                     };
                 };
             };
-                            
+
             ["refreshBriefTree"] call BriefingSettings_script;
             ["save"] call BriefingSettings_script;
         };

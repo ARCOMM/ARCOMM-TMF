@@ -28,18 +28,19 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     if(!_isAI || {GVAR(showGroupMarkers) == 1}) then {
         [_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
     };
+
     private _units = [];
     private _vehicles = [];
-
 
     {
         private _unit = _x;
         if(!isNull objectParent _unit) then {
-            _vehicles pushBackUnique objectParent _unit;
+            _vehicles pushBack objectParent _unit;
         } else {
             [_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
         }
     } forEach (units _grp select {alive _x});
+    _vehicles arrayIntersect _vehicles;
 
     {
         [_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);

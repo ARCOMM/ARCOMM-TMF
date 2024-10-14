@@ -9,7 +9,9 @@ if(isServer && {count _headless > 0}) exitWith {
 if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
-    {_grps pushBackUnique group _x} forEach (synchronizedObjects _logic);
+    {_grps pushBack group _x} forEach (synchronizedObjects _logic);
+    _grps arrayIntersect _grps;
+
     private _unitData = [];
     {
         private _grp = _x;

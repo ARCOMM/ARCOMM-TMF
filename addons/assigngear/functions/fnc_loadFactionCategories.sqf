@@ -57,9 +57,10 @@ private _activeFactionCategory = "";
     if (toLower (configName _x) == _activeFaction) then {
         _activeFactionCategory = _category;
     };
-    
-    _factionCategories pushBackUnique _category;
+
+    _factionCategories pushBack _category;
 } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
+_factionCategories arrayIntersect _factionCategories;
 
 // Sort Alphabetically.
 _factionCategories sort true;

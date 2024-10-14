@@ -20,20 +20,21 @@ switch _input do {
         // Propogate the list of dead players.
         if (!isMultiplayer) then {
             {
-                GVAR(deadPlayerList) pushBack _x;  
+                GVAR(deadPlayerList) pushBack _x;
             } forEach allUnits;
         } else {
             {
                 if (isPlayer _x) then { //not all of them will be players.
-                    GVAR(deadPlayerList) pushBack _x;  
+                    GVAR(deadPlayerList) pushBack _x;
                 };
             } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
             {
                 if (!alive _x) then { //not all of them will be players.
-                    GVAR(deadPlayerList) pushBackUnique _x;  
+                    GVAR(deadPlayerList) pushBack _x;
                 };
             } forEach allPlayers;
         };
+        GVAR(deadPlayerList) arrayIntersect GVAR(deadPlayerList);
 
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26894); /* respawnMenuFactionCategoryCombo */
@@ -263,20 +264,21 @@ switch _input do {
             private _deadList = [];
             if ((!isMultiplayer) or (isMultiplayer and isServer)) then {
                 {
-                    _deadList pushBack _x;  
+                    _deadList pushBack _x;
                 } forEach allUnits;
             } else {
                 {
                     if (isPlayer _x) then { //not all of them will be players.
-                        _deadList pushBack _x;  
+                        _deadList pushBack _x;
                     };
                 } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
                 {
                     if (!alive _x) then { //not all of them will be players.
-                        _deadList pushBackUnique _x;
+                        _deadList pushBack _x;
                     };
                 } forEach allPlayers;
             };
+            _deadList arrayIntersect _deadList;
 
             if (({_x in GVAR(deadPlayerList)} count _deadList) == count _deadList) exitWith {};
             
@@ -324,7 +326,7 @@ switch _input do {
             // use missionConfigFile
             {
                 private _factionName = (toLower(configName _x));
-                _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+                _factions pushBack [getText(_x >> "displayName"),_factionName];
             } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
 
         } else {
@@ -334,10 +336,11 @@ switch _input do {
                 if (_category == "") then {_category = "Other";};
                 if (_activeFactionCategory == _category) then {
                     private _factionName = (toLower(configName _x));
-                    _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+                    _factions pushBack [getText(_x >> "displayName"),_factionName];
                 };
             } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
         };
+        _factions arrayIntersect _factions;
 
         //Alphabetical sort.
         _factions sort true;

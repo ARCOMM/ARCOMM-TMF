@@ -52,7 +52,7 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
 
         if (_isVeh) then {
-            GVAR(vehicles) pushBackUnique (objectParent _x); // for speed reasons.
+            GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
             _control ctrlShow false;
         } else {
             if (alive _x) then {
@@ -97,13 +97,10 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
                 _x setVariable [QGVAR(tagControl), nil];
                 ctrlDelete _control;
             };
-
         };
-
-
     } forEach units _x;
 } forEach allGroups;
-
+GVAR(vehicles) arrayIntersect GVAR(vehicles);
 
 {
     private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];

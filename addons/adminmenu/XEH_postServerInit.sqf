@@ -38,7 +38,7 @@ if (isTMF) then {
     private _oldGroups = [];
     {
         private _unit = _x;
-        _oldGroups pushBackUnique (group _unit);
+        _oldGroups pushBack (group _unit);
 
         [_unit] joinSilent grpNull;
         _unit setUnitPos "UP";
@@ -53,9 +53,8 @@ if (isTMF) then {
 
         _unit allowFleeing 0;
         doStop _unit;
-
-
     } forEach _hunters;
+    _oldGroups arrayIntersect _oldGroups;
 
     // Cleanup groups no longer used.
     {
