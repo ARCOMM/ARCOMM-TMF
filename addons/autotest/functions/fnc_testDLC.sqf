@@ -29,7 +29,7 @@ if (_worldDLC != 0 && {!(_worldDLC in _ignoredDLC)}) then {
     _ignoredDLC pushBack _worldDLC;
     /*_warnings pushBack [
         1,
-        format ["Mission uses DLC terrain: %1", [_dlcHash, _worldDLC] call CBA_fnc_hashGet]
+        format ["Mission uses DLC terrain: %1", _dlcHash get _worldDLC]
     ];*/
 };
 
@@ -41,7 +41,7 @@ private _problemUnits = [];
 
     // Get DLC short names from preStart hash
     _dlcArr = _dlcArr - _ignoredDLC;
-    _dlcArr = _dlcArr apply { [_dlcHash, _x] call CBA_fnc_hashGet };
+    _dlcArr = _dlcArr apply {_dlcHash get _x};
 
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
@@ -98,7 +98,7 @@ private _problemVehs = [];
 
     // Get DLC short names from preStart hash
     if !(_dlc in _ignoredDLC) then {
-        _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
+        _dlc = _dlcHash getOrDefault [_dlc, _dlc, true];
 
         private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
 

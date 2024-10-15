@@ -38,15 +38,15 @@ private _index = -1;
 // Handle all the factions
 
 // Build up a pool of who is using what faction from assign gear.
-private _playerFactions = [] call CBA_fnc_hashCreate;
+private _playerFactions = createHashMap;
 {
     private _faction = _x getVariable ["tmf_assignGear_faction",""];
     if (_faction != "") then {
-        if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
-            private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
-            [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+        if (_faction in _playerFactions) then {
+            private _value = _playerFactions get _faction;
+            _playerFactions set [_faction, _value + 1];
         } else {
-            [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+            _playerFactions set [_faction, 1];
         };
     };
 } forEach (allPlayers);
@@ -55,8 +55,8 @@ if (count _missionConfig > 0) then {
     private _players = 0;
     {
         private _factionName = (toLower(configName _x));
-            if ([_playerFactions,_factionName] call CBA_fnc_hashHasKey) then {
-            _players = _players + ([_playerFactions,_factionName] call CBA_fnc_hashGet);
+            if (_factionName in _playerFactions) then {
+            _players = _players + (_playerFactions get _factionName);
         };
     } forEach _missionConfig;
 
@@ -77,8 +77,8 @@ private _factionCategoryPlayerCounts = [];
     private _players = 0;
     // Mission faction class overrides so show 0 if configFile class is of same name.
     if (!isClass (missionConfigFile >> "CfgLoadouts" >> _configName)) then {
-        if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
-            _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+        if (_configName in _playerFactions) then {
+            _players = _playerFactions get _configName;
         };
     };
 

@@ -27,11 +27,11 @@ TRACE_3("Executed AIGear EH",_unit,_faction,_loadout);
 
 private _hash = GVAR(namespace) getVariable "AIGear_hash";
 
-private _typeCode = [_hash,"code"] call CBA_fnc_hashGet;
+private _typeCode = _hash get "code";
 private _type = toLower (_unit call _typeCode);
 
 // Get a weighted array of roles for the listed type
-private _weightedArray = [_hash,_type] call CBA_fnc_hashGet;
+private _weightedArray = _hash get _type;
 
 private _role = selectRandomWeighted _weightedArray;
 LOG_2("%1 is type: %2",_unit,_type);
