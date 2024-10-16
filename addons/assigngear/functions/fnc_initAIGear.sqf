@@ -57,7 +57,7 @@ if (_hash isEqualTo []) then {
         _default = ["r",1];
     };
 
-    _hash = _hash = createHashMap;
+    _hash = createHashMap;
     _namespace setVariable ["AIGear_hash",_hash];
     TRACE_1("Initialized AIGear hash",_hash);
 };
