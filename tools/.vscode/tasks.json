@@ -1,0 +1,105 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Test All",
+            "dependsOn": [
+                "Validate SQF",
+                "Validate Config",
+                "HEMTT check"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Test - Validate SQF",
+            "command": "${config:python.defaultInterpreterPath}",
+            "options": {
+                "cwd": "${workspaceFolder}/tools"
+            },
+            "args": [
+                "sqf_validator.py"
+            ],
+            "problemMatcher": [
+                "$python"
+            ]
+        },
+        {
+            "label": "Test - Validate Config",
+            "command": "${config:python.defaultInterpreterPath}",
+            "options": {
+                "cwd": "${workspaceFolder}/tools"
+            },
+            "args": [
+                "config_style_checker.py"
+            ]
+        },
+        {
+            "label": "Test - Validate Stringtables (Not Currently Useful)",
+            "command": "${config:python.defaultInterpreterPath}",
+            "options": {
+                "cwd": "${workspaceFolder}/tools"
+            },
+            "args": [
+                "stringtable_validator.py"
+            ]
+        },
+        {
+            "label": "Test - Check Strings (Not Currently Useful)",
+            "command": "${config:python.defaultInterpreterPath}",
+            "options": {
+                "cwd": "${workspaceFolder}/tools"
+            },
+            "args": [
+                "check_strings.py"
+            ]
+        },
+        {
+            "label": "Test - Hemtt - Check",
+            "command": "hemtt.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "check"
+            ]
+        },
+        {
+            "label": "Hemtt - Build",
+            "command": "hemtt.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "build",
+                "-v"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Hemtt - Dev",
+            "command": "hemtt.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "dev"
+            ]
+        },
+        {
+            "label": "Hemtt - Release",
+            "command": "hemtt.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "release"
+            ]
+        }
+    ]
+}
