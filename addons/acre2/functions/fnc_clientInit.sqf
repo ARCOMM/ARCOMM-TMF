@@ -40,7 +40,7 @@ if (!alive player) exitWith {};
 
         {
             private _langId = format["tw_lang%1", _x];
-            _languagesToSpeak pushback _langId;
+            _languagesToSpeak pushBack _langId;
         } forEach (_groupCond + _unitCond);
         _languagesToSpeak arrayIntersect _languagesToSpeak;
 
