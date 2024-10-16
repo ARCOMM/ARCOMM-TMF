@@ -18,5 +18,4 @@ class CfgPatches
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 
-#include "defines.hpp"
 #include "dialogs.hpp"
