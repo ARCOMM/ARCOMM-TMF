@@ -68,14 +68,14 @@ _factionCategories sort true;
 {
     private _index = _control lbAdd _x;
     _control lbSetData [_index,_x];
-    if((!_found) and _x == _activeFactionCategory) then {
+    if(!_found && {_x == _activeFactionCategory}) then {
         _found = true; 
         _control lbSetCurSel _index;
         GVAR(currentFactionCategory) = _x;
     };
 } forEach (_factionCategories);
 
-if (!_found and (lbSize _control > 0)) then {
+if (!_found && (lbSize _control > 0)) then {
     _control lbSetCurSel 0; // set to first element.
     GVAR(currentFactionCategory) = _control lbData 0;
 };

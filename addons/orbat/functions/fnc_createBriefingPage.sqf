@@ -340,7 +340,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     };
                     // Handgun
                     if (handgunWeapon _x != "") then {
-                        if (secondaryWeapon _x != "" or primaryWeapon _x != "") then {
+                        if (primaryWeapon _x != "" || {secondaryWeapon _x != ""}) then {
                             _unitText = _unitText + ", ";
                         };
                         (handgunItems _x) params ["_muzzel", "", "_optic", ""];

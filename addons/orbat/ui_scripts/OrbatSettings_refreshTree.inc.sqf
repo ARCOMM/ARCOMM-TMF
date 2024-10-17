@@ -6,9 +6,9 @@ with uiNamespace do {
     if (isNil "OrbatSelection") exitWith {};
     private _idx = -1;
     {
-        if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
+        if ((_x select 0) isEqualTo OrbatSelection) exitWith {_idx = _forEachIndex;};
     } forEach OrbatSettings_Array;
-    if ((count cacheAllPlayerGroups == 0) and _idx == -1) exitWith {};
+    if (_idx == -1 && {count cacheAllPlayerGroups == 0}) exitWith {};
     if (_idx == -1) then {
         _idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
     };

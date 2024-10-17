@@ -262,7 +262,7 @@ switch _input do {
             //Recompute who is alive and Dead.
             
             private _deadList = [];
-            if ((!isMultiplayer) or (isMultiplayer and isServer)) then {
+            if (!isMultiplayer || {isMultiplayer and isServer}) then {
                 {
                     _deadList pushBack _x;
                 } forEach allUnits;

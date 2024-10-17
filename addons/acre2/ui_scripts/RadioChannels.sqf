@@ -485,7 +485,7 @@ switch _mode do {
             private _channel = (_channels select RadioCurrentNetworkChannel);
             _channel params ["","","","_channelConditions"];
             
-            if (!_giveRadio and {_faction in _channelConditions}) then {
+            if (!_giveRadio && {_faction in _channelConditions}) then {
                 _giveRadio = true;
             };
             
@@ -889,10 +889,10 @@ switch _mode do {
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
+                if (_entity isEqualType grpNull || {_entity isEqualType objNull}) then {
                     _list = (_entity get3DENAttribute "TMF_Channellist") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_Channellist",str [_curSel]];
@@ -947,7 +947,7 @@ switch _mode do {
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _radioChannel set [3,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups

@@ -34,7 +34,7 @@ private _output = [];
         default {
             // check _VA
             if _VA then {
-                if (_isServer or _isLocal) then {
+                if (_isServer || _isLocal) then {
                     _output pushBack [1,format["Virtual Arsenal code detected in init field of %1!",_x]];
                 } else {
                     _output pushBack [0,format["Virtual Arsenal code detected in init field of %1, but no isServer or local check!",_x]];

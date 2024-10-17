@@ -69,7 +69,7 @@ if (count GVAR(orbatTrackerCodeCondition) == 0) then { GVAR(orbatTrackerCodeCond
     //Error check by calling once.
     GVAR(orbatTrackerCodeCondition) = compile GVAR(orbatTrackerCodeCondition);
     private _return = call GVAR(orbatTrackerCodeCondition);
-    if (isNil "_return" or {!(_return isEqualType true)}) then {
+    if (isNil "_return" || {!(_return isEqualType true)}) then {
         GVAR(orbatTrackerCodeCondition) = {false};
         GVAR(orbatTrackerCodeCached) = false;
     } else {

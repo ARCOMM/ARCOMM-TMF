@@ -276,7 +276,7 @@ switch _mode do {
             
             private _render = _faction != "";
             private _location = +_treeRoot;
-            if (!_doSpeak and {_faction in _BriefConditions}) then {
+            if (!_doSpeak && {_faction in _BriefConditions}) then {
                 _doSpeak = true;
             };
             
@@ -454,10 +454,10 @@ switch _mode do {
             private _curSel = lnbCurSelRow (BriefingSettings_ctrlGroup controlsGroupCtrl 101);
             private _condition = (BriefingArray select _curSel) select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
+                if (_entity isEqualType grpNull || {_entity isEqualType objNull}) then {
                     _list = (_entity get3DENAttribute "TMF_Briefinglist") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_Briefinglist",str [_curSel]];
@@ -485,7 +485,7 @@ switch _mode do {
             private _BriefEntry = (BriefingArray select _curSel);
             private _condition = _BriefEntry select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _BriefEntry set [1,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups

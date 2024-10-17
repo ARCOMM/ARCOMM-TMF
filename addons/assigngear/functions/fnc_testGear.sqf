@@ -16,7 +16,7 @@ private _fnc_checkExists = {
     params ["_subarray","_cfg"];
 
     {
-        if ((_x != "") and (_x != "default")) then {
+        if (_x != "" && {_x != "default"}) then {
             if (!isClass (_cfg >> _x)) then {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
@@ -28,7 +28,7 @@ private _fnc_checkExists_insignia = {
     params ["_insignias"];
 
     {
-        if ((_x != "") and (_x != "default")) then {
+        if (_x != "" && {_x != "default"}) then {
             if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
                 _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };

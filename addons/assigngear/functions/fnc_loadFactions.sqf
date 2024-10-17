@@ -71,6 +71,6 @@ _factions sort true;
 } forEach _factions;
 // missionConfigFile first, only add unique factions now
 
-if (!_found and (lbSize _control > 0)) then {
+if (!_found && {lbSize _control > 0}) then {
     _control lbSetCurSel 0; // set to first element.
 };

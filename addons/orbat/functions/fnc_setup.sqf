@@ -44,7 +44,7 @@ private _groups = [];
 private _vehicles = [];
 {
     _x params ["_condition", "_array"];
-    if (_condition isEqualType 0 and {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
+    if (_condition isEqualType 0 && {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
         private _side = _condition call EFUNC(common,numToSide);
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
