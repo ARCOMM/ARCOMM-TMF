@@ -280,7 +280,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "ACE_UsedTube"))};
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select (isText (configFile >> "CfgWeapons" >> primaryWeapon _x >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};
@@ -320,7 +320,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "ACE_UsedTube"))};
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select (isText (configFile >> "CfgWeapons" >> secondaryWeapon _x >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};

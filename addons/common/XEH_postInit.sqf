@@ -17,40 +17,6 @@ if (isTMF) then {
     };
 };
 
-// TODO - Remove if added to ST HUD.
-[{!isNil "STHud_GetName"},
-{
-    STHud_GetName =
-    {
-        params ["_unit", "_fullName"];
-        private _value = _unit getVariable ["sth_name", []];
-        if (count _value == 0 || {isPlayer _unit isEqualTo (_value select 0)}) then
-        {
-            private _newName = name (_unit);
-            if (_newName != "") then {
-                _value = [isPlayer(_unit), _newName, _unit call STHud_GetName_Short];
-            } else {
-                if (count _value > 0) then { // Already defined.
-                    _value set [0,isPlayer(_unit)];
-                } else {
-                    _value = [isPlayer(_unit), "", ""];
-                };
-            };
-            _unit setVariable ["sth_name", _value, false];
-        };
-
-        if (_fullName) then
-        {
-            _value select 1;
-        }
-        else
-        {
-            _value select 2;
-        };
-    };
-}, []] call CBA_fnc_waitUntilAndExecute;
-
-
 /// VARIABLE SYNCHRONIZATION - ENSURE VARIABLES ARE SYNCHRONIZED BEFORE PROCESSING.
 /// Some code relies on tmf_common__VarSync being set before processing e.g. briefing/radio assignment
 // Register event to recieve notification of variable synchorization has been completed.
