@@ -40,7 +40,7 @@ private _found = false; // Used to track whether or not an entry has been select
 if (_usingFactions) then {
     private _factions = [];
     {_factions pushBack (toLower (faction _x));} forEach allUnits;
-    _factions arrayIntersect _factions;
+    _factions = _factions arrayIntersect _factions;
 
     _factions = _factions apply {
         private _faction = _x;

@@ -10,7 +10,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
     {_grps pushBack group _x} forEach (synchronizedObjects _logic);
-    _grps arrayIntersect _grps;
+    _grps = _grps arrayIntersect _grps;
 
     private _unitData = [];
     {

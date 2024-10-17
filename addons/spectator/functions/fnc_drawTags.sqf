@@ -100,7 +100,7 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
         };
     } forEach units _x;
 } forEach allGroups;
-GVAR(vehicles) arrayIntersect GVAR(vehicles);
+GVAR(vehicles) = GVAR(vehicles) arrayIntersect GVAR(vehicles);
 
 {
     private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];

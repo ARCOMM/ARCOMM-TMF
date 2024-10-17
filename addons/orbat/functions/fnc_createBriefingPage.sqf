@@ -59,7 +59,7 @@ private _allVehs = [];
         };
     } forEach (units _x);
 } forEach _groups;
-_allVehs arrayIntersect _allVehs;
+_allVehs = _allVehs arrayIntersect _allVehs;
 
 //Associate groups to hierarchy (use toPlace)
 private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of children
@@ -82,7 +82,7 @@ private _fnc_findValidParents = {
     
     _data pushBack _added;
 };
-_validParents arrayIntersect _validParents;
+_validParents = _validParents arrayIntersect _validParents;
 
 _ourData call _fnc_findValidParents;
 _validParents = _validParents - [-1];

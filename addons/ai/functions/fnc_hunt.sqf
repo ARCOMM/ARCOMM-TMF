@@ -22,7 +22,7 @@ if (_hunterVal == -1) then {
     };
     _hunters = allUnits select {side _x == _side};
 };
-_hunters arrayIntersect _hunters;
+_hunters = _hunters arrayIntersect _hunters;
 
 // filter out player units and playable
 _hunters = ((_hunters - playableUnits) - switchableUnits) - [player];
@@ -58,7 +58,7 @@ private _oldGroups = [];
     _unit allowFleeing 0;
     doStop _unit;
 } forEach _hunters;
-_oldGroups arrayIntersect _oldGroups;
+_oldGroups = _oldGroups arrayIntersect _oldGroups;
 
 // Cleanup groups no longer used.
 {

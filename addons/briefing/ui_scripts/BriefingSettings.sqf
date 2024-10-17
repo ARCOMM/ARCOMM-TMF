@@ -57,7 +57,7 @@ switch _mode do {
         {
             cacheAllPlayerGroups pushBack (group _x);
         } forEach _playableUnits;
-        cacheAllPlayerGroups arrayIntersect cacheAllPlayerGroups;
+        cacheAllPlayerGroups = cacheAllPlayerGroups arrayIntersect cacheAllPlayerGroups;
 
         BriefingArray = ("TMF_MissionBriefingAttributes" get3DENMissionAttribute "TMF_Briefing");
         if (BriefingArray isEqualType "") then { BriefingArray = call compile BriefingArray;};
@@ -323,7 +323,7 @@ switch _mode do {
 
         private _sides = [];
         {_sides pushBack (side _x);} forEach cacheAllPlayerGroups;
-        _sides arrayIntersect _sides;
+        _sides = _sides arrayIntersect _sides;
 
         {
             private _side = _x;
@@ -341,7 +341,7 @@ switch _mode do {
             {
                 _factions pushBack (toLower (faction (leader _x)));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
-            _factions arrayIntersect _factions;
+            _factions = _factions arrayIntersect _factions;
 
             private _hasSpeaker = false;
             {

@@ -14,7 +14,7 @@ if (_onlyPresent isEqualTo 1) then {
             _missionFactionsFound pushBack toLower _faction;
         };
     } forEach allPlayers;
-    _missionFactionsFound arrayIntersect _missionFactionsFound;
+    _missionFactionsFound = _missionFactionsFound arrayIntersect _missionFactionsFound;
 
     {
         private _displayName = getText (missionConfigFile >> "CfgLoadouts" >> _x >> "displayName");

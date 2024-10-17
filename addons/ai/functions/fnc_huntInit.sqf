@@ -20,7 +20,7 @@ if (_hunterVal == -1) then {
     };
     _hunters = allUnits select {side _x == _side};
 };
-_hunters arrayIntersect _hunters;
+_hunters = _hunters arrayIntersect _hunters;
 
 // filter out player units and playable
 _hunters = ((_hunters - playableUnits) - switchableUnits) - [player];

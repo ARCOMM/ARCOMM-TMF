@@ -40,7 +40,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
             [_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
         }
     } forEach (units _grp select {alive _x});
-    _vehicles arrayIntersect _vehicles;
+    _vehicles = _vehicles arrayIntersect _vehicles;
 
     {
         [_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);

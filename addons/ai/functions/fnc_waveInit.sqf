@@ -60,7 +60,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
            };
         };
     } forEach _objects;
-    _synchronizedGroups arrayIntersect _synchronizedGroups;
+    _synchronizedGroups = _synchronizedGroups arrayIntersect _synchronizedGroups;
 
     private _allUnits = [];
     {_allUnits append (units _x)} forEach _synchronizedGroups;

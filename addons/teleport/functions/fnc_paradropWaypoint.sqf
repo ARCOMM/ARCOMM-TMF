@@ -16,7 +16,7 @@ _flyingVehicles = _flyingVehicles arrayIntersect _flyingVehicles;
     {
         _groups pushBack group _x
     } forEach _cargo;
-    _groups arrayIntersect _groups;
+    _groups = _groups arrayIntersect _groups;
 
     {
         private _pos = getPos _vehicle;

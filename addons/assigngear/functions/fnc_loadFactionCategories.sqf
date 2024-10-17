@@ -60,7 +60,7 @@ private _activeFactionCategory = "";
 
     _factionCategories pushBack _category;
 } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
-_factionCategories arrayIntersect _factionCategories;
+_factionCategories = _factionCategories arrayIntersect _factionCategories;
 
 // Sort Alphabetically.
 _factionCategories sort true;

@@ -42,7 +42,7 @@ if (_activeFactionCategory == "mission") then {
         };
     } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
 };
-_factions arrayIntersect _factions;
+_factions = _factions arrayIntersect _factions;
 
 //Alphabetical sort.
 _factions sort true;

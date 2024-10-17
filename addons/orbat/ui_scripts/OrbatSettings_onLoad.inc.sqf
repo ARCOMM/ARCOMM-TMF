@@ -83,8 +83,8 @@ OrbatSidesPresent = [];
     OrbatFactionsPresent pushBack (faction (leader _x));
     OrbatSidesPresent pushBack (side _x);
 } forEach cacheAllPlayerGroups;
-OrbatFactionsPresent arrayIntersect OrbatFactionsPresent;
-OrbatSidesPresent arrayIntersect OrbatSidesPresent;
+OrbatFactionsPresent = OrbatFactionsPresent arrayIntersect OrbatFactionsPresent;
+OrbatSidesPresent = OrbatSidesPresent arrayIntersect OrbatSidesPresent;
 
 
 private _string = "";

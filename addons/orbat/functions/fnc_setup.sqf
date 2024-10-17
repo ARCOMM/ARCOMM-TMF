@@ -113,7 +113,7 @@ private _fnc_findValidParents = {
 };
 
 _ourData call _fnc_findValidParents;
-_validParents arrayIntersect _validParents;
+_validParents = _validParents arrayIntersect _validParents;
 _validParents = _validParents - [-1];
 
 

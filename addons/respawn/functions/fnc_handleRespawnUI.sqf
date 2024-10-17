@@ -34,7 +34,7 @@ switch _input do {
                 };
             } forEach allPlayers;
         };
-        GVAR(deadPlayerList) arrayIntersect GVAR(deadPlayerList);
+        GVAR(deadPlayerList) = GVAR(deadPlayerList) arrayIntersect GVAR(deadPlayerList);
 
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26894); /* respawnMenuFactionCategoryCombo */
@@ -278,7 +278,7 @@ switch _input do {
                     };
                 } forEach allPlayers;
             };
-            _deadList arrayIntersect _deadList;
+            _deadList = _deadList arrayIntersect _deadList;
 
             if (({_x in GVAR(deadPlayerList)} count _deadList) == count _deadList) exitWith {};
             
@@ -340,7 +340,7 @@ switch _input do {
                 };
             } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
         };
-        _factions arrayIntersect _factions;
+        _factions = _factions arrayIntersect _factions;
 
         //Alphabetical sort.
         _factions sort true;

@@ -54,7 +54,7 @@ if (isTMF) then {
         _unit allowFleeing 0;
         doStop _unit;
     } forEach _hunters;
-    _oldGroups arrayIntersect _oldGroups;
+    _oldGroups = _oldGroups arrayIntersect _oldGroups;
 
     // Cleanup groups no longer used.
     {

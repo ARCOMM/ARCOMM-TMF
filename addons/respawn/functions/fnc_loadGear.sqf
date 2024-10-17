@@ -30,7 +30,7 @@ private _classes = [];
     _factions pushBack [_faction,_name];
 } forEach (configProperties [missionConfigFile >> "CfgLoadouts" >> _side,"isClass _x"]);
 
-_factions arrayIntersect _factions;
+_factions = _factions arrayIntersect _factions;
 
 {
     _x params ["_faction","_name"];

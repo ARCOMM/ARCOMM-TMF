@@ -20,7 +20,7 @@ if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
     // Find groups with playableUnits
     private _groups = [];
     {_groups pushBack (group _x);} forEach playableUnits;
-    _groups arrayIntersect _groups;
+    _groups = _groups arrayIntersect _groups;
 
     private _outputGroups = [];
     {
@@ -53,7 +53,7 @@ if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
             };
         };
     } forEach _groups;
-    _outputGroups arrayIntersect _outputGroups;
+    _outputGroups = _outputGroups arrayIntersect _outputGroups;
 
     if (count _outputGroups > 0) then {
         _output pushBack [1,"Some groups do not have a slotting screen name:"];

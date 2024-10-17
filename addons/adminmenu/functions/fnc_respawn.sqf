@@ -26,7 +26,7 @@ if (!isMultiplayer) then {
             GVAR(spectatorList) pushBack _x;  
         };
     } forEach allPlayers;
-    GVAR(spectatorList) arrayIntersect GVAR(spectatorList);
+    GVAR(spectatorList) = GVAR(spectatorList) arrayIntersect GVAR(spectatorList);
 };
 
 
@@ -292,7 +292,7 @@ if (!isNil QGVAR(respawnGroupMarkerCheckBoxVal)) then {
                 _deadList pushBack _x;
             };
         } forEach allPlayers;
-        _deadList arrayIntersect _deadList;
+        _deadList = _deadList arrayIntersect _deadList;
     };
 
     if (({_x in GVAR(spectatorList) } count _deadList) == count _deadList) exitWith {};

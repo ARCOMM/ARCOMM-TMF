@@ -11,7 +11,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
     {_grps pushBack group _x} forEach (synchronizedObjects _logic);
-    _grps arrayIntersect _grps;
+    _grps = _grps arrayIntersect _grps;
 
     private _unitData = [];
     {
@@ -128,7 +128,7 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerText (_unitClassname);
     };
 };
-_garrisonedBuildings arrayIntersect _garrisonedBuildings;
+_garrisonedBuildings = _garrisonedBuildings arrayIntersect _garrisonedBuildings;
 
 if((_logic getVariable ["WakeUp", false])) then {
     {
