@@ -6,19 +6,20 @@ params ["_ctrlCheckBox", "_onlyPresent"];
 
 private _factions = [];
 
-if (_onlyPresent isEqualTo 1) then {
+if (_onlyPresent == 1) then {
     private _missionFactionsFound = [];
     {
         private _faction = _x getVariable [QEGVAR(assigngear,faction), ""];
-        if !(_faction isEqualTo "") then {
-            _missionFactionsFound pushBackUnique toLower _faction;
+        if (_faction != "") then {
+            _missionFactionsFound pushBack toLower _faction;
         };
     } forEach allPlayers;
+    _missionFactionsFound = _missionFactionsFound arrayIntersect _missionFactionsFound;
 
     {
         private _displayName = getText (missionConfigFile >> "CfgLoadouts" >> _x >> "displayName");
         private _fromMissionConfig = 1;
-        if (_displayName isEqualTo "") then {
+        if (_displayName == "") then {
             _displayName = getText (configFile >> "CfgLoadouts" >> _x >> "displayName");
             _fromMissionConfig = 0;
         };
@@ -44,7 +45,7 @@ _factions sort true;
 private _ctrlComboFaction = _ctrlCheckBox getVariable [QGVAR(association), controlNull];
 {
     _x params ["_displayName", "_className", "_fromMissionConfig"];
-    if (_fromMissionConfig isEqualTo 1) then {
+    if (_fromMissionConfig == 1) then {
         _displayName = format ["%1 *", _displayName];
     };
 
@@ -58,6 +59,6 @@ while {lbSize _ctrlComboFaction > _numFactions} do {
     _ctrlComboFaction lbDelete _numFactions;
 };
 
-if (_numFactions > 0 && ((lbCurSel _ctrlComboFaction) < 0 || (lbCurSel _ctrlComboFaction) >= _numFactions)) then {
+if (_numFactions > 0 && {(lbCurSel _ctrlComboFaction) < 0 || {(lbCurSel _ctrlComboFaction) >= _numFactions}}) then {
     _ctrlComboFaction lbSetCurSel 0;
 };

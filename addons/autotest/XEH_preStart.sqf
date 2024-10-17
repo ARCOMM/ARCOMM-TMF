@@ -7,4 +7,4 @@ private _dlcClasses = "isNumber (_x >> 'appID')" configClasses (configFile >> "C
 
 private _dlcHash = _dlcClasses apply {[getNumber (_x >> "appID"), getText (_x >> "nameShort")]};
 
-uiNamespace setVariable [QGVAR(dlcHash), [_dlcHash, "Unknown"] call CBA_fnc_hashCreate];
+uiNamespace setVariable [QGVAR(dlcHash), createHashMapFromArray _dlcHash];

@@ -259,7 +259,7 @@ switch _mode do {
         
             (BabelArray select BabelCurrentLang) params ["","_langConditions"];
             
-            if (!_doSpeak and {_faction in _langConditions}) then {
+            if (!_doSpeak && {_faction in _langConditions}) then {
                 _doSpeak = true;
             };
             
@@ -276,7 +276,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_langTreeProcessGroup != 3) then {
                     _hasSpeaker = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -297,7 +297,10 @@ switch _mode do {
         };
         
         
-        private _sides = []; {_sides pushBackUnique (side _x);} forEach cacheAllPlayerGroups;
+        private _sides = [];
+        {_sides pushBack (side _x);} forEach cacheAllPlayerGroups;
+        _sides = _sides arrayIntersect _sides;
+
         {
             private _side = _x;
             private _doSpeak = false;
@@ -312,8 +315,10 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBackUnique (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction leader _x));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
+            _factions = _factions arrayIntersect _factions;
+
             private _hasSpeaker = false;
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_langTreeProcessFaction != 3) then { _hasSpeaker = true; };
@@ -423,10 +428,10 @@ switch _mode do {
             private _curSel = lnbCurSelRow (BabelSettings_ctrlGroup controlsGroupCtrl 101);
             private _condition = (BabelArray select _curSel) select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
+                if (_entity isEqualType grpNull || {_entity isEqualType objNull}) then {
                     _list = (_entity get3DENAttribute "TMF_BabelLanguages") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_BabelLanguages",str [_curSel]];
@@ -454,7 +459,7 @@ switch _mode do {
             private _langEntry = (BabelArray select _curSel);
             private _condition = _langEntry select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _langEntry set [1,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups
@@ -476,7 +481,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeUnitFromLang;
-                    } forEach (allGroups select {faction (leader _x) == _entity});
+                    } forEach (allGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

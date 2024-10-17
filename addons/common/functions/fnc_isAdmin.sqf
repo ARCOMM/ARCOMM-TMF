@@ -14,7 +14,7 @@
  
 private _return = false;
 
-if (isServer or serverCommandAvailable "#kick") then {
+if (isServer || {serverCommandAvailable "#kick"}) then {
     _return = true;
 };
 

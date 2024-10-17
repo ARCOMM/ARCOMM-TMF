@@ -29,7 +29,7 @@ tmf_acre2_radioBasenameToSettingsIdx = {
 
     private _fndIdx = GVAR(radioCoreSettings) findIf {_radio in (_x select 0)};
 
-    if (_fndIdx isEqualTo -1) then { 
+    if (_fndIdx == -1) then { 
         systemChat format["Warning - TMF ACRE2 Assign - GVAR(radioCoreSettings) missing radio: %1",_radio];
     };
     _fndIdx

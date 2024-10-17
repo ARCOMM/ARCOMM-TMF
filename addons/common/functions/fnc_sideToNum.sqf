@@ -14,7 +14,7 @@
 
 private _return = [east, west, independent, civilian, sideUnknown, sideEnemy, sideFriendly, sideLogic, sideEmpty, sideAmbientLife] find _this;
 
-if (_return isEqualTo -1) then {
+if (_return == -1) then {
     _return = 4; // sideUnknown
 };
 

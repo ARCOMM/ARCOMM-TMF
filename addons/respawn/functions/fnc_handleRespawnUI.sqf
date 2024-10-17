@@ -20,20 +20,21 @@ switch _input do {
         // Propogate the list of dead players.
         if (!isMultiplayer) then {
             {
-                GVAR(deadPlayerList) pushBack _x;  
+                GVAR(deadPlayerList) pushBack _x;
             } forEach allUnits;
         } else {
             {
                 if (isPlayer _x) then { //not all of them will be players.
-                    GVAR(deadPlayerList) pushBack _x;  
+                    GVAR(deadPlayerList) pushBack _x;
                 };
             } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
             {
                 if (!alive _x) then { //not all of them will be players.
-                    GVAR(deadPlayerList) pushBackUnique _x;  
+                    GVAR(deadPlayerList) pushBack _x;
                 };
             } forEach allPlayers;
         };
+        GVAR(deadPlayerList) = GVAR(deadPlayerList) arrayIntersect GVAR(deadPlayerList);
 
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26894); /* respawnMenuFactionCategoryCombo */
@@ -43,15 +44,15 @@ switch _input do {
         // Handle all the factions
 
         // Build up a pool of who is using what faction from assign gear.
-        private _playerFactions = [] call CBA_fnc_hashCreate;
+        private _playerFactions = createHashMap;
         {
             private _faction = _x getVariable ["tmf_assignGear_faction",""];
             if (_faction != "") then {
-                if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
-                    private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
-                    [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+                if (_faction in _playerFactions) then {
+                    private _value = _playerFactions get _faction;
+                    _playerFactions set [_faction, _value + 1];
                 } else {
-                    [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+                    _playerFactions set [_faction, 1];
                 };
             };
         } forEach (allPlayers);
@@ -60,8 +61,8 @@ switch _input do {
             private _players = 0;
             {
                 private _factionName = (toLower(configName _x));
-                 if ([_playerFactions,_factionName] call CBA_fnc_hashHasKey) then {
-                    _players = _players + ([_playerFactions,_factionName] call CBA_fnc_hashGet);
+                 if (_factionName in _playerFactions) then {
+                    _players = _players + (_playerFactions get _factionName);
                 };
             } forEach _missionConfig;
 
@@ -77,13 +78,13 @@ switch _input do {
         private _factionCategoryPlayerCounts = [];
         {
             private _category = getText (_x >> "category");
-            if (_category isEqualTo "") then {_category = "Other";};
+            if (_category == "") then {_category = "Other";};
             private _configName = toLower (configName _x);
             private _players = 0;
             // Mission faction class overrides so show 0 if configFile class is of same name.
             if (!isClass (missionConfigFile >> "CfgLoadouts" >> _configName)) then {
-                if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
-                    _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+                if (_configName in _playerFactions) then {
+                    _players = _playerFactions get _configName;
                 };
             };
 
@@ -261,22 +262,23 @@ switch _input do {
             //Recompute who is alive and Dead.
             
             private _deadList = [];
-            if ((!isMultiplayer) or (isMultiplayer and isServer)) then {
+            if (!isMultiplayer || {isMultiplayer and isServer}) then {
                 {
-                    _deadList pushBack _x;  
+                    _deadList pushBack _x;
                 } forEach allUnits;
             } else {
                 {
                     if (isPlayer _x) then { //not all of them will be players.
-                        _deadList pushBack _x;  
+                        _deadList pushBack _x;
                     };
                 } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
                 {
                     if (!alive _x) then { //not all of them will be players.
-                        _deadList pushBackUnique _x;
+                        _deadList pushBack _x;
                     };
                 } forEach allPlayers;
             };
+            _deadList = _deadList arrayIntersect _deadList;
 
             if (({_x in GVAR(deadPlayerList)} count _deadList) == count _deadList) exitWith {};
             
@@ -307,15 +309,15 @@ switch _input do {
         private _factions = [];
 
         /* Fill Faction categories */
-        private _playerFactions = [] call CBA_fnc_hashCreate;
+        private _playerFactions = createHashMap;
         {
             private _faction = _x getVariable ["tmf_assignGear_faction",""];
             if (_faction != "") then {
-                if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
-                    private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
-                    [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+                if (_faction in _playerFactions) then {
+                    private _value = _playerFactions get _faction;
+                    _playerFactions set [_faction, _value + 1];
                 } else {
-                    [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+                    _playerFactions set [_faction, 1];
                 };
             };
         } forEach (allPlayers);
@@ -324,7 +326,7 @@ switch _input do {
             // use missionConfigFile
             {
                 private _factionName = (toLower(configName _x));
-                _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+                _factions pushBack [getText(_x >> "displayName"),_factionName];
             } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
 
         } else {
@@ -334,10 +336,11 @@ switch _input do {
                 if (_category == "") then {_category = "Other";};
                 if (_activeFactionCategory == _category) then {
                     private _factionName = (toLower(configName _x));
-                    _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+                    _factions pushBack [getText(_x >> "displayName"),_factionName];
                 };
             } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
         };
+        _factions = _factions arrayIntersect _factions;
 
         //Alphabetical sort.
         _factions sort true;
@@ -349,8 +352,8 @@ switch _input do {
             if (_activeFactionCategory != "mission" && {isClass (missionConfigFile >> "CfgLoadouts" >> _configName)}) then {
                 _players = 0;
             } else {
-                if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
-                    _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+                if (_configName in _playerFactions) then {
+                    _players = _playerFactions get _configName;
                 };
             };
             private _text = _displayName;
@@ -376,7 +379,7 @@ switch _input do {
         //missionConfigFile overrides.
         call {
             if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
-            if(isClass (configFile >> "CfgLoadouts" >> _faction) && count _classes <= 0) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
+            if(isClass (configFile >> "CfgLoadouts" >> _faction) && {count _classes <= 0}) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
         };
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26896); /* Role control */ 
@@ -469,8 +472,8 @@ switch _input do {
         ["refreshAliveListBox"] call FUNC(handleRespawnUI); 
     };
     case "respawnMenuChangeRoleAction": {
-        private _selection =  (lbCurSel _ctrlGroupListBox);
-        if (_selection isEqualTo -1) exitWith {};
+        private _selection = lbCurSel _ctrlGroupListBox;
+        if (_selection == -1) exitWith {};
         
         private _entry = (GVAR(selectedRespawnGroup) select _selection);
         _entry set [2,((_entry select 2)+1)%(count respawnMenuRoles)];
@@ -479,8 +482,8 @@ switch _input do {
         ["refreshAliveListBox"] call FUNC(handleRespawnUI); 
     };
     case "respawnMenuChangeRankAction": {
-        private _selection =  (lbCurSel _ctrlGroupListBox);
-        if (_selection isEqualTo -1) exitWith {};
+        private _selection = lbCurSel _ctrlGroupListBox;
+        if (_selection == -1) exitWith {};
         
         private _entry = (GVAR(selectedRespawnGroup) select _selection);
         _entry set [0,((_entry select 0)+1)%7];
@@ -569,7 +572,7 @@ switch _input do {
         _params params["","_type"];
         //28 = enter key
         if (_type == 28) then {
-            if (GVAR(respawnMousePos) isEqualTo -1) then {
+            if (GVAR(respawnMousePos) == -1) then {
                 hint "No position selected for respawn. Click on a position then hit enter.";
                 
             } else {

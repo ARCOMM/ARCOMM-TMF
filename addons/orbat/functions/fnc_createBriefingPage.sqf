@@ -25,40 +25,41 @@ private _vehicles = [];
 {
     _x params ["_condition", "_array"];
 
-    if (_condition isEqualType 0 and {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
+    if (_condition isEqualType 0 and {_condition call EFUNC(common,numToSide) == side _unit}) exitWith {
         private _side = _condition call EFUNC(common,numToSide);
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((side _unit) isEqualTo _condition) exitWith {
+    if (side _unit == _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((faction (leader (group _unit)) isEqualTo _condition)) exitWith {
+    if (faction leader _unit == _condition) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
-        _groups = allGroups select {faction (leader _x) == _faction};
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo (toLower _faction)};
+        _groups = allGroups select {faction leader _x == _faction};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _faction};
     };
 } forEach (GVAR(orbatRawData));
 
 if (_ourIdx == -1) exitWith {}; 
 
 private _allVehs = [];
-{_allVehs pushBackUnique _x;} forEach _vehicles; // copy array.
+{_allVehs pushBack _x;} forEach _vehicles; // copy array.
 {
     {
         private _veh = (objectParent _x);
         if (_veh != _x) then {
-            _allVehs pushBackUnique _veh;
+            _allVehs pushBack _veh;
         };
     } forEach (units _x);
 } forEach _groups;
+_allVehs = _allVehs arrayIntersect _allVehs;
 
 //Associate groups to hierarchy (use toPlace)
 private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of children
@@ -73,7 +74,7 @@ private _fnc_findValidParents = {
     
     _this params ["_data", ["_children",[]]];
     _data params ["_uniqueID"];
-    _validParents pushBackUnique _uniqueID;
+    _validParents pushBack _uniqueID;
   
     {
         _x call _fnc_findValidParents;
@@ -81,6 +82,7 @@ private _fnc_findValidParents = {
     
     _data pushBack _added;
 };
+_validParents = _validParents arrayIntersect _validParents;
 
 _ourData call _fnc_findValidParents;
 _validParents = _validParents - [-1];
@@ -197,7 +199,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                 private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
                 
-                if (_callsign isEqualTo "") then {
+                if (_callsign == "") then {
                     private _vehNum = _allVehs find _veh;
                     _callsign = format ["Vic #%1",(_vehNum + 1)];
                     
@@ -210,10 +212,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     _thisBriefing = format ["%1<img image='%2' height='18'></img>",_indent,_groupTexture];
                 };
                 private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier") 
-                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                        !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
-                            && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
-                    })
+                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
                     + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                 private _occupiedSlots = count crew _veh;
                 
@@ -221,7 +220,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 _thisBriefing = format ["%5 <img image='%2' height='16'></img><font size='18'> %1 [%3/%4]</font><br/>",_vehDisplayName,_vehIcon,_occupiedSlots,_maxSlots, _thisBriefing];
             } else { // Is Group.
                 _thisBriefing = format["%3<img image='%1' height='18'></img><font size='18'> %2</font>", _groupTexture, groupId _entity, _indent];
-                private _grpVehicles = (units _entity select {!(vehicle _x isEqualTo _x)}) apply {vehicle _x};
+                private _grpVehicles = (units _entity select {!isNull objectParent _x}) apply {vehicle _x};
                 _grpVehicles = _grpVehicles arrayIntersect _grpVehicles;
                 {
                     private _veh = _x;
@@ -229,17 +228,14 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                     private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
 
-                    if (_callsign isEqualTo "") then {
+                    if (_callsign == "") then {
                         private _vehNum = _allVehs find _veh;
                         _callsign = format ["Vic #%1",(_vehNum + 1)];
                     };
                     _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
                     private _vehIcon = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "picture");
                     private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier")
-                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                            !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
-                                && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
-                        })
+                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
                         + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                     private _occupiedSlots = count crew _veh;
                     //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
@@ -266,7 +262,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     if (_unitRole regexFind ["@"] isNotEqualTo []) then {
                         _unitRole = (_unitRole splitString "@") select 0;
                     } else {
-                        if (isNil _unitRole || {_unitRole isEqualTo ""}) then {
+                        if (isNil _unitRole || {_unitRole == ""}) then {
                             _unitRole = "Member";
                             if (_x == leader group _x) then {_unitRole = "Leader";};
                         };
@@ -284,7 +280,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> primaryWeapon _x) >> "ACE_UsedTube"))};
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select (isText (configFile >> "CfgWeapons" >> primaryWeapon _x >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};
@@ -324,7 +320,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                             case "BombLauncher";
                             case "Cannon";
                             case "Launcher";
-                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select ((((getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "rhsdisposable") == 1) || (getNumber (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "tf47_disposable") == 1)) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "UK3CB_used_launcher")) || isText (((configFile >> "CfgWeapons") >> secondaryWeapon _x) >> "ACE_UsedTube"))};
+                            case "RocketLauncher": {["\x\tmf\addons\orbat\weapon_textures\mat", "\x\tmf\addons\orbat\weapon_textures\lat"] select (isText (configFile >> "CfgWeapons" >> secondaryWeapon _x >> "ACE_UsedTube"))};
                             case "GrenadeLauncher": {"\x\tmf\addons\orbat\weapon_textures\gl"};
                             case "MissileLauncher": {"\x\tmf\addons\orbat\weapon_textures\hat"};
                             case "SniperRifle":{"\x\tmf\addons\orbat\weapon_textures\sniper"};
@@ -344,7 +340,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     };
                     // Handgun
                     if (handgunWeapon _x != "") then {
-                        if (secondaryWeapon _x != "" or primaryWeapon _x != "") then {
+                        if (primaryWeapon _x != "" || {secondaryWeapon _x != ""}) then {
                             _unitText = _unitText + ", ";
                         };
                         (handgunItems _x) params ["_muzzel", "", "_optic", ""];

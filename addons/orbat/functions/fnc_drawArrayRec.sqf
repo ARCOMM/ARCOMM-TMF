@@ -18,7 +18,7 @@ if (_hasChildren) then {
     if (_maxChildCenterDist < 0.0025) then {
         _drawMe = true;  
     };
-    if (_texture1 isEqualTo "") then { _drawMe = false;};
+    if (_texture1 == "") then { _drawMe = false;};
 };
 
 // Draw this.

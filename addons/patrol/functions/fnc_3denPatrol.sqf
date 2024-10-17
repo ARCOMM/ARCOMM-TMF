@@ -7,11 +7,11 @@ _radius = parseNumber (ctrlText (_display displayCtrl 1338));
 _points = parseNumber (ctrlText (_display displayCtrl 1339));
 _onroad = cbChecked (_display displayCtrl 1340);
 
-
-
 _groups = get3DENSelected "Group";
 _over = get3DENMouseOver;
-if(count _over > 0 && {(_over select 0) == "Group"}) then {_groups pushBackUnique (_over select 1)};
+if (count _over > 0 && {(_over select 0) == "Group"}) then {_groups pushBack (_over select 1)};
+_groups = _groups arrayIntersect _groups;
+
 {
     [_x,getPos leader _x,_type,_radius,_points,_onroad] call FUNC(patrol);
 } forEach _groups;

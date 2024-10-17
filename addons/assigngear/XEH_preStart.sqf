@@ -22,7 +22,7 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
         private _faceName = toLower (configName _faceClass);
 
         private _probability = getNumber (_x >> "probability");
-        if (_probability isEqualTo 0) then {_probability = 1;};
+        if (_probability == 0) then {_probability = 1;};
         // Validate it's a valid face.
         if (_faceName in _faceClasses) then {
             _weightedArray append [_faceName,_probability];

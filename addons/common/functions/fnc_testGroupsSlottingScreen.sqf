@@ -19,7 +19,8 @@ private _output = [];
 if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
     // Find groups with playableUnits
     private _groups = [];
-    {_groups pushBackUnique (group _x);} forEach playableUnits;
+    {_groups pushBack (group _x);} forEach playableUnits;
+    _groups = _groups arrayIntersect _groups;
 
     private _outputGroups = [];
     {
@@ -47,11 +48,12 @@ if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
                 //_common = _common apply {/*toUpper*/ (_x select [0,1]) + (_x select [1])};
                 if (count _common == 0) then {
                     // No common part.
-                    _outputGroups pushBackUnique _group;
+                    _outputGroups pushBack _group;
                 };
             };
         };
     } forEach _groups;
+    _outputGroups = _outputGroups arrayIntersect _outputGroups;
 
     if (count _outputGroups > 0) then {
         _output pushBack [1,"Some groups do not have a slotting screen name:"];
@@ -66,7 +68,7 @@ if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
     {
         private _desc = (_x get3DENAttribute "description") # 0;
 
-        if (_desc isEqualTo "") then {
+        if (_desc == "") then {
             _output pushBack [1,format ["Unit lacks role description: %1",_x]];
         } else {
             if !("@" in _desc) then {

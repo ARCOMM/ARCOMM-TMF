@@ -52,18 +52,16 @@ fn_removeGroupFromBrief = {
 
 switch _mode do {
     case "onLoad": {
-        private _playableUnits = (((all3DENEntities select 0)+(all3DENEntities select 3)) select {
-            (_x get3DENAttribute "ControlMP") isEqualTo [true]
-            ||
-            (_x get3DENAttribute "ControlSP") isEqualTo [true]
-        });
+        private _playableUnits = (((all3DENEntities select 0) + (all3DENEntities select 3)) select {(_x get3DENAttribute "ControlMP") isEqualTo [true] || {(_x get3DENAttribute "ControlSP") isEqualTo [true]}});
         cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
         {
-            cacheAllPlayerGroups pushBackUnique (group _x);
+            cacheAllPlayerGroups pushBack (group _x);
         } forEach _playableUnits;
+        cacheAllPlayerGroups = cacheAllPlayerGroups arrayIntersect cacheAllPlayerGroups;
+
         BriefingArray = ("TMF_MissionBriefingAttributes" get3DENMissionAttribute "TMF_Briefing");
         if (BriefingArray isEqualType "") then { BriefingArray = call compile BriefingArray;};
-        if (isNil "BriefingArray") then {            
+        if (isNil "BriefingArray") then {
             BriefingArray = [
                 ["West",[west],"briefing\briefing_west.sqf"],
                 ["East",[east],"briefing\briefing_east.sqf"],
@@ -233,16 +231,12 @@ switch _mode do {
                 if (BriefingCurrentBrief in _grpChanList) then {
                     _doSpeak = true;
                 };
-            };            
+            };
             
             private _hasSpeaker = false;
             private _units = units _group;
             if (_side == sideLogic) then {
-                _units = _units select {
-                    (_x get3DENAttribute "ControlMP") isEqualTo [true]
-                    ||
-                    (_x get3DENAttribute "ControlSP") isEqualTo [true]
-                };
+                _units = _units select {(_x get3DENAttribute "ControlMP") isEqualTo [true] || {(_x get3DENAttribute "ControlSP") isEqualTo [true]}};
             };
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessUnit != 3) then { 
@@ -282,7 +276,7 @@ switch _mode do {
             
             private _render = _faction != "";
             private _location = +_treeRoot;
-            if (!_doSpeak and {_faction in _BriefConditions}) then {
+            if (!_doSpeak && {_faction in _BriefConditions}) then {
                 _doSpeak = true;
             };
             
@@ -301,7 +295,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessGroup != 3) then {
                     _hasSpeaker = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -326,9 +320,11 @@ switch _mode do {
             };
             _returnCode
         };
-        
-        
-        private _sides = []; {_sides pushBackUnique (side _x);} forEach cacheAllPlayerGroups;
+
+        private _sides = [];
+        {_sides pushBack (side _x);} forEach cacheAllPlayerGroups;
+        _sides = _sides arrayIntersect _sides;
+
         {
             private _side = _x;
             private _doSpeak = false;
@@ -343,8 +339,10 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBackUnique (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction leader _x));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
+            _factions = _factions arrayIntersect _factions;
+
             private _hasSpeaker = false;
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessFaction != 3) then { _hasSpeaker = true; };
@@ -456,10 +454,10 @@ switch _mode do {
             private _curSel = lnbCurSelRow (BriefingSettings_ctrlGroup controlsGroupCtrl 101);
             private _condition = (BriefingArray select _curSel) select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
+                if (_entity isEqualType grpNull || {_entity isEqualType objNull}) then {
                     _list = (_entity get3DENAttribute "TMF_Briefinglist") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_Briefinglist",str [_curSel]];
@@ -470,7 +468,7 @@ switch _mode do {
                     };
                 };
             };
-                            
+
             ["refreshBriefTree"] call BriefingSettings_script;
             ["save"] call BriefingSettings_script;
         };
@@ -487,7 +485,7 @@ switch _mode do {
             private _BriefEntry = (BriefingArray select _curSel);
             private _condition = _BriefEntry select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _BriefEntry set [1,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups
@@ -509,7 +507,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeUnitFromBrief;
-                    } forEach (cacheAllPlayerGroups select {faction (leader _x) == _entity});
+                    } forEach (cacheAllPlayerGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

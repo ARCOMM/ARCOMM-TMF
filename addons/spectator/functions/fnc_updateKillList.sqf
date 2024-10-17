@@ -2,12 +2,12 @@
 for "_i" from 1 to 6 do {
     private _index = count GVAR(killedUnits) - _i;
     private _control = (uiNamespace getVariable [QGVAR(labels),[]]) select _i;
-    if(_index < (count GVAR(killedUnits)) && _index >= 0 ) then {
+    if(_index >= 0 && {_index < (count GVAR(killedUnits))}) then {
         private _data = GVAR(killedUnits) select (count GVAR(killedUnits) - _i);
         _data params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon"];
         private _deltaTime = time - _time;
-        if(_deltaTime <= 12 && _i < 6) then {
-            if(_killer == _unit || isNull _killer) then {
+        if(_deltaTime <= 12 && {_i < 6}) then {
+            if(isNull _killer || {_killer == _unit}) then {
                 _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sideTohexColor)];
             }
             else {

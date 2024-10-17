@@ -18,7 +18,7 @@
  */
 params ["_unit","_insignia"];
 
-if (time > 5 || {is3DEN}) then
+if (is3DEN || {time > 5}) then
 {
     [_unit, _insignia] call BIS_fnc_setUnitInsignia;
 }

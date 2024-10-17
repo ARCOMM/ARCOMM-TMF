@@ -5,17 +5,17 @@ params ["_utilityFunction", "_utilityName", ["_requireAlive", false]];
 
 GVAR(utilityData) = [];
 if (!isNil QGVAR(selectedTab)) then {
-    if (GVAR(selectedTab) isEqualTo IDC_TMF_ADMINMENU_G_PMAN && !isNil QGVAR(playerManagement_selected)) then {
+    if (!isNil QGVAR(playerManagement_selected) && {GVAR(selectedTab) isEqualTo IDC_TMF_ADMINMENU_G_PMAN}) then {
         GVAR(utilityData) = GVAR(playerManagement_selected) apply {_x call BIS_fnc_objectFromNetId};
 
-        if ((count GVAR(utilityData)) isEqualTo 0) exitWith {
+        if (count GVAR(utilityData) == 0) exitWith {
             systemChat "[TMF Admin Menu] No players selected for the action!";
         };
 
         if (_requireAlive) then {
-            GVAR(utilityData) = GVAR(utilityData) select {alive _x && _x isKindOf "CAManBase"};
+            GVAR(utilityData) = GVAR(utilityData) select {alive _x && {_x isKindOf "CAManBase"}};
 
-            if ((count GVAR(utilityData)) isEqualTo 0) exitWith {
+            if (count GVAR(utilityData) == 0) exitWith {
                 systemChat "[TMF Admin Menu] No alive players selected for the action!";
             };
         };

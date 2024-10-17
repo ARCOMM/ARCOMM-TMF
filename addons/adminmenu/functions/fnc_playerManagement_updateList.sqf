@@ -20,12 +20,12 @@ private _newPlayers = [];
     private _isSpectator = _x isKindOf QEGVAR(spectator,unit);
     private _playerSide = side _x;
 
-    if (_addPlayer && !(_filterSide isEqualTo sideUnknown)) then {
+    if (_addPlayer && {_filterSide == sideUnknown}) then {
         if (_isSpectator) then {
             _playerSide = (_x getVariable [QEGVAR(spectator,side), sideUnknown]);
         };
 
-        _addPlayer = _playerSide isEqualTo _filterSide;
+        _addPlayer = _playerSide == _filterSide;
     };
 
     if (_addPlayer) then {

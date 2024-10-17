@@ -20,14 +20,14 @@ private _fn_update_group_names_in_lobby = {
         // delete old lb entry (replace later)
         _slotListControl lbDelete 0;
 
-        if (_currentValue isEqualTo -1) then {
+        if (_currentValue == -1) then {
             // Value is -1 when it's a groupname.
 
             // Collect descriptions of upcoming roles/terminate if another group appears.
             private _descriptions = [];
             for "_idx" from 0 to (lbSize _slotListControl -1) do {
                 private _currentValue = _slotListControl lbValue _idx;
-                if (_currentValue isEqualTo -1) exitWith {}; // Terminate upon reaching next group.
+                if (_currentValue == -1) exitWith {}; // Terminate upon reaching next group.
                 _descriptions pushBack (_slotListControl lbText _idx);
             };
             _descriptions = _descriptions apply {(/*toLower*/ _x) splitString " "};

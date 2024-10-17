@@ -39,7 +39,7 @@ class Controls
         text = "Arsenal";
         tooltip = "ACE Arsenal. Hold Shift to open vanilla Arsenal.";
         onButtonClick = "";
-        onMouseButtonClick = "if (player isKindOf 'CAManBase' && alive player) then {(ctrlParent param [0]) closeDisplay 1; if (!param [4]) then {[player, player, true] call ACE_arsenal_fnc_openBox;} else {['Open', true] spawn BIS_fnc_arsenal;};} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
+        onMouseButtonClick = "if (alive player && {player isKindOf 'CAManBase'}) then {(ctrlParent param [0]) closeDisplay 1; if (!param [4]) then {[player, player, true] call ACE_arsenal_fnc_openBox;} else {['Open', true] spawn BIS_fnc_arsenal;};} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
         y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
     };
     class TabAdminEye: ButtonDebugConsole

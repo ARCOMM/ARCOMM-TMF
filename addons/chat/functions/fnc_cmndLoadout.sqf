@@ -41,7 +41,7 @@ switch (count _inputArr) do {
             private _match = [_in1] call FUNC(findMatch);
             if (isNull _match) then {
                 // No loadout or player found, or more than one player
-                if (_faction isEqualTo "") then {
+                if (_faction == "") then {
                     systemChat "TMF Error: Cannot select loadout as you do not have an assigned faction. Use #loadout <faction> <role>";
                     systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.",str _in1);
                 } else {

@@ -1,6 +1,6 @@
 params ["_value"];
 if (_value) then {
-    [{time > 5 && {player == player}},
+    [{time > 5},
     {[] spawn {
         if !(hasInterface) exitWith {};
         private _msg = (getPos player) call BIS_fnc_locationDescription;

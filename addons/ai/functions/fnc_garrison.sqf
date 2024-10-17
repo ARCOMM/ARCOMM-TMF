@@ -1,15 +1,17 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+private _headless = (synchronizedObjects _logic) select {!local _x && {_x isKindOf "HeadlessClient_F"}};
+if(isServer && {count _headless > 0}) exitWith {
     _this remoteExec [QFUNC(garrison), _headless select 0];
 };
 
 if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
-    {_grps pushBackUnique group _x} forEach (synchronizedObjects _logic);
+    {_grps pushBack group _x} forEach (synchronizedObjects _logic);
+    _grps = _grps arrayIntersect _grps;
+
     private _unitData = [];
     {
         private _grp = _x;
@@ -28,7 +30,7 @@ if(!_activated) exitWith {};
 private _houseRatio = _logic getVariable ["houseratio", 0.7];
 private _unitRatio = _logic getVariable ["unitRatio", 0.7];
 private _debug = _logic getVariable ["Debug",false];
-private _areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x isKindOf QGVAR(area)};
+private _areas = (synchronizedObjects _logic) select {side _x == sideLogic && {_x isKindOf QGVAR(area)}};
 private _unitData = _logic getVariable [QGVAR(unitData),[]];
 private _mainGroup = createGroup ((_unitData select 0) select 0);
 [_mainGroup,QGVAR(garrisonGroup),true] call tmf_common_fnc_initGroupVar;
@@ -38,7 +40,7 @@ if(count _areas > 0) then {
     {
         private _areaLogic = _x;
         (_areaLogic getVariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
-        private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
+        private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic, _a, _b, _dir, _isrect]}};
 
 
         private _freeBuildings = []; // List of buildings that list have free positions.
@@ -47,7 +49,7 @@ if(count _areas > 0) then {
             private _freePoses = _building getVariable [QGVAR(freeSpawnPoses),-1];
 
             // If building has not been initialized find the free positions.
-            if (_freePoses isEqualTo -1) then {
+            if (_freePoses == -1) then {
                 private _buildingPoses = _x buildingPos -1;
 
                 // TODO - Test if positions are blocked.

@@ -17,7 +17,7 @@ GVAR(orbatRawData) = getMissionConfigValue ["TMF_ORBATSettings",[]];
 if (GVAR(orbatRawData) isEqualType "") then { GVAR(orbatRawData) = call compile GVAR(orbatRawData)};
 
 
-if ((getMissionConfigValue ["TMF_ORBATTracker",false]) isEqualTo false) exitWith {};
+if !(getMissionConfigValue ["TMF_ORBATTracker",false]) exitWith {};
 
 
 /*
@@ -44,25 +44,25 @@ private _groups = [];
 private _vehicles = [];
 {
     _x params ["_condition", "_array"];
-    if (_condition isEqualType 0 and {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
+    if (_condition isEqualType 0 && {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
         private _side = _condition call EFUNC(common,numToSide);
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((side _unit) isEqualTo _condition) exitWith {
+    if (side _unit == _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((faction (leader (group _unit)) isEqualTo _condition)) exitWith {
+    if (faction leader _unit == _condition) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
-        _groups = allGroups select {faction (leader _x) == _faction};
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo (toLower _faction)};
+        _groups = allGroups select {faction leader _x == _faction};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _faction};
     };
 } forEach (GVAR(orbatRawData));
 
@@ -80,9 +80,9 @@ if (_ourIdx == -1) then {
     private _condition = (side _unit) call EFUNC(common,sideToNum);
     _groups = allGroups select {side _x == side _unit};
     if (_type isEqualType "") then {
-        private _faction = faction (leader (group _unit));
+        private _faction = faction leader _unit;
         _condition = _faction;
-        _groups = allGroups select {faction (leader _x) == _faction};
+        _groups = allGroups select {faction leader _x == _faction};
     };
     
     // Sub groups won't exist so ensure they are invalid.
@@ -101,11 +101,11 @@ private _reserveId = (_ourData select 0) select 0;
 private _validParents = [];
 private _fnc_findValidParents = {
     if (count _this == 0) exitWith {false};
-    
+
     _this params ["_data", ["_children",[]]];
     _data params ["_uniqueID"];
-    _validParents pushBackUnique _uniqueID;
-  
+    _validParents pushBack _uniqueID;
+
     {
         _x call _fnc_findValidParents;
     } forEach _children;
@@ -113,6 +113,7 @@ private _fnc_findValidParents = {
 };
 
 _ourData call _fnc_findValidParents;
+_validParents = _validParents arrayIntersect _validParents;
 _validParents = _validParents - [-1];
 
 
@@ -193,7 +194,7 @@ _fnc_processOrbatTrackerRawData = {
         _x params ["_id", "_entity"];
         if (_id == _uniqueID) then {
             private _isVeh = _entity in vehicles;
-            if (_entity isEqualType grpNull || _isVeh) then {
+            if (_isVeh || {_entity isEqualType grpNull}) then {
                 private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                 if (count _markerEntry > 0) then {

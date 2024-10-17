@@ -5,7 +5,7 @@
 if (isTMF) then {
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
         params ["_unit", "_id", "_uid", "_name"];
-        if !(typeOf _unit isEqualTo QEGVAR(spectator,unit)) then {
+        if (typeOf _unit != QEGVAR(spectator,unit)) then {
             [format ["Player disconnected while not spectator: %1", _name], true] call FUNC(log);
         };
     }];
@@ -38,7 +38,7 @@ if (isTMF) then {
     private _oldGroups = [];
     {
         private _unit = _x;
-        _oldGroups pushBackUnique (group _unit);
+        _oldGroups pushBack (group _unit);
 
         [_unit] joinSilent grpNull;
         _unit setUnitPos "UP";
@@ -53,9 +53,8 @@ if (isTMF) then {
 
         _unit allowFleeing 0;
         doStop _unit;
-
-
     } forEach _hunters;
+    _oldGroups = _oldGroups arrayIntersect _oldGroups;
 
     // Cleanup groups no longer used.
     {
@@ -63,7 +62,7 @@ if (isTMF) then {
     } forEach (_oldGroups - [grpNull]);
 
     //params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]]
-    private _targets = allUnits select {side _x == _playerSide && isPlayer _x};
+    private _targets = allUnits select {side _x == _playerSide && {isPlayer _x}};
     [_hunters,_playerSide,[0,0,0],6000,_targets] spawn EFUNC(ai,huntLoop);
 }] call CBA_fnc_addEventHandler;
 
@@ -74,7 +73,7 @@ if (isMultiplayer) then {
         private _clientOwnerId = _this select 4;
         GVAR(activeClients) = GVAR(activeClients) - [_clientOwnerId];
 
-        if (((count GVAR(activeClients)) isEqualTo 0) && {!isNil QGVAR(fps_pfh)}) then {
+        if (!isNil QGVAR(fps_pfh) && {count GVAR(activeClients) == 0}) then {
             [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
             GVAR(fps_pfh) = nil;
         };

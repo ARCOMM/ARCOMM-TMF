@@ -7,7 +7,7 @@ if(GVAR(clearGroups)) then {
     GVAR(clearGroups) = false;
     tvClear _treeView;
 };
-private _grps = allGroups select {side _x in GVAR(sides) && (units _x) findIf {alive _x} >= 0};
+private _grps = allGroups select {side _x in GVAR(sides) && {(units _x) findIf {alive _x} >= 0}};
 if (GVAR(playersOnly)) then {
    _grps = _grps arrayIntersect (playableUnits apply {group _x});
 };
@@ -28,7 +28,7 @@ for "_index" from 0 to (_treeView tvCount []) do {
             for "_childIndex" from 0 to (_treeView tvCount [_index]) do {
                 private _unitId = _treeView tvData [_index, _childIndex];
                 private _unit = _unitId call BIS_fnc_objectFromNetId;
-                if(!alive _unit || (group _unit) != _grp) then {
+                if(!alive _unit || {(group _unit) != _grp}) then {
                     _deleteRows pushBack _childIndex;
                 } else {
                     private _icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "icon");

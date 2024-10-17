@@ -26,7 +26,7 @@ TRACE_3("Saving ammobox attribute data",_category,_faction,_gear);
 // Filter out 0's
 private _toDelete = [];
 {
-    if (_y isEqualTo 0) then {
+    if (_y == 0) then {
         _toDelete pushBack _x;
     };
 } forEach _gear;

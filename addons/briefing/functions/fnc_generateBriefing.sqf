@@ -37,9 +37,9 @@ private _unitCond = _unit getVariable ["TMF_Briefinglist", []];
 if (_unitCond isEqualType "") then { _unitCond = call compile _unitCond; };
 
 {
-    _indexesToTrigger pushBackUnique _x;
+    _indexesToTrigger pushBack _x;
 } forEach (_groupCond + _unitCond);
-
+_indexesToTrigger = _indexesToTrigger arrayIntersect _indexesToTrigger;
 
 //Process scripts.
 {

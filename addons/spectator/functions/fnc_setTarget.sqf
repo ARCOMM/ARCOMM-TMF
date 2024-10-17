@@ -30,7 +30,7 @@ switch (GVAR(mode)) do {
     };
     case FIRSTPERSON: {
         GVAR(target) switchCamera "internal";
-        if (vehicle GVAR(target) != GVAR(target)) then
+        if (!isNull objectParent GVAR(target)) then
         {
             _vehicle = vehicle GVAR(target);
             _mode = "internal";

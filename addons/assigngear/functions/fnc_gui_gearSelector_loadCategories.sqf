@@ -18,15 +18,15 @@ if (count ("true" configClasses (missionConfigFile >> "CfgLoadouts")) > 0) then 
 private _categories = [];
 {
     if (isText (_x >> "category")) then {
-        _categories pushBackUnique getText (_x >> "category");
+        _categories pushBack getText (_x >> "category");
     } else {
-        _categories pushBackUnique "Other";
+        _categories pushBack "Other";
     };
 } forEach ("true" configClasses (configFile >> "CfgLoadouts"));
-
+_categories = _categories arrayIntersect _categories;
 _categories sort true;
 
-{ _ctrl lbAdd _x} forEach _categories;
+{_ctrl lbAdd _x} forEach _categories;
 
 // Select the category containing initial faction
 if !(isNil "_initialFaction") then {

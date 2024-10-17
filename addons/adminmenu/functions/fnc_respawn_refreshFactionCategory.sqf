@@ -12,15 +12,15 @@ private _activeFactionCategory = GVAR(currentFactionCategory);
 private _factions = [];
 
 /* Fill Faction categories */
-private _playerFactions = [] call CBA_fnc_hashCreate;
+private _playerFactions = createHashMap;
 {
     private _faction = _x getVariable ["tmf_assignGear_faction",""];
     if (_faction != "") then {
-        if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
-            private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
-            [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+        if (_faction in _playerFactions) then {
+            private _value = _playerFactions get _faction;
+            _playerFactions set [_faction, _value + 1];
         } else {
-            [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+            _playerFactions set [_faction, 1];
         };
     };
 } forEach allPlayers;
@@ -29,9 +29,8 @@ if (_activeFactionCategory == "mission") then {
     // use missionConfigFile
     {
         private _factionName = (toLower(configName _x));
-        _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+        _factions pushBack [getText(_x >> "displayName"),_factionName];
     } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
-
 } else {
     // Then configFile
     {
@@ -39,10 +38,11 @@ if (_activeFactionCategory == "mission") then {
         if (_category == "") then {_category = "Other";};
         if (_activeFactionCategory == _category) then {
             private _factionName = (toLower(configName _x));
-            _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
+            _factions pushBack [getText(_x >> "displayName"),_factionName];
         };
     } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
 };
+_factions = _factions arrayIntersect _factions;
 
 //Alphabetical sort.
 _factions sort true;
@@ -54,8 +54,8 @@ _factions sort true;
     if (_activeFactionCategory != "mission" && {isClass (missionConfigFile >> "CfgLoadouts" >> _configName)}) then {
         _players = 0;
     } else {
-        if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
-            _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+        if (_configName in _playerFactions) then {
+            _players = _playerFactions get _configName;
         };
     };
     private _text = _displayName;

@@ -28,7 +28,7 @@ if (count _input == 3) then {
     _input params ["_role","_faction","_enabled"];
 
     if (_enabled) then {
-        if !(is3DEN && time < 1) then {
+        if !(is3DEN && {time < 1}) then {
             [_unit, _faction, _role] call FUNC(assignGear);
         } else {
             [_unit, _faction, _role] spawn {

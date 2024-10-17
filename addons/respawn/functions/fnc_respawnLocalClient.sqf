@@ -29,7 +29,7 @@ if (_halo) then {
 
 //Dummy group is required to
 private _dummyGroup = createGroup (_side call EFUNC(common,numToSide));
-if (_leader && _groupName != "INSERT_GROUP_NAME") then {
+if (_leader && {_groupName != "INSERT_GROUP_NAME"}) then {
     _dummyGroup setGroupIdGlobal [_groupName];
 };
 

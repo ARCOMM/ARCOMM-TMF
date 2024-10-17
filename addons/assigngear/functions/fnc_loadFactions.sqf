@@ -44,20 +44,20 @@ if (_activeFactionCategory == "mission") then {
     // use missionConfigFile
     {
         private _factionName = (toLower(configName _x));
-        _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
+        _factions pushBack [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
     } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
-
 } else {
     // Then configFile
     {
         private _category = toLower (getText (_x >> "category"));
         if (_category == "") then {_category = "Other";};
         if (_activeFactionCategory == _category) then {
-            private _factionName = (toLower(configName _x));
-            _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
+            private _factionName = (toLower (configName _x));
+            _factions pushBack [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
         };
     } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
 };
+_factions = _factions arrayIntersect _factions;
 
 //Alphabetical sort.
 _factions sort true;
@@ -67,10 +67,10 @@ _factions sort true;
     private _index = _control lbAdd _displayName;
     _control lbSetData [_index, _configName];
     _control lbSetTooltip [_index, _tooltip];
-    if (_configName isEqualTo _activeFaction) then {_control lbSetCurSel _index; _found = true;};
+    if (_configName == _activeFaction) then {_control lbSetCurSel _index; _found = true;};
 } forEach _factions;
 // missionConfigFile first, only add unique factions now
 
-if (!_found and (lbSize _control > 0)) then {
+if (!_found && {lbSize _control > 0}) then {
     _control lbSetCurSel 0; // set to first element.
 };
