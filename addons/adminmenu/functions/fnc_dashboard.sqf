@@ -15,7 +15,7 @@ private _pfhRefresh = [{
 
     private _ctrlCurators = _display displayCtrl IDC_TMF_ADMINMENU_DASH_CURATORS;
     private _curatorNames = ((allCurators select {!isNull getAssignedCuratorUnit _x}) apply {name getAssignedCuratorUnit _x}) joinString ", ";
-    if (_curatorNames isEqualTo "") then {
+    if (_curatorNames == "") then {
         _curatorNames = "none";
     };
     _ctrlCurators ctrlSetText _curatorNames;
@@ -26,7 +26,7 @@ private _pfhRefresh = [{
     {
         _x params ["_ai", "_players", "_spectators", "_total"];
         private _side = [blufor, opfor, resistance, civilian] select _forEachIndex;
-        private _sideUnits = _liveUnits select {(side _x) isEqualTo _side};
+        private _sideUnits = _liveUnits select {side _x == _side};
 
         private _numAI = {!isPlayer _x} count _sideUnits;
         (_display displayCtrl _ai) ctrlSetText str _numAI;
@@ -34,7 +34,7 @@ private _pfhRefresh = [{
         private _numSideUnits = count _sideUnits;
         (_display displayCtrl _players) ctrlSetText str (_numSideUnits - _numAI);
 
-        private _numSpectators = {(_x getVariable [QEGVAR(spectator,side), sideLogic]) isEqualTo _side} count _spectatorUnits;
+        private _numSpectators = {_x getVariable [QEGVAR(spectator,side), sideLogic] == _side} count _spectatorUnits;
         (_display displayCtrl _spectators) ctrlSetText str _numSpectators;
         (_display displayCtrl _total) ctrlSetText str (_numSideUnits + _numSpectators);
     } forEach IDCS_TMF_ADMINMENU_DASH_STATS_ALLSIDES;

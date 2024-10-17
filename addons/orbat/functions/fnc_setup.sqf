@@ -17,7 +17,7 @@ GVAR(orbatRawData) = getMissionConfigValue ["TMF_ORBATSettings",[]];
 if (GVAR(orbatRawData) isEqualType "") then { GVAR(orbatRawData) = call compile GVAR(orbatRawData)};
 
 
-if ((getMissionConfigValue ["TMF_ORBATTracker",false]) isEqualTo false) exitWith {};
+if !(getMissionConfigValue ["TMF_ORBATTracker",false]) exitWith {};
 
 
 /*
@@ -49,20 +49,20 @@ private _vehicles = [];
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((side _unit) isEqualTo _condition) exitWith {
+    if (side _unit == _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((faction (leader (group _unit)) isEqualTo _condition)) exitWith {
+    if (faction leader _unit == _condition) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
-        _groups = allGroups select {faction (leader _x) == _faction};
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo (toLower _faction)};
+        _groups = allGroups select {faction leader _x == _faction};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _faction};
     };
 } forEach (GVAR(orbatRawData));
 
@@ -80,9 +80,9 @@ if (_ourIdx == -1) then {
     private _condition = (side _unit) call EFUNC(common,sideToNum);
     _groups = allGroups select {side _x == side _unit};
     if (_type isEqualType "") then {
-        private _faction = faction (leader (group _unit));
+        private _faction = faction leader _unit;
         _condition = _faction;
-        _groups = allGroups select {faction (leader _x) == _faction};
+        _groups = allGroups select {faction leader _x == _faction};
     };
     
     // Sub groups won't exist so ensure they are invalid.

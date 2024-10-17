@@ -19,7 +19,7 @@ GVAR(logEntries) = [];
         TRACE_3("Received log message",_time,_text,_isWarning);
 
         // See settings
-        if (GVAR(printToChat) isEqualTo 2 || {_isWarning && {GVAR(printToChat) == 1}}) then {
+        if (GVAR(printToChat) == 2 || {_isWarning && {GVAR(printToChat) == 1}}) then {
             private _warning = if (_isWarning) then [{"[WARNING] "},{""}];
             systemChat (_warning + _text);
         };

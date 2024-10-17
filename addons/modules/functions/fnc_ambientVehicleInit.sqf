@@ -103,7 +103,7 @@ switch _mode do {
 
         if is3DEN then {
             private _connections = (get3DENConnections _logic);
-            FILTER(_connections,(_x select 0) isEqualTo "Sync");
+            FILTER(_connections,(_x select 0) == "Sync");
             _syncedObjects = _connections apply {_x # 1};
             _area = (_syncedObjects select {_x isKindOf QEGVAR(ai,area)}) param [0, objNull];
 

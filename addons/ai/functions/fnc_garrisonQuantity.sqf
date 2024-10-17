@@ -61,7 +61,7 @@ private _freeBuildings = []; // List of buildings that list have free positions.
     private _freePoses = _building getVariable [QGVAR(freeSpawnPoses),-1];
 
     // If building has not been initialized find the free positions.
-    if (_freePoses isEqualTo -1) then {
+    if (_freePoses == -1) then {
         private _buildingPoses = _x buildingPos -1;
 
         // TODO - Test if positions are blocked.

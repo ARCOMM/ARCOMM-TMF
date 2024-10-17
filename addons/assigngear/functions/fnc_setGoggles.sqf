@@ -14,7 +14,7 @@
 params ["_unit", "_goggles"];
 
 private _curGoggles = goggles _unit;
-if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip check
+if (_curGoggles == "") then { // Don't respect no-goggles profile in skip check
     _curGoggles = "givemegoggles";
 };
 
@@ -22,11 +22,11 @@ if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip
 if ("default" in _goggles || {_curGoggles in _goggles}) exitWith {};
 
 private _newGoggles = ""; 
-if !(_goggles isEqualTo []) then {
+if (_goggles isNotEqualTo []) then {
     _newGoggles = selectRandom _goggles;
 };
 
-if (_newGoggles isEqualTo "") then {
+if (_newGoggles == "") then {
     removeGoggles _unit;
 } else {
     _unit addGoggles _newGoggles;

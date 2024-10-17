@@ -68,7 +68,7 @@ if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
     {
         private _desc = (_x get3DENAttribute "description") # 0;
 
-        if (_desc isEqualTo "") then {
+        if (_desc == "") then {
             _output pushBack [1,format ["Unit lacks role description: %1",_x]];
         } else {
             if !("@" in _desc) then {

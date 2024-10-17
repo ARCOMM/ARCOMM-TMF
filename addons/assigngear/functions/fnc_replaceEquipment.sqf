@@ -22,7 +22,7 @@ if (_array isEqualTo []) then {_array pushBack ""};
 
 private _className = selectRandom _array;
 // Exit if nil or set to "default"
-if (isNil "_className" || {_className isEqualTo "default"} ) exitWith {};
+if (isNil "_className" || {_className == "default"} ) exitWith {};
 
 // Apply
 switch (_piece) do {
@@ -30,7 +30,7 @@ switch (_piece) do {
         if ((uniform _unit) != _className) then {
             private _backup = uniformItems _unit;
             removeUniform _unit;
-            if (_className isEqualTo "") exitWith {};
+            if (_className == "") exitWith {};
             _unit forceAddUniform _className;
             {_unit removeItemFromUniform _x} forEach uniformItems _unit;
             {_unit addItemToUniform _x}      forEach _backup;
@@ -40,7 +40,7 @@ switch (_piece) do {
         if ((vest _unit) != _className) then {
             private _backup = vestItems _unit;
             removeVest _unit;
-            if (_className isEqualTo "") exitWith {};
+            if (_className == "") exitWith {};
             _unit addVest _className;
             {_unit removeItemFromVest _x} forEach vestItems _unit;
             {_unit addItemToVest _x}      forEach _backup;
@@ -50,7 +50,7 @@ switch (_piece) do {
         if ((backpack _unit) != _className) then {
             private _backup = backpackItems _unit;
             removeBackpack _unit;
-            if (_className isEqualTo "") exitWith {};
+            if (_className == "") exitWith {};
             _unit addBackpack _className;
             {_unit removeItemFromBackpack _x} forEach backpackItems _unit;
             {_unit addItemToBackpack _x}      forEach _backup;
@@ -58,17 +58,17 @@ switch (_piece) do {
     };
     case "headgear": {
         removeHeadgear _unit;
-        if (_className isEqualTo "") exitWith {};
+        if (_className == "") exitWith {};
         _unit addHeadgear _className;
     };
     case "goggles": {
         removeGoggles _unit;
-        if (_className isEqualTo "") exitWith {};
+        if (_className == "") exitWith {};
         _unit addGoggles _className;
     };
     case "hmd": {
         _unit unlinkItem (hmd _unit);
-        if (_className isEqualTo "") exitWith {};
+        if (_className == "") exitWith {};
         _unit linkItem _className;
     };
     default {ERROR("Incorrect piece parameter!")};

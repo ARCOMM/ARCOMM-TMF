@@ -72,7 +72,7 @@ private _factionCategories = [];
 private _factionCategoryPlayerCounts = [];
 {
     private _category = getText (_x >> "category");
-    if (_category isEqualTo "") then {_category = "Other";};
+    if (_category == "") then {_category = "Other";};
     private _configName = toLower (configName _x);
     private _players = 0;
     // Mission faction class overrides so show 0 if configFile class is of same name.

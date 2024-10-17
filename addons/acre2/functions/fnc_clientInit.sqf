@@ -143,7 +143,7 @@ if (!alive player) exitWith {};
     // Config look up
     private _cfg = configNull;
 
-    if (_side isEqualTo -1) then {
+    if (_side == -1) then {
         _cfg = missionConfigFile >> "cfgLoadouts" >> _faction;
     } else {
          _side = toLower ([_side] call CFUNC(sideType));
@@ -212,7 +212,7 @@ if (!alive player) exitWith {};
                         };
                     } forEach _radiosToGive;
                     // Give missing radio?
-                    if (GVAR(giveMissingRadios) && {_radioFndIdx isEqualTo -1}) then {
+                    if (GVAR(giveMissingRadios) && {_radioFndIdx == -1}) then {
                         _radiosToGive pushBack _defaultRadio;
                         _assignedRadioChannels pushBack [_defaultRadio,_chanNum];
                         _radioFndIdx = (count _radiosToGive)-1;

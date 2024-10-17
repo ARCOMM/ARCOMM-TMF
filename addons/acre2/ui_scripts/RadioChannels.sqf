@@ -109,7 +109,7 @@ fn_networkTreeHandleKey = {
         {
             set3DENAttributes [[units _x, "TMF_Network", -1], [[_x],"TMF_Network", -1]];
             set3DENAttributes [[units _x, "TMF_Channellist", "[]"], [[_x],"TMF_Channellist", "[]"], [[_x],"TMF_ChannellistLeader", "[]"]];
-        } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _thing});
+        } forEach (cacheAllPlayerGroups select {(faction leader _x) == _thing});
         
         if (_networkNumber <= (count RadioChannelArray)) then {
             ((RadioChannelArray select (_networkNumber -1)) select 0) pushBack _thing;
@@ -502,7 +502,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessGroup != 3) then {
                     _gaveSomeoneARadio = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -541,7 +541,7 @@ switch _mode do {
                     //Collect factions for side.
                     _factions = [];
                     {
-                        _factions pushBackUnique (toLower (faction (leader _x)));
+                        _factions pushBackUnique (toLower (faction leader _x));
                     } forEach (cacheAllPlayerGroups select {(side _x) == _side});
                     private _gaveSomeoneARadio = false;
                     {
@@ -569,8 +569,8 @@ switch _mode do {
         
         {
             private _group = _x;
-            if (_sides find (side _group) == -1) then {
-                if (_sides find (toLower faction (leader _group)) == -1) then {
+            if !(side _group in _sides) then {
+                if !(faction leader _group in _sides) then {
                     if (((_group get3DENAttribute "TMF_Network") select 0) == RadioCurrentNetwork) then {
                         [_ctrlTree, [], false, _x] call fn_channelTreeProcessGroup;
                     } else {
@@ -610,7 +610,7 @@ switch _mode do {
                 _x params ["_condition"];
                 private _sideNum = _forEachIndex;
                 {
-                    if (_side isEqualTo _x) then {
+                    if (_side == _x) then {
                         _networkNumber = _sideNum;
                         breakTo "condSideSearch";
                     };
@@ -638,7 +638,7 @@ switch _mode do {
                 _factions pushBack [];
             };
             //Find Faction
-            private _faction = toLower (faction (leader _x));
+            private _faction = toLower (faction leader _x);
             private _sideFactions = _factions select _sideIdx;
             private _factionIdx = _sideFactions find _faction;
             
@@ -648,7 +648,7 @@ switch _mode do {
                     _x params ["_condition"];
                     private _sideNum = _forEachIndex;
                     {
-                        if (_faction isEqualTo _x) then {
+                        if (_faction == _x) then {
                             _networkNumber = _sideNum;
                             breakTo "condSideSearch"; // quits to main scope not a problem.
                         };
@@ -969,7 +969,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeGroupFromChannel;
-                    } forEach (allGroups select {faction (leader _x) == _entity});
+                    } forEach (allGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

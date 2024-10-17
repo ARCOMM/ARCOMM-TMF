@@ -10,17 +10,17 @@
 ["CBA_loadingScreenDone", { // should ensure profile is overridden https://github.com/CBATeam/CBA_A3/wiki/Loading-Screen-Event-Handler
     [{
         private _faction = player getVariable [QGVAR(faction), ""];
-        if (_faction isEqualTo "") exitWith {};
+        if (_faction == "") exitWith {};
 
         private _cfg = configFile >> "CfgLoadouts" >> _faction >> (player getVariable [QGVAR(role), ""]);
 
         private _faces = getArray (_cfg >> "faces");
-        if !(_faces isEqualTo []) then {
+        if (_faces isNotEqualTo []) then {
             [player, _faces] call FUNC(setFace);
         };
 
         private _goggles = getArray (_cfg >> "goggles");
-        if !(_goggles isEqualTo []) then {
+        if (_goggles isNotEqualTo []) then {
             [player, _goggles] call FUNC(setGoggles);
         } else {
             removeGoggles player;

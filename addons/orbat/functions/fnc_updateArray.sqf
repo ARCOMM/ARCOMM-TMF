@@ -50,9 +50,9 @@ if (count _in > 1) then {
 } else {
     private _thing = _rootNode select ((count _rootNode) -1);
     private _pos = [0,0,0];
-    if(_thing isEqualType grpNull) then {_pos = getPos leader _thing};
-    if(_thing isEqualType objNull) then {_pos = getPos _thing};
-    if !(_pos isEqualTo [0,0,0]) then {
+    if (_thing isEqualType grpNull) then {_pos = getPos leader _thing};
+    if (_thing isEqualType objNull) then {_pos = getPos _thing};
+    if (_pos isNotEqualTo [0,0,0]) then {
         _rootNode set[4,_pos];
         _retPos = _pos;
     } else {

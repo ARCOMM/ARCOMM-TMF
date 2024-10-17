@@ -25,7 +25,7 @@ private _positions = _building buildingPos -1;
 if (count _positions < 1) exitWith {};
 
 // Draw boundingbox
-if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) then {
+if (typeOf _building isNotEqualTo "" && {count (_building buildingPos -1) > 0}) then {
     private _fn_bbox = {
         params ["_pos1","_pos2"];
         private _bbx = [_pos1 select 0,_pos2 select 0];
@@ -72,7 +72,7 @@ if ((count _validIdxs == 0) || {diag_frameNo % 15 == 0}) then { // Also recalc e
 };
 
 // Set global Idx array variable if it doesn't exist or is wrong size
-if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count (_validIdxs)}) then {
+if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count _validIdxs}) then {
     private _A =+ _validIdxs;
     private _B = [];
     while {count _A > 0} do {_B pushBack (_A deleteAt floor random count _A)};

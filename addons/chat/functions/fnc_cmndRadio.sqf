@@ -17,12 +17,12 @@ IS_CMND_AVAILABLE(GVAR(radioUsage),"#radio");
 
 params [["_name", ""]];
 
-if (_name isEqualTo "") exitWith {systemChat "TMF Error: No argument passed. Command usage: #radio <radioType>"};
+if (_name == "") exitWith {systemChat "TMF Error: No argument passed. Command usage: #radio <radioType>"};
 
 private _configs = "true" configClasses (configFile >> "CfgAcreComponents");
 private _radios = _configs select {
-    getNumber (_x >> "type") isEqualTo 5 &&
-    {!(getText (_x >> "name") isEqualTo "ACRE Base Radio")} &&
+    getNumber (_x >> "type") == 5 &&
+    {getText (_x >> "name") != "ACRE Base Radio"} &&
     {[_name, configName _x] call BIS_fnc_inString || {[_name, getText (_x >> "name")] call BIS_fnc_inString}}
 };
 

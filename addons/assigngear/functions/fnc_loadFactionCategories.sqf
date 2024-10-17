@@ -37,10 +37,10 @@ private _index = -1;
 if (count _missionConfig > 0) then {
     _index = _control lbAdd "From Mission File";
     _control lbSetData [_index, "mission"];
-    
+
     {
         private _factionName = (toLower(configName _x));
-        if (_factionName isEqualTo _activeFaction) exitWith {
+        if (_factionName == _activeFaction) exitWith {
             _control lbSetCurSel _index;
             GVAR(currentFactionCategory) = "mission";
             _found = true;
@@ -52,9 +52,9 @@ private _factionCategories = [];
 private _activeFactionCategory = "";
 {
     private _category = getText (_x >> "category");
-    if (_category isEqualTo "") then {_category = "Other";};
-    
-    if (toLower (configName _x) == _activeFaction) then {
+    if (_category == "") then {_category = "Other";};
+
+    if (configName _x == _activeFaction) then {
         _activeFactionCategory = _category;
     };
 

@@ -16,7 +16,7 @@ LOG("Client PostInit started");
         };
         private _templateActive = (
             "TMF_Spectator" in getMissionConfigValue ["respawnTemplates",[]] &&
-            {1 isEqualTo getMissionConfigValue ["Respawn",-1]}
+            {getMissionConfigValue ["Respawn",-1] == 1}
         );
 
         TRACE_5("Check JIP conditions",_templateActive,_isJIPAllowed,_isAIunit,CBA_missionTime,didJIP);

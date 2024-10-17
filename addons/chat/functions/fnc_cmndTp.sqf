@@ -18,7 +18,7 @@ IS_CMND_AVAILABLE(GVAR(tpUsage),"#tp");
 
 params [["_name",""]];
 
-if (_name isEqualTo "") exitWith {
+if (_name == "") exitWith {
     systemChat "TMF Error: No argument passed. Use #tp <player> or <group>";
 };
 
@@ -26,11 +26,8 @@ private _unit = [_name] call FUNC(findMatch);
 
 if (isNull _unit) then {
     private _side = side CURUNIT;
-    private _grpArr = allGroups select {
-        _side isEqualTo side _x &&
-        {[_name, groupId _x] call BIS_fnc_inString}
-    };
-    if (count _grpArr isEqualTo 1) then {
+    private _grpArr = allGroups select {_side == side _x && {[_name, groupId _x] call BIS_fnc_inString}};
+    if (count _grpArr == 1) then {
         _unit = leader (_grpArr # 0);
     };
 };

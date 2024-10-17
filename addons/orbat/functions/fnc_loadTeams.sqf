@@ -45,8 +45,8 @@ if (_usingFactions) then {
     _factions = _factions apply {
         private _faction = _x;
         [
-            {toLower (faction _x) == _faction && {_x in (playableUnits + [player])}} count allUnits,
-            {toLower (faction _x) == _faction} count allUnits,
+            {faction _x == _faction && {_x in (playableUnits + [player])}} count allUnits,
+            {faction _x == _faction} count allUnits,
             _x
         ]
     };

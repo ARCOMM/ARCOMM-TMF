@@ -115,7 +115,7 @@ _ctrlMap ctrlAddEventHandler ["Draw", {
     } else {
         private _pos = [];
         {
-            if ((side _x) isEqualTo (side player)) then {
+            if (side _x == (side player)) then {
                 _pos = getPos _x;
                 _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [0,0,0,1], _pos, 24, 24, 0];
                 _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", (side _x) call FUNC(sideToColor), _pos, 20, 20, 0];

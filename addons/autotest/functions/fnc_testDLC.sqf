@@ -49,13 +49,13 @@ private _problemUnits = [];
         {!([_x, _missionSummary] call BIS_fnc_inString)}   // DLC usage mentioned in mission summary
     };
 
-    if !(_dlcArr isEqualTo []) then {
+    if (_dlcArr isNotEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
         _problemUnits pushBack [_unit,_dlcArr];
     };
-} forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+} forEach (_unitsDLCInfo select {_x select 1 isNotEqualTo []});
 
-if !(_problemUnits isEqualTo []) then {
+if (_problemUnits isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
@@ -109,7 +109,7 @@ private _problemVehs = [];
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if !(_problemVehs isEqualTo []) then {
+if (_problemVehs isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {

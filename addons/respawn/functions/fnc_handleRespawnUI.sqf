@@ -78,7 +78,7 @@ switch _input do {
         private _factionCategoryPlayerCounts = [];
         {
             private _category = getText (_x >> "category");
-            if (_category isEqualTo "") then {_category = "Other";};
+            if (_category == "") then {_category = "Other";};
             private _configName = toLower (configName _x);
             private _players = 0;
             // Mission faction class overrides so show 0 if configFile class is of same name.
@@ -472,8 +472,8 @@ switch _input do {
         ["refreshAliveListBox"] call FUNC(handleRespawnUI); 
     };
     case "respawnMenuChangeRoleAction": {
-        private _selection =  (lbCurSel _ctrlGroupListBox);
-        if (_selection isEqualTo -1) exitWith {};
+        private _selection = lbCurSel _ctrlGroupListBox;
+        if (_selection == -1) exitWith {};
         
         private _entry = (GVAR(selectedRespawnGroup) select _selection);
         _entry set [2,((_entry select 2)+1)%(count respawnMenuRoles)];
@@ -482,8 +482,8 @@ switch _input do {
         ["refreshAliveListBox"] call FUNC(handleRespawnUI); 
     };
     case "respawnMenuChangeRankAction": {
-        private _selection =  (lbCurSel _ctrlGroupListBox);
-        if (_selection isEqualTo -1) exitWith {};
+        private _selection = lbCurSel _ctrlGroupListBox;
+        if (_selection == -1) exitWith {};
         
         private _entry = (GVAR(selectedRespawnGroup) select _selection);
         _entry set [0,((_entry select 0)+1)%7];
@@ -572,7 +572,7 @@ switch _input do {
         _params params["","_type"];
         //28 = enter key
         if (_type == 28) then {
-            if (GVAR(respawnMousePos) isEqualTo -1) then {
+            if (GVAR(respawnMousePos) == -1) then {
                 hint "No position selected for respawn. Click on a position then hit enter.";
                 
             } else {

@@ -57,7 +57,7 @@ if (!isNil QGVAR(zeusPos) && {GVAR(freeCameraEnabled)}) then {
     GVAR(camera) camCommit 0;
     GVAR(zeusPos) = nil;
 } else {
-    if (missionNamespace getVariable [QGVAR(mode),-1] isEqualTo -1) then {
+    if (missionNamespace getVariable [QGVAR(mode),-1] == -1) then {
         private _allowedModes = [GVAR(followCameraEnabled),GVAR(freeCameraEnabled),GVAR(firstPersonCameraEnabled)];
         {
             if(_x) exitWith {

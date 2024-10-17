@@ -10,16 +10,16 @@ if (cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC)) exitWi
         [QGVAR(Draw)] remoteExec [QEFUNC(common,endMission)];
     } else {
         private _winners = [];
-        if ((missionNamespace getVariable [QGVAR(DOUBLES(ending,blufor)), 0]) isEqualTo 1) then {
+        if (missionNamespace getVariable [QGVAR(DOUBLES(ending,blufor)), 0] == 1) then {
             _winners pushBack blufor;
         };
-        if ((missionNamespace getVariable [QGVAR(DOUBLES(ending,opfor)), 0]) isEqualTo 1) then {
+        if (missionNamespace getVariable [QGVAR(DOUBLES(ending,opfor)), 0] == 1) then {
             _winners pushBack opfor;
         };
-        if ((missionNamespace getVariable [QGVAR(DOUBLES(ending,resistance)), 0]) isEqualTo 1) then {
+        if (missionNamespace getVariable [QGVAR(DOUBLES(ending,resistance)), 0] == 1) then {
             _winners pushBack resistance;
         };
-        if ((missionNamespace getVariable [QGVAR(DOUBLES(ending,civilian)), 0]) isEqualTo 1) then {
+        if (missionNamespace getVariable [QGVAR(DOUBLES(ending,civilian)), 0] == 1) then {
             _winners pushBack civilian;
         };
 

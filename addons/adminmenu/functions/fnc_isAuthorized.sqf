@@ -19,7 +19,7 @@
  */
 params [["_unit", player, [objNull]]];
 
-private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
+private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") == getPlayerUID _unit};
 
 switch true do {
     // Return true for server/HCs

@@ -36,7 +36,7 @@ if (isMultiplayer) then {
     } else {
         GVAR(activeClients) = GVAR(activeClients) - [remoteExecutedOwner];
 
-        if (!isNil QGVAR(fps_pfh) && {(count GVAR(activeClients)) isEqualTo 0}) then {
+        if (!isNil QGVAR(fps_pfh) && {count GVAR(activeClients) == 0}) then {
             [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
             GVAR(fps_pfh) = nil;
         };

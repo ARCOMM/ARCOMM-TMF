@@ -21,7 +21,7 @@ with uiNamespace do {
         _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo _sideStr};
     };
     if (OrbatSelection isEqualType "") then {
-        _relevantGroups = (cacheAllPlayerGroups select {faction (leader _x) == OrbatSelection});
+        _relevantGroups = (cacheAllPlayerGroups select {faction leader _x == OrbatSelection});
         _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo (toLower OrbatSelection)};
     };
 
@@ -124,7 +124,7 @@ with uiNamespace do {
             for "_testingId" from _proposedID to _proposedID+200 do {
                 private _collision = false;
                 {
-                    if (_testingId isEqualTo (_x select 0)) exitWith {_collision = true;}
+                    if (_testingId == (_x select 0)) exitWith {_collision = true;}
                 } forEach orbat_queue;
 
                 if (!_collision) exitWith {
@@ -243,7 +243,7 @@ with uiNamespace do {
                     if (count _unitMarkerData > 0) then {
                         _unitMarkerData params ["_unitIcon","_mName"];
                         private _roleDesc = ((_entry get3DENAttribute "description") select 0);
-                        if (_roleDesc isEqualTo "") then {
+                        if (_roleDesc == "") then {
                             _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _entry) >> "displayName");
                         };
                         private _string = format["UNIT - %1", _roleDesc];

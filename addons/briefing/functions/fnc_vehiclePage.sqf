@@ -27,7 +27,7 @@ params ["_target","_vehicles"];
         QEGVAR(orbat,vehicleCallsign),
         [getText (_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString
     ];
-    if !((_veh getVariable [QEGVAR(orbat,vehicleCallsign),-1]) isEqualTo -1) then {
+    if (_veh getVariable [QEGVAR(orbat,vehicleCallsign),-1] != -1) then {
         _vehName = _vehName + " (" + ([getText(_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString) + ")";
     };
     _text = _text + format["<font size='18'>%1</font>",_vehName];
@@ -55,7 +55,7 @@ params ["_target","_vehicles"];
         private _turretName = [getText(_cfgTurret >> "gunnerName")] call CBA_fnc_capitalize;
         private _locked = _veh lockedTurret _x;
         // Handle FFV turrets and turned out positions
-        if ((getNumber(_cfgTurret >> "isPersonTurret") > 0) && {getNumber(_cfg >> "hideProxyInCombat") isEqualTo 0}) then {
+        if (getNumber(_cfgTurret >> "isPersonTurret") > 0 && {getNumber(_cfg >> "hideProxyInCombat") == 0}) then {
             // Save the idx of the turret
             _proxyIdxs pushBack getNumber(_cfgTurret >> "proxyIndex");
         };
@@ -75,7 +75,7 @@ params ["_target","_vehicles"];
     // Find out which seats are occupied
     {
         _x params ["","_role","_idx"];
-        if (_role isEqualTo "cargo") then {_occupiedSeats pushBack _idx};
+        if (_role == "cargo") then {_occupiedSeats pushBack _idx};
     } forEach fullCrew _veh;
     // Get the order of cargo slots
     private _getInProxyOrder = getArray(_cfg >> "getInProxyOrder");
@@ -124,7 +124,7 @@ params ["_target","_vehicles"];
                 
                 if ((count _weaponMagazines) > 0) then {
                     private _weaponName = getText (configFile >> "CfgWeapons" >> _weapon >> "displayName");
-                    if !(_weaponName isEqualTo "") then {
+                    if (_weaponName != "") then {
                         _text = format ["%1  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%2<br/>", _text, _weaponName];
                     };
                     

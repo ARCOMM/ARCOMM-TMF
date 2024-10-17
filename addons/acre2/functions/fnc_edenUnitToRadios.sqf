@@ -23,7 +23,7 @@ private _role =  _unit getVariable ["tmf_assignGear_role","baseMan"];
 // Config look up
 private _cfg = configNull;
 
-if (_side isEqualTo -1) then {
+if (_side == -1) then {
     _cfg = missionConfigFile >> "cfgLoadouts" >> _faction;
 } else {
      _side = toLower ([_side] call CFUNC(sideType));
@@ -104,7 +104,7 @@ if (GVAR(giveMissingRadios)) then {
                     };
                 } forEach _radiosToGive;
                 // No matching radio - add Radio;
-                if (_radioFndIdx isEqualTo -1) then {
+                if (_radioFndIdx == -1) then {
                     _usedRadioIndexs pushBack (_radiosToGive pushBack _radio);
                 };             
             };

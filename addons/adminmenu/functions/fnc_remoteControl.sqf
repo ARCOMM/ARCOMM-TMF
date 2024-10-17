@@ -4,7 +4,7 @@ params [["_unit", objNull, [objNull]], ["_toggle", true, [true]], ["_skipModal",
 
 if (!_toggle) exitWith { // Bad, can still command group via map click when back in spectator
     private _rcUnit = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull];
-    if (!isNull _rcUnit && {(_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player}) then {
+    if (!isNull _rcUnit && {_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull] == player}) then {
         _rcUnit setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
         objNull remoteControl _rcUnit;
         bis_fnc_moduleRemoteControl_unit = nil;
@@ -34,7 +34,7 @@ call {
     if (isUAVConnected vehicle _unit) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorControl";};
 };
 
-if (_error isEqualTo "") then {
+if (_error == "") then {
     bis_fnc_moduleRemoteControl_unit = _unit;
     _unit setVariable ["bis_fnc_moduleRemoteControl_owner", player, true];
 
@@ -56,10 +56,10 @@ if (_error isEqualTo "") then {
         [{
             !alive _this ||
             {(_this getVariable ["ACE_isUnconscious", false])} ||
-            {(cameraOn isEqualTo player)} ||
+            {cameraOn == player} ||
             {!(player isKindOf QEGVAR(spectator,unit))} ||
-            {!((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this)} ||
-            {!((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)}
+            {missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull] != _this} ||
+            {_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull] != player}
         }, {
             private _reasons = [];
             if (!alive _this) then {
@@ -68,16 +68,16 @@ if (_error isEqualTo "") then {
             if (_this getVariable ["ACE_isUnconscious", false]) then {
                 _reasons pushBack "RC unit is unconscious";
             };
-            if (cameraOn isEqualTo player) then {
+            if (cameraOn == player) then {
                 _reasons pushBack "Camera is on player";
             };
             if (!(player isKindOf QEGVAR(spectator,unit))) then {
                 _reasons pushBack "Player is not a spectator unit (respawned?)";
             };
-            if (!((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this)) then {
+            if (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull] != _this) then {
                 _reasons pushBack "Mission RC var says current unit shouldn't be RC'd";
             };
-            if (!((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
+            if (_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull] != player) then {
                 _reasons pushBack "Unit RC var says player shouldn't be remote controlling it";
             };
             systemChat format [
@@ -85,7 +85,7 @@ if (_error isEqualTo "") then {
                 _reasons joinString " | "
             ];
 
-            if ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player) then {
+            if (_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull] == player) then {
                 _this setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
                 objNull remoteControl _this;
                 bis_fnc_moduleRemoteControl_unit = nil;

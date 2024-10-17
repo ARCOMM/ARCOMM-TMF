@@ -8,7 +8,7 @@ _flyingVehicles = _flyingVehicles arrayIntersect _flyingVehicles;
 {
   _x spawn {
     _vehicle = _this;
-    _cargo = fullCrew _vehicle select {(toLower (_x select 1) == "cargo") || {_x select 4}};
+    _cargo = fullCrew _vehicle select {_x select 1 == "cargo") || {_x select 4}};
     _cargo = _cargo apply {_x select 0};
     _cargo = _cargo arrayIntersect _cargo;
 

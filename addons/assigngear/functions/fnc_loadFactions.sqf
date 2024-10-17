@@ -52,7 +52,7 @@ if (_activeFactionCategory == "mission") then {
         private _category = toLower (getText (_x >> "category"));
         if (_category == "") then {_category = "Other";};
         if (_activeFactionCategory == _category) then {
-            private _factionName = (toLower(configName _x));
+            private _factionName = (toLower (configName _x));
             _factions pushBack [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
         };
     } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
@@ -67,7 +67,7 @@ _factions sort true;
     private _index = _control lbAdd _displayName;
     _control lbSetData [_index, _configName];
     _control lbSetTooltip [_index, _tooltip];
-    if (_configName isEqualTo _activeFaction) then {_control lbSetCurSel _index; _found = true;};
+    if (_configName == _activeFaction) then {_control lbSetCurSel _index; _found = true;};
 } forEach _factions;
 // missionConfigFile first, only add unique factions now
 

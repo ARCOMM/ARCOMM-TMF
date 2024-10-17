@@ -276,7 +276,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_langTreeProcessGroup != 3) then {
                     _hasSpeaker = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -315,7 +315,7 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBack (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction leader _x));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
             _factions = _factions arrayIntersect _factions;
 
@@ -481,7 +481,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeUnitFromLang;
-                    } forEach (allGroups select {faction (leader _x) == _entity});
+                    } forEach (allGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

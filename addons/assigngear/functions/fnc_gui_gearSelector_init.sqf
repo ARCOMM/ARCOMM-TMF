@@ -15,7 +15,7 @@ if !(isClass (missionConfigFile >> "CfgLoadouts" >> _playerFaction) || {isClass 
 // Set current role to default one
 private _roleCtrl = _display displayCtrl IDC_RSCGEARSELECTOR_ROLE;
 for "_i" from 0 to (lbSize _roleCtrl) do {
-    if ((_roleCtrl lbData _i) isEqualTo _playerRole) exitWith {
+    if (_roleCtrl lbData _i == _playerRole) exitWith {
         _roleCtrl lbSetCurSel _i;
     };
 };

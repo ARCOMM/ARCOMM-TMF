@@ -35,7 +35,7 @@ private _traitComboCtrls = [];
     _ctrlComboTrait lbSetValue [(_ctrlComboTrait lbAdd "Don't Change"), -1];
     _ctrlComboTrait lbSetCurSel 0;
 
-    if (_x isEqualTo "Medic" && {isClass (configFile >> "CfgPatches" >> "ace_medical")}) then {
+    if (_x == "Medic" && {isClass (configFile >> "CfgPatches" >> "ace_medical")}) then {
         _ctrlComboTrait lbSetValue [(_ctrlComboTrait lbAdd "Medic (1)"), 1];
         _ctrlComboTrait lbSetValue [(_ctrlComboTrait lbAdd "Doctor (2)"), 2];
         _ctrlComboTrait lbSetValue [(_ctrlComboTrait lbAdd "Untrained (0)"), 0];

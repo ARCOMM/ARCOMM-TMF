@@ -231,7 +231,7 @@ switch _mode do {
                 if (BriefingCurrentBrief in _grpChanList) then {
                     _doSpeak = true;
                 };
-            };            
+            };
             
             private _hasSpeaker = false;
             private _units = units _group;
@@ -295,7 +295,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessGroup != 3) then {
                     _hasSpeaker = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -339,7 +339,7 @@ switch _mode do {
             //Collect factions for side.
             _factions = [];
             {
-                _factions pushBack (toLower (faction (leader _x)));
+                _factions pushBack (toLower (faction leader _x));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
             _factions = _factions arrayIntersect _factions;
 
@@ -507,7 +507,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeUnitFromBrief;
-                    } forEach (cacheAllPlayerGroups select {faction (leader _x) == _entity});
+                    } forEach (cacheAllPlayerGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

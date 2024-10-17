@@ -25,25 +25,25 @@ private _vehicles = [];
 {
     _x params ["_condition", "_array"];
 
-    if (_condition isEqualType 0 and {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
+    if (_condition isEqualType 0 and {_condition call EFUNC(common,numToSide) == side _unit}) exitWith {
         private _side = _condition call EFUNC(common,numToSide);
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((side _unit) isEqualTo _condition) exitWith {
+    if (side _unit == _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
     };
-    if ((faction (leader (group _unit)) isEqualTo _condition)) exitWith {
+    if (faction leader _unit == _condition) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
-        _groups = allGroups select {faction (leader _x) == _faction};
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo (toLower _faction)};
+        _groups = allGroups select {faction leader _x == _faction};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _faction};
     };
 } forEach (GVAR(orbatRawData));
 
@@ -199,7 +199,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                 private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
                 
-                if (_callsign isEqualTo "") then {
+                if (_callsign == "") then {
                     private _vehNum = _allVehs find _veh;
                     _callsign = format ["Vic #%1",(_vehNum + 1)];
                     
@@ -212,7 +212,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     _thisBriefing = format ["%1<img image='%2' height='18'></img>",_indent,_groupTexture];
                 };
                 private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier") 
-                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {!((getNumber (_x >> "rhs_hatch_control") isEqualTo 1) && {(getNumber (_x >> "isPersonTurret") isEqualTo 1)})})
+                    + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
                     + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                 private _occupiedSlots = count crew _veh;
                 
@@ -220,7 +220,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 _thisBriefing = format ["%5 <img image='%2' height='16'></img><font size='18'> %1 [%3/%4]</font><br/>",_vehDisplayName,_vehIcon,_occupiedSlots,_maxSlots, _thisBriefing];
             } else { // Is Group.
                 _thisBriefing = format["%3<img image='%1' height='18'></img><font size='18'> %2</font>", _groupTexture, groupId _entity, _indent];
-                private _grpVehicles = (units _entity select {!(vehicle _x isEqualTo _x)}) apply {vehicle _x};
+                private _grpVehicles = (units _entity select {!isNull objectParent _x}) apply {vehicle _x};
                 _grpVehicles = _grpVehicles arrayIntersect _grpVehicles;
                 {
                     private _veh = _x;
@@ -228,14 +228,14 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                     private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
 
-                    if (_callsign isEqualTo "") then {
+                    if (_callsign == "") then {
                         private _vehNum = _allVehs find _veh;
                         _callsign = format ["Vic #%1",(_vehNum + 1)];
                     };
                     _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
                     private _vehIcon = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "picture");
                     private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier")
-                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {!((getNumber (_x >> "rhs_hatch_control") isEqualTo 1) && {(getNumber (_x >> "isPersonTurret") isEqualTo 1)})})
+                        + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
                         + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
                     private _occupiedSlots = count crew _veh;
                     //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
@@ -262,7 +262,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     if (_unitRole regexFind ["@"] isNotEqualTo []) then {
                         _unitRole = (_unitRole splitString "@") select 0;
                     } else {
-                        if (isNil _unitRole || {_unitRole isEqualTo ""}) then {
+                        if (isNil _unitRole || {_unitRole == ""}) then {
                             _unitRole = "Member";
                             if (_x == leader group _x) then {_unitRole = "Leader";};
                         };

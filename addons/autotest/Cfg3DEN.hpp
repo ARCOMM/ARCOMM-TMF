@@ -161,10 +161,10 @@ class Cfg3DEN
             attributeLoad = QUOTE(                                                                            \
                 _value = 'Multiplayer' get3DENMissionAttribute 'IntelOverviewText';                           \
                 (_this controlsGroupCtrl 100) ctrlSetText _value;                                             \
-                if (_value == '' || {_value == '*** Insert mission description here. ***'}) then {              \
+                if (_value == '' || {_value == '*** Insert mission description here. ***'}) then {            \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';      \
                 } else {                                                                                      \
-                    if (((toLower _value) find 'slot') == -1) then {                                          \
+                    if !('slot' in _value) then {                                                             \
                         (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOF(UI\warning.paa)';                  \
                     } else {                                                                                  \
                         (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
