@@ -49,20 +49,20 @@ private _vehicles = [];
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
+        _vehicles = vehicles select {_x getVariable ["tmf_orbat_team",""] == _sideStr};
     };
-    if (side _unit == _condition) exitWith {
+    if (side _unit isEqualTo _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
         private _sideStr = str (_side call EFUNC(common,sideToNum));
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _sideStr};
+        _vehicles = vehicles select {_x getVariable ["tmf_orbat_team",""] == _sideStr};
     };
-    if (faction leader _unit == _condition) exitWith {
+    if (faction leader _unit isEqualTo _condition) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {faction leader _x == _faction};
-        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) == _faction};
+        _vehicles = vehicles select {_x getVariable ["tmf_orbat_team",""] == _faction};
     };
 } forEach (GVAR(orbatRawData));
 
