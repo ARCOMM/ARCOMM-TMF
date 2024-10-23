@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\briefing\script_component.hpp"
 /*
- *        Name: TMF_briefing_fnc_addLoadoutNotes
+ *        Name: TMF_briefing_fnc_generateLoadoutPage
  *        Author: Nick, Snippers
  *
  *        Arguments:
@@ -12,8 +12,10 @@
  *        Description:
  *            Add the Loadout entry to the diary
  */
-if((GVAR(addLoadoutNotes) == 0) || {!hasInterface}) exitWith {};
-params [["_unit",player]];
+
+if (GVAR(addLoadoutNotes) || {!hasInterface}) exitWith {};
+
+params [["_unit", player]];
 
 // Create the subject.
 _unit createDiarySubject ["loadout","Equipment"];
