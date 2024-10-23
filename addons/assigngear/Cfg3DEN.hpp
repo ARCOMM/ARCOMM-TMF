@@ -266,7 +266,7 @@ class Cfg3DEN
                     y = QUOTE(SIZE_XL * GRID_H);
                     w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
-                    onLBSelChanged = "\
+                    onLBSelChanged = " \
                         params [ARR_2('_control','_index')]; \
                         [ARR_3(ctrlParentControlsGroup _control,'filterChanged',uiNamespace getVariable [ARR_2(QQGVAR(filter), FILTER_CONTENTS)])] call FUNC(gui_vehicleGear_selector); \
                     ";
