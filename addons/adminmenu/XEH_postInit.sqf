@@ -41,7 +41,6 @@ if (isTMF) then {
         30, // Timeout after 30 seconds
         {}
     ] call CBA_fnc_waitUntilAndExecute;
-
 };
 
 

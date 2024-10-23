@@ -307,7 +307,7 @@ if (!alive player) exitWith {};
             } forEach _radiosToGive;
 
             // Setup Radio channels properly and provide the addActions.
-            [{([] call acre_api_fnc_isInitialized)},
+            [{[] call acre_api_fnc_isInitialized},
             {
                 params ["_unit", "_assignedRadioChannels"];
 
