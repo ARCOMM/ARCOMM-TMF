@@ -94,12 +94,13 @@ switch _mode do {
     };
 
     case "preInit": {
-        private ["_syncedObjects", "_area"];
-
         private _moduleData = _logic getVariable QGVAR(data);
         if (!is3DEN && {!isNil "_moduleData"}) exitWith {
             TRACE_2("Tried to run preInit on Ambient Vehicles module, but preInit has already been run",_logic,_moduleData);
         };
+
+        private _syncedObjects = [];
+        private _area = [];
 
         if is3DEN then {
             private _connections = (get3DENConnections _logic);

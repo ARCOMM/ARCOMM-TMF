@@ -35,7 +35,7 @@ BIS_fnc_showSubtitle_subtitle = [_from, _text] spawn {
 
     // Create display and control
     "BIS_fnc_showSubtitle" cutRsc ["RscDynamicText", "PLAIN"];
-    private "_display";
+    private _display = displayNull;
     waitUntil {_display = uiNamespace getVariable "BIS_dynamicText"; !(isNull _display)};
     private _ctrl = _display displayCtrl 9999;
     uiNamespace setVariable ["BIS_dynamicText", displayNull];

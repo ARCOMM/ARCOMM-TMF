@@ -17,7 +17,6 @@
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
 
 params ["_faction", "_role"];
-private ["_loadoutArray"];
 
 // Check if loadout is in configFile or missionConfigFile
 private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _role)) then [
@@ -27,6 +26,7 @@ private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _r
 
 ASSERT_TRUE(isClass CFGROLE,format [ARR_3("Loadout not present: %1 %2",_faction,_role)]);
 
+private _loadoutArray = [];
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 if (_cfg isEqualTo missionConfigFile) then {
