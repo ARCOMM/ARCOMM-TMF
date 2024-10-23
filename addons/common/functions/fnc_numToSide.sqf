@@ -12,6 +12,4 @@
  * Will return the side associated with the number as used by the BI configs. This allows lookup interaction with the side property for factions in factionclasses.
  */
 
-_this = ((_this max 0) min 9);
-
-[east, west, independent, civilian, sideUnknown, sideEnemy, sideFriendly, sideLogic, sideEmpty, sideAmbientLife] select _this;
+[east, west, independent, civilian, sideUnknown, sideEnemy, sideFriendly, sideLogic, sideEmpty, sideAmbientLife] select (0 max _this min 9);
