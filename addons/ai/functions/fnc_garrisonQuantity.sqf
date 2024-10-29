@@ -82,10 +82,10 @@ private _freeBuildings = []; // List of buildings that list have free positions.
 if (_aiNumberToSpawn > _freeBuildingSpaces) then {
     systemChat "TMF Garrison - Insufficent free building positions check your map for location and details.";
     private _mkr = createMarkerLocal [str (random 99999),getPos _logic];
-    _mkr setMarkerShape "ICON";
-    _mkr setMarkerType "mil_dot";
-    _mkr setMarkerSize [0.5,0.5];
-    _mkr setMarkerColor "ColorRed";
+    _mkr setMarkerShapeLocal "ICON";
+    _mkr setMarkerTypeLocal "mil_dot";
+    _mkr setMarkerSizeLocal [0.5,0.5];
+    _mkr setMarkerColorLocal "ColorRed";
     _mkr setMarkerText format ["Error - TMF Garrison Module - Unable to find sufficent building places (%1 available / %2 needed)", _freeBuildingSpaces, _aiNumberToSpawn];
 };
 private _garrisonedBuildings = [];
@@ -121,10 +121,10 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
 
     if(_debug) then {
         private _mkr = createMarker [str (random 999),_posToUse];
-        _mkr setMarkerShape "ICON";
-        _mkr setMarkerType "mil_dot";
-        _mkr setMarkerSize [0.5,0.5];
-        _mkr setMarkerColor "ColorRed";
+        _mkr setMarkerShapeLocal "ICON";
+        _mkr setMarkerTypeLocal "mil_dot";
+        _mkr setMarkerSizeLocal [0.5,0.5];
+        _mkr setMarkerColorLocal "ColorRed";
         _mkr setMarkerText (_unitClassname);
     };
 };

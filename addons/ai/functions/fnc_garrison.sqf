@@ -90,10 +90,10 @@ if(count _areas > 0) then {
 
                 if(_debug) then {
                     private _mkr = createMarker [str (random 999),_posToUse];
-                    _mkr setMarkerShape "ICON";
-                    _mkr setMarkerType "mil_dot";
-                    _mkr setMarkerSize [0.5,0.5];
-                    _mkr setMarkerColor "ColorRed";
+                    _mkr setMarkerShapeLocal "ICON";
+                    _mkr setMarkerTypeLocal "mil_dot";
+                    _mkr setMarkerSizeLocal [0.5,0.5];
+                    _mkr setMarkerColorLocal "ColorRed";
                     _mkr setMarkerText (_unitClassname);
                 };
             };
