@@ -83,24 +83,55 @@ private _fncTestUnit = {
         // Get primary weapon and items
         private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
         [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
+
         private _scope = GETGEAR("scope"); // "CfgWeapons"
-        [_scope, _cfgWeapons] call _fnc_checkExists;
-        private _bipod = GETGEAR("bipod"); //"CfgWeapons"
-        [_bipod, _cfgWeapons] call _fnc_checkExists;
+        if (count _scope > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _scope;
+        } else {
+            [_scope, _cfgWeapons] call _fnc_checkExists;
+        };
+
+        private _bipod = GETGEAR("bipod"); // "CfgWeapons"
+        if (count _bipod > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _bipod;
+        } else {
+            [_bipod, _cfgWeapons] call _fnc_checkExists;
+        };
+
         private _attachment = GETGEAR("attachment"); // "CfgWeapons"
-        [_attachment, _cfgWeapons] call _fnc_checkExists;
-        private _silencer = GETGEAR("silencer"); //"CfgWeapons"
-        [_silencer, _cfgWeapons] call _fnc_checkExists;
+        if (count _attachment > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _attachment;
+        } else {
+            [_attachment, _cfgWeapons] call _fnc_checkExists;
+        };
+
+        private _silencer = GETGEAR("silencer"); // "CfgWeapons"
+        if (count _silencer > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _silencer;
+        } else {
+            [_silencer, _cfgWeapons] call _fnc_checkExists;
+        };
 
         // Get other weapon and items
         private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
         [_secondaryWeapon, _cfgWeapons] call _fnc_checkExists;
-        private _secondaryAttachments = GETGEAR("secondaryAttachments");//"CfgWeapons"
-        [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
+
+        private _secondaryAttachments = GETGEAR("secondaryAttachments"); // "CfgWeapons"
+        if (count _secondaryAttachments > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _secondaryAttachments;
+        } else {
+            [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
+        };
+
         private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
         [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
-        private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
-        [_sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
+
+        private __sidearmAttachments = GETGEAR("_sidearmAttachments"); // "CfgWeapons"
+        if (count __sidearmAttachments > 0 && {_x select 0 isEqualType []}) then {
+            {[_x, _cfgWeapons] call _fnc_checkExists} forEach __sidearmAttachments;
+        } else {
+            [__sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
+        };
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
         [_linkedItems, _cfgWeapons] call _fnc_checkExists;
@@ -129,8 +160,8 @@ private _fncTestUnit = {
             _sizes sort true;
             _freeVestSpace = _sizes select 0;
         };
-        private _mags = []; // For checking number compatible
 
+        private _mags = []; // For checking number compatible
         {
             private _mass = -1;
             call {
@@ -159,9 +190,7 @@ private _fncTestUnit = {
             };
         } forEach (GETGEAR("backpackItems"));
 
-        private _magsAndItems = (GETGEAR("magazines")) + (GETGEAR("items"));
-
-
+        private _magsAndItems = (GETGEAR("magazines")) + GETGEAR("primarymagazines")) + GETGEAR("secondarymagazines")) + GETGEAR("sidearmmagazines")) + (GETGEAR("items"));
         {
             private _mass = -1;
             switch (true) do
