@@ -150,8 +150,8 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
     };
 } forEach _loadoutArray;
 
-_unit setVariable [QGVAR(faction), _faction,true];
-_unit setVariable [QGVAR(role), _role,true];
+_unit setVariable [QGVAR(faction), _faction, true];
+_unit setVariable [QGVAR(role), _role, true];
 
 LOG_3("Assigned loadout to unit",_unit,_faction,_loadout);
 

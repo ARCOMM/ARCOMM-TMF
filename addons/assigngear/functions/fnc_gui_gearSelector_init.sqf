@@ -3,7 +3,7 @@
 disableSerialization;
 params ["_display"];
 
-private _playerRole = CURUNIT getVariable [QGVAR(role), "r"];
+private _playerRole = CURUNIT getVariable [QGVAR(role), "baseman"];
 private _playerFaction = CURUNIT getVariable [QGVAR(faction), faction CURUNIT];
 
 if !(isClass (missionConfigFile >> "CfgLoadouts" >> _playerFaction) || isClass (configFile >> "CfgLoadouts" >> _playerFaction)) then {
