@@ -26,24 +26,23 @@ switch (_type) do {
     };
     case (RECTANGLE): {
         private _quickFunc = {
-            if(_onRoad) then {
-                private _road = [_this] call CFUNC(getNearestRoad);
-                if(!isNull _road) then {_this = getPos _road};
+            private _return = _this;
+            if (_onRoad) then {
+                private _road = [_return] call CFUNC(getNearestRoad);
+                if (!isNull _road) then {_return = getPos _road};
             };
-            _this
+            _return
         };
+
         private _topleft = (_pos vectorAdd [-(_radius/2),-(_radius/2),0])  call _quickFunc;
-
         private _topright = (_pos vectorAdd [-(_radius/2),(_radius/2),0])  call _quickFunc;
-
         private _bottomleft = (_pos vectorAdd [(_radius/2),-(_radius/2),0]) call _quickFunc;
         private _bottomright = (_pos vectorAdd [(_radius/2),(_radius/2),0]) call _quickFunc;
-
         private _type = "Move";
+
         private _wp = _group create3DENEntity ["Waypoint", _type, _topleft];
         _wp set3DENAttribute ["behaviour","Safe"];
         _wp set3DENAttribute ["formation", 4];
-
 
         _group create3DENEntity ["Waypoint", _type, _topright];
         _group create3DENEntity ["Waypoint", _type, _bottomright];
