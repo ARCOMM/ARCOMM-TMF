@@ -57,7 +57,7 @@ tmf_orbat_fnc_findOrbatParentHelper = {
 {
     _x params ["_condition", "_rootEntry"];
     if (_condition isEqualTo _type) exitWith {
-        if (_parentId isEqualTo -1) then {
+        if (_parentId == -1) then {
             _parentEntry = _rootEntry;
         } else {
             _rootEntry call tmf_orbat_fnc_findOrbatParentHelper;

@@ -22,7 +22,7 @@ if (count _weaponArray < 1) exitWith {_unit removeWeapon (secondaryWeapon _unit)
 private _weapon = toLower selectRandom _weaponArray;
 
 // Exit if weapon was set to "default"
-if (_weapon isEqualTo "default") exitWith {};
+if (_weapon == "default") exitWith {};
 
 _unit removeWeapon (secondaryWeapon _unit);
 if !(isNil "_weapon") then {

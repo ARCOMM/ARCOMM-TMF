@@ -1,7 +1,6 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
 
-
 private _hunters = [];
 private _hunterVal = _logic getVariable ["Hunters", -1];
 if (_hunterVal == -1) then {
@@ -9,7 +8,7 @@ if (_hunterVal == -1) then {
     {
         private _vehicle = vehicle _x;
         {
-            _hunters pushBackUnique _x;
+            _hunters pushBack _x;
         } forEach (crew _vehicle);
     } forEach _hunters;
 } else {
@@ -21,6 +20,8 @@ if (_hunterVal == -1) then {
     };
     _hunters = allUnits select {side _x == _side};
 };
+_hunters = _hunters arrayIntersect _hunters;
+
 // filter out player units and playable
 _hunters = ((_hunters - playableUnits) - switchableUnits) - [player];
 

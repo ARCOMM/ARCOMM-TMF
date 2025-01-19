@@ -18,7 +18,7 @@ switch (_mode) do {
         if (_factionClasses isEqualTo []) then {
             LOG("AIGear factionClasses not cached");
             // Cache to uiNamespace
-            _factionClasses = "isNumber (_x >> 'side') && getNumber (_x >> 'side') in [0,1,2,3]" configClasses (configFile >> 'CfgFactionClasses');
+            _factionClasses = "isNumber (_x >> 'side') && {getNumber (_x >> 'side') in [0,1,2,3]}" configClasses (configFile >> 'CfgFactionClasses');
 
             // Filter to only factions that have units
             _factionClasses = _factionClasses select {

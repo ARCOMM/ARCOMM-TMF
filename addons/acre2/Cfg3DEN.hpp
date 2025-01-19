@@ -790,10 +790,10 @@ class Cfg3DEN
                     textureDisabledUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
 
                     //Sounds
-                    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1}; // Sound played after control is activated in format {file, volume, pitch}
-                    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1}; // Sound played when mouse cursor enters the control
-                    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1}; // Sound played when the control is pushed down
-                    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1}; // Sound played when the control is released after pushing down
+                    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick.wss",0.09,1}; // Sound played after control is activated in format {file, volume, pitch}
+                    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter.wss",0.09,1}; // Sound played when mouse cursor enters the control
+                    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape.wss",0.09,1}; // Sound played when the control is released after pushing down
+                    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush.wss",0.09,1}; // Sound played when the control is pushed down
 
                     onCanDestroy = "";
                     onDestroy = "";

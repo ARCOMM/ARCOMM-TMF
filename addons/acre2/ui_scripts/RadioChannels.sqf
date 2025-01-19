@@ -109,7 +109,7 @@ fn_networkTreeHandleKey = {
         {
             set3DENAttributes [[units _x, "TMF_Network", -1], [[_x],"TMF_Network", -1]];
             set3DENAttributes [[units _x, "TMF_Channellist", "[]"], [[_x],"TMF_Channellist", "[]"], [[_x],"TMF_ChannellistLeader", "[]"]];
-        } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _thing});
+        } forEach (cacheAllPlayerGroups select {(faction leader _x) == _thing});
         
         if (_networkNumber <= (count RadioChannelArray)) then {
             ((RadioChannelArray select (_networkNumber -1)) select 0) pushBack _thing;
@@ -485,7 +485,7 @@ switch _mode do {
             private _channel = (_channels select RadioCurrentNetworkChannel);
             _channel params ["","","","_channelConditions"];
             
-            if (!_giveRadio and {_faction in _channelConditions}) then {
+            if (!_giveRadio && {_faction in _channelConditions}) then {
                 _giveRadio = true;
             };
             
@@ -502,7 +502,7 @@ switch _mode do {
                 if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessGroup != 3) then {
                     _gaveSomeoneARadio = true;
                 };
-            } forEach (cacheAllPlayerGroups select {(faction (leader _x)) == _faction});
+            } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
             
             private _returnCode = 3;
             
@@ -525,11 +525,10 @@ switch _mode do {
         private _sides = [];
         {
             private _condition = _x;
-            if (_x isEqualType east) then {    
+            if (_x isEqualType east) then {
                 private _side = _x;
                 
-                
-                if (_sides pushBackUnique _side != -1) then {
+                if (_side in _sides) then {
                     private _giveRadio = false;
                     private _location = [(_ctrlTree tvAdd [[], _side call TMF_common_fnc_sideToString])];
                     
@@ -542,7 +541,7 @@ switch _mode do {
                     //Collect factions for side.
                     _factions = [];
                     {
-                        _factions pushBackUnique (toLower (faction (leader _x)));
+                        _factions pushBackUnique (toLower (faction leader _x));
                     } forEach (cacheAllPlayerGroups select {(side _x) == _side});
                     private _gaveSomeoneARadio = false;
                     {
@@ -570,8 +569,8 @@ switch _mode do {
         
         {
             private _group = _x;
-            if (_sides find (side _group) == -1) then {
-                if (_sides find (toLower faction (leader _group)) == -1) then {
+            if !(side _group in _sides) then {
+                if !(faction leader _group in _sides) then {
                     if (((_group get3DENAttribute "TMF_Network") select 0) == RadioCurrentNetwork) then {
                         [_ctrlTree, [], false, _x] call fn_channelTreeProcessGroup;
                     } else {
@@ -611,7 +610,7 @@ switch _mode do {
                 _x params ["_condition"];
                 private _sideNum = _forEachIndex;
                 {
-                    if (_side isEqualTo _x) then {
+                    if (_side == _x) then {
                         _networkNumber = _sideNum;
                         breakTo "condSideSearch";
                     };
@@ -639,7 +638,7 @@ switch _mode do {
                 _factions pushBack [];
             };
             //Find Faction
-            private _faction = toLower (faction (leader _x));
+            private _faction = toLower (faction leader _x);
             private _sideFactions = _factions select _sideIdx;
             private _factionIdx = _sideFactions find _faction;
             
@@ -649,7 +648,7 @@ switch _mode do {
                     _x params ["_condition"];
                     private _sideNum = _forEachIndex;
                     {
-                        if (_faction isEqualTo _x) then {
+                        if (_faction == _x) then {
                             _networkNumber = _sideNum;
                             breakTo "condSideSearch"; // quits to main scope not a problem.
                         };
@@ -890,10 +889,10 @@ switch _mode do {
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
+                if (_entity isEqualType grpNull || {_entity isEqualType objNull}) then {
                     _list = (_entity get3DENAttribute "TMF_Channellist") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_Channellist",str [_curSel]];
@@ -948,7 +947,7 @@ switch _mode do {
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _radioChannel set [3,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups
@@ -970,7 +969,7 @@ switch _mode do {
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeGroupFromChannel;
-                    } forEach (allGroups select {faction (leader _x) == _entity});
+                    } forEach (allGroups select {faction leader _x == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

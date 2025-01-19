@@ -19,11 +19,11 @@ with uiNamespace do {
     if (OrbatSelection isEqualType east) then {
         _relevantGroups = (cacheAllPlayerGroups select {side _x == OrbatSelection});
         private _sideStr = str (OrbatSelection call EFUNC(common,sideToNum));
-        _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo _sideStr};
+        _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) == _sideStr};
     };
     if (OrbatSelection isEqualType "") then {
-        _relevantGroups = (cacheAllPlayerGroups select {faction (leader _x) == OrbatSelection});
-        _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo (toLower OrbatSelection)};
+        _relevantGroups = (cacheAllPlayerGroups select {faction leader _x == OrbatSelection});
+        _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) == OrbatSelection};
     };
 
     private _rootEntry = (OrbatSettings_Array select _idx) select 1;

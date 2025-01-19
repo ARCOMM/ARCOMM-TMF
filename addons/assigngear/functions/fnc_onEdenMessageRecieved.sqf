@@ -16,13 +16,13 @@
 params ["_messageId"];
 private _return = false;
 
-if (_messageId isEqualTo 0) then { //Mission saved.
+if (_messageId == 0) then { //Mission saved.
     if (isNil QGVAR(descriptionExt)) then { GVAR(descriptionExt) = "";}; // on mission load will be niled.
 
     if FILE_EXISTS("description.ext") then {
         // Check if description.ext has changed
         private _newdescription = preprocessFile "description.ext";
-        if (!(_newdescription isEqualTo GVAR(descriptionExt))) then {
+        if (_newdescription isNotEqualTo GVAR(descriptionExt)) then {
 
             // Clear namespace, and in turn all cached loadouts
             GVAR(namespace) call CBA_fnc_deleteNamespace;

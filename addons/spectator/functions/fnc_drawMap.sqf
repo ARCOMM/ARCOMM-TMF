@@ -25,21 +25,22 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 
 
     // Draw the group marker if we arent an AI group.
-    if(GVAR(showGroupMarkers) == 1 || {!_isAI}) then {   
+    if(!_isAI || {GVAR(showGroupMarkers) == 1}) then {
         [_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
     };
+
     private _units = [];
     private _vehicles = [];
-
 
     {
         private _unit = _x;
         if(!isNull objectParent _unit) then {
-            _vehicles pushBackUnique objectParent _unit;
+            _vehicles pushBack objectParent _unit;
         } else {
             [_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
         }
     } forEach (units _grp select {alive _x});
+    _vehicles = _vehicles arrayIntersect _vehicles;
 
     {
         [_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);
@@ -87,7 +88,7 @@ if(GVAR(tracers)) then {
             _map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
             _map drawLine [_posArray # 0, _pos, [1,0,0,1]];
         };
-        if(_type == 0 && !isNull _object) then {
+        if(_type == 0 && {!isNull _object}) then {
             _pos = getPos _object;
             _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
             _map drawLine [_pos, _futurePos, [1,0,0,1]];

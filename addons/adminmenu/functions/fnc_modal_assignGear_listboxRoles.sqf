@@ -6,7 +6,7 @@ params ["_ctrlComboFaction", "_index"];
 private _faction = _ctrlComboFaction lbData _index;
 
 private _factionConfig = configNull;
-if ((_ctrlComboFaction lbValue _index) isEqualTo 1) then {
+if ((_ctrlComboFaction lbValue _index) == 1) then {
     _factionConfig = (missionConfigFile >> "CfgLoadouts" >> _faction);
 } else {
     _factionConfig = (configFile >> "CfgLoadouts" >> _faction);
@@ -21,7 +21,7 @@ private _tickCheckbox = false;
     (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
     private _playerRole = toLower (_player getVariable [QEGVAR(assigngear,role), ""]);
-    if (_playerRole isEqualTo "" || !(_playerRole in _rolesSimple)) then {
+    if (_playerRole == "" || {!(_playerRole in _rolesSimple)}) then {
         _playerRole = "r";
         _tickCheckbox = true;
     };
@@ -38,7 +38,7 @@ private _tickCheckbox = false;
         };
 
         _ctrlComboRole lbSetData [_forEachIndex, _x select 1];
-        if ((_x select 1) isEqualTo _playerRole) then {
+        if ((_x select 1) == _playerRole) then {
             _ctrlComboRole lbSetCurSel _forEachIndex;
         };
     } forEach _roles;

@@ -21,4 +21,4 @@ switch (_logic getVariable ["TMFUnits",-1]) do {
       } forEach synchronizedObjects _logic;
     };
 };
-_units arrayIntersect _units
+_units = _units arrayIntersect _units

@@ -9,7 +9,7 @@ GVAR(playerManagement_selected) = [];
 
 if (isTMF) then {
     [
-        {time > 5 && [] call FUNC(isAuthorized)},
+        {time > 5 && {[] call FUNC(isAuthorized)}},
         {
             _this call FUNC(resyncLog);
 
@@ -41,7 +41,6 @@ if (isTMF) then {
         30, // Timeout after 30 seconds
         {}
     ] call CBA_fnc_waitUntilAndExecute;
-
 };
 
 

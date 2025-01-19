@@ -80,7 +80,7 @@ if (hasInterface) then {
     [{
         if (isNull player) exitWith {};
         params ["_tmfNetworkEnabled"];
-        if (_tmfNetworkEnabled && isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
+        if (_tmfNetworkEnabled && {isNil "tmf_acre2_networksCreated"}) exitWith {}; //Ensure presets are created
         if (isNil QEGVAR(common,VarSync)) exitWith {}; // Ensure vars are recieved.
 
         [] call FUNC(clientInit);
@@ -94,7 +94,7 @@ if (hasInterface) then {
 
         private _control = _display displayCtrl SPECTATOR_IDC_RADIO_INFO;
 
-        if (_show && missionNamespace getVariable [QGVAR(showSpectatorRadios), false]) then {
+        if (_show && {missionNamespace getVariable [QGVAR(showSpectatorRadios), false]}) then {
             _control ctrlShow true;
         } else {
             _control ctrlShow false;
@@ -110,7 +110,7 @@ if (hasInterface) then {
 
         private _control = _display displayCtrl SPECTATOR_IDC_RADIO_INFO;
 
-        if (_show && missionNamespace getVariable [QGVAR(showSpectatorRadios), false]) then {
+        if (_show && {missionNamespace getVariable [QGVAR(showSpectatorRadios), false]}) then {
             _control ctrlShow true;
         } else {
             _control ctrlShow false;
@@ -132,7 +132,7 @@ if (hasInterface) then {
 
         private _control = _display displayCtrl SPECTATOR_IDC_RADIO_INFO;
         private _show = EGVAR(spectator,showUI);
-        if (_show && missionNamespace getVariable [QGVAR(showSpectatorRadios), false]) then {
+        if (_show && {missionNamespace getVariable [QGVAR(showSpectatorRadios), false]}) then {
             _control ctrlShow true;
         } else {
             _control ctrlShow false;

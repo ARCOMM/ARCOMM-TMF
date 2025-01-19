@@ -79,3 +79,6 @@ PREP(utility_grantZeus);
 PREP(utility_heal);
 PREP(utility_quickRespawn);
 PREP(utility_quickRespawn_local);
+
+PREP(checkAdminDebriefingLogPresent);
+

@@ -3,7 +3,7 @@
 params ["_group"];
 
 private _cachedData = _group getVariable ["TMF_groupMarker_Cached",-1];
-if (_cachedData isEqualTo -1) exitWith {
+if (_cachedData == -1) exitWith {
     private _data = _group getVariable ["TMF_groupMarker",[]];
     if(_data isEqualType "") then {
         _data = call compile _data;
@@ -15,7 +15,7 @@ if (_cachedData isEqualTo -1) exitWith {
     if (count _data == 0) then { 
         _useParentTexture = true;
     } else {
-        if ((_data select 0) isEqualTo "") then {
+        if (_data select 0 == "") then {
             _useParentTexture = true;
             _data = [];
         };

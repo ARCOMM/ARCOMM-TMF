@@ -38,12 +38,15 @@ _control lbSetData [_index,""];
 private _found = false; // Used to track whether or not an entry has been selected, if not at end select index.
 
 if (_usingFactions) then {
-    private _factions = []; {_factions pushBackUnique (toLower (faction _x));} forEach allUnits;
+    private _factions = [];
+    {_factions pushBack (toLower (faction _x));} forEach allUnits;
+    _factions = _factions arrayIntersect _factions;
+
     _factions = _factions apply {
         private _faction = _x;
         [
-            {toLower (faction _x) == _faction && _x in (playableUnits + [player])} count allUnits,
-            {toLower (faction _x) == _faction} count allUnits,
+            {faction _x == _faction && {_x in (playableUnits + [player])}} count allUnits,
+            {faction _x == _faction} count allUnits,
             _x
         ]
     };
@@ -62,7 +65,7 @@ if (_usingFactions) then {
     private _sides = [east,west,civilian,independent] apply {
         private _side = _x;
         [
-            {side _x == _side && _x in (playableUnits + [player])} count allUnits,
+            {side _x == _side && {_x in (playableUnits + [player])}} count allUnits,
             {side _x == _side} count allUnits,
             _side
         ]
@@ -80,6 +83,6 @@ if (_usingFactions) then {
     } forEach _sides;
 };
 
-if (!_found and (lbSize _control > 0)) then {
+if (!_found && {lbSize _control > 0}) then {
     _control lbSetCurSel 0; // set to first element.
 };

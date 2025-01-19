@@ -32,7 +32,7 @@ _ctrlButtonPreview ctrlAddEventHandler ["ButtonClick", {
 
     private _editText = ctrlText _ctrlEdit;
 
-    if (_editText isEqualTo "") then {
+    if (_editText == "") then {
         systemChat "[TMF Admin Menu] Message can't be empty";
     } else {
         private _venue = ["systemChat", "hint", QFUNC(showSubtitle)] select (lbCurSel _ctrlCombo);
@@ -40,7 +40,7 @@ _ctrlButtonPreview ctrlAddEventHandler ["ButtonClick", {
         if (_venue isEqualTo QFUNC(showSubtitle)) then {
             ["PAPA BEAR", _editText] call FUNC(showSubtitle);
         } else {
-            if (_venue isEqualTo "hint") then {
+            if (_venue == "hint") then {
                 hint format ["\n\n%1", _editText];
             } else {
                 systemChat format ["[TMF Admin Message] %1", _editText];
@@ -64,7 +64,7 @@ _ctrlButtonCommit ctrlAddEventHandler ["ButtonClick", {
     private _editText = ctrlText _ctrlEdit;
     GVAR(utility_message_last) = _editText; // _editText may receive local edits
 
-    if (_editText isEqualTo "") then {
+    if (_editText == "") then {
         systemChat "[TMF Admin Menu] Message can't be empty";
     } else {
         private _venue = ["systemChat", "hint", QFUNC(showSubtitle)] select (lbCurSel _ctrlCombo);
@@ -72,7 +72,7 @@ _ctrlButtonCommit ctrlAddEventHandler ["ButtonClick", {
         if (_venue isEqualTo QFUNC(showSubtitle)) then {
             ["PAPA BEAR", _editText] remoteExec [_venue, GVAR(utilityData)];
         } else {
-            if (_venue isEqualTo "hint") then {
+            if (_venue == "hint") then {
                 _editText = format ["\n\n%1", _editText];
             };
             (format ["[TMF Admin Message] %1", _editText]) remoteExec [_venue, GVAR(utilityData)];

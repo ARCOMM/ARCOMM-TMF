@@ -54,7 +54,7 @@ class GVAR(wavespawn) : Module_F {
             property = QGVAR(wavespawn_WaveInit);
             displayName = "Wave init code";
             tooltip = "Code executed every time a new wave is spawned";
-            expression = "if (_value != 'params [""_wave"", ""_spawnedGroups"", ""_spawnedUnits"", ""_spawnedVehicles"", ""_spawnedObjects"", ""_logic"", ""_wavehandlerID""];' && _value != '') then {[_this, compile _value, true] call FUNC(addWaveHandler);};";
+            expression = QUOTE(_value call FUNC(evaluateWaveModuleWaveInit));
             defaultValue = "'params [""_wave"", ""_spawnedGroups"", ""_spawnedUnits"", ""_spawnedVehicles"", ""_spawnedObjects"", ""_logic"", ""_wavehandlerID""];'";
             control = "EditCodeMulti5";
         };

@@ -41,7 +41,7 @@
 
 } forEach ((all3DENEntities select 3) select {_x isKindOf QGVAR(hideMapObjects)});
 
-if (current3DENOperation == "MoveItems" || current3DENOperation == "RotateItems") then {
+if (current3DENOperation == "MoveItems" || {current3DENOperation == "RotateItems"}) then {
     {
         _x removeAllEventHandlers "UnregisteredFromWorld3DEN";
         _x addEventHandler ["UnregisteredFromWorld3DEN", {

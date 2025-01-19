@@ -24,7 +24,7 @@ private _conditions = [];
     {
         if (_x isEqualType "") then {
             private _faction = _x;
-            _units = _units select {_faction != (faction (leader _x))};
+            _units = _units select {_faction != (faction leader _x)};
         };
         if (_x isEqualType 0) then {
             private _side = _x call tmf_common_fnc_numToSide;
