@@ -1,4 +1,5 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 /*
  * Name = TMF_adminmenu_fnc_checkAdminDebriefingLogPresent
  * Author =
@@ -23,4 +24,4 @@
     [
         [-1, "Admin log debriefing section present"]
     ]
-] select (isClass (missionConfigFile >> "CfgDebriefingSections" >> "DOUBLES(PREFIX,adminlog)"));
+] select (isClass (missionConfigFile >> "CfgDebriefingSections" >> "TMF_adminlog"));
