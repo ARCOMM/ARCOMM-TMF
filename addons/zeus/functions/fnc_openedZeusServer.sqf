@@ -4,7 +4,6 @@ if !(isServer) exitWith {};
 
 params [["_curator",objNull]];
 
-
 if (!(missionNamespace getVariable [QGVAR(playerWatchInit),false])) then {
     GVAR(curatorsToGivePlayersTo) = [_curator];
     

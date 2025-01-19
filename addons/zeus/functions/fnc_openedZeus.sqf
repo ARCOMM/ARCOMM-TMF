@@ -7,6 +7,10 @@
 
     private _curator = (getAssignedCuratorLogic player);
 
+    systemChat (QGVAR(addAllUnits) + ": " + (str (_curator getVariable [QGVAR(addAllUnits), false])));
+    systemChat (QGVAR(addAllStatics) + ": " + (str (_curator getVariable [QGVAR(addAllStatics), false])));
+    systemChat ("acre_is_spectator" + ": " + (str (missionNamespace getVariable ["acre_is_spectator", false])));
+
     //Add all units to Zeus active.
     if (_curator getVariable [QGVAR(addAllUnits), false]) then {
         (_display displayCtrl IDC_ToggleUnitsZeus) ctrlSetTextColor [0,1,0,1];
