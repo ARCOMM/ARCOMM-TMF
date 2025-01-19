@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\ai\script_component.hpp"
 /*
- * Name = TMF_ai_fnc_evaluateWaveModule
+ * Name = TMF_ai_fnc_evaluateWaveModuleWaveInit
  * Author =
  *
  * Parameters:

@@ -8,7 +8,7 @@ PREP(huntInit);
 PREP(huntLoop);
 PREP(rearmInit);
 PREP(rearm);
-PREP(evaluateWaveModule);
+PREP(evaluateWaveModuleWaveInit);
 PREP(addWaveHandler);
 PREP(removeWaveHandler);
 PREP(emptyFunction);
