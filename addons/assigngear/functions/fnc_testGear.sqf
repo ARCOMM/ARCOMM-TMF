@@ -70,7 +70,7 @@ private _fncTestUnit = {
              if ("faceset:" in _face) then {
                 private _facesetName = _face select [8];
                 private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
-                if (_array == 0) then {
+                if (_array isEqualTo 0) then {
                      _output pushBack [0,format["Invalid faceset: %1 (for: %2 - %3)", _face,_faction,_role]];
                 };
             } else {
