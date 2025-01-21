@@ -1,5 +1,4 @@
-//with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
-//with uiNamespace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; }; with uiNamespace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
+
 params ["_mode",["_params",[]]];
 
 #include "\a3\3den\UI\dikCodes.inc"
