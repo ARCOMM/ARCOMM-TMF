@@ -1,11 +1,7 @@
-//with uiNamespace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };
 
 params ["_mode",["_params",[]]];
 
 #include "\a3\3den\UI\dikCodes.inc"
-
-// with uiNamespace do {     set3DENMissionAttributes [["teamworkMissionAcreAttributes","TMF_AcreSettings",str RadioChannelArray]];    };
-// with uiNamespace do {     set3DENMissionAttributes [["teamworkMissionAcreAttributes","TMF_AcreSettings","[]"]];    };
 
 #define EDIT_CHANNEL_IDCS [313201,313202,313203,313204,313205,313206,313207,313208,313209,313210,313211,313212]
 #define BEHIND_EDIT_CHANNELS_IDCS [189437,101]
@@ -14,7 +10,7 @@ params ["_mode",["_params",[]]];
 
 fn_removeUnitFromChannel = {
     params ["_channel", "_unit"];
-    
+
     _list = (_unit get3DENAttribute "TMF_Channellist") params ["_value"];
     if (_value isEqualType []) then {
         //Is default do nothing
@@ -38,8 +34,6 @@ fn_removeGroupFromChannel = {
         _value = _value - [_curSel];
         _group set3DENAttribute ["TMF_ChannellistLeader",str _value];
     };
-
-    
     _list = (_group get3DENAttribute "TMF_Channellist") params ["_value"];
     if (_value isEqualType []) then {
         //is default do nothing
@@ -54,7 +48,6 @@ fn_removeGroupFromChannel = {
         [_channel, _x] call fn_removeUnitFromChannel;
     } forEach (units _group);
 };
-
 
 // Handle setting network number input
 fn_networkTreeHandleKey = {
@@ -96,7 +89,6 @@ fn_networkTreeHandleKey = {
         };
     };
     if (_thing isEqualType "") then {
-        
         private _sideNum = getNumber (configFile >> "CfgFactionClasses" >> _thing >> "side");
         private _side = _sideNum call TMF_common_fnc_numToSide;
 
@@ -110,7 +102,7 @@ fn_networkTreeHandleKey = {
             set3DENAttributes [[units _x, "TMF_Network", -1], [[_x],"TMF_Network", -1]];
             set3DENAttributes [[units _x, "TMF_Channellist", "[]"], [[_x],"TMF_Channellist", "[]"], [[_x],"TMF_ChannellistLeader", "[]"]];
         } forEach (cacheAllPlayerGroups select {(faction leader _x) == _thing});
-        
+
         if (_networkNumber <= (count RadioChannelArray)) then {
             ((RadioChannelArray select (_networkNumber -1)) select 0) pushBack _thing;
         } else {
@@ -129,11 +121,10 @@ fn_networkTreeHandleKey = {
             _channel params ["_condition"];
             _channel set [0,_condition - [_faction, _side]];
         } forEach RadioChannelArray;
-        
+
         set3DENAttributes [[units _thing, "TMF_Network", -1],
             [[_thing],"TMF_Network",(_networkNumber-1)]];
         set3DENAttributes [[units _thing, "TMF_Channellist", "[]"], [[_thing],"TMF_Channellist", "[]"], [[_thing],"TMF_Channellist", "[]"], [[_thing],"TMF_ChannellistLeader", "[]"]];
-
     };
     if (_thing isEqualType objNull) then {
         private _faction = toLower (faction (leader (group _thing)));
@@ -144,28 +135,26 @@ fn_networkTreeHandleKey = {
             _channel params ["_condition"];
             _channel set [0,_condition - [_faction, _side]];
         } forEach RadioChannelArray;
-        
+
         set3DENAttributes [[[_thing],"TMF_Network", (_networkNumber-1)],
             [[group _thing],"TMF_Network",-1]];
         set3DENAttributes [[[_thing], "TMF_Channellist", "[]"], [[group _thing],"TMF_Channellist", "[]"], [[group _thing],"TMF_ChannellistLeader", "[]"]];
-        
     };
-    
+
     //FUTURE Consider erasing CHANNEL_LISTS on preset change?
-    
+
     //Force re-render?
     ["refreshNetworkTree"] call RadioChannels_script;
     ["refreshChannelList"] call RadioChannels_script;
     ["save"] call RadioChannels_script;
 };
 
-
 switch _mode do {
     case "onLoad": {
         private _playableUnits = playableUnits;
         _playableUnits pushBackUnique player;
         cacheAllPlayerGroups = allGroups select {{_x in _playableUnits} count (units _x) > 0};
-        
+
         RadioChannelArray = ("TMF_MissionAcre2Attributes" get3DENMissionAttribute "TMF_AcreSettings");
         if (RadioChannelArray isEqualType "") then { RadioChannelArray = call compile RadioChannelArray;};
         if (isNil "RadioChannelArray") then {
@@ -174,7 +163,7 @@ switch _mode do {
                                             ["Alpha","Alpha Squad Net","ACRE_PRC343",["blu_f"]],
                                             ["Bravo","Bravo Squad Net","ACRE_PRC343",[]],
                                             ["Charlie","Charlie Squad Net","ACRE_PRC343",[]],
-                                            ["1PLT-COM","Platoon Command Net","ACRE_PRC148",[]] 
+                                            ["1PLT-COM","Platoon Command Net","ACRE_PRC148",[]]
                                         ]],
                                     [[east],[]],
                                     [[resistance],[]],
@@ -210,33 +199,27 @@ switch _mode do {
 
         _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {RadioChannels_ctrlGroup = _this select 0;};}];
         _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {RadioChannels_ctrlGroup = nil;};}];
-        
 
-        
         ["refreshNetworkTree"] call RadioChannels_script;
         ["refreshChannelList"] call RadioChannels_script;
-        
+
         //Tree EH for keyboard number presses
         _ctrlTree = _ctrlGroup controlsGroupCtrl 189438;
         _ctrlTree ctrlAddEventHandler ["KeyDown",{with uiNamespace do {['KeyDown',[RadioChannels_ctrlGroup,_this select 1,_this select 2,_this select 3],objNull] call RadioChannels_script;};}];
 
-        
         {
             (_ctrlGroup controlsGroupCtrl _x) ctrlShow false;
         } forEach (EDIT_CHANNEL_IDCS);
         {
             (_ctrlGroup controlsGroupCtrl _x) ctrlShow true;
         } forEach (BEHIND_EDIT_CHANNELS_IDCS);
-        
-        
     };
-
     case "KeyDown": { // Handle key press on tree.
         _params params ["_ctrlGroup", "_key", "_shift", "_ctrl"];
         if !(isNil "_ctrlGroup") then {
 
             _ctrlTree = _ctrlGroup controlsGroupCtrl 189438;
-            
+
             switch _key do {
                 case DIK_1:  {
                     _ctrlTree = _ctrlGroup controlsGroupCtrl 189438;
@@ -284,7 +267,6 @@ switch _mode do {
         //Attribute loading is done in onLoad instead.
     };
     case "attributeSave": {
-    
         private _array = + (uiNamespace getVariable "RadioChannelArray");
         {
             private _network = _x;
@@ -303,21 +285,21 @@ switch _mode do {
                 } forEach (_condition);
             } forEach (_channels);
         } forEach _array;
-        
+
         private _string = str _array;
         _string
     };
     case "refreshChannelList": {
         if (isNil "RadioChannels_ctrlGroup") exitWith {};
-        
+
         private _ctrlChannelList = RadioChannels_ctrlGroup controlsGroupCtrl 101;
         private _hasChannels = false;
         lnbClear _ctrlChannelList;
-        
+
         if (RadioCurrentNetwork < count RadioChannelArray) then {
             (RadioChannelArray select RadioCurrentNetwork) params ["","_channels"];
             _ctrlChannelList lnbSetColumnsPos [0,0.005,0.33];
-            
+
             {
                 _hasChannels = true;
                 _x params ["_shortName", "_longName", "_radioClassname", "_condition", "_shared"];
@@ -327,9 +309,9 @@ switch _mode do {
                 _ctrlChannelList lnbSetPicture [[_lnbIdx,1],_icon];
             } forEach _channels;
         };
-            
+
         //Update cursor var.
-        if (_hasChannels) then { 
+        if (_hasChannels) then {
             _ctrlChannelList lnbSetCurSelRow 0; RadioCurrentNetworkChannel = 0;
         } else {
             _ctrlChannelList lnbSetColumnsPos [0,1,1];
@@ -340,51 +322,44 @@ switch _mode do {
             };
             RadioCurrentNetworkChannel = -1;
         };
-        
         ["refreshChannelTree"] call RadioChannels_script;
     };
-    
-    
     case "refreshChannelTree": {
         if (isNil "RadioChannels_ctrlGroup") exitWith {};
-        
+
         private _ctrlTree = RadioChannels_ctrlGroup controlsGroupCtrl 189437;
         tvClear _ctrlTree;
-        
-        
-        
+
         if (RadioCurrentNetworkChannel == -1) exitWith {};
         RadioCurrentNetworkChannel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
-        
+
         (RadioChannelArray select RadioCurrentNetwork) params ["_conditions","_channels"];
-        
+
         private _channel = (_channels select RadioCurrentNetworkChannel);
         _channel params ["","","","_channelConditions"];
-        
-        
+
         RadioNetworkChannel_data = [];
-        
-        
+
         fn_channelTreeProcessUnit = {
-            params ["_ctrlTree", "_treeRoot", "_giveRadio", "_unit"];        
+            params ["_ctrlTree", "_treeRoot", "_giveRadio", "_unit"];
             private _roleDesc = ((_x get3DENAttribute "description") select 0);
-            
+
             private _color = (side _unit) call TMF_common_fnc_sideToColor;
-            
+
             if (_roleDesc == "") then {
                 _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
             };
             private _unitIdx = _ctrlTree tvAdd [ _treeRoot, _roleDesc];
             private _location = _treeRoot + [_unitIdx];
-            _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _unit];            
+            _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _unit];
             private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "icon"));
             if (_icon == "") then {
                 _icon = "\a3\3DEN\Data\Cfg3DEN\Object\iconPlayer_ca.paa"; //default player icon
             };
             _ctrlTree tvSetPicture [_location,_icon];
             _ctrlTree tvSetPictureColor [_location, _color];
-                
-                        
+
+
             if (!_giveRadio) then {
                 private _unitChanList = (_unit get3DENAttribute "TMF_Channellist") select 0;
                 if (_unitChanList isEqualType "") then {
@@ -393,7 +368,7 @@ switch _mode do {
                 //private _unitChanList = (call compile ((_unit get3DENAttribute "TMF_Channellist") select 0));
                 if (RadioCurrentNetworkChannel in _unitChanList) then {
                     _giveRadio = true;
-                }; 
+                };
             };
             private _returnCode = 3;
             if (_giveRadio) then {
@@ -402,32 +377,32 @@ switch _mode do {
             } else {
                 _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\acre2\ui\RadioIcon_None_Small.paa"];
             };
-            
+
             //0: All, Partial: 1, Leader: 2, None: 3
             _returnCode
         };
-        
+
         fn_channelTreeProcessGroup = {
             params ["_ctrlTree", "_treeRoot", "_giveRadio", "_group"];
-            
+
             private _side = side _group;
             private _color = _side call TMF_common_fnc_sideToColor;
             private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupId _group];
             private _location = _treeRoot + [_grpIdx];
             private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
-            
+
             //Found in (configFile >> "Cfg3DEN" >> "Group" >> "Draw" >> "textureCivilian")
             call {
                 if (_side == west) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\b_unknown.paa";};
                 if (_side == east) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\o_unknown.paa"; };
-                if (_side == guerilla) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
+                if (_side == independent) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
                 if (_side == civilian) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
             };
-            
+
             _ctrlTree tvSetPicture [_location, _grpIcon];
             _ctrlTree tvSetPictureColor [_location, _color];
             _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _group];
-            
+
             private _giveLeader = false;
             if (!_giveRadio) then {
                 private _grpChanList = (_group get3DENAttribute "TMF_Channellist") select 0;
@@ -443,14 +418,13 @@ switch _mode do {
                     };
                     if (RadioCurrentNetworkChannel in _grpChanList) then {
                         _giveLeader = true;
-                    }; 
+                    };
                 };
             };
-            
-            
+
             private _gaveSomeoneARadio = false;
             {
-                if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessUnit != 3) then { 
+                if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessUnit != 3) then {
                     _gaveSomeoneARadio = true;
                 };
             } forEach (units _group);
@@ -474,38 +448,38 @@ switch _mode do {
                     };
                 };
             };
-            
-            _returnCode    
+
+            _returnCode
         };
-        
+
         fn_channelTreeProcessFaction = {
             params ["_ctrlTree", "_treeRoot", "_giveRadio", "_faction"];
-            
+
             (RadioChannelArray select RadioCurrentNetwork) params ["_conditions","_channels"];
             private _channel = (_channels select RadioCurrentNetworkChannel);
             _channel params ["","","","_channelConditions"];
-            
+
             if (!_giveRadio && {_faction in _channelConditions}) then {
                 _giveRadio = true;
             };
-            
+
             private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configFile >> "CfgFactionClasses" >> _faction >> "displayName")];
             private _location = _treeRoot + [_factionIdx];
-    
+
             _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _faction];
-            
+
             private _factionImg = getText (configFile >> "CfgFactionClasses" >> _faction >> "icon");
             _ctrlTree tvSetPicture [_location, _factionImg];
-            
-            private _gaveSomeoneARadio = false;            
+
+            private _gaveSomeoneARadio = false;
             {
                 if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessGroup != 3) then {
                     _gaveSomeoneARadio = true;
                 };
             } forEach (cacheAllPlayerGroups select {(faction leader _x) == _faction});
-            
+
             private _returnCode = 3;
-            
+
             if (_giveRadio) then {
                 _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\acre2\ui\RadioIcon_Radio_Small.paa"];
                 _returnCode = 0;
@@ -521,23 +495,23 @@ switch _mode do {
             };
             _returnCode
         };
-        
+
         private _sides = [];
         {
             private _condition = _x;
             if (_x isEqualType east) then {
                 private _side = _x;
-                
-                if (_side in _sides) then {
+
+                if !(_side in _sides) then {
                     private _giveRadio = false;
                     private _location = [(_ctrlTree tvAdd [[], _side call TMF_common_fnc_sideToString])];
-                    
+
                     _ctrlTree tvSetPicture [_location, _side call TMF_common_fnc_sideToTexture];
                     _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _side];
                     if (_side in _channelConditions) then {
                         _giveRadio = true;
                     };
-                    
+
                     //Collect factions for side.
                     _factions = [];
                     {
@@ -547,7 +521,7 @@ switch _mode do {
                     {
                         if ([_ctrlTree, _location, _giveRadio, _x] call fn_channelTreeProcessFaction != 3) then { _gaveSomeoneARadio = true; };
                     } forEach _factions;
-                    
+
                     if (_giveRadio) then {
                         _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\acre2\ui\RadioIcon_Radio_Small.paa"];
                     } else {
@@ -566,7 +540,6 @@ switch _mode do {
             };
         } forEach _conditions;
 
-        
         {
             private _group = _x;
             if !(side _group in _sides) then {
@@ -583,26 +556,24 @@ switch _mode do {
                 };
             };
         } forEach cacheAllPlayerGroups;
-        
     };
-    
-    
+
     case "refreshNetworkTree": {
-        
+
         if (isNil "RadioChannels_ctrlGroup") exitWith {};
-        
+
         _ctrlTree = RadioChannels_ctrlGroup controlsGroupCtrl 189438;
         tvClear _ctrlTree;
-        
+
         RadioNetwork_data = [];
-        
+
         _sides = [];
         _factions = [];
         {
             private _group = _x;
             private _side = (side _x);
             private _color = _side call TMF_common_fnc_sideToColor;
-            
+
             private _sideIdx = _sides find _side;
             private _networkNumber = -1;
             scopeName "condSideSearch";
@@ -619,21 +590,21 @@ switch _mode do {
 
             //Find Side
             if (_sideIdx == -1) then {
-                private _sideText = _side call TMF_common_fnc_sideToString; 
-                private _sideIcon = _side call TMF_common_fnc_sideToTexture; 
-                
+                private _sideText = _side call TMF_common_fnc_sideToString;
+                private _sideIcon = _side call TMF_common_fnc_sideToTexture;
+
                 _ctrlTree tvAdd [[], _sideText];
                 _sideIdx = _sides pushBack _side;
-                
+
                 _ctrlTree tvSetPicture [[_sideIdx], _sideIcon];
                 _ctrlTree tvSetValue [[_sideIdx], RadioNetwork_data pushBack _side];
-                
+
                 if (_networkNumber != -1) then {
                     _ctrlTree tvSetPictureRight [[_sideIdx], (_networkNumber+1) call TMF_common_fnc_numToTexture];
                 } else {
                     _ctrlTree tvExpand [_sideIdx];
                 };
-                            
+
                 //Add Faction
                 _factions pushBack [];
             };
@@ -641,8 +612,7 @@ switch _mode do {
             private _faction = toLower (faction leader _x);
             private _sideFactions = _factions select _sideIdx;
             private _factionIdx = _sideFactions find _faction;
-            
-            
+
             if (_networkNumber == -1) then {
                 {
                     _x params ["_condition"];
@@ -655,39 +625,37 @@ switch _mode do {
                     } forEach _condition;
                 } forEach RadioChannelArray;
             };
-            
-            
+
             if (_factionIdx == -1) then {
                 _factionIdx = _ctrlTree tvAdd [ [_sideIdx],getText (configFile >> "CfgFactionClasses" >> _faction >> "displayName")];
                 _sideFactions pushBack _faction;
                 _ctrlTree tvSetValue [[_sideIdx, _factionIdx], RadioNetwork_data pushBack _faction];
-                
+
                 private _factionImg = getText (configFile >> "CfgFactionClasses" >> _faction >> "icon");
                 _ctrlTree tvSetPicture [[_sideIdx,_factionIdx],_factionImg];
-                
+
                 if (_networkNumber != -1) then {
                     _ctrlTree tvSetPictureRight [[_sideIdx, _factionIdx], (_networkNumber+1) call TMF_common_fnc_numToTexture];
                 } else {
                     _ctrlTree tvExpand [_sideIdx, _factionIdx];
                 };
             };
-            
-            
-            private _grpIdx = _ctrlTree tvAdd [ [_sideIdx, _factionIdx],groupId _x];
+
+            private _grpIdx = _ctrlTree tvAdd [[_sideIdx, _factionIdx], groupId _x];
             private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
-            
+
             //Found in (configFile >> "Cfg3DEN" >> "Group" >> "Draw" >> "textureCivilian")
             call {
                 if (_side == west) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\b_unknown.paa";};
                 if (_side == east) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\o_unknown.paa"; };
-                if (_side == guerilla) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
+                if (_side == independent) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
                 if (_side == civilian) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
             };
-            
+
             _ctrlTree tvSetPicture [[_sideIdx, _factionIdx, _grpIdx], _grpIcon];
             _ctrlTree tvSetPictureColor [[_sideIdx, _factionIdx, _grpIdx], _color];
             _ctrlTree tvSetValue [[_sideIdx, _factionIdx, _grpIdx], RadioNetwork_data pushBack _group];
-            
+
             if (_networkNumber != -1) then {
                 _ctrlTree tvSetPictureRight [[_sideIdx, _factionIdx, _grpIdx], (_networkNumber+1) call TMF_common_fnc_numToTexture];
             } else {
@@ -696,14 +664,14 @@ switch _mode do {
                     _ctrlTree tvSetPictureRight [[_sideIdx, _factionIdx, _grpIdx], (_networkNumber+1) call TMF_common_fnc_numToTexture];
                 };
             };
-            
+
             private _preUnitNetworkNumber = _networkNumber;
             {
                 _networkNumber = _preUnitNetworkNumber;
-                
+
                 private _roleDesc = ((_x get3DENAttribute "description") select 0);
                 if (_roleDesc == "") then {
-                    _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName");
+                    _roleDesc = getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName");
                 };
                 private _unitIdx = _ctrlTree tvAdd [ [_sideIdx, _factionIdx, _grpIdx], _roleDesc];
                 private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "icon"));
@@ -713,7 +681,7 @@ switch _mode do {
                 _ctrlTree tvSetPicture [[_sideIdx, _factionIdx, _grpIdx, _unitIdx],_icon];
                 _ctrlTree tvSetPictureColor [[_sideIdx, _factionIdx, _grpIdx, _unitIdx], _color];
                 _ctrlTree tvSetValue [[_sideIdx, _factionIdx, _grpIdx, _unitIdx], RadioNetwork_data pushBack _x];
-                
+
                 if (_networkNumber != -1) then {
                     _ctrlTree tvSetPictureRight [[_sideIdx, _factionIdx, _grpIdx, _unitIdx], (_networkNumber+1) call TMF_common_fnc_numToTexture];
                 } else {
@@ -724,7 +692,6 @@ switch _mode do {
                 };
             } forEach (units _x);
         } forEach cacheAllPlayerGroups;
-        
     };
     case "networkToggleButton": {
         with uiNamespace do {
@@ -736,7 +703,7 @@ switch _mode do {
             };
 
             _ctrl ctrlSetText format["< Configure Network %1 >", (RadioCurrentNetwork+1)];
-        
+
             ["refreshChannelList"] call RadioChannels_script;
         };
     };
@@ -745,7 +712,7 @@ switch _mode do {
             if (RadioCurrentNetwork >= count RadioChannelArray) exitWith {};
             private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
             if (_curSel == -1) exitWith {};
-                                
+
             private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
             _radioChannels deleteAt _curSel;
             // Update all channel lists for units/groups on same preset.
@@ -788,20 +755,20 @@ switch _mode do {
             } forEach _groups;
 
             ["refreshChannelList"] call RadioChannels_script;
-            ["save"] call RadioChannels_script;                
+            ["save"] call RadioChannels_script;
         };
     };
     case "channelAddClick": {
         with uiNamespace do {
             if (RadioCurrentNetwork >= count RadioChannelArray) exitWith {};
-            
+
             {
                 (RadioChannels_ctrlGroup controlsGroupCtrl _x) ctrlShow true;
             } forEach (EDIT_CHANNEL_IDCS);
             {
                 (RadioChannels_ctrlGroup controlsGroupCtrl _x) ctrlShow false;
             } forEach (BEHIND_EDIT_CHANNELS_IDCS);
-            
+
             RadioChannelsEditMode = 0;
             (RadioChannels_ctrlGroup controlsGroupCtrl 313206) ctrlSetText "";
             (RadioChannels_ctrlGroup controlsGroupCtrl 313207) ctrlSetText "";
@@ -812,20 +779,20 @@ switch _mode do {
     case "channelEditClick": {
         with uiNamespace do {
             if (RadioCurrentNetwork >= count RadioChannelArray) exitWith {};
-            
+
             private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
             if (_curSel == -1) exitWith {};
-                                
+
             private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
             (_radioChannels select _curSel) params ["_shortName", "_longName", "_radio", "", "_shared"];
-            
+
             {
                 (RadioChannels_ctrlGroup controlsGroupCtrl _x) ctrlShow true;
             } forEach (EDIT_CHANNEL_IDCS);
             {
                 (RadioChannels_ctrlGroup controlsGroupCtrl _x) ctrlShow false;
             } forEach (BEHIND_EDIT_CHANNELS_IDCS);
-            
+
             RadioChannelsEditMode = 1;
             (RadioChannels_ctrlGroup controlsGroupCtrl 313206) ctrlSetText _shortName;
             (RadioChannels_ctrlGroup controlsGroupCtrl 313207) ctrlSetText _longName;
@@ -840,7 +807,7 @@ switch _mode do {
             if (RadioChannelsEditMode == 1) then {
                 private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
                 if (_curSel == -1) exitWith {};
-                                    
+
                 private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
 
                 (_radioChannels select _curSel) set [0,ctrlText (RadioChannels_ctrlGroup controlsGroupCtrl 313206)]; // ShortName
@@ -857,7 +824,7 @@ switch _mode do {
                 private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
                 _radioChannels pushBack _newChanData;
             };
-            
+
             ["refreshChannelList"] call RadioChannels_script;
             {
                 (RadioChannels_ctrlGroup controlsGroupCtrl _x) ctrlShow false;
@@ -883,12 +850,12 @@ switch _mode do {
             private _ctrlTree = (RadioChannels_ctrlGroup controlsGroupCtrl 189437);
             private _treeSel = tvCurSel _ctrlTree;
             private _entity = RadioNetworkChannel_data select (_ctrlTree tvValue _treeSel);
-            
+
             // currentChannel
             private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
-            
+
             if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _condition pushBackUnique _entity;
             } else {
@@ -901,11 +868,9 @@ switch _mode do {
                         _value pushBackUnique _curSel;
                         _entity set3DENAttribute ["TMF_Channellist",str _value];
                     };
-
                 };
             };
-            
-            
+
             ["refreshChannelTree"] call RadioChannels_script;
             ["save"] call RadioChannels_script;
         };
@@ -915,12 +880,12 @@ switch _mode do {
             private _ctrlTree = (RadioChannels_ctrlGroup controlsGroupCtrl 189437);
             private _treeSel = tvCurSel _ctrlTree;
             private _entity = RadioNetworkChannel_data select (_ctrlTree tvValue _treeSel);
-            
+
             // currentChannel
             private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
-            
+
             if (_entity isEqualType grpNull) then {
                 _list = (_entity get3DENAttribute "TMF_ChannellistLeader") params ["_value"];
                 if (_value isEqualType []) then {
@@ -931,7 +896,7 @@ switch _mode do {
                     _entity set3DENAttribute ["TMF_ChannellistLeader",str _value];
                 };
             };
-            
+
             ["refreshChannelTree"] call RadioChannels_script;
             ["save"] call RadioChannels_script;
         };
@@ -941,12 +906,12 @@ switch _mode do {
             private _ctrlTree = (RadioChannels_ctrlGroup controlsGroupCtrl 189437);
             private _treeSel = tvCurSel _ctrlTree;
             private _entity = RadioNetworkChannel_data select (_ctrlTree tvValue _treeSel);
-            
+
             // currentChannel
             private _curSel = lnbCurSelRow (RadioChannels_ctrlGroup controlsGroupCtrl 101);
             private _radioChannel = (((RadioChannelArray select RadioCurrentNetwork) select 1) select _curSel);
             private _condition = _radioChannel select 3;
-            
+
             if (_entity isEqualType east || {_entity isEqualType ""}) then {
                 _radioChannel set [3,_condition - [_entity]];
                 if (_entity isEqualType east) then {
@@ -959,7 +924,7 @@ switch _mode do {
                             };
                         };
                     } forEach (_condition);
-                
+
                     //remove groups
                     {
                         [_curSel, _x] call fn_removeGroupFromChannel;
@@ -979,12 +944,12 @@ switch _mode do {
                     [_curSel,_entity] call fn_removeUnitFromChannel;
                 };
             };
-            
+
             ["refreshChannelTree"] call RadioChannels_script;
             ["save"] call RadioChannels_script;
         };
     };
-    
+
     case "save": {
         //RadioChannelArray
 
@@ -1006,11 +971,12 @@ switch _mode do {
                 } forEach (_condition);
             } forEach (_channels);
         } forEach _array;
-        
+
         private _string = str _array;
-        
+
         set3DENMissionAttributes [["teamworkMissionAcreAttributes", "TMF_AcreSettings", _string]];
     };
 };
 
 //LEAVE EMPTY TO RETURN VALUE.
+

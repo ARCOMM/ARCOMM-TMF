@@ -219,7 +219,7 @@ class Cfg3DEN
         class Toolbox; //class Toolbox: Title
 
         class TMF_AcreAddRadioActions : Toolbox {
-            scriptName = "AcreAddRadioActions";
+            scriptName = "AcreAddRadioActions"; // creates AcreAddRadioActions_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -264,13 +264,12 @@ class Cfg3DEN
                     columns[] = {0,0}; //0.05,0.15,0.85};
                     disableOverflow = 1;
                 };
-
             };
         };
 
         class BabelSettings : Toolbox
         {
-            scriptName = "BabelSettings";
+            scriptName = "BabelSettings"; // creates BabelSettings_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -436,12 +435,11 @@ class Cfg3DEN
                     h = QUOTE(SIZE_M * GRID_H);
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W);
                 };
-
             };
         };
         class RadioChannels : Toolbox
         {
-            scriptName = "RadioChannels";
+            scriptName = "RadioChannels"; // creates RadioChannels_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -812,10 +810,8 @@ class Cfg3DEN
                     onMouseHolding = "";
 
                     onCheckedChanged = "";
-
                 };
             };
         };
-
     };
 };
