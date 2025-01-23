@@ -13,8 +13,8 @@
  * Evaluates the wave init code of the TMF Wavespawner module
  */
 
-params ["_value"];
+params ["_logic", "_value"];
 
 if (_value != '' && _value != 'params ["_wave", "_spawnedGroups", "_spawnedUnits", "_spawnedVehicles", "_spawnedObjects", "_logic", "_wavehandlerID"];') then {
-    [_this, compile _value, True] call TMF_ai_fnc_addWaveHandler;
+    [_logic, compile _value, true] call TMF_ai_fnc_addWaveHandler;
 };
