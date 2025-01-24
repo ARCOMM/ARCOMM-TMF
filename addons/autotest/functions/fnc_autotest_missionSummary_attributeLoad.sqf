@@ -2,6 +2,10 @@
 
 private _value = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
 
+if (_value == "") then {
+    _value = getMissionConfigValue "overviewText";
+};
+
 (_this controlsGroupCtrl 100) ctrlSetText _value;
 
 if (_value == "" || {_value == "*** Insert mission description here. ***"}) then {

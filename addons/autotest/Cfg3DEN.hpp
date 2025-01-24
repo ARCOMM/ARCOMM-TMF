@@ -57,7 +57,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(Author);
                             displayName = "Author";
-                            tooltip = "Checks the author field has your arma profile in it.";
+                            tooltip = "Checks the author field is filled out. Throws a warning if it does not match your profile name.";
                             control = QGVAR(Author);
                             defaultValue = "true";
                         };
@@ -142,7 +142,7 @@ class Cfg3DEN
                     idc = 101;
                     y = 0;
                     h = QUOTE(SIZE_M * GRID_H);
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                 };
             };
@@ -178,7 +178,7 @@ class Cfg3DEN
                     idc = 101;
                     y = 0;
                     h = QUOTE(SIZE_M * GRID_H);
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                 };
             };
@@ -211,7 +211,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
@@ -246,7 +246,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
@@ -281,7 +281,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;

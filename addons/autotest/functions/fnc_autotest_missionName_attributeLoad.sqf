@@ -2,6 +2,10 @@
 
 private _value = "Scenario" get3DENMissionAttribute "IntelBriefingName";
 
+if (_value == "") then {
+    _value = getMissionConfigValue "onLoadName";
+};
+
 (_this controlsGroupCtrl 100) ctrlSetText _value;
 
 if (_value == "") then {
