@@ -13,7 +13,8 @@ private _handleKeypress = (_keyPressed isEqualTo _DIK) && {(_modifiersPressed is
 if (_handleKeypress) then {
     if (_authorized) then {
         if (dialog && {!isNull (uiNamespace getVariable [QGVAR(display), displayNull])}) then {
-            systemChat "[TMF Admin Menu] The admin menu is already open"
+            closeDialog 1;
+            //systemChat "[TMF Admin Menu] The admin menu is already open"
         } else {
             if (!isNull (findDisplay 312)) then {
                 systemChat "[TMF Admin Menu] Can't open the admin menu in the Zeus interface";
