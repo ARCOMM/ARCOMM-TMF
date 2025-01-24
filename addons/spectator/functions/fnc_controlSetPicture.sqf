@@ -16,14 +16,14 @@
  *
  * Public: No
  */
-params ["_control","_picturePath","_color"];
+params ["_control","_picturePath",["_color", [0.70, 0.60, 0.00, 1.00], [[]]]];
 disableSerialization;
 private _image = (_control controlsGroupCtrl 1);
 if (_picturePath != "" && {_control getVariable [QGVAR(lastImage),""] != _picturePath}) then {
     _image ctrlSetText _picturePath;
     _control setVariable [QGVAR(lastImage),_picturePath];
 };
-if (_control getVariable [QGVAR(lastColor),""] != _color) then {
+if (_control getVariable [QGVAR(lastColor),""] isNotEqualTo _color) then {
     _image ctrlSetTextColor _color;
     _control setVariable [QGVAR(lastColor),_color];
 };

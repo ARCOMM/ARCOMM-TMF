@@ -13,7 +13,7 @@
  * nil
  *
  * Example:
- * [_control,"mytext",[1,1,1,1],false] call tmf_spectator_fnc_controlSetPicture
+ * [_control,"mytext",[1,1,1,1],false] call tmf_spectator_fnc_controlSetText
  *
  * Public: No
  */
