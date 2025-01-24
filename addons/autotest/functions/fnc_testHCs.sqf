@@ -19,13 +19,13 @@ private _HCs = (all3DENEntities # 3) select {_x isKindOf "HeadlessClient_F"};
 
 // Check presence
 if (count _HCs < _targetHCs) then {
-    _warnings pushBack [1,format ["Less than %1 Headless Clients present",_targetHCs]];
+    _warnings pushBack [AUTOTEST_WARNING,format ["Less than %1 Headless Clients present",_targetHCs]];
 };
 
 // Check if setup correctly
 {
     if (_x get3DENAttribute "ControlMP" isNotEqualTo [true]) then {
-        _warnings pushBack [0,format ["Headless Client %1 is not marked as playable.",_x]];
+        _warnings pushBack [AUTOTEST_ERROR,format ["Headless Client %1 is not marked as playable.",_x]];
     };
 } forEach _HCs;
 

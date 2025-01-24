@@ -6,7 +6,7 @@ private _output = [];
     private _side = _x;
     private _groupCount = {side _x == _side} count allGroups;
     if (_groupCount > 200) then {
-        _output pushBack [1,format["Side %1 has %2 groups. Note Arma has a 288 group limit per side.",_side,_groupCount]];
+        _output pushBack [AUTOTEST_WARNING,format["Side %1 has %2 groups. Note Arma has a 288 group limit per side.",_side,_groupCount]];
     }
 } forEach [west,east,civilian,resistance];
 

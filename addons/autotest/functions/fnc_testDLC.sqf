@@ -60,9 +60,9 @@ if (_problemUnits isNotEqualTo []) then {
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
         _problemUnits = _problemUnits select [0,5];
-        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+        _warnings pushBack [AUTOTEST_ERROR,"More than five playable units require notices for DLC:"];
     } else {
-        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+        _warnings pushBack [AUTOTEST_WARNING,"One or more playable units require notices for DLC:"];
     };
 
     {
@@ -114,9 +114,9 @@ if (_problemVehs isNotEqualTo []) then {
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {
         _problemVehs = _problemVehs select [0,5];
-        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
+        _warnings pushBack [AUTOTEST_ERROR,"More than five unlocked vehicles require DLC notices:"];
     } else {
-        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+        _warnings pushBack [AUTOTEST_WARNING,"One or more unlocked vehicles require DLC notices:"];
     };
 
     {
@@ -132,7 +132,6 @@ _warnings pushBack [
     if (_warnings isEqualTo []) then [{-1},{1}],
     "DLC Checks finished"
 ];
-
 
 LOG_1("Finished DLC Tests: %1",_warnings);
 
