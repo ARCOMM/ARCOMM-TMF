@@ -2,7 +2,7 @@
 
 private _value = getMissionConfigValue "overviewText";
 
-if (isNil "_value") then {
+if (isNil "_value" || {!(_value isEqualType "")}) then {
     _value = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
 };
 

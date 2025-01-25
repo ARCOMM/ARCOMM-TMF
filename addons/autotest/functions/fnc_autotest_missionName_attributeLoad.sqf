@@ -2,7 +2,7 @@
 
 private _value = getMissionConfigValue "onLoadName";
 
-if (isNil "_value") then {
+if (isNil "_value" || {!(_value isEqualType "")}) then {
     _value = "Scenario" get3DENMissionAttribute "IntelBriefingName";
 };
 
