@@ -1,9 +1,9 @@
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
-private _value = "Scenario" get3DENMissionAttribute "IntelBriefingName";
+private _value = getMissionConfigValue "onLoadName";
 
-if (_value == "") then {
-    _value = getMissionConfigValue "onLoadName";
+if (isNil "_value") then {
+    _value = "Scenario" get3DENMissionAttribute "IntelBriefingName";
 };
 
 (_this controlsGroupCtrl 100) ctrlSetText _value;
