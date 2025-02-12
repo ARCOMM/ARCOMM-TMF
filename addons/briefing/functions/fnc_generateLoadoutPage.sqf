@@ -13,7 +13,7 @@
  *            Add the Loadout entry to the diary
  */
 
-if (GVAR(addLoadoutNotes) || {!hasInterface}) exitWith {};
+if !(GVAR(addLoadoutNotes) || hasInterface) exitWith {};
 
 params [["_unit", player]];
 
