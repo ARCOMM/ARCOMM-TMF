@@ -1,9 +1,9 @@
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
-private _value = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
+private _value = getMissionConfigValue "overviewText";
 
-if (_value == "") then {
-    _value = getMissionConfigValue "overviewText";
+if (isNil "_value" || {!(_value isEqualType "")}) then {
+    _value = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
 };
 
 (_this controlsGroupCtrl 100) ctrlSetText _value;

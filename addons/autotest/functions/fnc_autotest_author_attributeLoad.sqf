@@ -1,9 +1,9 @@
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
-private _value = "Scenario" get3DENMissionAttribute "Author";
+private _value = getMissionConfigValue "author";
 
-if (_value == "") then {
-    _value = getMissionConfigValue "author";
+if (isNil "_value" || {!(_value isEqualType "")}) then {
+    _value = "Scenario" get3DENMissionAttribute "Author";
 };
 
 (_this controlsGroupCtrl 100) ctrlSetText _value;
