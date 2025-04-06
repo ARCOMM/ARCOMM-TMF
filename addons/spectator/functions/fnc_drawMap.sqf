@@ -74,7 +74,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 if(GVAR(tracers)) then {
     {
         _x params ["_object","_posArray","_last","_time","_type"];
-        _pos = _posArray select (count _posArray-1);
+        _pos = _posArray select -1;
         if(!isNull _object) then {
             private _pos = (getPosATLVisual _object);
             if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
