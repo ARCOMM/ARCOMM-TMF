@@ -121,10 +121,9 @@ if (_problemVehs isNotEqualTo []) then {
 
     {
         _x params ["_veh","_dlc"];
-        _warnings pushBack [
-            1,
-            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
-        ];
+        _warnings pushBack [AUTOTEST_WARNING,format ["%1", _veh]];
+        _warnings pushBack [AUTOTEST_MULTILINE,format ["%1", (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName]];
+        _warnings pushBack [AUTOTEST_MULTILINE,format ["%1", _dlc]];
     } forEach _problemVehs;
 };
 

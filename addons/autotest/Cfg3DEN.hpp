@@ -41,7 +41,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MissionName);
                             displayName = "Mission name";
-                            //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
+                            tooltip = "Check that the mission has been given a name. This can be set in either 3den or description.ext as 'onLoadName' (which takes priority).";
                             control = QGVAR(missionName);
                             defaultValue = "true";
                         };
@@ -49,7 +49,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MissionSummary);
                             displayName = "Mission description";
-                            tooltip = "Checks a mission description has been set. Throws a warning if it does not include the word slot, as you may have forgotten slotting instructions.";
+                            tooltip = "Checks a mission description has been set. Throws a warning if it does not include the word slot, as you may have forgotten slotting instructions. This can be set in either 3den or description.ext as 'overviewText' (which takes priority).";
                             control = QGVAR(missionSummary);
                             defaultValue = "true";
                         };
@@ -57,7 +57,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(Author);
                             displayName = "Author";
-                            tooltip = "Checks the author field is filled out. Throws a warning if it does not match your profile name.";
+                            tooltip = "Checks the author field is filled out. Throws a warning if it does not match your profile name. This can be set in either 3den or description.ext as 'author' (which takes priority).";
                             control = QGVAR(Author);
                             defaultValue = "true";
                         };

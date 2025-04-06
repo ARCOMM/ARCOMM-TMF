@@ -28,8 +28,8 @@ private _output = [];
         case (_count < 150): {
             // check _isServer
             if (!_isServer && !_isLocal) then {
-                _output pushBack [AUTOTEST_WARNING,format["Unit %1 has large init field contents (%2)",_object,_count]];
-                _output pushBack [AUTOTEST_MULTILINE,"but no isServer or local check!"];
+                _output pushBack [AUTOTEST_WARNING,format["Unit %1 (%2)",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName]];
+                _output pushBack [AUTOTEST_MULTILINE,format["has large init field contents (%1) but no isServer or local check!",_count]];
             };
         };
         // >= 150
@@ -37,16 +37,16 @@ private _output = [];
             // check _VA
             if _VA then {
                 if (_isServer || _isLocal) then {
-                    _output pushBack [AUTOTEST_WARNING,format["Virtual Arsenal code detected in init field of %1!",_object]];
+                    _output pushBack [AUTOTEST_WARNING,format["Unit %1 (%2) Virtual Arsenal code detected in init field",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName]];
                 } else {
-                    _output pushBack [AUTOTEST_ERROR,format["Virtual Arsenal code detected in init field of %1",_object]];
-                    _output pushBack [AUTOTEST_MULTILINE,"but no isServer or local check!"];
+                    _output pushBack [AUTOTEST_ERROR,format["Unit %1 (%2)",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName]];
+                    _output pushBack [AUTOTEST_MULTILINE,"Virtual Arsenal code detected in init field but no isServer or local check!"];
                 };
             } else {
                 // Check _isServer
                 if (!_isServer && !_isLocal) then {
-                    _output pushBack [AUTOTEST_WARNING,format["Unit %1 has very large init field contents (%2)",_object,_count]];
-                    _output pushBack [AUTOTEST_MULTILINE,"but no isServer or local check!"];
+                    _output pushBack [AUTOTEST_WARNING,format["Unit %1 (%2)",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName]];
+                    _output pushBack [AUTOTEST_MULTILINE,format["has very large init field contents (%1) but no isServer or local check!",_count]];
                 };
             };
         };
@@ -55,8 +55,8 @@ private _output = [];
     if (!_isServer && !_isLocal) then {
         {
             if ((_init find _x) >= 0) exitWith {
-                _output pushBack [AUTOTEST_ERROR,format["Unit %1 has GLOBAL command, %2, in init field",_object,_x]];
-                _output pushBack [AUTOTEST_MULTILINE,"but no isServer or local check!"];
+                _output pushBack [AUTOTEST_ERROR,format["Unit %1 (%2) has GLOBAL command, %3, ",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName,_x]];
+                _output pushBack [AUTOTEST_MULTILINE,"in init field but no isServer or local check!"];
             };
         } forEach GLOBAL_COMMANDS
     };
