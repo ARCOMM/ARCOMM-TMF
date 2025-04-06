@@ -42,5 +42,4 @@ private _output = [];
     if (_type == 10) then {
     };
     */
-
 } forEach _output;
