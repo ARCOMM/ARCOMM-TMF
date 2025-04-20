@@ -18,7 +18,7 @@ class Cfg3DEN
                         tooltip = "Choose a team.";
                         control = "TMF_VisibleTo";
                         expression = "if(_value != -1) then {[_this,_value] remoteExec ['tmf_marker_fnc_hide',0,true];};";
-                        defaultValue = "-1";
+                        defaultValue = -1;
                         wikiType = "[[Number]]";
                     };
                 };

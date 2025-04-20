@@ -34,7 +34,7 @@ class Cfg3DEN
                         tooltip = "Select a faction category.";
                         condition = "objectBrain";
                         control = "TMF_Side";
-                        defaultValue = "-1"; /* (side _this) call BIS_fnc_sideID;*/
+                        defaultValue = -1; /* (side _this) call BIS_fnc_sideID;*/
                         wikiType = "[[Number]]";
                     };
                     class TMF_assignGear_faction
@@ -133,7 +133,7 @@ class Cfg3DEN
             /* TMF_Side is a faction category chooser - name renames for backwards compatabiliy */
             onLoad = "uiNamespace setVariable ['AttributeTMF_Side',(_this select 0) controlsGroupCtrl 100]; [(_this select 0) controlsGroupCtrl 100] call TMF_assignGear_fnc_loadFactionCategories;";
             attributeLoad = "";
-            attributeSave = "-1";
+            attributeSave = -1;
             class Controls : Controls
             {
                 class Title : Title {};
