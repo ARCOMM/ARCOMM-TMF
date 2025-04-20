@@ -27,7 +27,7 @@ class Group
                     unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
                     condition = "objectControllable"; // Condition for attribute to appear (see the table below)
                     expression = "[_this,'TMF_OrbatParent',_value] call tmf_common_fnc_initGroupVar;";//"[_this,['TMF_OrbatParent',_value]] remoteExecCall ['setVariable',0,true];"; //_this setVariable ['TMF_OrbatParent',_value,true];";
-                    defaultValue = "-1";
+                    defaultValue = -1;
                 };
             };
         };

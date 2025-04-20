@@ -151,11 +151,11 @@ with uiNamespace do {
                 private _swapEntry = -1;
 
                 if (_mode == "moveTop") then {
-                    _newsSortId = ((orbat_queue select (0)) select 0)-1;
+                    _newsSortId = ((orbat_queue select (0)) select 0) - 1;
                     _swapEntry = -1;
                 };
                 if (_mode == "moveBottom") then {
-                    _newsSortId = ((orbat_queue select ((count orbat_queue) - 1)) select 0)+1;
+                    _newsSortId = (orbat_queue select -1 select 0) + 1;
                     _swapEntry = -1;
                 };
                 if (_mode == "moveDown") then {
