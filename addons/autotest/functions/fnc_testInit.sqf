@@ -55,8 +55,8 @@ private _output = [];
     if (!_isServer && !_isLocal) then {
         {
             if ((_init find _x) >= 0) exitWith {
-                _output pushBack [AUTOTEST_ERROR,format["Unit %1 (%2) has GLOBAL command, %3, ",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName,_x]];
-                _output pushBack [AUTOTEST_MULTILINE,"in init field but no isServer or local check!"];
+                _output pushBack [AUTOTEST_ERROR,format["Unit %1 (%2)",_object,(configFile >> "CfgVehicles">> typeOf _object) call BIS_fnc_displayName]];
+                _output pushBack [AUTOTEST_MULTILINE,format["has GLOBAL command, %1 in init field but no isServer or local check!",_x]];
             };
         } forEach GLOBAL_COMMANDS
     };
