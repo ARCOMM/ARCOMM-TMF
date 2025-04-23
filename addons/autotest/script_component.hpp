@@ -8,6 +8,9 @@
 #define AUTOTEST_WARNING 1
 #define AUTOTEST_MULTILINE 10
 
+
+// "disableai" was previously included in GLOBAL_COMMANDS but has odd locality so is currently excluded
+
 #define GLOBAL_COMMANDS [ \
 "useaisteeringcomponent",              \
 "unlinkitem",                          \
@@ -216,7 +219,6 @@
 "disablenvgequipment",                 \
 "disablecollisionwith",                \
 "disablebrakes",                       \
-"disableai",                           \
 "detach",                              \
 "deletewaypoint",                      \
 "deletevehiclecrew",                   \
