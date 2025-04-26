@@ -219,7 +219,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
                 _thisBriefing = format ["%5 <img image='%2' height='16'></img><font size='18'> %1 [%3/%4]</font><br/>",_vehDisplayName,_vehIcon,_occupiedSlots,_maxSlots, _thisBriefing];
             } else { // Is Group.
-                _thisBriefing = format["%3<img image='%1' height='18'></img><font size='18'> %2</font>", _groupTexture, groupId _entity, _indent];
+                _thisBriefing = format["%3<br/><img image='%1' height='18'></img><font size='18'> %2</font>", _groupTexture, groupId _entity, _indent];
                 private _grpVehicles = (units _entity select {!isNull objectParent _x}) apply {vehicle _x};
                 _grpVehicles = _grpVehicles arrayIntersect _grpVehicles;
                 {
