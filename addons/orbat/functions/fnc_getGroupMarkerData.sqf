@@ -2,8 +2,8 @@
 
 params ["_group"];
 
-private _cachedData = _group getVariable ["TMF_groupMarker_Cached",-1];
-if (_cachedData == -1) exitWith {
+private _cachedData = _group getVariable ["TMF_groupMarker_Cached",[]];
+if (_cachedData isEqualTo []) exitWith {
     private _data = _group getVariable ["TMF_groupMarker",[]];
     if(_data isEqualType "") then {
         _data = call compile _data;
