@@ -60,7 +60,7 @@ if (GVAR(killList_forceUpdate) || {GVAR(killList_update) >= time}) then {
 {
     _x params ["_object","_posArray","_last","_time","_type"];
 
-    if ({GVAR(bulletTrails) || {_type != 0}} && !isNull _object && {diag_frameNo > (_last+1)} && {(speed _object) > 0}) then {
+    if (!isNull _object && {diag_frameNo > (_last+1)} && {(speed _object) > 0} && {GVAR(bulletTrails) || {_type != 0}}) then {
         private _pos = (getPosATLVisual _object);
         if (surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
         _posArray pushBack (_pos);
