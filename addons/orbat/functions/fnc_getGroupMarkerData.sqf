@@ -9,10 +9,10 @@ if (_cachedData isEqualTo []) exitWith {
         _data = call compile _data;
     };
     _data = +_data;
-    
+
     private _useParentTexture = false;
-    
-    if (count _data == 0) then { 
+
+    if (count _data == 0) then {
         _useParentTexture = true;
     } else {
         if (_data select 0 == "") then {
@@ -20,7 +20,7 @@ if (_cachedData isEqualTo []) exitWith {
             _data = [];
         };
     };
-        
+
     if (_useParentTexture) then {
         private _parentData = [_group] call FUNC(findOrbatParent);
         //while {count _parentData > 0} do {
@@ -33,9 +33,9 @@ if (_cachedData isEqualTo []) exitWith {
         //  private _parentData = [_group] call FUNC(findOrbatParent);
        // };
     };
-    
+
     if (count _data > 0) then {
-        
+
         //Replace the icon depending on side.
         private _path = _data select 0;
         private _side = side _group;
@@ -63,7 +63,7 @@ if (_cachedData isEqualTo []) exitWith {
                 _path = (_path select [0,_idx]) + _targetColor + (_path select [_idx+5]);
             };
         };
-        
+
         _data set [0,_path];
     };
     if (count _data > 3) then {
