@@ -84,7 +84,7 @@ if (GVAR(handleAI)) then {
         _x disableAI "TARGET";
         _x disableAI "AUTOTARGET";
         _x allowDamage false;
-    } forEach (allUnits select {local _x && !isPlayer _x});
+    } forEach (allUnits select {local _x && {!isPlayer _x}});
 };
 
 [QGVAR(started)] call CBA_fnc_localEvent;

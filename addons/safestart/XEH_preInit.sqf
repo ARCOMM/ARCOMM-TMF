@@ -4,7 +4,7 @@
 #include "initSettings.inc.sqf"
 
 // Handle default safestart setting
-if (isServer && isTMF && !is3DEN && GVAR(enableDefaultSS) && entities QGVAR(module) isEqualTo []) then {
+if (isServer && isTMF && !is3DEN && GVAR(enableDefaultSS) && {entities QGVAR(module) isEqualTo []}) then {
     if (GVAR(defaultSS) <= 0) then {
         [GVAR(defaultSS), true] call FUNC(set);
         LOG("Default safestart set to infinite");

@@ -25,7 +25,7 @@ if (count _weaponArray < 1) exitWith {_unit removeWeapon (primaryWeapon _unit)};
 private _weapon = toLower selectRandom _weaponArray;
 
 // Exit if weapon was set to "default"
-if (_weapon isEqualTo "default") exitWith {};
+if (_weapon == "default") exitWith {};
 // Replace weapon, sanitize and add weapon items
 _unit removeWeapon (primaryWeapon _unit);
 if !(isNil "_weapon") then {
@@ -43,7 +43,7 @@ if(count _this > 3) then {
     if(isNil "_attachment") then {_attachment = ""};
     if(isNil "_silencer") then {_silencer = ""};
     {
-        if (!isNil "_x" && _x != "" ) then {
+        if (!isNil "_x" && {_x != ""}) then {
             _unit addPrimaryWeaponItem _x;
         };
     } forEach [_scope,_bipod,_attachment,_silencer];
@@ -51,7 +51,7 @@ if(count _this > 3) then {
 else
 {
     {
-        if (!isNil "_x" && _x != "" ) then {
+        if (!isNil "_x" && {_x != ""}) then {
             _unit addPrimaryWeaponItem _x;
         };
     } forEach _scopeArray;

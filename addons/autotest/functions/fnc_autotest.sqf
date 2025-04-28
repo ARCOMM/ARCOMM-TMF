@@ -37,4 +37,9 @@ private _output = [];
         _ctrlListbox lnbSetPicture [[_lnbAdd,0],QPATHTOEF(autotest,UI\warning.paa)];
     };
 
+    //Multiline, no icon so no need to actually set a picture for now.
+    /*
+    if (_type == 10) then {
+    };
+    */
 } forEach _output;

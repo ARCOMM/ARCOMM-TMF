@@ -11,7 +11,7 @@ if (GVAR(handleAI)) then {
         _x enableAI "TARGET";
         _x enableAI "AUTOTARGET";
         _x allowDamage true;
-    } forEach (allUnits select {local _x && !isPlayer _x});
+    } forEach (allUnits select {local _x && {!isPlayer _x}});
 };
 
 // Remove fired eventhandler, left click action

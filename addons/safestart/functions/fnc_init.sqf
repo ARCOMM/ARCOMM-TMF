@@ -27,7 +27,7 @@ private _delay = 1;
 private _startCode = COMPILE_FILE(functions\pfh_start);
 private _runCondition = {true};
 private _perframeCode = COMPILE_FILE(functions\pfh_perframe);
-private _exitCondition = {TIMER > 0 && CBA_missionTime > TIMER};
+private _exitCondition = {TIMER > 0 && {CBA_missionTime > TIMER}};
 private _exitCode = COMPILE_FILE(functions\pfh_exit);
 
 // https://cbateam.github.io/CBA_A3/docs/files/common/fnc_createPerFrameHandlerObject-sqf.html

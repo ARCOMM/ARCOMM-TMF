@@ -80,9 +80,11 @@ OrbatFactionsPresent = [];
 OrbatSidesPresent = [];
 
 {
-    OrbatFactionsPresent pushBackUnique (faction (leader _x));
-    OrbatSidesPresent pushBackUnique (side _x);
+    OrbatFactionsPresent pushBack (faction leader _x);
+    OrbatSidesPresent pushBack (side _x);
 } forEach cacheAllPlayerGroups;
+OrbatFactionsPresent = OrbatFactionsPresent arrayIntersect OrbatFactionsPresent;
+OrbatSidesPresent = OrbatSidesPresent arrayIntersect OrbatSidesPresent;
 
 
 private _string = "";

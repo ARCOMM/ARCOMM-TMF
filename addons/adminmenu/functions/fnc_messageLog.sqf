@@ -36,7 +36,7 @@ private _pfhRefresh = [{
 
     // Autoscroll
     private _curSel = lbCurSel _listCtrl;
-    if (_curSel == -1 || (_curSel == _entriesNum -1 && _entriesNum != _newEntriesNum)) then {
+    if (_curSel == -1 || {_curSel == _entriesNum -1 && {_entriesNum != _newEntriesNum}}) then {
         LOG("Autoscroll log");
         _listCtrl lbSetCurSel (lbSize _listCtrl - 1);
     };

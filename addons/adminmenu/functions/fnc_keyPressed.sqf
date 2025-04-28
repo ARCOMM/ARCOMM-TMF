@@ -9,11 +9,12 @@ private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
 if (isNil "_binding") exitWith {};
 (_binding select 5) params ["_DIK", "_modifiers"];
 
-private _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
+private _handleKeypress = (_keyPressed isEqualTo _DIK) && {(_modifiersPressed isEqualTo _modifiers)};
 if (_handleKeypress) then {
     if (_authorized) then {
-        if (dialog && !isNull (uiNamespace getVariable [QGVAR(display), displayNull])) then {
-            systemChat "[TMF Admin Menu] The admin menu is already open"
+        if (dialog && {!isNull (uiNamespace getVariable [QGVAR(display), displayNull])}) then {
+            closeDialog 1;
+            //systemChat "[TMF Admin Menu] The admin menu is already open"
         } else {
             if (!isNull (findDisplay 312)) then {
                 systemChat "[TMF Admin Menu] Can't open the admin menu in the Zeus interface";
@@ -27,7 +28,7 @@ if (_handleKeypress) then {
     if (isNil "_binding") exitWith {};
     (_binding select 5) params ["_DIK", "_modifiers"];
 
-    _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
+    _handleKeypress = (_keyPressed isEqualTo _DIK) && {(_modifiersPressed isEqualTo _modifiers)};
     if (_handleKeypress) then {
         if (_authorized) then {
             if (isNull (findDisplay 5454)) then {

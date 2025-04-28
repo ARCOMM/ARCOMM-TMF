@@ -14,7 +14,7 @@ class display3DEN
                 {
                     text = "TMF Spectator Settings";
                     action = "edit3DENMissionAttributes 'TMF_Spectator_Settings';";
-                    picture = "\x\tmf\addons\common\UI\icon_gear_ca";
+                    picture = "\x\tmf\addons\common\UI\icon_gear_ca.paa";
                 };
             };
         };

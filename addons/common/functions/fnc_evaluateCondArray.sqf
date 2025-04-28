@@ -16,7 +16,7 @@
 params ["_unit", "_condArray"];
 private _return = false;
 {
-    if ((_x isEqualType "") and {_x == (faction (leader _unit))}) exitWith { _return = true; };
+    if ((_x isEqualType "") && {_x == (faction (leader _unit))}) exitWith { _return = true; };
     if ((_x isEqualType 0) && {(_x call EFUNC(common,numToSide)) == side _unit}) exitWith { _return = true; };
     if ((_x isEqualType east) && {_x == side _unit}) exitWith { _return = true;};
 } forEach _condArray;

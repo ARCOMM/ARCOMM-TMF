@@ -17,7 +17,7 @@ IS_CMND_AVAILABLE(GVAR(whisperUsage),"#whisper");
 
 params [["_arg", ""]];
 
-if (_arg isEqualTo "") exitWith {
+if (_arg == "") exitWith {
     systemChat "TMF Error: No argument passed. Command usage: #whisper <player> <message>";
 };
 
@@ -27,7 +27,7 @@ private _name = _parts select 0;
 _parts deleteAt 0;
 
 private _message = _parts joinString " ";
-if (_message isEqualTo "") exitWith {
+if (_message == "") exitWith {
     systemChat "TMF Error: No message passed. Command usage: #whisper <player> <message>";
 };
 private _unit = [_name] call FUNC(findMatch);

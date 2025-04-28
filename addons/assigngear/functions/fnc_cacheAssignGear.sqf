@@ -17,7 +17,6 @@
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
 
 params ["_faction", "_role"];
-private ["_loadoutArray"];
 
 // Check if loadout is in configFile or missionConfigFile
 private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _role)) then [
@@ -27,6 +26,7 @@ private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _r
 
 ASSERT_TRUE(isClass CFGROLE,format [ARR_3("Loadout not present: %1 %2",_faction,_role)]);
 
+private _loadoutArray = [];
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 if (_cfg isEqualTo missionConfigFile) then {
@@ -37,16 +37,16 @@ if (_cfg isEqualTo missionConfigFile) then {
     // Check if there is a hash storing already cached loadouts in the uiNamespace
     // If there isn't, create one.
     private _loadoutsHash = uiNamespace getVariable QGVAR(loadoutsHash);
-    ISNILS(_loadoutsHash,[ARR_2([],[])] call CBA_fnc_hashCreate);
+    ISNILS(_loadoutsHash,createHashMap);
 
     // Try to get the loadout from the hash
-    private _hash = [_loadoutsHash, _loadout] call CBA_fnc_hashGet;
+    private _hash = _loadoutsHash getOrDefault [_loadout, []];
 
     if (_hash isEqualTo []) then {
         // Loadout isn't present in hash
         // Load it from config
         _loadoutArray = [_faction, _role, _cfg] call FUNC(loadAssignGear);
-        _loadoutsHash = [_loadoutsHash, _loadout, _loadoutArray] call CBA_fnc_hashSet;
+        _loadoutsHash set [_loadout, _loadoutArray];
         uiNamespace setVariable [QGVAR(loadoutsHash), _loadoutsHash];
 
         TRACE_2("Cached loadout to uiNamespace",_faction,_loadout);
