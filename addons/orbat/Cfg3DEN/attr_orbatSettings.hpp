@@ -150,7 +150,7 @@ class ORBATSettings : Toolbox
         class TreeUp : TreeTop
         {
             idc = 125;
-            y = QUOTE(0.45* SIZE_M * GRID_H);
+            y = QUOTE(10.45 * SIZE_M * GRID_H);
 
             animTextureNormal = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
             animTextureDisabled = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
