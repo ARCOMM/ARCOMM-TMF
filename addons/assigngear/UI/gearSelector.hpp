@@ -5,13 +5,13 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
 
     class controls {
         class Title : RscTitle {
-            text = "TMF Loadout Jukebox";
+            text = "TMF Loadout Selection";
 
             x = QUOTE(CENTER_X - 25 * GRID_W);
             y = QUOTE(CENTER_Y - GRID_H * 15);
             w = QUOTE(50 * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
-            sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+            sizeEx = QUOTE(SIZE_M * GRID_H);
         };
         class TitleIcon : RscPicture {
             text = QPATHTOEF(common,UI\logo_tmf_small_ca.paa);
@@ -29,7 +29,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y - GRID_H * 9);
             w = QUOTE(60 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
         class Category : RscCombo {
             idc = IDC_RSCGEARSELECTOR_CATEGORY;
@@ -38,7 +38,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y - GRID_H * 5);
             w = QUOTE(56 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
 
             onLBSelChanged = QUOTE(params [ARR_2('_ctrl','_selectedIndex')]; [ARR_2(ctrlParent _ctrl,_selectedIndex)] call FUNC(gui_gearSelector_loadFactions); false);
         };
@@ -49,7 +49,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y - GRID_H * 1);
             w = QUOTE(60 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
         class Faction : RscCombo {
             idc = IDC_RSCGEARSELECTOR_FACTION;
@@ -58,18 +58,18 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y + GRID_H * 3);
             w = QUOTE(56 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
 
             onLBSelChanged = QUOTE(params [ARR_2('_ctrl','_selectedIndex')]; [ARR_2(ctrlParent _ctrl,_selectedIndex)] call FUNC(gui_gearSelector_loadRoles); false);
         };
-        class RoleLabel : RscText{
+        class RoleLabel : RscText {
             text = "Role:";
 
             x = QUOTE(CENTER_X - 30 * GRID_W);
             y = QUOTE(CENTER_Y + GRID_H * 7);
             w = QUOTE(60 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
         class Role : RscCombo{
             idc = IDC_RSCGEARSELECTOR_ROLE;
@@ -78,7 +78,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y + GRID_H * 11);
             w = QUOTE(56 * GRID_W);
             h = QUOTE(SIZE_S * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
 
         class ButtonCancel : RscButtonMenuCancel {
@@ -86,7 +86,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y + GRID_H * 17);
             w = QUOTE((59 / 3) * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
         class ButtonRandom : RscButtonMenu {
             text = "Random";
@@ -98,7 +98,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y + GRID_H * 17);
             w = QUOTE((59 / 3) * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
         class ButtonOK : RscButtonMenuOK {
             idc = IDC_RSCGEARSELECTOR_SUBMIT;
@@ -109,7 +109,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = QUOTE(CENTER_Y + GRID_H * 17);
             w = QUOTE((59 / 3) * GRID_W);
             h = QUOTE(SIZE_M * GRID_H);
-            sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_S));
+            sizeEx = QUOTE(SIZE_S * GRID_H);
         };
     };
     class controlsBackground {

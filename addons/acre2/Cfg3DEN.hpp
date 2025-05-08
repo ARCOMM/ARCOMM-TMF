@@ -745,7 +745,7 @@ class Cfg3DEN
 
                     colorText[] = {COLOR_TEXT_RGBA}; // Text and frame color
                     colorSelect[] = {0,0,0,1}; // Text selection color
-                    sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_M)); // Text size
+                    sizeEx = QUOTE(SIZE_M * GRID_H); // Text size
                     font = FONT_NORMAL; // Font from CfgFontFamilies
                     shadow = 1; // Shadow (0 - none, 1 - directional, color affected by colorShadow, 2 - black outline)
 
