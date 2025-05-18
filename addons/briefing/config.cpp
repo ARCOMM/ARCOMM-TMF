@@ -15,6 +15,18 @@ class CfgPatches
     };
 };
 
+class ctrlDefault;
+class ctrlDefaultText;// : ctrlDefault;
+class ctrlStatic;// : ctrlDefaultText;
+class ctrlListNBox;// : ctrlDefaultText;
+class ctrlTree;// : ctrlDefaultText;
+class ctrlEdit;// : ctrlDefaultText;
+
+class RscButtonMenu;
+class RscControlsGroup;
+class RscHTML;
+class RscText;
+
 #include "Cfg3DEN.hpp"
 #include "CfgDiary.hpp"
 #include "CfgEventHandlers.hpp"
