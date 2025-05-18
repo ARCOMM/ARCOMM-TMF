@@ -2,17 +2,6 @@
 #include "\a3\3DEN\UI\macros.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 
-class ctrlDefault;
-class ctrlDefaultText;// : ctrlDefault;
-class ctrlStatic;// : ctrlDefaultText;
-class ctrlListNBox;// : ctrlDefaultText;
-class ctrlTree;// : ctrlDefaultText;
-class ctrlEdit;// : ctrlDefaultText;
-
-class RscButtonMenu;
-class RscText;
-
-
 class cfgScriptPaths 
 {
     TMF_briefing = "x\tmf\addons\briefing\ui_scripts\"; //" - Escape for VS code linter

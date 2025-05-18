@@ -9,100 +9,22 @@ class CfgDiary {
     };
 };
 
-class RscHTML;
-class RscControlsGroup;
-
 class RscDisplayMainMap {
-    class controls {
-        class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            h = "18 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-        };
-        class CA_DiaryGroup: RscControlsGroup {
-            h = "safeZoneH - 7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            class controls {
-                class CA_Diary: RscHTML {
-                    h = 100;
-                    w = "20.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-                };
-            };
-        };
-    };
+    #include "DiaryDisplayControls.hpp"
 };
 
 class RscDisplayDiary {
-    class controls {
-        class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            h = "18 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-        };
-        class CA_DiaryGroup: RscControlsGroup {
-            h = "safeZoneH - 7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            class controls {
-                class CA_Diary: RscHTML {
-                    h = 100;
-                    w = "20.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-                };
-            };
-        };
-    };
+    #include "DiaryDisplayControls.hpp"
 };
 
 class RscDisplayGetReady: RscDisplayMainMap {
-    class controls {
-        class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            h = "18 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-        };
-        class CA_DiaryGroup: RscControlsGroup {
-            h = "safeZoneH - 7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            class controls {
-                class CA_Diary: RscHTML {
-                    h = 100;
-                    w = "20.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-                };
-            };
-        };
-    };
+    #include "DiaryDisplayControls.hpp"
 };
 
 class RscDisplayServerGetReady: RscDisplayGetReady {
-    class controls {
-        class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            h = "18 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-        };
-        class CA_DiaryGroup: RscControlsGroup {
-            h = "safeZoneH - 7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            class controls {
-                class CA_Diary: RscHTML {
-                    h = 100;
-                    w = "20.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-                };
-            };
-        };
-    };
+    #include "DiaryDisplayControls.hpp"
 };
 
 class RscDisplayClientGetReady: RscDisplayGetReady {
-    class controls {
-        class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            h = "18 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-        };
-        class CA_DiaryGroup: RscControlsGroup {
-            h = "safeZoneH - 7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-            class controls {
-                class CA_Diary: RscHTML {
-                    h = 100;
-                    w = "20.5 * (((safeZoneW / safeZoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
-                };
-            };
-        };
-    };
+    #include "DiaryDisplayControls.hpp"
 };
