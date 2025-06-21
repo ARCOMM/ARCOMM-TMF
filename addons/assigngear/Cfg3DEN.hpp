@@ -349,10 +349,7 @@ class Cfg3DEN
                     w = QUOTE(60 * GRID_W);
                     h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
                     onLoad = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
-                    //onButtonClick = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
-                    //onMouseButtonClick = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
                     onMouseMoving = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
-                    //onMouseHolding = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
                 };
                 class ButtonClear: ctrlButton
                 {
