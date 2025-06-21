@@ -36,6 +36,7 @@ PREP(gui_gearSelector_submit);
 PREP(gui_vehicleGear_selector);
 PREP(gui_vehicleGear_save);
 PREP(gui_vehicleGear_load);
+PREP(gui_vehicleGear_getLoad);
 PREP(vehicleGear_init);
 
 PREP(ammoBox_categoryValue_categoryChanged);

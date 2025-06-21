@@ -14,8 +14,8 @@
  * Insert items into the vehicle storage.
  */
 params [
-    '_object',
-    ['_data', [], [[]]]
+    "_object",
+    ["_data", [], [[]]]
 ];
 
 if (is3DEN || !isServer) exitWith {};
