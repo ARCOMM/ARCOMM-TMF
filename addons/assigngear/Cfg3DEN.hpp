@@ -342,7 +342,7 @@ class Cfg3DEN
                 {
                     idc = IDC_VEHICLEGEAR_LOAD;
                     text = "0 / 0 lbs";
-                    tooltip = "Shows the current and maximum load of the vehicle in both lbs and kg.\nTMF Vehicle Gear will update on hover, vanilla Equipment Storage will update on close and reopen.";
+                    tooltip = "Shows the current and maximum load of the vehicle in both lbs and kg.\nTMF Vehicle Gear will update on hover, vanilla Equipment Storage will update on close and reopen.\nRed means the vehicle inventory will be overfilled and players will not be able to put items back into the vehicle if they take them out.";
                     style = ST_CENTER;
                     x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
                     y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
