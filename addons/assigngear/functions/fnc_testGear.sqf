@@ -16,7 +16,7 @@ private _fnc_checkExists = {
     params ["_subarray","_cfg"];
 
     {
-        if ((_x != "") and (_x != "default")) then {
+        if (_x != "" && {_x != "default"}) then {
             if (!isClass (_cfg >> _x)) then {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
@@ -28,7 +28,7 @@ private _fnc_checkExists_insignia = {
     params ["_insignias"];
 
     {
-        if ((_x != "") and (_x != "default")) then {
+        if (_x != "" && {_x != "default"}) then {
             if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
                 _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
@@ -67,7 +67,7 @@ private _fncTestUnit = {
 
         {
             private _face = toLower _x;
-            if ((_face find "faceset:") isEqualTo 0) then {
+             if ("faceset:" in _face) then {
                 private _facesetName = _face select [8];
                 private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
                 if (_array isEqualTo 0) then {
@@ -171,7 +171,7 @@ private _fncTestUnit = {
                 };
                 if (isClass (_cfgWeapons >> _x)) exitWith {
                     _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
-                    if (_mass isEqualTo 0) then {
+                    if (_mass == 0) then {
                         _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
@@ -212,7 +212,7 @@ private _fncTestUnit = {
                 case (isClass (_cfgWeapons >> _x)):
                 {
                     _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
-                    if (_mass isEqualTo 0) then {
+                    if (_mass == 0) then {
                         _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
@@ -238,19 +238,19 @@ private _fncTestUnit = {
             } else {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
-        } forEach )_magazines + _primarymagazines + _secondarymagazines + _sidearmmagazines + _items_;
+        } forEach (_magazines + _primarymagazines + _secondarymagazines + _sidearmmagazines + _items);
 
         //Mag check
         if (count _primaryWeapon > 0) then {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
+            if (_weaponMagCount < 3 && (_weaponMags isNotEqualTo [])) then {
                 _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.", _faction, _role]];
             };
         };
 
-        if (count _sidearmWeapon > 0 && (_weaponMags isEqualNotTo [])) then {
+        if (count _sidearmWeapon > 0 && (_weaponMags isNotEqualTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
@@ -308,7 +308,7 @@ private _loadoutFreespace = [];
             };
             if (isClass (_cfgWeapons >> _x)) then {
                 _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
-                if (_mass isEqualTo 0) then {
+                if (_mass == 0) then {
                     _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                 };
             };
