@@ -67,7 +67,7 @@ private _fncTestUnit = {
 
         {
             private _face = toLower _x;
-             if ((_face find "faceset:") isEqualTo 0) then {
+            if ((_face find "faceset:") isEqualTo 0) then {
                 private _facesetName = _face select [8];
                 private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
                 if (_array isEqualTo 0) then {
@@ -190,7 +190,16 @@ private _fncTestUnit = {
             };
         } forEach (GETGEAR("backpackItems"));
 
-        private _magsAndItems = (GETGEAR("magazines")) + GETGEAR("primarymagazines")) + GETGEAR("secondarymagazines")) + GETGEAR("sidearmmagazines")) + (GETGEAR("items"));
+        private _magazines = GETGEAR("magazines");
+        _magazines = [_magazines, []] select (isNil "_magazines");
+        private _primarymagazines = GETGEAR("primarymagazines");
+        _primarymagazines = [_primarymagazines, []] select (isNil "_primarymagazines");
+        private _secondarymagazines = GETGEAR("secondarymagazines");
+        _secondarymagazines = [_secondarymagazines, []] select (isNil "_secondarymagazines");
+        private _sidearmmagazines = GETGEAR("sidearmmagazines");
+        _sidearmmagazines = [_sidearmmagazines, []] select (isNil "_sidearmmagazines");
+        private _items = GETGEAR("items");
+        _items = [_items, []] select (isNil "_items");
         {
             private _mass = -1;
             switch (true) do
@@ -229,7 +238,7 @@ private _fncTestUnit = {
             } else {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
             };
-        } forEach _magsAndItems;
+        } forEach )_magazines + _primarymagazines + _secondarymagazines + _sidearmmagazines + _items_;
 
         //Mag check
         if (count _primaryWeapon > 0) then {
@@ -241,7 +250,7 @@ private _fncTestUnit = {
             };
         };
 
-        if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
+        if (count _sidearmWeapon > 0 && (_weaponMags isEqualNotTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
