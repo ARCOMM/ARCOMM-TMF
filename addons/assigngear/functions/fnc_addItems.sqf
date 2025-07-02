@@ -16,7 +16,7 @@
 params ["_unit","_items"];
 private _overflow = [];
 
-if (isNil "_unit" || isNil "_items") exitWith {};
+if (isNil "_unit" || {isNil "_items"}) exitWith {};
 
 {
     switch true do {

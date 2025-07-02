@@ -27,8 +27,10 @@ private _classes = [];
 {
     private _faction = toLower(configName _x);
     private _name =  getText(_x >> "displayName");
-    _factions pushBackUnique [_faction,_name];
+    _factions pushBack [_faction,_name];
 } forEach (configProperties [missionConfigFile >> "CfgLoadouts" >> _side,"isClass _x"]);
+
+_factions = _factions arrayIntersect _factions;
 
 {
     _x params ["_faction","_name"];

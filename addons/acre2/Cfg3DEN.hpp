@@ -219,7 +219,7 @@ class Cfg3DEN
         class Toolbox; //class Toolbox: Title
 
         class TMF_AcreAddRadioActions : Toolbox {
-            scriptName = "AcreAddRadioActions";
+            scriptName = "AcreAddRadioActions"; // creates AcreAddRadioActions_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'AcreAddRadioActions','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -264,13 +264,12 @@ class Cfg3DEN
                     columns[] = {0,0}; //0.05,0.15,0.85};
                     disableOverflow = 1;
                 };
-
             };
         };
 
         class BabelSettings : Toolbox
         {
-            scriptName = "BabelSettings";
+            scriptName = "BabelSettings"; // creates BabelSettings_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'BabelSettings','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -436,12 +435,11 @@ class Cfg3DEN
                     h = QUOTE(SIZE_M * GRID_H);
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W);
                 };
-
             };
         };
         class RadioChannels : Toolbox
         {
-            scriptName = "RadioChannels";
+            scriptName = "RadioChannels"; // creates RadioChannels_script
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'RadioChannels','TMF_acre2',false] call (uiNamespace getVariable 'BIS_fnc_initDisplay');";
@@ -747,7 +745,7 @@ class Cfg3DEN
 
                     colorText[] = {COLOR_TEXT_RGBA}; // Text and frame color
                     colorSelect[] = {0,0,0,1}; // Text selection color
-                    sizeEx = QUOTE(SIZEEX_PURISTA(SIZEEX_M)); // Text size
+                    sizeEx = QUOTE(SIZE_M * GRID_H); // Text size
                     font = FONT_NORMAL; // Font from CfgFontFamilies
                     shadow = 1; // Shadow (0 - none, 1 - directional, color affected by colorShadow, 2 - black outline)
 
@@ -790,10 +788,10 @@ class Cfg3DEN
                     textureDisabledUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
 
                     //Sounds
-                    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1}; // Sound played after control is activated in format {file, volume, pitch}
-                    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1}; // Sound played when mouse cursor enters the control
-                    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1}; // Sound played when the control is pushed down
-                    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1}; // Sound played when the control is released after pushing down
+                    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick.wss",0.09,1}; // Sound played after control is activated in format {file, volume, pitch}
+                    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter.wss",0.09,1}; // Sound played when mouse cursor enters the control
+                    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape.wss",0.09,1}; // Sound played when the control is released after pushing down
+                    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush.wss",0.09,1}; // Sound played when the control is pushed down
 
                     onCanDestroy = "";
                     onDestroy = "";
@@ -812,10 +810,8 @@ class Cfg3DEN
                     onMouseHolding = "";
 
                     onCheckedChanged = "";
-
                 };
             };
         };
-
     };
 };

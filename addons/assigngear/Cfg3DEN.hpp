@@ -1,6 +1,7 @@
 #include "\a3\3DEN\UI\macros.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 class ctrlCombo;
+class ctrlActiveText;
 class ctrlStatic;
 class ctrlToolboxPictureKeepAspect;
 class ctrlListNBox;
@@ -34,7 +35,7 @@ class Cfg3DEN
                         tooltip = "Select a faction category.";
                         condition = "objectBrain";
                         control = "TMF_Side";
-                        defaultValue = "-1"; /* (side _this) call BIS_fnc_sideID;*/
+                        defaultValue = -1; /* (side _this) call BIS_fnc_sideID;*/
                         wikiType = "[[Number]]";
                     };
                     class TMF_assignGear_faction
@@ -133,7 +134,7 @@ class Cfg3DEN
             /* TMF_Side is a faction category chooser - name renames for backwards compatabiliy */
             onLoad = "uiNamespace setVariable ['AttributeTMF_Side',(_this select 0) controlsGroupCtrl 100]; [(_this select 0) controlsGroupCtrl 100] call TMF_assignGear_fnc_loadFactionCategories;";
             attributeLoad = "";
-            attributeSave = "-1";
+            attributeSave = -1;
             class Controls : Controls
             {
                 class Title : Title {};
@@ -223,6 +224,7 @@ class Cfg3DEN
             };
         };
         class GVAR(AmmoBox): Default {
+            idc = IDC_VEHICLEGEAR_AMMOBOX;
             onLoad = QUOTE([ARR_2(_this select 0,'onLoad')] call FUNC(gui_vehicleGear_selector));
             attributeLoad = QUOTE([ARR_2(_this,_value)] call FUNC(gui_vehicleGear_load));
             attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
@@ -245,10 +247,7 @@ class Cfg3DEN
                     y = 0;
                     w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
-                    onLBSelChanged = " \
-                        params [ARR_2('_control','_index')]; \
-                        [ARR_3(ctrlParentControlsGroup _control,'categoryChanged',_control lbData _index)] call FUNC(gui_vehicleGear_selector); \
-                    ";
+                    onLBSelChanged = QUOTE(_this call FUNC(ammoBox_categoryValue_categoryChanged));
                 };
                 class FactionTitle : ctrlStatic {
                     text = "Faction";
@@ -266,10 +265,7 @@ class Cfg3DEN
                     y = QUOTE(SIZE_XL * GRID_H);
                     w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
-                    onLBSelChanged = "\
-                        params [ARR_2('_control','_index')]; \
-                        [ARR_3(ctrlParentControlsGroup _control,'filterChanged',uiNamespace getVariable [ARR_2(QQGVAR(filter), FILTER_CONTENTS)])] call FUNC(gui_vehicleGear_selector); \
-                    ";
+                    onLBSelChanged = QUOTE(_this call FUNC(ammoBox_factionValue_filterChanged));
                 };
                 class Title2: Title
                 {
@@ -285,10 +281,7 @@ class Cfg3DEN
                     h = QUOTE(2 * ATTRIBUTE_CONTENT_H * GRID_H);
                     rows = 1;
                     columns = 4;
-                    onToolBoxSelChanged = " \
-                        params [ARR_2('_ctrl','_idx')]; \
-                        [ARR_3(ctrlParentControlsGroup _ctrl,'filterChanged',_idx)] call FUNC(gui_vehicleGear_selector); \
-                    ";
+                    onToolBoxSelChanged = QUOTE(_this call FUNC(ammoBox_filter_filterChanged));
                     strings[] = {
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_0_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa",
@@ -337,6 +330,27 @@ class Cfg3DEN
                     tooltipPerColumn = 1;
                     period = 1e+011;
                 };
+                class LoadBackground: ctrlStatic
+                {
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE(60 * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
+                    colorBackground[] = {0,0,0,1};
+                };
+                class Load: ctrlActiveText
+                {
+                    idc = IDC_VEHICLEGEAR_LOAD;
+                    text = "0 / 0 lbs";
+                    tooltip = "Shows the current and maximum load of the vehicle in both lbs and kg.\nTMF Vehicle Gear will update on hover, vanilla Equipment Storage will update on close and reopen.\nRed means the vehicle inventory will be overfilled and players will not be able to put items back into the vehicle if they take them out.";
+                    style = ST_CENTER;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE(60 * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
+                    onLoad = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
+                    onMouseMoving = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
+                };
                 class ButtonClear: ctrlButton
                 {
                     idc = IDC_VEHICLEGEAR_CLEAR;
@@ -345,10 +359,7 @@ class Cfg3DEN
                     y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
                     w = QUOTE(25 * GRID_W);
                     h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
-                    onButtonClick = " \
-                        params ['_ctrlButton']; \
-                        [ARR_2(ctrlParentControlsGroup _ctrlButton,'clear')] call FUNC(gui_vehicleGear_selector); \
-                    ";
+                    onButtonClick = QUOTE(_this call FUNC(ammoBox_buttonClear));
                 };
                 class ArrowLeft: ctrlButton
                 {

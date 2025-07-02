@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
- * Name = TMF_assignGear_fnc_vehicleGear_save
+ * Name = TMF_assignGear_fnc_gui_vehicleGear_save
  * Author = Head
  *
  * Arguments:
@@ -26,13 +26,15 @@ TRACE_3("Saving ammobox attribute data",_category,_faction,_gear);
 // Filter out 0's
 private _toDelete = [];
 {
-    if (_y isEqualTo 0) then {
+    if (_y == 0) then {
         _toDelete pushBack _x;
     };
 } forEach _gear;
 {
     _gear deleteAt _x;
 } forEach _toDelete;
+
+(get3DENSelected "object" select 0) setVariable [QGVAR(gear), _gear];
 
 // Do not keep the attribute if there is no gear
 // This will reset the faction/category but will reduce the mission file size

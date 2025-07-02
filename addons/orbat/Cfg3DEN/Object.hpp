@@ -30,7 +30,7 @@ class Object
                     unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
                     condition = "objectBrain"; // Condition for attribute to appear (see the table below)
                     expression = "_this setVariable ['TMF_OrbatParent',_value,true];";
-                    defaultValue = "-1";
+                    defaultValue = -1;
                 };
             };
         };
@@ -80,7 +80,7 @@ class Object
                     unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
                     condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
                     expression = "_this setVariable ['TMF_OrbatParent',_value,true];";//"[_this,['TMF_OrbatParent',_value]] remoteExecCall ['setVariable',0,true];"; //_this setVariable ['TMF_OrbatParent',_value,true];";
-                    defaultValue = "-1";
+                    defaultValue = -1;
                 };
             };
         };

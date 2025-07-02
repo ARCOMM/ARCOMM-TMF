@@ -41,7 +41,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MissionName);
                             displayName = "Mission name";
-                            //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
+                            tooltip = "Check that the mission has been given a name. This can be set in either 3den (General -> Presentation -> Title), or in description.ext as 'onLoadName' (which takes priority).";
                             control = QGVAR(missionName);
                             defaultValue = "true";
                         };
@@ -49,7 +49,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MissionSummary);
                             displayName = "Mission description";
-                            tooltip = "Checks a mission description has been set. Throws a warning if it does not include the word slot, as you may have forgotten slotting instructions.";
+                            tooltip = "Checks a mission description has been set. Throws a warning if it does not include the word slot, as you may have forgotten slotting instructions. This can be set in either 3den (Multiplayer -> Lobby -> Summary), or in description.ext as 'overviewText' (which takes priority).";
                             control = QGVAR(missionSummary);
                             defaultValue = "true";
                         };
@@ -57,7 +57,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(Author);
                             displayName = "Author";
-                            tooltip = "Checks the author field has your arma profile in it.";
+                            tooltip = "Checks the author field is filled out. Throws a warning if it does not match your profile name. This can be set in either 3den (General -> Presentation -> Author), or in description.ext as 'author' (which takes priority).";
                             control = QGVAR(Author);
                             defaultValue = "true";
                         };
@@ -65,7 +65,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MinPlayer);
                             displayName = "Min Players";
-                            //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
+                            tooltip = "The minimum number of players required, including any Zeuses. Set in 3den (Multiplayer -> Type -> Min Players).";
                             control = QGVAR(minPlayer);
                             defaultValue = "true";
                         };
@@ -73,7 +73,7 @@ class Cfg3DEN
                         {
                             property = QGVAR(MaxPlayer);
                             displayName = "Max Players";
-                            //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
+                            tooltip = "The maximum number of players supported. Set in 3den (Multiplayer -> Type -> Max Players).";
                             control = QGVAR(maxPlayer);
                             defaultValue = "true";
                         };
@@ -103,7 +103,6 @@ class Cfg3DEN
 
     class Attributes
     {
-
         class Default;
         class Title : Default
         {
@@ -114,15 +113,7 @@ class Cfg3DEN
         };
         class GVAR(missionName) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Scenario' get3DENMissionAttribute 'IntelBriefingName';                          \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
-                if (_value == '') then {                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_this call FUNC(autotest_missionName_attributeLoad));
             attributeSave = "true";
             class Controls : Controls
             {
@@ -151,26 +142,14 @@ class Cfg3DEN
                     idc = 101;
                     y = 0;
                     h = QUOTE(SIZE_M * GRID_H);
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                 };
             };
         };
         class GVAR(missionSummary) : Title
         {
-            attributeLoad = QUOTE(                                                                            \
-                _value = 'Multiplayer' get3DENMissionAttribute 'IntelOverviewText';                           \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                             \
-                if (_value == '' || _value == '*** Insert mission description here. ***') then {              \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';      \
-                } else {                                                                                      \
-                    if (((toLower _value) find 'slot') == -1) then {                                          \
-                        (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOF(UI\warning.paa)';                  \
-                    } else {                                                                                  \
-                        (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                    };                                                                                        \
-                };                                                                                            \
-            );
+            attributeLoad = QUOTE(_this call FUNC(autotest_missionSummary_attributeLoad));
             attributeSave = "true";
             class Controls : Controls
             {
@@ -199,22 +178,14 @@ class Cfg3DEN
                     idc = 101;
                     y = 0;
                     h = QUOTE(SIZE_M * GRID_H);
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                 };
             };
         };
         class GVAR(Author) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Scenario' get3DENMissionAttribute 'Author';                                     \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
-                if ((_value find profileName)  == -1) then {                                              \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_this call FUNC(autotest_author_attributeLoad));
             attributeSave = "true";
             class Controls : Controls
             {
@@ -240,7 +211,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
@@ -249,17 +220,7 @@ class Cfg3DEN
         };
         class GVAR(minPlayer) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Multiplayer' get3DENMissionAttribute 'minplayers';                              \
-                _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                  \
-                _playerCount = count (_playerCount arrayIntersect _playerCount);                          \
-                (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                   \
-                if (_value > 0 && _value <= _playerCount) then {                                         \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_this call FUNC(autotest_minPlayer_attributeLoad));
             attributeSave = "true";
             class Controls : Controls
             {
@@ -285,7 +246,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
@@ -294,18 +255,7 @@ class Cfg3DEN
         };
         class GVAR(maxPlayer) : Title
         {
-            attributeLoad = QUOTE(                                                                                  \
-                _value = 'Multiplayer' get3DENMissionAttribute 'maxplayers';                                        \
-                _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                            \
-                _playerCount = count (_playerCount arrayIntersect _playerCount);                                    \
-                (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                             \
-                if (_value != _playerCount || _value == 0) then {                                                   \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';            \
-                    (_this controlsGroupCtrl 100) ctrlSetText ((str _value) + ' should be: ' + (str _playerCount)); \
-                } else {                                                                                            \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)';           \
-                };                                                                                                  \
-            );
+            attributeLoad = QUOTE(_this call FUNC(autotest_maxPlayer_attributeLoad));
             attributeSave = "true";
             class Controls : Controls
             {
@@ -331,7 +281,7 @@ class Cfg3DEN
                 {
                     text = QPATHTOEF(briefing,UI\check_small_ca.paa); // Default
                     idc = 101;
-                    x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - (1.5*SIZE_M)) * GRID_W);
                     w = QUOTE(1.25*SIZE_M * GRID_W);
                     h = QUOTE(SIZE_M * GRID_H);
                     y = 0;
@@ -385,7 +335,5 @@ class Cfg3DEN
 
             };
         };
-
     };
-
 };

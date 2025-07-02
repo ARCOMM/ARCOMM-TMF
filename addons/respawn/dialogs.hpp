@@ -119,9 +119,9 @@ class respawnMenu_RscCombo
     colorSelectBackground[] = {1,1,1,0.7};
     colorText[] = {1,1,1,1};
 
-    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
-    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
-    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
+    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse.wss",0.1,1};
+    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand.wss",0.1,1};
+    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect.wss",0.1,1};
 
     tooltipColorBox[] = {1,1,1,1};
     tooltipColorShade[] = {0,0,0,0.65};
@@ -173,10 +173,10 @@ class respawnMenu_RscButton
     colorFocused[] = {0.75,0.75,0.75,.5};
     colorShadow[] = {0.023529,0,0.0313725,0.1};
     colorBorder[] = {0.023529,0,0.0313725,0.1};
-    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
-    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
-    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
-    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
+    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick.wss",0.09,1};
+    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter.wss",0.09,1};
+    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape.wss",0.09,1};
+    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush.wss",0.09,1};
     style = 2;
     x = 0;
     y = 0;

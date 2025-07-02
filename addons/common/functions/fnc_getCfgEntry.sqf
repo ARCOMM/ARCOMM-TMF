@@ -19,7 +19,7 @@ private _path = missionConfigFile;
 {_path = _path >> _x} forEach _this;
 
 // If there was no corresponding entry in the missionConfig, try configFile
-if (configName _path isEqualTo "") then {
+if (configName _path == "") then {
     _path = configFile;
     {_path = _path >> _x} forEach _this;
 };

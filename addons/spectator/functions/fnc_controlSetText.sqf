@@ -13,7 +13,7 @@
  * nil
  *
  * Example:
- * [_control,"mytext",[1,1,1,1],false] call tmf_spectator_fnc_controlSetPicture
+ * [_control,"mytext",[1,1,1,1],false] call tmf_spectator_fnc_controlSetText
  *
  * Public: No
  */
@@ -24,7 +24,7 @@ private _textControl = controlNull;
 
 if (!_subtext) then {_textControl = _control controlsGroupCtrl 2;}
 else {_textControl = _control controlsGroupCtrl 3;};
-if (!(_textControl getVariable [QGVAR(lastText),""] isEqualTo _text)) then {
+if (_textControl getVariable [QGVAR(lastText),""] != _text) then {
     _textControl ctrlSetText _text;
     _textControl setVariable [QGVAR(lastText),_text];
 };

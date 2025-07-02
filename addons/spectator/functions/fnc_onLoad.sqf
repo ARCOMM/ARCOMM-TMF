@@ -44,7 +44,7 @@ if(!GVAR(canSpectateAllSides)) then {
     GVAR(sides_button_strings) = ["SHOWING YOUR SIDE", "NONE"];
 };
 
-if (!isNil QGVAR(zeusPos) && { GVAR(freeCameraEnabled) }) then {
+if (!isNil QGVAR(zeusPos) && {GVAR(freeCameraEnabled)}) then {
     GVAR(mode) = FREECAM;
     [] call FUNC(setTarget);
 
@@ -57,7 +57,7 @@ if (!isNil QGVAR(zeusPos) && { GVAR(freeCameraEnabled) }) then {
     GVAR(camera) camCommit 0;
     GVAR(zeusPos) = nil;
 } else {
-    if (missionNamespace getVariable [QGVAR(mode),-1] isEqualTo -1) then {
+    if (missionNamespace getVariable [QGVAR(mode),-1] == -1) then {
         private _allowedModes = [GVAR(followCameraEnabled),GVAR(freeCameraEnabled),GVAR(firstPersonCameraEnabled)];
         {
             if(_x) exitWith {

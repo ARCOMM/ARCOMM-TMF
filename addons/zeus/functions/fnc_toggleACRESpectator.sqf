@@ -1,1 +1,2 @@
-[!ACRE_IS_SPECTATOR] call acre_api_fnc_setSpectator;
+
+[!acre_is_spectator] call acre_api_fnc_setSpectator;

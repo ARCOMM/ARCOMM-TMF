@@ -13,7 +13,7 @@ private _isMission = false;
 switch (_category) do {
     case "From Mission File": { _isMission = true; _loadouts = "true" configClasses (missionConfigFile >> "CfgLoadouts") };
     case "Other": { _loadouts = "true" configClasses (configFile >> "CfgLoadouts") select {!isText (_x >> "category")} };
-    default { _loadouts = "true" configClasses (configFile >> "CfgLoadouts") select {getText (_x >> "category") isEqualTo _category} };
+    default { _loadouts = "true" configClasses (configFile >> "CfgLoadouts") select {getText (_x >> "category") == _category} };
 };
 
 // Sort alphabetically and hide duplicate configFile/missionConfigFile loadouts
@@ -31,7 +31,7 @@ _loadouts = [_loadouts] call BIS_fnc_sortBy;
 private _selectedIndex2 = 0;
 
 if !(isNil "_initialFaction") then {
-    _selectedIndex2 = _loadouts findIf {_x # 1 isEqualTo _initialFaction};
+    _selectedIndex2 = _loadouts findIf {_x select 1 isEqualTo _initialFaction};
     _ctrl lbSetCurSel _selectedIndex2;
 } else {
     _ctrl lbSetCurSel _selectedIndex2;

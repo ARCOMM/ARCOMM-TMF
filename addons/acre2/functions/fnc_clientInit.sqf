@@ -40,8 +40,9 @@ if (!alive player) exitWith {};
 
         {
             private _langId = format["tw_lang%1", _x];
-            _languagesToSpeak pushBackUnique _langId;
+            _languagesToSpeak pushBack _langId;
         } forEach (_groupCond + _unitCond);
+        _languagesToSpeak = _languagesToSpeak arrayIntersect _languagesToSpeak;
 
 
         //Call ACRE API
@@ -142,7 +143,7 @@ if (!alive player) exitWith {};
     // Config look up
     private _cfg = configNull;
 
-    if (_side isEqualTo -1) then {
+    if (_side == -1) then {
         _cfg = missionConfigFile >> "cfgLoadouts" >> _faction;
     } else {
          _side = toLower ([_side] call CFUNC(sideType));
@@ -196,7 +197,7 @@ if (!alive player) exitWith {};
                 };
                 private _channelLine = format["CHN %1 (%2 MHz) - %3 - %4",_chanNum,_frequency,(_x select 0),(_x select 1)];
                 _defaultRadio = (_x select 2);
-                if (_x select ((count _x) -1 )) then { // if player is supposet to be on this channel
+                if (_x select -1) then { // if player is supposet to be on this channel
                     // Match radio to number...
                     private _radioFndIdx = -1;
                     {
@@ -211,7 +212,7 @@ if (!alive player) exitWith {};
                         };
                     } forEach _radiosToGive;
                     // Give missing radio?
-                    if ((_radioFndIdx isEqualTo -1) && GVAR(giveMissingRadios)) then {
+                    if (GVAR(giveMissingRadios) && {_radioFndIdx == -1}) then {
                         _radiosToGive pushBack _defaultRadio;
                         _assignedRadioChannels pushBack [_defaultRadio,_chanNum];
                         _radioFndIdx = (count _radiosToGive)-1;
@@ -306,7 +307,7 @@ if (!alive player) exitWith {};
             } forEach _radiosToGive;
 
             // Setup Radio channels properly and provide the addActions.
-            [{([] call acre_api_fnc_isInitialized)},
+            [{[] call acre_api_fnc_isInitialized},
             {
                 params ["_unit", "_assignedRadioChannels"];
 
@@ -319,7 +320,7 @@ if (!alive player) exitWith {};
                         _x params ["_xBaseRadio", "_chanNum"];
                         if (!(_forEachIndex in _usedRadioIndexs)) then {
                             if (_baseRadio == _xBaseRadio) then {
-                                if (_chanNum != -1 && _baseRadio != "ACRE_PRC77") then {
+                                if (_chanNum != -1 && {_baseRadio != "ACRE_PRC77"}) then {
                                     [_radioName, _chanNum] call acre_api_fnc_setRadioChannel;
                                 };
                                 _usedRadioIndexs pushBack _forEachIndex;

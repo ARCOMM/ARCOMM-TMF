@@ -15,7 +15,7 @@
  */
 params ["_unit","_items"];
 
-if (isNil "_unit" || isNil "_items") exitWith {};
+if (isNil "_unit" || {isNil "_items"}) exitWith {};
 {
     if (!(isNil "_x") && {_unit canAddItemToBackpack _x}) then {
         _unit addItemToBackpack _x;

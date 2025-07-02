@@ -20,7 +20,7 @@ fn_findNextFreeId = {
         params["_data","_children"];
 
         _data params ["_id"];
-        if (_usedIDs pushBackUnique _id == -1) then {
+        if (_id in _usedIDs) then {
             //TODO (FUTURE) - cleanup broke IDs.
             //_data set [0,-1];
             //_duplicateIDs pushBack _id;

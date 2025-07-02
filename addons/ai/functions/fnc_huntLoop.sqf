@@ -5,7 +5,7 @@ params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]];
 private _continue = true;
 while {_continue} do {
     // CHEAT
-    //private _nTargets = (_position nearEntities ["CAManBase", _range]) select {side _x == _targetSide && alive _x && {!(_x getVariable ["ACE_isUnconscious", false])}};
+    //private _nTargets = (_position nearEntities ["CAManBase", _range]) select {alive _x && {side _x == _targetSide} && {!(_x getVariable ["ACE_isUnconscious", false])}};
     _targets = (_targets select {alive _x}) - [objNull];
     {
         private _unit = _x;
@@ -45,7 +45,7 @@ while {_continue} do {
                 };
             } forEach _nTargets;*/
         } else {
-            if ((_targets pushBackUnique _closestTarget) != -1) then {
+            if (_closestTarget in _targets) then {
                 // Share this new contact with the rest of the group.
                 {
                     _x reveal _closestTarget;

@@ -25,11 +25,11 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
 
 // World DLC flags all objects, so add it as a separate warning.
 private _worldDLC = getNumber (configFile >> "CfgWorlds" >> worldName >> "appID");
-if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
+if (_worldDLC != 0 && {!(_worldDLC in _ignoredDLC)}) then {
     _ignoredDLC pushBack _worldDLC;
     /*_warnings pushBack [
         1,
-        format ["Mission uses DLC terrain: %1", [_dlcHash, _worldDLC] call CBA_fnc_hashGet]
+        format ["Mission uses DLC terrain: %1", _dlcHash get _worldDLC]
     ];*/
 };
 
@@ -41,28 +41,28 @@ private _problemUnits = [];
 
     // Get DLC short names from preStart hash
     _dlcArr = _dlcArr - _ignoredDLC;
-    _dlcArr = _dlcArr apply { [_dlcHash, _x] call CBA_fnc_hashGet };
+    _dlcArr = _dlcArr apply {_dlcHash get _x};
 
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
         !([_x, _roleDescription] call BIS_fnc_inString) && // DLC usage mentioned in role description
-        !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
+        {!([_x, _missionSummary] call BIS_fnc_inString)}   // DLC usage mentioned in mission summary
     };
 
-    if !(_dlcArr isEqualTo []) then {
+    if (_dlcArr isNotEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
         _problemUnits pushBack [_unit,_dlcArr];
     };
-} forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+} forEach (_unitsDLCInfo select {_x select 1 isNotEqualTo []});
 
-if !(_problemUnits isEqualTo []) then {
+if (_problemUnits isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
         _problemUnits = _problemUnits select [0,5];
-        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+        _warnings pushBack [AUTOTEST_ERROR,"More than five playable units require notices for DLC:"];
     } else {
-        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+        _warnings pushBack [AUTOTEST_WARNING,"One or more playable units require notices for DLC:"];
     };
 
     {
@@ -84,9 +84,9 @@ if !(_problemUnits isEqualTo []) then {
 // Filter only enterable and unlocked vehicles
 private _vehicles = vehicles select {
     [typeOf _x, true] call BIS_fnc_crewCount > 0 &&
-    ((_x get3DENAttribute "enableSimulation") # 0) &&
-    ((_x get3DENAttribute "lock") # 0) <= 1 &&
-    !((_x get3DENAttribute "objectIsSimple") # 0)
+    {((_x get3DENAttribute "enableSimulation") # 0)} &&
+    {((_x get3DENAttribute "lock") # 0) <= 1} &&
+    {!((_x get3DENAttribute "objectIsSimple") # 0)}
 };
 private _vehicleDLCInfo = _vehicles apply {[_x,getObjectDLC _x]};
 private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};
@@ -98,7 +98,7 @@ private _problemVehs = [];
 
     // Get DLC short names from preStart hash
     if !(_dlc in _ignoredDLC) then {
-        _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
+        _dlc = _dlcHash getOrDefault [_dlc, _dlc, true];
 
         private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
 
@@ -109,22 +109,21 @@ private _problemVehs = [];
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if !(_problemVehs isEqualTo []) then {
+if (_problemVehs isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {
         _problemVehs = _problemVehs select [0,5];
-        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
+        _warnings pushBack [AUTOTEST_ERROR,"More than five unlocked vehicles require DLC notices:"];
     } else {
-        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+        _warnings pushBack [AUTOTEST_WARNING,"One or more unlocked vehicles require DLC notices:"];
     };
 
     {
         _x params ["_veh","_dlc"];
-        _warnings pushBack [
-            1,
-            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
-        ];
+        _warnings pushBack [AUTOTEST_WARNING,format ["%1", _veh]];
+        _warnings pushBack [AUTOTEST_MULTILINE,format ["%1", (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName]];
+        _warnings pushBack [AUTOTEST_MULTILINE,format ["%1", _dlc]];
     } forEach _problemVehs;
 };
 
@@ -132,7 +131,6 @@ _warnings pushBack [
     if (_warnings isEqualTo []) then [{-1},{1}],
     "DLC Checks finished"
 ];
-
 
 LOG_1("Finished DLC Tests: %1",_warnings);
 

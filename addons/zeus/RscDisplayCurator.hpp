@@ -41,7 +41,7 @@ class RscDisplayCurator {
                     y="0 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
                     w="1 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
                     h="1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-                    colorText[]={0,0,0,1};
+                    colorText[]={1,1,1,1};
                 };
                 class GVAR(label): RscText
                 {
@@ -63,21 +63,21 @@ class RscDisplayCurator {
                     h="1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
                     SizeEx = "((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.8";
                     text = "All Units";
-                    action = QUOTE(_this call FUNC(toggleAllUnitsZeus));
+                    action = QUOTE([] call FUNC(toggleAllUnitsZeus));
                     tooltip = "Toggle making AI units 'editable'";
                 };
                 class GVAR(toggleStaticsZeus): GVAR(toggleUnitsZeus) {
                     idc = IDC_ToggleStaticsZeus;
                     x ="9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
                     text = "Static Objects";
-                    action = QUOTE(_this call FUNC(toggleAllStaticsZeus));
+                    action = QUOTE([] call FUNC(toggleAllStaticsZeus));
                     tooltip = "Toggle making Static objects 'editable'";
                 };
                 class GVAR(toggleACRESpectator): GVAR(toggleStaticsZeus) {
                     idc = IDC_ToggleACRESpectator;
                     x ="14 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
                     text = "ACRE Spectator";
-                    action = QUOTE(_this call FUNC(toggleACRESpectator));
+                    action = QUOTE([] call FUNC(toggleACRESpectator));
                     tooltip = "Toggle ACRE Spectator, allowing you to hear specators and in-game players via the Zeus interface.";
                 };
             };
