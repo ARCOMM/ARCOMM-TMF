@@ -22,7 +22,7 @@ private _tickCheckbox = false;
 
     private _playerRole = toLower (_player getVariable [QEGVAR(assigngear,role), ""]);
     if (_playerRole == "" || {!(_playerRole in _rolesSimple)}) then {
-        _playerRole = "r";
+        _playerRole = "baseMan";
         _tickCheckbox = true;
     };
 

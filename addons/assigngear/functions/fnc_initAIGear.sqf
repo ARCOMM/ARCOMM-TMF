@@ -54,7 +54,7 @@ if (_hash isEqualTo []) then {
     };
     // Fallback if no default defined
     if (_default isEqualTo []) then {
-        _default = ["r",1];
+        _default = ["baseMan",1];
     };
 
     _hash = createHashMap;
