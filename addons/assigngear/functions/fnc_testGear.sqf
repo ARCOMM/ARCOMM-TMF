@@ -37,7 +37,7 @@ private _fnc_checkExists_insignia = {
 };
 
 private _fncTestUnit = {
-    params ["_faction",["_role","baseman"]];
+    params ["_faction",["_role","baseMan"]];
 
     private _cfg = missionConfigFile >> "cfgLoadouts" >> _faction >> _role;
     if (!isClass (_cfg)) then {
@@ -237,7 +237,7 @@ private _loadoutFreespace = [];
     (_unit get3DENAttribute 'TMF_assignGear_enabled') params [["_enabled",false]];
 
     if (_enabled) then {
-        (_unit get3DENAttribute 'TMF_assignGear_role') params [["_role","baseman"]];
+        (_unit get3DENAttribute 'TMF_assignGear_role') params [["_role","baseMan"]];
         (_unit get3DENAttribute 'TMF_assignGear_faction') params [["_faction",toLower(faction _unit)]];
 
         private _index = _loadoutsTested pushBackUnique [_faction, _role];
