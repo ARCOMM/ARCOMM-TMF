@@ -102,7 +102,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         if (cbChecked _x || {_playerRole == ""}) then {
             _playerRole = _ctrlComboRole lbData (lbCurSel _ctrlComboRole);
             if (_playerRole == "") then {
-                _playerRole = "r";
+                _playerRole = "baseMan";
             };
         };
 

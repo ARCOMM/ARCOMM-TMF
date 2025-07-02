@@ -22,8 +22,10 @@ if !(local _unit) exitWith {};
 _this params [
     "",
     ["_faction", _unit getVariable [QGVAR(faction), toLower faction _unit]],
-    ["_role", _unit getVariable [QGVAR(role), "r"]]
+    ["_role", _unit getVariable [QGVAR(role), ""]]
 ];
+
+if (_role == "") exitWith {TRACE_2("No role assigned",_unit,_faction)};
 
 // Sometimes in editor this function is run before preInit, this should make sure that the namespace exists
 private _namespace = missionNamespace getVariable QGVAR(namespace);
@@ -148,8 +150,8 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
     };
 } forEach _loadoutArray;
 
-_unit setVariable [QGVAR(faction), _faction,true];
-_unit setVariable [QGVAR(role), _role,true];
+_unit setVariable [QGVAR(faction), _faction, true];
+_unit setVariable [QGVAR(role), _role, true];
 
 LOG_3("Assigned loadout to unit",_unit,_faction,_loadout);
 
