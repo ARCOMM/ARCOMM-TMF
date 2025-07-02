@@ -1,6 +1,7 @@
 #include "\a3\3DEN\UI\macros.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 class ctrlCombo;
+class ctrlActiveText;
 class ctrlStatic;
 class ctrlToolboxPictureKeepAspect;
 class ctrlListNBox;
@@ -223,6 +224,7 @@ class Cfg3DEN
             };
         };
         class GVAR(AmmoBox): Default {
+            idc = IDC_VEHICLEGEAR_AMMOBOX;
             onLoad = QUOTE([ARR_2(_this select 0,'onLoad')] call FUNC(gui_vehicleGear_selector));
             attributeLoad = QUOTE([ARR_2(_this,_value)] call FUNC(gui_vehicleGear_load));
             attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
@@ -327,6 +329,27 @@ class Cfg3DEN
                     disableOverflow = 1;
                     tooltipPerColumn = 1;
                     period = 1e+011;
+                };
+                class LoadBackground: ctrlStatic
+                {
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE(60 * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
+                    colorBackground[] = {0,0,0,1};
+                };
+                class Load: ctrlActiveText
+                {
+                    idc = IDC_VEHICLEGEAR_LOAD;
+                    text = "0 / 0 lbs";
+                    tooltip = "Shows the current and maximum load of the vehicle in both lbs and kg.\nTMF Vehicle Gear will update on hover, vanilla Equipment Storage will update on close and reopen.\nRed means the vehicle inventory will be overfilled and players will not be able to put items back into the vehicle if they take them out.";
+                    style = ST_CENTER;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE(60 * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
+                    onLoad = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
+                    onMouseMoving = QUOTE(_this call FUNC(gui_vehicleGear_getLoad));
                 };
                 class ButtonClear: ctrlButton
                 {

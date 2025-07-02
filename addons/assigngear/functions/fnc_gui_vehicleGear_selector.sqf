@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
- * Name = TMF_assignGear_fnc_vehicleGear_selector
+ * Name = TMF_assignGear_fnc_gui_vehicleGear_selector
  * Author = Head
  *
  * Description:
