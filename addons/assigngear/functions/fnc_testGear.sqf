@@ -164,7 +164,61 @@ private _fncTestUnit = {
         private _mags = []; // For checking number compatible
         {
             private _mass = -1;
-            call {
+            [] call {
+                if (isClass (_cfgMagazines >> _x)) exitWith {
+                    _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                    _mags pushBack (toLower _x);
+                };
+                if (isClass (_cfgWeapons >> _x)) exitWith {
+                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    if (_mass == 0) then {
+                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                    };
+                };
+                if (isClass (_cfgGlasses >> _x)) exitWith {
+                    _mass = getNumber (_cfgGlasses >> _x >> "mass");
+                };
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeUniformSpace) then {
+                    _freeUniformSpace = _freeUniformSpace - _mass;
+                } else {
+                    _output pushBack [0,format["'%1' won't fit in uniform (for: %2 - %3)", _x,_faction,_role]];
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
+        } forEach (GETGEAR("uniformItems"));
+        {
+            private _mass = -1;
+            [] call {
+                if (isClass (_cfgMagazines >> _x)) exitWith {
+                    _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                    _mags pushBack (toLower _x);
+                };
+                if (isClass (_cfgWeapons >> _x)) exitWith {
+                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    if (_mass == 0) then {
+                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                    };
+                };
+                if (isClass (_cfgGlasses >> _x)) exitWith {
+                    _mass = getNumber (_cfgGlasses >> _x >> "mass");
+                };
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeVestSpace) then {
+                    _freeVestSpace = _freeVestSpace - _mass;
+                } else {
+                    _output pushBack [0,format["'%1' won't fit in vest (for: %2 - %3)", _x,_faction,_role]];
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
+        } forEach (GETGEAR("vestItems"));
+        {
+            private _mass = -1;
+            [] call {
                 if (isClass (_cfgMagazines >> _x)) exitWith {
                     _mass = getNumber (_cfgMagazines >> _x >> "mass");
                     _mags pushBack (toLower _x);
