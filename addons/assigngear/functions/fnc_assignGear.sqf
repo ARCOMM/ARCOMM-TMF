@@ -118,7 +118,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {
-                    private _index = _x select (round random (_count - 1);
+                    private _index = round random (_count - 1);
                     _unit setVariable ["TMF_assignGear_randomPrimaryIndex", _index];
                     _mags = _x select _index;
                 };
@@ -134,7 +134,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {
-                    private _index = _x select (round random (_count - 1);
+                    private _index = round random (_count - 1);
                     _unit setVariable ["TMF_assignGear_randomSecondaryIndex", _index];
                     _mags = _x select _index;
                 };
@@ -150,7 +150,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {
-                    private _index = _x select (round random (_count - 1);
+                    private _index = round random (_count - 1);
                     _unit setVariable ["TMF_assignGear_randomSidearmIndex", _index];
                     _mags = _x select _index;
                 };
@@ -175,13 +175,14 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 {_unit addWeapon _x} forEach _x;
             };
             case 18: { // primaryWeapon
+                private _weapon = "";
                 private _selectionIndex = _unit getVariable ["TMF_assignGear_randomPrimaryIndex", -1];
                 if (_selectionIndex > -1 && {_selectionIndex < count _x} && {_x select _selectionIndex isEqualType []}) then {
-                    private _weapon = _x select _selectionIndex;
+                    _weapon = selectRandom (_x select _selectionIndex);
                 } else {
-                    private _weapon = selectRandom _x;
-                    if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
+                    _weapon = selectRandom _x;
                 };
+                if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
             };
             case 19: { // scope
                 private _scope = "";
@@ -224,13 +225,14 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 if (_silencer isEqualType "" && {_silencer != ""}) then {_unit addPrimaryWeaponItem _silencer};
             };
             case 23: { // secondaryWeapon
+                private _weapon = "";
                 private _selectionIndex = _unit getVariable ["TMF_assignGear_randomSecondaryIndex", -1];
                 if (_selectionIndex > -1 && {_selectionIndex < count _x} && {_x select _selectionIndex isEqualType []}) then {
-                    private _weapon = _x select _selectionIndex;
+                    _weapon = selectRandom (_x select _selectionIndex);
                 } else {
-                    private _weapon = selectRandom _x;
-                    if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
+                    _weapon = selectRandom _x;
                 };
+                if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
             };
             case 24: { // secondaryAttachments
                 private _selectionIndex = _unit getVariable ["TMF_assignGear_randomSecondaryIndex", -1];
@@ -241,13 +243,14 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 };
             };
             case 25: { // sidearmweapon
+                private _weapon = "";
                 private _selectionIndex = _unit getVariable ["TMF_assignGear_randomSidearmIndex", -1];
                 if (_selectionIndex > -1 && {_selectionIndex < count _x} && {_x select _selectionIndex isEqualType []}) then {
-                    private _weapon = _x select _selectionIndex;
+                    _weapon = selectRandom (_x select _selectionIndex);
                 } else {
-                    private _weapon = selectRandom _x;
-                    if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
+                    _weapon = selectRandom _x;
                 };
+                if (_weapon isEqualType "" && {_weapon != ""}) then {_unit addWeapon _weapon};
             };
             case 26: { // sidearmattachments
                 private _selectionIndex = _unit getVariable ["TMF_assignGear_randomSidearmIndex", -1];
