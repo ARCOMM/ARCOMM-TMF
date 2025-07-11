@@ -265,6 +265,13 @@ private _fncTestUnit = {
         _sidearmMagazines = ([_sidearmMagazines, []] select (isNil "_sidearmMagazines"));
 
         if (count _primaryMagazines > 0 && {_primaryMagazines select 0 isEqualType []}) then {
+            if (count _primaryWeapons > 0 && {!(_primaryWeapons select 0 isEqualType []})) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["primaryWeapon and primaryMagazines have mismatched data types (for: %2 - %3)", _faction, _role]];
+            };
+            if (count _primaryMagazines != count _primaryWeapons) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["primaryWeapon and primaryMagazines do not have the same array size (for: %2 - %3)", _faction, _role]];
+            };
+
             private _mass = -1;
             private _index = 0;
             {
@@ -284,6 +291,13 @@ private _fncTestUnit = {
         };
 
         if (count _secondaryMagazines > 0 && {_secondaryMagazines select 0 isEqualType []}) then {
+            if (count _secondaryWeapons > 0 && {!(_secondaryWeapons select 0 isEqualType []})) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["secondaryWeapon and secondaryMagazines have mismatched data types (for: %2 - %3)", _faction, _role]];
+            };
+            if (count _secondaryMagazines != count _secondaryWeapons) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["secondaryWeapon and secondaryMagazines do not have the same array size (for: %2 - %3)", _faction, _role]];
+            };
+
             private _mass = -1;
             private _index = 0;
             {
@@ -303,6 +317,13 @@ private _fncTestUnit = {
         };
 
         if (count _sidearmMagazines > 0 && {_sidearmMagazines select 0 isEqualType []}) then {
+            if (count _sidearmWeapons > 0 && {!(_sidearmWeapons select 0 isEqualType []})) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["sidearmWeapon and sidearmMagazines have mismatched data types (for: %2 - %3)", _faction, _role]];
+            };
+            if (count _sidearmMagazines != count _sidearmWeapons) exitWith {
+                _output pushBack [AUTOTEST_ERROR,format["sidearmWeapon and sidearmMagazines do not have the same array size (for: %2 - %3)", _faction, _role]];
+            };
+
             private _mass = -1;
             private _index = 0;
             {
