@@ -16,7 +16,6 @@ private _output = [];
         if (GVAR(outputToRPT) && {_output isNotEqualTo []}) then {
             {
                 if (count _x > 0 && {_x select 0 in [AUTOTEST_PASS, AUTOTEST_ERROR, AUTOTEST_WARNING, AUTOTEST_MULTILINE]}) then {
-                    
                     INFO(str (_x select 1));
                 } else {
                     INFO(str _x);
