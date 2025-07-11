@@ -13,31 +13,58 @@ private _maxWeightKG = ACE_MASSTOKG(_maxWeight);
 private _output = [];
 
 private _fnc_checkExists = {
-    params ["_subarray","_cfg"];
+    params ["_subarray", "_cfg", "_faction", "_role"];
+    _subarray = flatten _subarray;
 
     {
-        if (_x != "" && {_x != "default"}) then {
-            if (!isClass (_cfg >> _x)) then {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+        if (_x isEqualType []) then {
+            [_x, _cfg, _faction, _role] call _fnc_checkExists;
+        } else {
+            if (_x != "" && {_x != "default"}) then {
+                if (!isClass (_cfg >> _x)) then {
+                    _output pushBack [AUTOTEST_ERROR,format["Missing classname: %1 (for: %2 - %3)", _x, _faction, _role]];
+                };
             };
         };
     } forEach _subarray;
 };
 
 private _fnc_checkExists_insignia = {
-    params ["_insignias"];
+    params ["_insignias", "_faction", "_role"];
 
     {
         if (_x != "" && {_x != "default"}) then {
             if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
-                _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing insignia classname: %1 (for: %2 - %3)", _x, _faction, _role]];
             };
         };
     } forEach _insignias;
 };
 
+private _fnc_checkCompatibleMagazineQuantity = {
+    params ["_weapons", "_mags", "_output", "_faction", "_role"];
+    _weapons = _weapons - [[]];
+
+    if (count _weapons > 0 && {_weapons select 0 isEqualType []}) exitWith {
+        {
+            _output = [_x, _mags, _output, _faction, _role] call _fnc_checkCompatibleMagazineQuantity;
+        } forEach _weapons;
+        _output
+    };
+
+    {
+        private _weaponMags = [_x] call CBA_fnc_compatibleMagazines;
+        _weaponMags = _weaponMags apply {toLower _x};
+        private _weaponMagCount = {_x in _weaponMags} count _mags;
+        if (_weaponMagCount < 3 && (_weaponMags isNotEqualTo [])) then {
+            _output pushBack [AUTOTEST_WARNING,format["Role: %1 - %2 has less than 3 compatible mags for weapon %3.", _faction, _role, _weapons]];
+        };
+    } forEach _weapons;
+    _output
+};
+
 private _fncTestUnit = {
-    params ["_faction",["_role","r"]];
+    params ["_faction",["_role", "r"]];
 
     private _cfg = missionConfigFile >> "cfgLoadouts" >> _faction >> _role;
     if (!isClass (_cfg)) then {
@@ -46,20 +73,20 @@ private _fncTestUnit = {
     private _return = [0,0,0];
     if (isClass _cfg) then {
         private _uniform = GETGEAR("uniform"); //CfgWeapons
-        [_uniform, _cfgWeapons] call _fnc_checkExists;
+        [_uniform, _cfgWeapons, _faction, _role] call _fnc_checkExists;
         private _vest = GETGEAR("vest"); //CfgWeapons
-        [_vest, _cfgWeapons] call _fnc_checkExists;
+        [_vest, _cfgWeapons, _faction, _role] call _fnc_checkExists;
         private _backpack = GETGEAR("backpack"); /// cfghivecles
-        [_backpack, _cfgVehicles] call _fnc_checkExists;
+        [_backpack, _cfgVehicles, _faction, _role] call _fnc_checkExists;
         private _headgear = GETGEAR("headgear"); //CfgWeapons
-        [_headgear, _cfgWeapons] call _fnc_checkExists;
+        [_headgear, _cfgWeapons, _faction, _role] call _fnc_checkExists;
         private _goggles = GETGEAR("goggles"); //CfgWeapons
-        [_goggles, _cfgGlasses] call _fnc_checkExists;
+        [_goggles, _cfgGlasses, _faction, _role] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "CfgGlasses"
-        [_hmd, _cfgWeapons] call _fnc_checkExists;
+        [_hmd, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _insignias = GETGEAR("insignias"); // "CfgUnitInsignia"
-        [_insignias] call _fnc_checkExists_insignia;
+        [_insignias, _faction, _role] call _fnc_checkExists_insignia;
 
         // Test faces;
         private _faces = GETGEAR("faces");
@@ -71,70 +98,46 @@ private _fncTestUnit = {
                 private _facesetName = _face select [8];
                 private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
                 if (_array isEqualTo 0) then {
-                     _output pushBack [0,format["Invalid faceset: %1 (for: %2 - %3)", _face,_faction,_role]];
+                     _output pushBack [AUTOTEST_ERROR,format["Invalid faceset: %1 (for: %2 - %3)", _face, _faction, _role]];
                 };
             } else {
                 if (!(_face in _validFaces)) then {
-                    _output pushBack [0,format["Invalid face classname: %1 (for: %2 - %3)", _face,_faction,_role]];
+                    _output pushBack [AUTOTEST_ERROR,format["Invalid face classname: %1 (for: %2 - %3)", _face, _faction, _role]];
                 };
             };
         } forEach _faces;
 
         // Get primary weapon and items
-        private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
-        [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _primaryWeapons = GETGEAR("primaryWeapon"); //CfgWeapons"
+        [_primaryWeapons, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _scope = GETGEAR("scope"); // "CfgWeapons"
-        if (count _scope > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _scope;
-        } else {
-            [_scope, _cfgWeapons] call _fnc_checkExists;
-        };
+        [_scope, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _bipod = GETGEAR("bipod"); // "CfgWeapons"
-        if (count _bipod > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _bipod;
-        } else {
-            [_bipod, _cfgWeapons] call _fnc_checkExists;
-        };
+        [_bipod, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _attachment = GETGEAR("attachment"); // "CfgWeapons"
-        if (count _attachment > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _attachment;
-        } else {
-            [_attachment, _cfgWeapons] call _fnc_checkExists;
-        };
+        [_attachment, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _silencer = GETGEAR("silencer"); // "CfgWeapons"
-        if (count _silencer > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _silencer;
-        } else {
-            [_silencer, _cfgWeapons] call _fnc_checkExists;
-        };
+        [_silencer, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         // Get other weapon and items
-        private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
-        [_secondaryWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _secondaryWeapons = GETGEAR("secondaryWeapon"); //CfgWeapons"
+        [_secondaryWeapons, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _secondaryAttachments = GETGEAR("secondaryAttachments"); // "CfgWeapons"
-        if (count _secondaryAttachments > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach _secondaryAttachments;
-        } else {
-            [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
-        };
+        [_secondaryAttachments, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
-        private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
-        [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _sidearmWeapons = GETGEAR("sidearmWeapon"); //CfgWeapons"
+        [_sidearmWeapons, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
-        private __sidearmAttachments = GETGEAR("_sidearmAttachments"); // "CfgWeapons"
-        if (count __sidearmAttachments > 0 && {_x select 0 isEqualType []}) then {
-            {[_x, _cfgWeapons] call _fnc_checkExists} forEach __sidearmAttachments;
-        } else {
-            [__sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
-        };
+        private _sidearmAttachments = GETGEAR("_sidearmAttachments"); // "CfgWeapons"
+        [_sidearmAttachments, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
-        [_linkedItems, _cfgWeapons] call _fnc_checkExists;
+        [_linkedItems, _cfgWeapons, _faction, _role] call _fnc_checkExists;
 
         // Get items in inventory
         // CfgWeapons >> "weaponName" >> WeaponSlotsInfo >> mass
@@ -170,9 +173,9 @@ private _fncTestUnit = {
                     _mags pushBack (toLower _x);
                 };
                 if (isClass (_cfgWeapons >> _x)) exitWith {
-                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    _mass = getNumber (_cfgWeapons >> _x >> "ItemInfo" >> "mass");
                     if (_mass == 0) then {
-                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                        _mass = getNumber (_cfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
                 if (isClass (_cfgGlasses >> _x)) exitWith {
@@ -183,10 +186,10 @@ private _fncTestUnit = {
                 if (_mass <= _freeUniformSpace) then {
                     _freeUniformSpace = _freeUniformSpace - _mass;
                 } else {
-                    _output pushBack [0,format["'%1' won't fit in uniform (for: %2 - %3)", _x,_faction,_role]];
+                    _output pushBack [AUTOTEST_ERROR,format["'%1' won't fit in uniform (for: %2 - %3)", _x, _faction, _role]];
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing classname: %1 (for: %2 - %3)", _x, _faction, _role]];
             };
         } forEach (GETGEAR("uniformItems"));
         {
@@ -197,9 +200,9 @@ private _fncTestUnit = {
                     _mags pushBack (toLower _x);
                 };
                 if (isClass (_cfgWeapons >> _x)) exitWith {
-                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    _mass = getNumber (_cfgWeapons >> _x >> "ItemInfo" >> "mass");
                     if (_mass == 0) then {
-                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                        _mass = getNumber (_cfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
                 if (isClass (_cfgGlasses >> _x)) exitWith {
@@ -210,10 +213,10 @@ private _fncTestUnit = {
                 if (_mass <= _freeVestSpace) then {
                     _freeVestSpace = _freeVestSpace - _mass;
                 } else {
-                    _output pushBack [0,format["'%1' won't fit in vest (for: %2 - %3)", _x,_faction,_role]];
+                    _output pushBack [AUTOTEST_ERROR,format["'%1' won't fit in vest (for: %2 - %3)", _x, _faction, _role]];
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing classname: %1 (for: %2 - %3)", _x, _faction, _role]];
             };
         } forEach (GETGEAR("vestItems"));
         {
@@ -224,9 +227,9 @@ private _fncTestUnit = {
                     _mags pushBack (toLower _x);
                 };
                 if (isClass (_cfgWeapons >> _x)) exitWith {
-                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    _mass = getNumber (_cfgWeapons >> _x >> "ItemInfo" >> "mass");
                     if (_mass == 0) then {
-                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                        _mass = getNumber (_cfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
                 if (isClass (_cfgGlasses >> _x)) exitWith {
@@ -237,23 +240,87 @@ private _fncTestUnit = {
                 if (_mass <= _freeBackpackSpace) then {
                     _freeBackpackSpace = _freeBackpackSpace - _mass;
                 } else {
-                    _output pushBack [0,format["'%1' won't fit in backpack (for: %2 - %3)", _x,_faction,_role]];
+                    _output pushBack [AUTOTEST_ERROR,format["'%1' won't fit in backpack (for: %2 - %3)", _x, _faction, _role]];
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing classname: %1 (for: %2 - %3)", _x, _faction, _role]];
             };
         } forEach (GETGEAR("backpackItems"));
 
+        private _itemsToCheck = [];
+
         private _magazines = GETGEAR("magazines");
-        _magazines = [_magazines, []] select (isNil "_magazines");
-        private _primarymagazines = GETGEAR("primarymagazines");
-        _primarymagazines = [_primarymagazines, []] select (isNil "_primarymagazines");
-        private _secondarymagazines = GETGEAR("secondarymagazines");
-        _secondarymagazines = [_secondarymagazines, []] select (isNil "_secondarymagazines");
-        private _sidearmmagazines = GETGEAR("sidearmmagazines");
-        _sidearmmagazines = [_sidearmmagazines, []] select (isNil "_sidearmmagazines");
+        _magazines = ([_magazines, []] select (isNil "_magazines"));
+        _itemsToCheck = _itemsToCheck + _magazines;
+
         private _items = GETGEAR("items");
-        _items = [_items, []] select (isNil "_items");
+        _items = ([_items, []] select (isNil "_items"));
+        _itemsToCheck = _itemsToCheck + _items;
+
+        private _primaryMagazines = GETGEAR("primarymagazines");
+        _primaryMagazines = ([_primaryMagazines, []] select (isNil "_primaryMagazines"));
+        private _secondaryMagazines = GETGEAR("secondarymagazines");
+        _secondaryMagazines = ([_secondaryMagazines, []] select (isNil "_secondaryMagazines"));
+        private _sidearmMagazines = GETGEAR("sidearmmagazines");
+        _sidearmMagazines = ([_sidearmMagazines, []] select (isNil "_sidearmMagazines"));
+
+        if (count _primaryMagazines > 0 && {_primaryMagazines select 0 isEqualType []}) then {
+            private _mass = -1;
+            private _index = 0;
+            {
+                private _tempMass = 0;
+                private _currentMags = _x;
+                {
+                    _tempMass = _tempMass + (getNumber (_cfgMagazines >> _x >> "mass"));
+                } forEach _currentMags;
+                if (_tempMass > _mass) then {
+                    _mass = _tempMass;
+                    _index = _forEachIndex;
+                };
+            } forEach _primaryMagazines;
+            _itemsToCheck = _itemsToCheck + (_primaryMagazines select _index);
+        } else {
+            _itemsToCheck = _itemsToCheck + _primaryMagazines;
+        };
+
+        if (count _secondaryMagazines > 0 && {_secondaryMagazines select 0 isEqualType []}) then {
+            private _mass = -1;
+            private _index = 0;
+            {
+                private _tempMass = 0;
+                private _currentMags = _x;
+                {
+                    _tempMass = _tempMass + (getNumber (_cfgMagazines >> _x >> "mass"));
+                } forEach _currentMags;
+                if (_tempMass > _mass) then {
+                    _mass = _tempMass;
+                    _index = _forEachIndex;
+                };
+            } forEach _secondaryMagazines;
+            _itemsToCheck = _itemsToCheck + (_secondaryMagazines select _index);
+        } else {
+            _itemsToCheck = _itemsToCheck + _secondaryMagazines;
+        };
+
+        if (count _sidearmMagazines > 0 && {_sidearmMagazines select 0 isEqualType []}) then {
+            private _mass = -1;
+            private _index = 0;
+            {
+                private _tempMass = 0;
+                private _currentMags = _x;
+                {
+                    _tempMass = _tempMass + (getNumber (_cfgMagazines >> _x >> "mass"));
+                } forEach _currentMags;
+                if (_tempMass > _mass) then {
+                    _mass = _tempMass;
+                    _index = _forEachIndex;
+                };
+            } forEach _sidearmMagazines;
+            _itemsToCheck = _itemsToCheck + (_sidearmMagazines select _index);
+        } else {
+            _itemsToCheck = _itemsToCheck + _sidearmMagazines;
+        };
+
         {
             private _mass = -1;
             switch (true) do
@@ -265,9 +332,9 @@ private _fncTestUnit = {
                 };
                 case (isClass (_cfgWeapons >> _x)):
                 {
-                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    _mass = getNumber (_cfgWeapons >> _x >> "ItemInfo" >> "mass");
                     if (_mass == 0) then {
-                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                        _mass = getNumber (_cfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                     };
                 };
                 case (isClass (_cfgGlasses >> _x)):
@@ -285,37 +352,41 @@ private _fncTestUnit = {
                         if (_mass <= _freeBackpackSpace) then {
                             _freeBackpackSpace = _freeBackpackSpace - _mass;
                         } else {
-                            _output pushBack [0,format["'%1' won't fit (for: %2 - %3)", _x,_faction,_role]];
+                            _output pushBack [AUTOTEST_ERROR,format["'%1' won't fit (for: %2 - %3)", _x, _faction, _role]];
                         };
                     };
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing classname: %1 (for: %2 - %3)", _x, _faction, _role]];
             };
-        } forEach (_magazines + _primarymagazines + _secondarymagazines + _sidearmmagazines + _items);
+        } forEach _itemsToCheck;
 
         //Mag check
-        if (count _primaryWeapon > 0) then {
-            private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
-            _weaponMags = _weaponMags apply {toLower _x};
-            private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount < 3 && (_weaponMags isNotEqualTo [])) then {
-                _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.", _faction, _role]];
-            };
+        if (count _primaryWeapons > 0 && {(_primaryWeapons select 0) isEqualType []}) then {
+            {
+                _mags pushBack (toLower _x);
+            } forEach flatten _primaryMagazines;
+            {
+                _output = [_x, _mags, _output, _faction, _role] call _fnc_checkCompatibleMagazineQuantity;
+            } forEach _primaryWeapons;
+        } else {
+            _output = [_primaryWeapons, _mags, _output, _faction, _role] call _fnc_checkCompatibleMagazineQuantity;
         };
 
-        if (count _sidearmWeapon > 0 && (_weaponMags isNotEqualTo [])) then {
-            private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
-            _weaponMags = _weaponMags apply {toLower _x};
-            private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount == 0) then {
-                _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.", _faction, _role]];
-            };
+        if (count _sidearmWeapons > 0 && {(_sidearmWeapons select 0) isEqualType []}) then {
+            {
+                _mags pushBack (toLower _x);
+            } forEach flatten _sidearmMagazines;
+            {
+                _output = [_x, _mags + (flatten _sidearmMagazines), _output, _faction, _role] call _fnc_checkCompatibleMagazineQuantity;
+            } forEach _sidearmWeapons;
+        } else {
+            _output = [_sidearmWeapons, _mags, _output, _faction, _role] call _fnc_checkCompatibleMagazineQuantity;
         };
 
-        _return = [_freeUniformSpace,_freeVestSpace,_freeBackpackSpace];
+        _return = [_freeUniformSpace, _freeVestSpace, _freeBackpackSpace];
     } else {
-        _output pushBack [0,format["Missing kit %1 - %2",_faction,_role]];
+        _output pushBack [AUTOTEST_ERROR,format["Missing kit %1 - %2", _faction, _role]];
     };
     _return;
 };
@@ -329,22 +400,22 @@ private _loadoutFreespace = [];
     (_unit get3DENAttribute 'TMF_assignGear_enabled') params [["_enabled",false]];
 
     if (_enabled) then {
-        (_unit get3DENAttribute 'TMF_assignGear_role') params [["_role","r"]];
+        (_unit get3DENAttribute 'TMF_assignGear_role') params [["_role", "r"]];
         (_unit get3DENAttribute 'TMF_assignGear_faction') params [["_faction",toLower(faction _unit)]];
 
         private _index = _loadoutsTested pushBackUnique [_faction, _role];
         private _freespace = []; // Uniform,Vest,Backpack;
         if (_index != -1) then {
-            _freespace = [_faction,_role] call _fncTestUnit;
+            _freespace = [_faction, _role] call _fncTestUnit;
             _loadoutFreespace pushBack _freespace;
             _unit call FUNC(assignGear);
             private _weight = loadAbs _unit; // ACE calculation
 
             if (_weight >= _maxWeight) then {
-                _output pushBack [0,format["Role weight above maximum, %1kg > %2 (for: %3 - %4)",ACE_MASSTOKG(_weight),_maxWeightKG,_faction,_role]];
+                _output pushBack [AUTOTEST_ERROR,format["Role weight above maximum, %1kg > %2 (for: %3 - %4)", ACE_MASSTOKG(_weight), _maxWeightKG, _faction, _role]];
             } else {
                 if (ACE_MASSTOKG(_weight) >= _warnWeight) then {
-                    _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",ACE_MASSTOKG(_weight),_faction,_role]];
+                    _output pushBack [AUTOTEST_WARNING,format["Heavy role %1kg (for: %2 - %3)", ACE_MASSTOKG(_weight), _faction, _role]];
                 };
             };
 
@@ -353,7 +424,7 @@ private _loadoutFreespace = [];
         };
 
         private _radios = [_unit] call EFUNC(acre2,edenUnitToRadios);
-        _freespace params ["_freeUniformSpace","_freeVestSpace","_freeBackpackSpace"];
+        _freespace params ["_freeUniformSpace", "_freeVestSpace", "_freeBackpackSpace"];
         {
             private _mass = -1;
             if (isClass (_cfgMagazines >> _x)) then {
@@ -361,9 +432,9 @@ private _loadoutFreespace = [];
                 _mags pushBack (toLower _x);
             };
             if (isClass (_cfgWeapons >> _x)) then {
-                _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                _mass = getNumber (_cfgWeapons >> _x >> "ItemInfo" >> "mass");
                 if (_mass == 0) then {
-                    _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                    _mass = getNumber (_cfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
                 };
             };
             if (_mass >= 0) then {
@@ -376,17 +447,17 @@ private _loadoutFreespace = [];
                         if (_mass <= _freeBackpackSpace) then {
                             _freeBackpackSpace = _freeBackpackSpace - _mass;
                         } else {
-                            _output pushBack [0,format["'%1'(%4) radio won't fit for: %2 (%3)", _x,_unit,group _unit, _role]];
+                            _output pushBack [AUTOTEST_ERROR,format["'%1'(%4) radio won't fit for: %2 (%3)", _x, _unit, group _unit, _role]];
                         };
                     };
                 };
             } else {
-                _output pushBack [0,format["Missing radio classname: %1 (for: %2)", _x,_unit]];
+                _output pushBack [AUTOTEST_ERROR,format["Missing radio classname: %1 (for: %2)", _x, _unit]];
             };
         } forEach _radios;
     };
 } forEach allUnits;
 
-_output pushBack [-1,"AssignGear checks complete."];
+_output pushBack [AUTOTEST_PASS, "AssignGear checks complete."];
 
 _output
