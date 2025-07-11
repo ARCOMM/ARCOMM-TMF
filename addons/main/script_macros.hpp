@@ -44,3 +44,8 @@ class Extended_PreStart_EventHandlers {                 \
 
 // Chat macros
 #define IS_CMND_AVAILABLE(var,cmnd) if !([var,cmnd] call EFUNC(chat,commandAvailable)) exitWith {}
+
+#define AUTOTEST_PASS -1
+#define AUTOTEST_ERROR 0
+#define AUTOTEST_WARNING 1
+#define AUTOTEST_MULTILINE 10
