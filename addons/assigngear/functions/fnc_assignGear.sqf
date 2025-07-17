@@ -114,7 +114,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     };
                 } forEach _x;
             };
-            case 13: { // primarymagazines
+            case 13: { // primaryMagazines
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {
@@ -130,7 +130,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     };
                 } forEach _mags;
             };
-            case 14: { // secondarymagazines
+            case 14: { // secondaryMagazines
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {
@@ -146,7 +146,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     };
                 } forEach _mags;
             };
-            case 15: { // sidearmmagazines
+            case 15: { // sidearmMagazines
                 private _count = count _x;
                 private _mags = _x;
                 if (_count > 0 && {_x select 0 isEqualType []}) then {

@@ -257,11 +257,11 @@ private _fncTestUnit = {
         _items = ([_items, []] select (isNil "_items"));
         _itemsToCheck = _itemsToCheck + _items;
 
-        private _primaryMagazines = GETGEAR("primarymagazines");
+        private _primaryMagazines = GETGEAR("primaryMagazines");
         _primaryMagazines = ([_primaryMagazines, []] select (isNil "_primaryMagazines"));
-        private _secondaryMagazines = GETGEAR("secondarymagazines");
+        private _secondaryMagazines = GETGEAR("secondaryMagazines");
         _secondaryMagazines = ([_secondaryMagazines, []] select (isNil "_secondaryMagazines"));
-        private _sidearmMagazines = GETGEAR("sidearmmagazines");
+        private _sidearmMagazines = GETGEAR("sidearmMagazines");
         _sidearmMagazines = ([_sidearmMagazines, []] select (isNil "_sidearmMagazines"));
 
         if (count _primaryMagazines > 0 && {_primaryMagazines select 0 isEqualType []}) then {
