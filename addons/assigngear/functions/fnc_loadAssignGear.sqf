@@ -60,24 +60,29 @@ private _loadoutArray = [];
         CASE("insignias",8);
 
         // Items/magazines
-        CASE("backpackitems",9);
-        CASE("items",10);
-        CASE("magazines",11);
-        CASE("linkeditems",12);
+        CASE("uniformItems",9);
+        CASE("vestItems",10);
+        CASE("backpackitems",11);
+        CASE("items",12);
+        CASE("primarymagazines",13);
+        CASE("secondarymagazines",14);
+        CASE("sidearmmagazines",15);
+        CASE("magazines",16);
+        CASE("linkeditems",17);
 
         // Weapons
-        CASE("primaryweapon",13);
-        CASE("scope",14);
-        CASE("bipod",15);
-        CASE("attachment",16);
-        CASE("silencer",17);
-        CASE("secondaryweapon",18);
-        CASE("secondaryattachments",19);
-        CASE("sidearmweapon",20);
-        CASE("sidearmattachments",21);
+        CASE("primaryweapon",18);
+        CASE("scope",19);
+        CASE("bipod",20);
+        CASE("attachment",21);
+        CASE("silencer",22);
+        CASE("secondaryweapon",23);
+        CASE("secondaryattachments",24);
+        CASE("sidearmweapon",25);
+        CASE("sidearmattachments",26);
 
-        CASE("traits",22);
-        CASE("code",23);
+        CASE("traits",27);
+        CASE("code",28);
     };
 } forEach configProperties [CFGROLE];
 

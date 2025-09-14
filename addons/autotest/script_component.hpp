@@ -3,12 +3,6 @@
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
 
-#define AUTOTEST_PASS -1
-#define AUTOTEST_ERROR 0
-#define AUTOTEST_WARNING 1
-#define AUTOTEST_MULTILINE 10
-
-
 // "disableai" was previously included in GLOBAL_COMMANDS but has odd locality so is currently excluded
 
 #define GLOBAL_COMMANDS [ \
