@@ -33,14 +33,15 @@ if (_hitPoint == "find") exitWith {
     private _message = [["Damaged Hitpoints"]];
     {
         if (_x > 0) then {
-            _message pushBack [_hitpointsNames#_forEachIndex];
+            _message pushBack [_hitpointsNames select _forEachIndex];
         };
     } forEach _damageValues;
+    _message pushBack true;
     _message call CBA_fnc_notify;
 };
 
 if (_hitPoint == "" || {_hitPoint == "all"}) then {
-    [["All hitpoints repaired on"], [str _vehicle]] call CBA_fnc_notify;
+    [["All hitpoints repaired on"], [str _vehicle], true] call CBA_fnc_notify;
     [_vehicle,
         {
             params ["_vehicle"];
@@ -49,12 +50,19 @@ if (_hitPoint == "" || {_hitPoint == "all"}) then {
             private _damageValues = _allDamage#2;
             {
                 if (_x > 0) then {
-                    _vehicle setHitPointDamage [_hitpointsNames#_forEachIndex, 0, false];
+                    _vehicle setHitPointDamage [_hitpointsNames select _forEachIndex, 0, false];
                 };
             } forEach _damageValues;
         }
     ] remoteExec ["call", _vehicle];
 } else {
-    [["Hitpoint " + _hitPoint + " repaired"]] call CBA_fnc_notify;
+    if !(_hitPoint in getAllHitPointsDamage _vehicle) then {
+        [
+            ["Hitpoint " + _hitPoint + " does not match any hitpoints on the vehicle"],
+            ["Use '#repair find' to retrieve all damaged hitpoints"],
+            true
+        ] call CBA_fnc_notify;
+    };
+    [["Hitpoint " + _hitPoint + " repaired"], true] call CBA_fnc_notify;
     [_vehicle, [_hitPoint,0,false]] remoteExec ["setHitPointDamage", _vehicle];
 };
