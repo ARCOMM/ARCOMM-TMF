@@ -12,6 +12,32 @@
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(refuelUsage),
+    "LIST",
+    "#refuel available",
+    ["TMF", "Chat Commands"],
+    [
+        [0,         1,                  3       ],
+        ["Never",   "During safestart", "Always"],
+        0
+    ], // default value
+    1 // isGlobal
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(repairUsage),
+    "LIST",
+    "#repair available",
+    ["TMF", "Chat Commands"],
+    [
+        [0,         1,                  3       ],
+        ["Never",   "During safestart", "Always"],
+        0
+    ], // default value
+    1 // isGlobal
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(rpUsage),
     "LIST",
     "#rp available",
