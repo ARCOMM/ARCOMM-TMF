@@ -30,6 +30,16 @@ if (_hitPoint == "find") exitWith {
     private _allDamage = getAllHitPointsDamage _vehicle;
     private _hitpointsNames = _allDamage#0;
     private _damageValues = _allDamage#2;
+    private _message = "";
+    {
+        if (_x > 0) then {
+            _message = composeText [_message, lineBreak, str (_hitpointsNames select _forEachIndex)];
+        };
+    } forEach _damageValues;
+
+    "Damaged Hitpoints" hintC [_message];
+
+    /*
     private _message = [["Damaged Hitpoints"]];
     {
         if (_x > 0) then {
@@ -38,6 +48,7 @@ if (_hitPoint == "find") exitWith {
     } forEach _damageValues;
     _message pushBack true;
     _message call CBA_fnc_notify;
+    */
 };
 
 if (_hitPoint == "" || {_hitPoint == "all"}) then {
@@ -59,7 +70,7 @@ if (_hitPoint == "" || {_hitPoint == "all"}) then {
     if !(_hitPoint in getAllHitPointsDamage _vehicle) then {
         [
             ["Hitpoint " + _hitPoint + " does not match any hitpoints on the vehicle"],
-            ["Use '#repair find' to retrieve all damaged hitpoints"],
+            ["Use '#repair find' to display all damaged hitpoints"],
             true
         ] call CBA_fnc_notify;
     };
