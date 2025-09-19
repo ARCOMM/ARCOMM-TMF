@@ -1,6 +1,23 @@
 #define CMND(COMMAND) cmnd##COMMAND
 #define CHAT_FUNC(COMMAND) { _this call FUNC(CMND(COMMAND)); [format ["%1 executed #%2 %3",profileName,QUOTE(COMMAND),_this select 0],false,"Chat"] call EFUNC(adminmenu,log)}
-;
+
+[ // Heal
+    "heal",
+    CHAT_FUNC(Heal),
+    "all"
+] call CBA_fnc_registerChatCommand;
+
+[ // Refuel
+    "refuel",
+    CHAT_FUNC(Refuel),
+    "all"
+] call CBA_fnc_registerChatCommand;
+
+[ // Repair
+    "repair",
+    CHAT_FUNC(Repair),
+    "all"
+] call CBA_fnc_registerChatCommand;
 
 [ // Reset Position
     "rp",
@@ -10,7 +27,7 @@
 
 [ // Teleport
     "tp",
-    CHAT_FUNC(Tp),
+    CHAT_FUNC(TP),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
@@ -23,12 +40,6 @@
 [ // Whisper
     "whisper",
     CHAT_FUNC(Whisper),
-    "all"
-] call CBA_fnc_registerChatCommand;
-
-[ // Heal
-    "heal",
-    CHAT_FUNC(Heal),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
@@ -47,3 +58,4 @@ if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,acre2)))) then {
         "all"
     ] call CBA_fnc_registerChatCommand;
 };
+
