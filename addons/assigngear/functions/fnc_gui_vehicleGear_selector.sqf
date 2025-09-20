@@ -72,31 +72,28 @@ private _fnc_getFactionItems = {
 
     private _output = [];
     {
-        #define GET(t,f) ((getArray (_x >> t)) apply {[_x,t,f]})
-        _output append GET('primaryWeapon',FILTER_WEAPON);
-        _output append GET('magazines',FILTER_WEAPON);
-        _output append GET('scope',FILTER_WEAPON);
-        _output append GET('bipod',FILTER_WEAPON);
-        _output append GET('attachment',FILTER_WEAPON);
-        _output append GET('silencer',FILTER_WEAPON);
-        _output append GET('secondaryWeapon',FILTER_WEAPON);
-        _output append GET('secondaryAttachments',FILTER_WEAPON);
-        _output append GET('sidearmWeapon',FILTER_WEAPON);
-        _output append GET('sidearmAttachments',FILTER_WEAPON);
+        private _loadout = _x;
+        {
+            private _configName = _x;
+            private _configEntry = getArray (_loadout >> _configName);
+            if (count _configEntry > 0 && {_configEntry select 0 isEqualType []}) then {_configEntry = flatten _configEntry};
+            _output append (_configEntry apply {[_x, _configName, FILTER_WEAPON]});
+        } forEach ["primaryWeapon", "primaryMagazines", "secondaryMagazines", "sidearmMagazines", "magazines", "scope", "bipod", "attachment", "silencer", "secondaryWeapon", "secondaryAttachments", "sidearmWeapon", "sidearmAttachments"];
+        {
+            private _configName = _x;
+            private _configEntry = getArray (_loadout >> _configName);
+            if (count _configEntry > 0 && {_configEntry select 0 isEqualType []}) then {_configEntry = flatten _configEntry};
+            _output append (_configEntry apply {[_x, _configName, FILTER_GEAR]});
+        } forEach ["uniform", "vest", "backpack", "headgear", "goggles"];
+        {
+            private _configName = _x;
+            private _configEntry = getArray (_loadout >> _configName);
+            if (count _configEntry > 0 && {_configEntry select 0 isEqualType []}) then {_configEntry = flatten _configEntry};
+            _output append (_configEntry apply {[_x, _configName, FILTER_ITEMS]});
+        } forEach ["linkedItems", "items", "hmd", "radios", "uniformItems", "vestItems", "backpackItems"];
 
-        _output append GET('uniform',FILTER_GEAR);
-        _output append GET('vest',FILTER_GEAR);
-        _output append GET('backpack',FILTER_GEAR);
-        _output append GET('headgear',FILTER_GEAR);
-        _output append GET('goggles',FILTER_GEAR);
-
-        _output append GET('linkedItems',FILTER_ITEMS);
-        _output append GET('items',FILTER_ITEMS);
-        _output append GET('hmd',FILTER_ITEMS);
-        _output append GET('radios',FILTER_ITEMS);
-        _output append GET('backpackItems',FILTER_ITEMS);
-        #undef GET
     } forEach ("true" configClasses _cfg);
+
     UNIQUE(_output);
     _output = _output select {!((toLower (_x # 0)) in ["default", "", "none"])};
 
