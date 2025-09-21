@@ -347,12 +347,12 @@ switch _mode do {
             private _color = (side _unit) call TMF_common_fnc_sideToColor;
 
             if (_roleDesc == "") then {
-                _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+                _roleDesc =    getText (configOf _unit >> "displayName");
             };
             private _unitIdx = _ctrlTree tvAdd [ _treeRoot, _roleDesc];
             private _location = _treeRoot + [_unitIdx];
             _ctrlTree tvSetValue [_location, RadioNetworkChannel_data pushBack _unit];
-            private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "icon"));
+            private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configOf _unit >> "icon"));
             if (_icon == "") then {
                 _icon = "\a3\3DEN\Data\Cfg3DEN\Object\iconPlayer_ca.paa"; //default player icon
             };
@@ -671,10 +671,10 @@ switch _mode do {
 
                 private _roleDesc = ((_x get3DENAttribute "description") select 0);
                 if (_roleDesc == "") then {
-                    _roleDesc = getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName");
+                    _roleDesc = getText (configOf _x >> "displayName");
                 };
                 private _unitIdx = _ctrlTree tvAdd [ [_sideIdx, _factionIdx, _grpIdx], _roleDesc];
-                private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "icon"));
+                private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configOf _x >> "icon"));
                 if (_icon == "") then {
                     _icon = "\a3\3DEN\Data\Cfg3DEN\Object\iconPlayer_ca.paa"; //default player icon
                 };

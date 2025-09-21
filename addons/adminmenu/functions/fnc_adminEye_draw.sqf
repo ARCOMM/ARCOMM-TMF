@@ -132,7 +132,7 @@ params["_fullmapWindow"];
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
             if(_icon == "") then {
-                _icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");
+                _icon = getText (configOf vehicle _x >> "icon");
                 (vehicle _x) setVariable ["f_cam_icon",_icon];
             };
 
