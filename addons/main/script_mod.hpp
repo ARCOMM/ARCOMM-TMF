@@ -3,8 +3,8 @@
 
 #define MAJOR 1
 #define MINOR 1
-#define PATCH 1
-#define BUILD 9
+#define PATCH 2
+#define BUILD 10
 
 #define VERSION     MAJOR.MINOR
 #define VERSION_STR MAJOR.MINOR.PATCH.BUILD
