@@ -11,7 +11,7 @@ params["_fullmapWindow"];
         if (isNull objectParent _x || {!isNull objectParent _x && {crew (vehicle _x) select 0 == _x}}) then
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
-            if(_icon == "") then {_icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
+            if(_icon == "") then {_icon = getText (configOf vehicle _x >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
             private _color = (side _x) call tmf_common_fnc_sideToColor;
             _fullmapWindow drawIcon [_icon,_color,getPos _x,19,19,getDir (vehicle _x),_name,1];
         };

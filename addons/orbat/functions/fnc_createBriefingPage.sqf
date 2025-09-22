@@ -196,7 +196,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
             private _thisBriefing = "";
             if (_entity isEqualType objNull) then {
                 private _veh = _entity;
-                private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+                private _vehDisplayName = [getText (configOf _veh >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                 private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
                 
                 if (_callsign == "") then {
@@ -205,15 +205,15 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     
                 };
                 _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
-                private _vehIcon = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "picture");
+                private _vehIcon = getText(configOf _veh >> "picture");
                 if (_groupTexture == "\x\tmf\addons\orbat\textures\empty.paa") then {
                     _thisBriefing = format ["%1",_indent];
                 } else {
                     _thisBriefing = format ["%1<img image='%2' height='18'></img>",_indent,_groupTexture];
                 };
-                private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier") 
+                private _maxSlots = getNumber(configOf _veh >> "transportSoldier") 
                     + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
-                    + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
+                    + getNumber(configOf _veh >> "hasDriver");
                 private _occupiedSlots = count crew _veh;
                 
                 //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
@@ -225,7 +225,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 {
                     private _veh = _x;
                     // check if vehicle has callsign. If not, use displayName
-                    private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+                    private _vehDisplayName = [getText (configOf _veh >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                     private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
 
                     if (_callsign == "") then {
@@ -233,10 +233,10 @@ _fnc_processOrbatTrackerBriefingRawData = {
                         _callsign = format ["Vic #%1",(_vehNum + 1)];
                     };
                     _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
-                    private _vehIcon = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "picture");
-                    private _maxSlots = getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "transportSoldier")
+                    private _vehIcon = getText(configOf _veh >> "picture");
+                    private _maxSlots = getNumber(configOf _veh >> "transportSoldier")
                         + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {getNumber (_x >> "rhs_hatch_control") != 1 && {getNumber (_x >> "isPersonTurret") != 1}})
-                        + getNumber(configFile >> "CfgVehicles" >> typeOf _veh >> "hasDriver");
+                        + getNumber(configOf _veh >> "hasDriver");
                     private _occupiedSlots = count crew _veh;
                     //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
                     _thisBriefing = _thisBriefing + format [" (<img image='%2' height='16'></img> %1 [%3/%4])",_vehDisplayName,_vehIcon,_occupiedSlots,_maxSlots];
@@ -246,7 +246,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     //Retrieve specialist marker otherwise use default vanilla icon
                     private _markerEntry = _x getVariable ["TMF_SpecialistMarker",[]];
                     if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
-                    private _unitImg = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "icon"));
+                    private _unitImg = getText (configFile >> "CfgVehicleIcons" >> getText (configOf _x >> "icon"));
                     if (leader _entity == _x) then {
                         _unitImg = "\A3\ui_f\data\map\vehicleicons\iconManLeader_ca.paa";
                     };
