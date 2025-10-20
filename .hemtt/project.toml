@@ -18,6 +18,6 @@ exclude = [
 [version]
 major = 1
 minor = 1
-patch = 2
-build = 10
+patch = 3
+build = 11
 git_hash = 8
